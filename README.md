@@ -56,4 +56,5 @@ Both type of viscometer produce a time when used to test the fluid. This time is
 
 At this point, you may be wondering as to the purpose of this project - multiplication and averaging are simple mathematical operations that don't require an entire website to do, surely? A pocket calculator could be used. 
 
-This is indeed true. However, the methods specify that
+This is indeed true. However, the methods specify thatgit add .
+git commit -m 
