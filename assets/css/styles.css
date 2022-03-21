@@ -1,0 +1,91 @@
+
+
+body {
+    margin: 0;
+}
+
+.title {
+    text-align: center;
+
+}
+
+main {
+    min-height: calc(100vh - 20px);
+}
+
+.line-break {
+    clear: both;
+}
+
+#description {
+    width: 80%;
+    height: 200px;
+    background-color: blanchedalmond;
+    margin: 25px auto;
+}
+
+#description h2 {
+    text-align: center;
+}
+
+#user-input {
+    float: left;
+    width: 50%;
+    height: 50vh;
+    background-color: lightblue;
+}
+
+#select {
+    margin: 25px auto;
+}
+
+#run-1 {
+    float: left;
+}
+
+#run-2 {
+    float: right;
+}
+
+#constant-1-div {
+    float: left;
+}
+
+#constant-2-div {
+    float: right;
+}
+
+#calculated-output {
+    float: right;
+    width: 50%;
+    height: 50vh;
+    background-color: lightcoral;
+}
+
+#kv-1 {
+    float: left;
+}
+
+#kv-2 {
+    float: right;
+}
+
+#kv-final {
+    margin: 0 auto;
+}
+
+#upper-determinability {
+    float: left;
+}
+
+#lower-determinability {
+    float: right;
+}
+
+
+.footer {
+    height: 20px;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+
+}
