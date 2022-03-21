@@ -38,10 +38,11 @@
 
             <div id="select">
 
-                <p>Select your sample type, temperature and viscometer type</p>
+                <p>Select your sample type and temperature</p>
 
                 <select id="sample-type">
 
+                    <option disabled selected value> -- select an option -- </option>
                     <option value="base-oils-and-formulated-oils-40">Base Oils and Formulated Oils at 40C</option>
                     <option value="base-oils-and-formulated-oils-100">Base Oils and Formulated Oils at 100C</option>
                     <option value="formulated-oils-150">Formulated Oils at 150C</option>
@@ -58,6 +59,10 @@
                     <option value="crude-oils-and-residues-cross-arm">Crude oils and residues in a cross-arm viscometer</option>
 
                 </select>
+
+                <p>Select your viscometer type</p>
+                <button onclick="suspendedConstant()">Suspended</button>
+                <button onclick="crossArmConstant()">Cross-arm</button>
 
             </div>
 
@@ -77,19 +82,7 @@
 
             <br class="line-break">
 
-            <div id="constant-1-div">
-
-                <p id="constant-1">Constant 1:</p>
-                <input type="number" id="constant-1-input">
-
-            </div>
-
-            <div id="constant-2-div">
-
-                <p id="constant-2">Constant 2:</p>
-                <input type="number" id="constant-2-input">
-
-            </div>
+            <div id="constants"></div>
 
             <br class="line-break">
 

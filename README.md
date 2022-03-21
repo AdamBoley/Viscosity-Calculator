@@ -168,3 +168,6 @@ The tool could be expanded greatly to handle the calculations involved in other 
 
 # Credits
 
+## Resources
+
+Setting a select element to blank by default: https://stackoverflow.com/questions/8605516/default-select-option-as-blank
