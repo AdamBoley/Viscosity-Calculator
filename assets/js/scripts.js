@@ -44,7 +44,7 @@
 })*/
 //Currently not working
 
-
+//Suspended flow Viscometer / Ubbelohde viscometer logic
 function suspendedConstant() {
     let constant = document.getElementById("constants")
 
@@ -61,6 +61,64 @@ function suspendedConstant() {
         submit.innerHTML = `<button type="submit" onclick="getValuesSuspended()" id="submit">calculate</button>`
 }
 
+function getValuesSuspended() {
+
+    let time1 = parseFloat(document.getElementById('run-time-1').value);
+    let time2 = parseFloat(document.getElementById('run-time-2').value);
+    let viscConstant = parseFloat(document.getElementById('constant-input').value);
+
+    console.log(`run time 1 is ${time1}`);
+    console.log(`run time 2 is ${time2}`);
+    console.log(`the viscometer constant is ${viscConstant}`);
+
+    calculateSuspended(time1, time2, viscConstant);
+}
+
+function calculateSuspended(runTime1, runTime2, constant) {
+
+    let kv1 = runTime1 * constant;
+    let kv2 = runTime2 * constant;
+
+    let preciseKv1 = kv1.toPrecision(4)
+    let preciseKv2 = kv2.toPrecision(4)
+
+    document.getElementById('kinematic-viscosity-1').innerText = preciseKv1;
+    document.getElementById('kinematic-viscosity-2').innerText = preciseKv2;
+
+    console.log(`kinematic viscosity 1 is ${kv1}`);
+    console.log(`kinematic viscosity 2 is ${kv2}`);
+    console.log(`kinematic viscosity 1 to 4 sig figs is ${preciseKv1}`);
+    console.log(`kinematic viscosity 2 to 4 sig figs is ${preciseKv2}`);
+
+    getValuesFinalSuspended()
+
+}
+
+function getValuesFinalSuspended() {
+
+    let kv1 = parseFloat(document.getElementById('kinematic-viscosity-1').innerText)
+    let kv2 = parseFloat(document.getElementById('kinematic-viscosity-2').innerText)
+
+    console.log(`kinematic viscosity 1 is ${kv1}`);
+    console.log(`kinematic viscosity 2 is ${kv2}`);
+
+
+    calculateFinalSuspended(kv1, kv2)
+
+}
+
+function calculateFinalSuspended(kv1, kv2) {
+
+    let finalViscosity = ((kv1 + kv2) / 2)
+
+    console.log(`the final kinematic viscosity is ${finalViscosity}`)
+
+    document.getElementById('final-calculated-viscosity').innerText = finalViscosity
+}
+
+
+
+//Cross Arm viscomter / Zeitfuchs viscometer logic
 function crossArmConstant() {
 
     let constants = document.getElementById("constants")
@@ -85,31 +143,6 @@ function crossArmConstant() {
         submit.innerHTML = `<button type="submit" onclick="getValuesCrossArm()" id="submit">calculate</button>`
 }
 
-function getValuesSuspended() {
-
-    let time1 = parseFloat(document.getElementById('run-time-1').value);
-    let time2 = parseFloat(document.getElementById('run-time-2').value);
-    let viscConstant = parseFloat(document.getElementById('constant-input').value);
-
-    console.log(time1);
-    console.log(time2);
-    console.log(viscConstant);
-
-    calculateSuspended(time1, time2, viscConstant);
-}
-
-function calculateSuspended(runTime1, runTime2, constant) {
-
-    let kv1 = runTime1 * constant;
-    let kv2 = runTime2 * constant;
-
-    document.getElementById('kinematic-viscosity-1').innerText = kv1;
-    document.getElementById('kinematic-viscosity-2').innerText = kv2;
-
-    console.log(kv1);
-    console.log(kv1);
-}
-
 function getValuesCrossArm() {
 
     let time1 = parseFloat(document.getElementById('run-time-1').value);
@@ -117,7 +150,12 @@ function getValuesCrossArm() {
     let viscConstant1 = parseFloat(document.getElementById('constant-1-input').value);
     let viscConstant2 = parseFloat(document.getElementById('constant-2-input').value);
 
-    calculateCrossArm(time1, time2, viscConstant1, viscConstant2);
+    console.log(`run time 1 is ${time1}`);
+    console.log(`run time 2 is ${time2}`);
+    console.log(`the viscometer constant is ${viscConstant1}`);
+    console.log(`the viscometer constant is ${viscConstant2}`);
+
+    calculateCrossArm(time1, time2, viscConstant1, viscConstant2)
 
 }
 
@@ -126,7 +164,42 @@ function calculateCrossArm(runTime1, runTime2, constant1, constant2) {
     let kv1 = runTime1 * constant1;
     let kv2 = runTime2 * constant2;
 
-    document.getElementById('kinematic-viscosity-1').innerText = kv1;
-    document.getElementById('kinematic-viscosity-2').innerText = kv2;    
+    let preciseKv1 = kv1.toPrecision(4)
+    let preciseKv2 = kv2.toPrecision(4)
+
+    document.getElementById('kinematic-viscosity-1').innerText = preciseKv1;
+    document.getElementById('kinematic-viscosity-2').innerText = preciseKv2; 
+    
+    console.log(`kinematic viscosity 1 is ${kv1}`);
+    console.log(`kinematic viscosity 2 is ${kv2}`);
+    console.log(`kinematic viscosity 1 to 4 sig figs is ${preciseKv1}`);
+    console.log(`kinematic viscosity 2 to 4 sig figs is ${preciseKv2}`);
+
+    getValuesFinalCrossArm()
 
 }
+
+function getValuesFinalCrossArm() {
+
+    let kv1 = parseFloat(document.getElementById('kinematic-viscosity-1').innerText)
+    let kv2 = parseFloat(document.getElementById('kinematic-viscosity-2').innerText)
+
+    calculateFinalCrossArm(kv1, kv2)
+}
+
+function calculateFinalCrossArm(kv1, kv2) {
+
+    let finalViscosity = ((kv1 + kv2) / 2)
+
+    console.log(`the final kinematic viscosity is ${finalViscosity}`)
+
+    document.getElementById('final-calculated-viscosity').innerText = finalViscosity
+}
+
+
+//Do I want to use the outputs of the toPrecision method in the final calculations? There are edge cases where I round my number throughout the process and come out with a 
+//slightly different value to what GLIMS calculates, because GLIMS presumably doesn't round. 
+//Alternatively, the entire point is to calculate and display values at each step of the process
+//display both?
+
+//to try - use onKeyUp event handler to count 5 or 6 key presses for the run-time number inputs - https://stackoverflow.com/questions/22086823/limit-number-of-characters-in-input-type-number 

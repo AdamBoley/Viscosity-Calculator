@@ -1,3 +1,12 @@
+
+Something to consider or explain - How did I make the decision whether to use the raw values or the toPrecision values in the calculations?
+On one hand - the raw values are more accurate and not subject to incremental rounding errors, so would match what GLIMS calculates
+On the other hand, the entire point of the project is to make the calculations visible to the user so that they can trust it
+That means using the precise outputs so that they match what the user would generate on a calculator
+
+Ultimately, this shouldn't matter as long as I can justify it per above
+
+
 # Viscosity Calculator
 
 # Code Institute Portfolio Project 2: User-centric interactive front-end site using HTML, CSS and JS
@@ -146,6 +155,8 @@ This is the discussion page that guides the user on how to set the selector to t
 
 # Code Explanations
 
+
+
 # Future work
 
 This project has great scope for future work. 
@@ -171,3 +182,8 @@ The tool could be expanded greatly to handle the calculations involved in other 
 ## Resources
 
 Setting a select element to blank by default: https://stackoverflow.com/questions/8605516/default-select-option-as-blank
+
+
+
+
+
