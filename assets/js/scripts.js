@@ -113,10 +113,10 @@ function calculateFinalSuspended(kv1, kv2) {
 
     console.log(`the final kinematic viscosity is ${finalViscosity}`)
 
-    document.getElementById('final-calculated-viscosity').innerText = finalViscosity
+    document.getElementById('final-calculated-viscosity').innerText = finalViscosity;
+
+    determinabilityFactor()
 }
-
-
 
 //Cross Arm viscomter / Zeitfuchs viscometer logic
 function crossArmConstant() {
@@ -194,7 +194,60 @@ function calculateFinalCrossArm(kv1, kv2) {
     console.log(`the final kinematic viscosity is ${finalViscosity}`)
 
     document.getElementById('final-calculated-viscosity').innerText = finalViscosity
+
+    determinabilityFactor()
 }
+
+//Problematic - only triggers the first option, no matter the option selected
+//perhaps change data-determinability-factor attribute values
+function displayDeterminabilityFactor() {
+    
+    let options = document.getElementsByTagName('option')
+
+    for(let option of options) {
+
+        if(option.getAttribute('data-determinability-factor') === '0.0037') {
+        document.getElementById('determinability-factor').textContent = '0.0037 x Final calculated viscosity, or 0.37%'
+        }
+
+        else if(option.getAttribute('data-determinability-factor') === '0.0036') {
+            document.getElementById('determinability-factor').textContent = '0.0036 x final calculated visocosity, or 0.36%'
+        }
+
+        else if(option.getAttribute('data-determinability-factor') === '0.0150') {
+            document.getElementById('determinability-factor').textContent = '0.015 x final calculated visocosity or 1.5%'
+        }
+
+        else if(option.getAttribute('data-determinability-factor') === '0.0080') {
+            document.getElementById('determinability-factor').textContent = '0.0080 x final calculated visocosity, or 0.80%'
+        }
+
+        else if(option.getAttribute('data-determinability-factor') === '0.0244') {
+            document.getElementById('determinability-factor').textContent = '0.0244 x final calculated visocosity, or 2.44%'
+        }
+
+        else if(option.getAttribute('data-determinability-factor') === '0.0300') {
+            document.getElementById('determinability-factor').textContent = '0.03 x final calculated visocosity, or 3%'
+        }
+
+        else if(option.getAttribute('data-determinability-factor') === '0.00106^1.1') {
+            document.getElementById('determinability-factor').textContent = '0.00106^1.1 x final calculated visocosity'
+        }
+
+        else if(option.getAttribute('data-determinability-factor') === '0.0013(y+1)') {
+            document.getElementById('determinability-factor').textContent = '0.0013 x (final calculated viscosity +1)'
+        }
+
+        else if(option.getAttribute('data-determinability-factor') === '0.007608') {
+            document.getElementById('determinability-factor').textContent = '0.007608 x final calculated visocosity, or 0.7608%'
+        }
+
+        //possibly use template literals here to call the data-determinability-factor attribute value and final calculated viscosity
+        
+
+    }
+}
+
 
 
 //Do I want to use the outputs of the toPrecision method in the final calculations? There are edge cases where I round my number throughout the process and come out with a 
@@ -203,3 +256,6 @@ function calculateFinalCrossArm(kv1, kv2) {
 //display both?
 
 //to try - use onKeyUp event handler to count 5 or 6 key presses for the run-time number inputs - https://stackoverflow.com/questions/22086823/limit-number-of-characters-in-input-type-number 
+//Later - add some logic to determine if the viscometer type button matches the option selected. If not, prompt the user
+
+//onchange event listener works! - perhaps refactor to use the code at the top

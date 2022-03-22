@@ -41,23 +41,25 @@
 
                 <p>Select your sample type and temperature</p>
 
-                <select id="sample-type">
-
+                <select id="sample-type" onselect="displayDeterminabilityFactor()">
+                    <!---->
                     <option disabled selected value> -- select an option -- </option>
-                    <option value="base-oils-and-formulated-oils-40">Base Oils and Formulated Oils at 40C</option>
-                    <option value="base-oils-and-formulated-oils-100">Base Oils and Formulated Oils at 100C</option>
-                    <option value="formulated-oils-150">Formulated Oils at 150C</option>
-                    <option value="petroleum-wax-at-100">Petroleum wax at 100C</option>
-                    <option value="residual-fuel-oils-50-suspended">Residual Fuel Oils at 50C in a suspended flow viscometer</option>
-                    <option value="residual-fuel-oils-100-suspended">Residual Fuel Oils at 100C in a suspended flow viscometer</option>
-                    <option value="residual-fuel-oils-50-cross-arm">Residual Fuel Oils at 50C in a cross-arm viscometer</option>
-                    <option value="residual-fuel-oils-100-cross-arm">Residual Fuel Oils at 100C in a cross-arm viscometer</option>
-                    <option value="additives-100">Additives at 100C</option>
-                    <option value="gas-oils-40">Gas Oils at 40C</option>
-                    <option value="jet-fuels-negative-20">Jet Fuels at -20C</option>
-                    <option value="kerosene-diesel-and-biodiesel-40">Kerosene, diesel and biodiesel at 40C</option>
-                    <option value="crude-oils-and-residues-suspended">Crude oils and residues in a suspended flow viscometer</option>
-                    <option value="crude-oils-and-residues-cross-arm">Crude oils and residues in a cross-arm viscometer</option>
+                    <option data-determinability-factor="0.0037">Base Oils at 40C</option>
+                    <option data-determinability-factor="0.0036">Base Oils at 100C</option>
+                    <option data-determinability-factor="0.0037">Formulated Oils at 40C</option>
+                    <option data-determinability-factor="0.0036">Formulated Oils at 100C</option>
+                    <option data-determinability-factor="0.0150">Formulated Oils at 150C</option>
+                    <option data-determinability-factor="0.0080">Petroleum wax at 100C</option>
+                    <option data-determinability-factor="0.0244">Residual Fuel Oils at 50C in a suspended flow viscometer</option>
+                    <option data-determinability-factor="0.0300">Residual Fuel Oils at 100C in a suspended flow viscometer</option>
+                    <option data-determinability-factor="0.0244">Residual Fuel Oils at 50C in a cross-arm viscometer</option>
+                    <option data-determinability-factor="0.0300">Residual Fuel Oils at 100C in a cross-arm viscometer</option>
+                    <option data-determinability-factor="0.00106^1.1">Additives at 100C</option>
+                    <option data-determinability-factor="0.0013(y+1)">Gas Oils at 40C</option>
+                    <option data-determinability-factor="0.007608">Jet Fuels at -20C</option>
+                    <option data-determinability-factor="0.0037">Kerosene, diesel and biodiesel at 40C</option>
+                    <option data-determinability-factor="0.0300">Crude oils and residues in a suspended flow viscometer</option>
+                    <option data-determinability-factor="0.0300">Crude oils and residues in a cross-arm viscometer</option>
 
                 </select>
 
@@ -118,7 +120,7 @@
 
             <div id="determinability">
 
-                <p>Determinability factor</p>
+                <p>Determinability factor:</p>
                 <p id="determinability-factor"></p>
 
             </div>
