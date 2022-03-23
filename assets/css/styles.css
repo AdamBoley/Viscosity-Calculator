@@ -82,6 +82,9 @@ main {
     float: right;
 }
 
+#output {
+    clear: both;
+}
 
 .footer {
     height: 20px;
