@@ -1,51 +1,11 @@
-/**document.addEventListener("DOMContentLoaded", function() {
+let ubbelohdeButton = document.getElementById('ubbelohde-button')
+let zeitfuchsButton = document.getElementById('zeitfuchs-button')
 
-    let options = document.getElementsByTagName('option')
-
-    for(let option of options) {
-
-        option.addEventListener('change', function(){
-
-            if(this.getAttribute('data-type') === "suspended") {
-
-                alert("you clicked suspended")
-
-                document.getElementById('constants').innerHTML = `
-                    <div id="constant-1-div">
-
-                        <p id="constant-1">Constant:</p>
-                        <input type="number" id="constant-1-input">
-
-                    </div>`
-            }
-            else if(this.getAttribute('data-type') === "cross-arm") {
-
-                alert("you clicked cross-arm")
-
-                document.getElementById('constants').innerHTML = `
-                    <div id="constant-1-div">
-
-                        <p id="constant-1">Constant 1:</p>
-                        <input type="number" id="constant-1-input">
-                
-                    </div>
-                
-                    <div id="constant-2-div">
-                    
-                        <p id="constant-2">Constant 2:</p>
-                        <input type="number" id="constant-2-input">
-                    
-                    </div>`
-            }
-        
-        })
-
-    }
-})*/
-//Currently not working
+ubbelohdeButton.addEventListener('click', ubbelohdeConstant)
+zeitfuchsButton.addEventListener('click', zeitfuchsConstant)
 
 //Suspended flow Viscometer / Ubbelohde viscometer logic
-function suspendedConstant() {
+function ubbelohdeConstant() {
     let constant = document.getElementById("constants")
 
     constant.innerHTML = `
@@ -58,10 +18,17 @@ function suspendedConstant() {
 
         let submit = document.getElementById("submit-div")
 
-        submit.innerHTML = `<button type="submit" onclick="getValuesSuspended()" id="submit">calculate</button>`
+        submit.innerHTML = `<button type="submit" onclick=getValuesUbbelohde() id="submit-ubbelohde">calculate</button>`
+        //Breaks from convention by using event listener in the html code, but using it with an event listener in the JS file doesn't seem to work
 }
+//
 
-function getValuesSuspended() {
+//let getValuesUbbelohdeButton = document.getElementById('submit-ubbelohde')
+
+//getValuesUbbelohdeButton.addEventListener('click', getValuesUbbelohde)
+
+
+function getValuesUbbelohde() {
 
     let time1 = parseFloat(document.getElementById('run-time-1').value);
     let time2 = parseFloat(document.getElementById('run-time-2').value);
@@ -71,10 +38,10 @@ function getValuesSuspended() {
     console.log(`run time 2 is ${time2}`);
     console.log(`the viscometer constant is ${viscConstant}`);
 
-    calculateSuspended(time1, time2, viscConstant);
+    calculateUbbelohde(time1, time2, viscConstant);
 }
 
-function calculateSuspended(runTime1, runTime2, constant) {
+function calculateUbbelohde(runTime1, runTime2, constant) {
 
     let kv1 = runTime1 * constant;
     let kv2 = runTime2 * constant;
@@ -90,11 +57,11 @@ function calculateSuspended(runTime1, runTime2, constant) {
     console.log(`kinematic viscosity 1 to 4 sig figs is ${preciseKv1}`);
     console.log(`kinematic viscosity 2 to 4 sig figs is ${preciseKv2}`);
 
-    getValuesFinalSuspended()
+    getValuesFinalUbbelohde()
 
 }
 
-function getValuesFinalSuspended() {
+function getValuesFinalUbbelohde() {
 
     let kv1 = parseFloat(document.getElementById('kinematic-viscosity-1').innerText)
     let kv2 = parseFloat(document.getElementById('kinematic-viscosity-2').innerText)
@@ -103,11 +70,11 @@ function getValuesFinalSuspended() {
     console.log(`kinematic viscosity 2 is ${kv2}`);
 
 
-    calculateFinalSuspended(kv1, kv2)
+    calculateFinalUbbelohde(kv1, kv2)
 
 }
 
-function calculateFinalSuspended(kv1, kv2) {
+function calculateFinalUbbelohde(kv1, kv2) {
 
     let finalViscosity = ((kv1 + kv2) / 2)
 
@@ -119,7 +86,7 @@ function calculateFinalSuspended(kv1, kv2) {
 }
 
 //Cross Arm viscomter / Zeitfuchs viscometer logic
-function crossArmConstant() {
+function zeitfuchsConstant() {
 
     let constants = document.getElementById("constants")
 
@@ -140,10 +107,16 @@ function crossArmConstant() {
 
         let submit = document.getElementById("submit-div")
 
-        submit.innerHTML = `<button type="submit" onclick="getValuesCrossArm()" id="submit">calculate</button>`//abstract out the onclick listener to the JS file fully
+        submit.innerHTML = `<button type="submit" onclick=getValuesZeitfuchs() id="submit-zeitfuchs">calculate</button>`//abstract out the onclick listener to the JS file fully
 }
+//
 
-function getValuesCrossArm() {
+//let getValuesZeitfuchsButton = document.getElementById('submit-zeitfuchs')
+
+//getValuesZeitfuchsButton.addEventListener('click', getValuesZeitfuchs)
+
+
+function getValuesZeitfuchs() {
 
     let time1 = parseFloat(document.getElementById('run-time-1').value);
     let time2 = parseFloat(document.getElementById('run-time-2').value);
@@ -155,11 +128,11 @@ function getValuesCrossArm() {
     console.log(`the viscometer constant is ${viscConstant1}`);
     console.log(`the viscometer constant is ${viscConstant2}`);
 
-    calculateCrossArm(time1, time2, viscConstant1, viscConstant2)
+    calculateZeitfuchs(time1, time2, viscConstant1, viscConstant2)
 
 }
 
-function calculateCrossArm(runTime1, runTime2, constant1, constant2) {
+function calculateZeitfuchs(runTime1, runTime2, constant1, constant2) {
 
     let kv1 = runTime1 * constant1;
     let kv2 = runTime2 * constant2;
@@ -175,19 +148,19 @@ function calculateCrossArm(runTime1, runTime2, constant1, constant2) {
     console.log(`kinematic viscosity 1 to 4 sig figs is ${preciseKv1}`);
     console.log(`kinematic viscosity 2 to 4 sig figs is ${preciseKv2}`);
 
-    getValuesFinalCrossArm()
+    getValuesFinalZeitfuchs()
 
 }
 
-function getValuesFinalCrossArm() {
+function getValuesFinalZeitfuchs() {
 
     let kv1 = parseFloat(document.getElementById('kinematic-viscosity-1').innerText)
     let kv2 = parseFloat(document.getElementById('kinematic-viscosity-2').innerText)
 
-    calculateFinalCrossArm(kv1, kv2)
+    calculateFinalZeitfuchs(kv1, kv2)
 }
 
-function calculateFinalCrossArm(kv1, kv2) {
+function calculateFinalZeitfuchs(kv1, kv2) {
 
     let finalViscosity = ((kv1 + kv2) / 2)
 
@@ -197,8 +170,6 @@ function calculateFinalCrossArm(kv1, kv2) {
 
     determinabilityFactor(finalViscosity)
 }
-
-
 
 let sampleType = document.getElementById('sample-type')
 
