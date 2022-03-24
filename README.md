@@ -171,13 +171,61 @@ The tool could be expanded greatly to handle the calculations involved in other 
 
 # Bugs
 
+A large and annoying bug was encountered when trying to change the text displayed in the "determinability-equation" div and when performing the calculation in the "determinability-factor" div. This text and equation output change is governed by the user's selection from the drop-down menu. It was observed through console.log commands that the code was not using the loop's IF/ELSE statements to discriminate based on the drop-down menu selection, but was actually trying to execute all of the options. I was using the onchange event listener in the select element, but it only seemed to be firing once. 
+
 # Technologies
 
 # Deployment
 
 # Testing
 
+## Testing User Stories
+
+**First-time users must be able to determine the purpose of the tool as soon as they navigate to it.** 
+
+**The tool must include a selector to allow the user to select the fluid type that their sample is, and this selector must change that functions that are executed so that the correct calculations are made**
+
+**The tool must include a page with some information on how to set the selector to the fluid type that matches their sample**
+
+**The above page should either open a new tab, or include an internal link to take the user back to the main page so that they don't have to user their browser butttons.**
+
+**The tool must have clear calls to action to input the user's run-times and viscometer constant(s)**
+
+The tool contains instructions at the top of the page that guide the user through the process, and the input elements are clearly labelled
+
+**The tool must have a clear call to action to submit their inputs and begin the calculations**
+
+The tool has a prominent submit button that is displayed once the user selects their viscometer type
+
+**The tool must display all calculation outputs so that the user is reassured of the tool's accuracy and can follow along performing the calculations manually if they desire**
+
+The calculations are done step-by-step in small functions, with the outputs displayed in labelled boxes
+
+**The tool's functions must produce the same calculation outputs as manual calculations would (i.e. no difference between the tool and the user doing the same calculations manually)**
+
+(Still needs to be checked once the tool is fully working - JS's base 2 counting system may introduce small errors with floating point numbers)
+
+**The tool must have a function to clear the user's inputs so that other tests of different fluids with different viscometers can be checked**
+
+(still needs implementing)
+
+**The tool must have a clear final output informing the user whether their run-times produce determinable kinematic viscosities**
+
+(A text message displays currently, it is envisioned that a large green tick for success and a large red cross for failure )
+
+## Testing various inputs
+
+Need to test the full range of run-times - 200s to 900s, and the full range of viscometer constants - 0.003 to 30.60
+
+## Testing Edge Cases
+
+Edge cases are rare events that are just within the scope of the tool. Might be useful to test functionality when run-times fall outside bounds - <200s and >900s with the smallest and largest constants respectively, so that even if run-times are invalid, determinability isn't necessarily invalid. (think hexane at 20C that is too fast in a 0C and super-viscous additives at 40C in a 4C)
+
+## Unit Tests
+
 # Credits
+
+Ed Bradley from Tutor Support, who provided invaluable guidance on the conditional logic for the displayDeterminabilityFactor and determinabilityFactor functions, and on how to correctly get the value of input elements
 
 ## Resources
 

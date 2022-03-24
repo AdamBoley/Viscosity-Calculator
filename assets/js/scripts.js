@@ -140,7 +140,7 @@ function crossArmConstant() {
 
         let submit = document.getElementById("submit-div")
 
-        submit.innerHTML = `<button type="submit" onclick="getValuesCrossArm()" id="submit">calculate</button>`
+        submit.innerHTML = `<button type="submit" onclick="getValuesCrossArm()" id="submit">calculate</button>`//abstract out the onclick listener to the JS file fully
 }
 
 function getValuesCrossArm() {
@@ -198,153 +198,165 @@ function calculateFinalCrossArm(kv1, kv2) {
     determinabilityFactor(finalViscosity)
 }
 
-//Problematic - only triggers the first option, no matter the option selected
-//with an else statement, defaults to the else command
-//perhaps change data-determinability-factor attribute values - no
+
+
+let sampleType = document.getElementById('sample-type')
+
+sampleType.addEventListener('change', displayDeterminabilityFactor)
+
 function displayDeterminabilityFactor() {
-    
-    let options = document.getElementsByTagName('option')
 
-    for(let option of options) {
+    let select = document.getElementById('sample-type')
 
-        if(option.getAttribute('value') === '0.0037') {
+    if(select.value === '0.0037') {
 
-            let message = '0.0037 x Final calculated viscosity, or 0.37%'
-            document.getElementById('determinability-equation').innerText = message
-            console.log(message)
-        }
-
-        else if(option.getAttribute('value') === '0.0036') {
-
-            let message = '0.0036 x final calculated visocosity, or 0.36%'
-            document.getElementById('determinability-equation').innerText = message
-            console.log(message)
-        }
-
-        else if(option.getAttribute('value') === '0.015') {
-
-            let message = '0.015 x final calculated visocosity or 1.5%'
-            document.getElementById('determinability-equation').innerText = message
-            console.log(message)
-        }
-
-        else if(option.getAttribute('value') === '0.0080') {
-
-            let message = '0.0080 x final calculated visocosity, or 0.80%'
-            document.getElementById('determinability-equation').innerText = message
-            console.log(message)
-        }
-
-        else if(option.getAttribute('value') === '0.0244') {
-
-            let message = '0.0244 x final calculated visocosity, or 2.44%'
-            document.getElementById('determinability-equation').innerText = message
-            console.log(message)
-        }
-
-        else if(option.getAttribute('value') === '0.03') {
-
-            let message = '0.03 x final calculated visocosity, or 3%'
-            document.getElementById('determinability-equation').innerText = message
-            console.log(message)
-        }
-
-        else if(option.getAttribute('value') === '0.00106^1.1') {
-
-            let message = '0.00106^1.1 x final calculated viscosity'
-            document.getElementById('determinability-equation').innerText = message
-            console.log(message)
-        }
-
-        else if(option.getAttribute('value') === '0.0013(y+1)') {
-
-            let message = '0.0013 x (final calculated viscosity +1)'
-            document.getElementById('determinability-equation').innerText = message
-            console.log(message)
-        }
-
-        else if(option.getAttribute('value') === '0.007608') {
-
-            let message = '0.007608 x final calculated visocosity, or 0.7608%'
-            document.getElementById('determinability-equation').innerText = message
-            console.log(message)
-        }
-
-        else {
-
-            let message = 'invalid determinability equation'
-            document.getElementById('determinability-equation').innerText = message
-            console.log(message)
-        }
-        //possibly use template literals here to call the data-determinability-factor attribute value and final calculated viscosity
+        let message = '0.0037 x final calculated viscosity, or 0.37%'
+        document.getElementById('determinability-equation').innerText = message
+        console.log(message)
     }
-}
 
-//These are sort of working, except that the functions just call all of the options, and are not able to discriminate between the if statements
+    else if (select.value === '0.0036') {
+
+        let message = '0.0036 x Final calculated viscosity, or 0.36%'
+        document.getElementById('determinability-equation').innerText = message
+        console.log(message)
+    }
+
+    else if (select.value === '0.0150') {
+
+        let message = '0.0150 x Final calculated viscosity, or 1.5%'
+        document.getElementById('determinability-equation').innerText = message
+        console.log(message)
+    }
+
+    else if (select.value === '0.0080') {
+
+        let message = '0.0080 x Final calculated viscosity, or 0.80%'
+        document.getElementById('determinability-equation').innerText = message
+        console.log(message)
+    }
+
+    else if (select.value === '0.0244') {
+
+        let message = '0.0244 x Final calculated viscosity, or 2.44%'
+        document.getElementById('determinability-equation').innerText = message
+        console.log(message)
+    }
+
+    else if (select.value === '0.0300') {
+
+        let message = '0.03 x Final calculated viscosity, or 3%'
+        document.getElementById('determinability-equation').innerText = message
+        console.log(message)
+    }
+
+    else if (select.value === '0.00106^1.1') {
+
+        let message = '(Final calculated viscosity ^ 1.1) x 0.00106' //use a span and vertical alignment to display the power as a superscripted value here?
+        document.getElementById('determinability-equation').innerText = message
+        console.log(message)
+    }
+
+    else if (select.value === '0.0013(y+1)') {
+
+        let message = '(Final calculated viscosity + 1) x 0.0013'
+        document.getElementById('determinability-equation').innerText = message
+        console.log(message)
+    }
+
+    else if (select.value === '0.007608') {
+
+        let message = '0.007608 x Final calculated viscosity, or 0.7608%'
+        document.getElementById('determinability-equation').innerText = message
+        console.log(message)
+    }
+
+    else {//should never trigger, but included as a failsafe
+
+        let message = 'invalid determinability equation'
+        document.getElementById('determinability-equation').innerText = message
+        console.log(message)
+    }
+
+}
+//DRY - the building blocks of each conditional statement are the same, so build the message out of variables using string concatenation
+
+sampleType.addEventListener('change', determinabilityFactor)
+
 function determinabilityFactor(finalViscosity) {
 
-    let options = document.getElementsByTagName('option')
+    let select = document.getElementById('sample-type')
 
-    for(let option of options) {
+    if(select.value === '0.0037') {
 
-        if(option.getAttribute('value') === '0.0037') {
-            
-            let determinability = finalViscosity * 0.0037
-            console.log(`${finalViscosity} x 0.0037 = `, determinability)
-            document.getElementById('determinability-factor').innerText = determinability
-        }
-
-        else if(option.getAttribute('value') === '0.0036') {
-            let determinability = finalViscosity * 0.0036
-            console.log(`${finalViscosity} x 0.0036 =`, determinability)
-            document.getElementById('determinability-factor').innerText = determinability
-        }
-
-        else if(option.getAttribute('value') === '0.015') {
-            let determinability = finalViscosity * 0.015
-            console.log(`${finalViscosity} x 0.015 =`, determinability)
-            document.getElementById('determinability-factor').innerText = determinability
-        }
-
-        else if(option.getAttribute('value') === '0.0080') {
-            let determinability = finalViscosity * 0.0080
-            console.log(`${finalViscosity} x 0.0080 =`, determinability)
-            document.getElementById('determinability-factor').innerText = determinability
-        }
-
-        else if(option.getAttribute('value') === '0.0244') {
-            let determinability = finalViscosity * 0.0244
-            console.log(`${finalViscosity} x 0.0244 =`, determinability)
-            document.getElementById('determinability-factor').innerText = determinability
-        }
-
-        else if(option.getAttribute('value') === '0.0300') {
-            let determinability = finalViscosity * 0.03
-            console.log(`${finalViscosity} x 0.03 =`, determinability)
-            document.getElementById('determinability-factor').innerText = determinability
-        }
-
-        else if(option.getAttribute('value') === '0.00106^1.1') {
-            let determinability = (finalViscosity ** 1.1) * 0.00106
-            console.log(`(${finalViscosity} ^1.1) x 0.00106 =`, determinability)
-            document.getElementById('determinability-factor').innerText = determinability
-        }
-
-        else if(option.getAttribute('value') === '0.0013(y+1)') {
-            let determinability = (finalViscosity + 1) * 0.0013
-            console.log(`(${finalViscosity} + 1) x 0.013 =`, determinability)
-            document.getElementById('determinability-factor').innerText = determinability
-        }
-
-        else if(option.getAttribute('value') === '0.007608') {
-            let determinability = finalViscosity * 0.007608
-            console.log(`${finalViscosity} x 0.007608 =`, determinability)
-            document.getElementById('determinability-factor').innerText = determinability
-        }
+        let determinability = finalViscosity * 0.0037
+        console.log(`${finalViscosity} x 0.0037 = `, determinability)
+        document.getElementById('determinability-factor').innerText = determinability
     }
 
-    //upperLimit(finalViscosity, determinability)
-    //lowerLimit(finalViscosity, determinability)
+    else if (select.value === '0.0036') {
+
+        let determinability = finalViscosity * 0.0036
+        console.log(`${finalViscosity} x 0.0036 = `, determinability)
+        document.getElementById('determinability-factor').innerText = determinability
+    }
+
+    else if (select.value === '0.0150') {
+
+        let determinability = finalViscosity * 0.0150
+        console.log(`${finalViscosity} x 0.0150 = `, determinability)
+        document.getElementById('determinability-factor').innerText = determinability
+    }
+
+    else if (select.value === '0.0080') {
+
+        let determinability = finalViscosity * 0.0080
+        console.log(`${finalViscosity} x 0.0080 = `, determinability)
+        document.getElementById('determinability-factor').innerText = determinability
+    }
+
+    else if (select.value === '0.0244') {
+
+        let determinability = finalViscosity * 0.0244
+        console.log(`${finalViscosity} x 0.0244 = `, determinability)
+        document.getElementById('determinability-factor').innerText = determinability
+    }
+
+    else if (select.value === '0.0300') {
+
+        let determinability = finalViscosity * 0.03
+        console.log(`${finalViscosity} x 0.03 = `, determinability)
+        document.getElementById('determinability-factor').innerText = determinability
+    }
+
+    else if (select.value === '0.00106^1.1') {
+
+        let determinability = (finalViscosity ** 1.1) * 0.00106//use a span and vertical alignment to display the power as a superscripted value here?
+        console.log(`(${finalViscosity} ^1.1) x 0.00106 = `, determinability)
+        document.getElementById('determinability-factor').innerText = determinability
+    }
+
+    else if (select.value === '0.0013(y+1)') {
+
+        let determinability = (finalViscosity + 1) * 0.0013
+        console.log(`(${finalViscosity} + 1) x 0.0013 = `, determinability)
+        document.getElementById('determinability-factor').innerText = determinability
+    }
+
+    else if (select.value === '0.007608') {
+
+        let determinability = finalViscosity * 0.007608
+        console.log(`${finalViscosity} x 0.007608 = `, determinability)
+        document.getElementById('determinability-factor').innerText = determinability
+    }
+
+    else {//should never trigger, but included as a failsafe
+
+        let message = 'invalid determinability equation'
+        document.getElementById('determinability-equation').innerText = message
+        console.log(message)
+    }
+
     upperLimit()
     lowerLimit()
 }
