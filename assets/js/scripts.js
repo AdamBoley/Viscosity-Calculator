@@ -18,7 +18,10 @@ function ubbelohdeConstant() {
 
     let submit = document.getElementById("submit-div")
 
-    submit.innerHTML = `<button type="submit" onclick=getValuesUbbelohde() id="submit-ubbelohde">calculate</button>`
+    submit.innerHTML = `
+    <button type="submit" onclick=getValuesUbbelohde() id="submit-ubbelohde">calculate</button>
+    <button onclick="reset()" id="reset">reset</button>
+    `
     //Breaks from convention by using event listener in the html code, but using it with an event listener in the JS file doesn't seem to work  
 }
 
@@ -110,7 +113,10 @@ function zeitfuchsConstant() {
 
     let submit = document.getElementById("submit-div")
 
-    submit.innerHTML = `<button type="submit" onclick=getValuesZeitfuchs() id="submit-zeitfuchs">calculate</button>`
+    submit.innerHTML = `
+    <button type="submit" onclick=getValuesZeitfuchs() id="submit-zeitfuchs">calculate</button>
+    <button onclick="reset()" id="reset">reset</button>
+    `
     //abstracting this event listener fully to the JS file doesn't seem to work
 }
 
@@ -394,6 +400,17 @@ function checker() {
         document.getElementById('output').innerText = "Your viscosities do not fall within the defined limits"
     }
 
+}
+
+function reset() {
+
+    document.getElementById('run-time-1').value = ''
+    document.getElementById('run-time-2').value = ''
+    document.getElementById('constant-input') = ''
+    document.getElementById('constant-1-input') = ''
+    document.getElementById('constant-2-input') = ''
+
+    document.getElementById('run-time-1').focus()
 }
 
 
