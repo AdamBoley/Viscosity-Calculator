@@ -16,29 +16,39 @@ function ubbelohdeConstant() {
 
         </div>`
 
-        let submit = document.getElementById("submit-div")
+    let submit = document.getElementById("submit-div")
 
-        submit.innerHTML = `<button type="submit" onclick=getValuesUbbelohde() id="submit-ubbelohde">calculate</button>`
-        //Breaks from convention by using event listener in the html code, but using it with an event listener in the JS file doesn't seem to work
+    submit.innerHTML = `<button type="submit" onclick=getValuesUbbelohde() id="submit-ubbelohde">calculate</button>`
+    //Breaks from convention by using event listener in the html code, but using it with an event listener in the JS file doesn't seem to work  
 }
-//
 
-//let getValuesUbbelohdeButton = document.getElementById('submit-ubbelohde')
+//let getValuesUbbelohdeButton = document.getElementById('submit')
 
 //getValuesUbbelohdeButton.addEventListener('click', getValuesUbbelohde)
 
 
 function getValuesUbbelohde() {
 
-    let time1 = parseFloat(document.getElementById('run-time-1').value);
-    let time2 = parseFloat(document.getElementById('run-time-2').value);
-    let viscConstant = parseFloat(document.getElementById('constant-input').value);
+    let select = document.getElementById('sample-type') 
 
-    console.log(`run time 1 is ${time1}`);
-    console.log(`run time 2 is ${time2}`);
-    console.log(`the viscometer constant is ${viscConstant}`);
+    if(select.value === 'disabled') {
 
-    calculateUbbelohde(time1, time2, viscConstant);
+        alert('Please select a sample type from the drop-down menu')
+    }
+    else {
+
+        let time1 = parseFloat(document.getElementById('run-time-1').value);
+        let time2 = parseFloat(document.getElementById('run-time-2').value);
+        let viscConstant = parseFloat(document.getElementById('constant-input').value);
+
+        console.log(`run time 1 is ${time1}`);
+        console.log(`run time 2 is ${time2}`);
+        console.log(`the viscometer constant is ${viscConstant}`);
+
+        calculateUbbelohde(time1, time2, viscConstant);
+    }
+
+    
 }
 
 function calculateUbbelohde(runTime1, runTime2, constant) {
@@ -107,31 +117,34 @@ function zeitfuchsConstant() {
         
         </div>`
 
-        let submit = document.getElementById("submit-div")
+    let submit = document.getElementById("submit-div")
 
-        submit.innerHTML = `<button type="submit" onclick=getValuesZeitfuchs() id="submit-zeitfuchs">calculate</button>`//abstract out the onclick listener to the JS file fully
+    submit.innerHTML = `<button type="submit" onclick=getValuesZeitfuchs() id="submit-zeitfuchs">calculate</button>`
+    //abstracting this event listener fully to the JS file doesn't seem to work
 }
-//
-
-//let getValuesZeitfuchsButton = document.getElementById('submit-zeitfuchs')
-
-//getValuesZeitfuchsButton.addEventListener('click', getValuesZeitfuchs)
-
 
 function getValuesZeitfuchs() {
 
-    let time1 = parseFloat(document.getElementById('run-time-1').value);
-    let time2 = parseFloat(document.getElementById('run-time-2').value);
-    let viscConstant1 = parseFloat(document.getElementById('constant-1-input').value);
-    let viscConstant2 = parseFloat(document.getElementById('constant-2-input').value);
+    let select = document.getElementById('sample-type')
 
-    console.log(`run time 1 is ${time1}`);
-    console.log(`run time 2 is ${time2}`);
-    console.log(`the viscometer constant is ${viscConstant1}`);
-    console.log(`the viscometer constant is ${viscConstant2}`);
+    if(select.value === 'disabled') {
+        alert('Please select a sample type from the drop down menu')
+        return
+    }
+    else {
 
-    calculateZeitfuchs(time1, time2, viscConstant1, viscConstant2)
+        let time1 = parseFloat(document.getElementById('run-time-1').value);
+        let time2 = parseFloat(document.getElementById('run-time-2').value);
+        let viscConstant1 = parseFloat(document.getElementById('constant-1-input').value);
+        let viscConstant2 = parseFloat(document.getElementById('constant-2-input').value);
 
+        console.log(`run time 1 is ${time1}`);
+        console.log(`run time 2 is ${time2}`);
+        console.log(`the viscometer constant is ${viscConstant1}`);
+        console.log(`the viscometer constant is ${viscConstant2}`);
+
+        calculateZeitfuchs(time1, time2, viscConstant1, viscConstant2)
+    }
 }
 
 function calculateZeitfuchs(runTime1, runTime2, constant1, constant2) {
