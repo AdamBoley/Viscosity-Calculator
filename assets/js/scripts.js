@@ -64,21 +64,8 @@ function calculateUbbelohde(runTime1, runTime2, constant) {
 
     console.log(`kinematic viscosity 1 is ${kv1}`);
     console.log(`kinematic viscosity 2 is ${kv2}`);
-    console.log(`kinematic viscosity 1 to 4 sig figs is ${preciseKv1}`);
-    console.log(`kinematic viscosity 2 to 4 sig figs is ${preciseKv2}`);
-
-    getValuesFinalUbbelohde()
-
-}
-
-function getValuesFinalUbbelohde() {
-
-    let kv1 = parseFloat(document.getElementById('kinematic-viscosity-1').innerText)
-    let kv2 = parseFloat(document.getElementById('kinematic-viscosity-2').innerText)
-
-    console.log(`kinematic viscosity 1 is ${kv1}`);
-    console.log(`kinematic viscosity 2 is ${kv2}`);
-
+    console.log(`kinematic viscosity 1 to 4 significant figures is ${preciseKv1}`);
+    console.log(`kinematic viscosity 2 to 4 significant figures is ${preciseKv2}`);
 
     calculateFinalUbbelohde(kv1, kv2)
 
@@ -160,19 +147,11 @@ function calculateZeitfuchs(runTime1, runTime2, constant1, constant2) {
     
     console.log(`kinematic viscosity 1 is ${kv1}`);
     console.log(`kinematic viscosity 2 is ${kv2}`);
-    console.log(`kinematic viscosity 1 to 4 sig figs is ${preciseKv1}`);
-    console.log(`kinematic viscosity 2 to 4 sig figs is ${preciseKv2}`);
-
-    getValuesFinalZeitfuchs()
-
-}
-
-function getValuesFinalZeitfuchs() {
-
-    let kv1 = parseFloat(document.getElementById('kinematic-viscosity-1').innerText)
-    let kv2 = parseFloat(document.getElementById('kinematic-viscosity-2').innerText)
+    console.log(`kinematic viscosity 1 to 4 significant figures is ${preciseKv1}`);
+    console.log(`kinematic viscosity 2 to 4 significant figures is ${preciseKv2}`);
 
     calculateFinalZeitfuchs(kv1, kv2)
+
 }
 
 function calculateFinalZeitfuchs(kv1, kv2) {
