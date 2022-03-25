@@ -82,6 +82,8 @@ function calculateFinalUbbelohde(kv1, kv2) {
 
     document.getElementById('final-calculated-viscosity').innerText = finalViscosity;
 
+    displayDeterminabilityFactor()
+
     determinabilityFactor(finalViscosity)
 }
 
@@ -168,12 +170,10 @@ function calculateFinalZeitfuchs(kv1, kv2) {
 
     document.getElementById('final-calculated-viscosity').innerText = finalViscosity
 
+    displayDeterminabilityFactor()
+
     determinabilityFactor(finalViscosity)
 }
-
-let sampleType = document.getElementById('sample-type')
-
-sampleType.addEventListener('change', displayDeterminabilityFactor)
 
 function displayDeterminabilityFactor() {
 
@@ -251,8 +251,6 @@ function displayDeterminabilityFactor() {
 
 }
 //DRY - the building blocks of each conditional statement are the same, so build the message out of variables using string concatenation
-
-sampleType.addEventListener('change', determinabilityFactor)
 
 function determinabilityFactor(finalViscosity) {
 
