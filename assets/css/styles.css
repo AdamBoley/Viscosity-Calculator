@@ -55,6 +55,10 @@ main {
     float: right;
 }
 
+#constant-div, #constant-1-div, #constant-2-div, #submit-ubbelohde, #submit-zeitfuchs {
+    display: none;
+}
+
 #calculated-output {
     float: right;
     width: 50%;

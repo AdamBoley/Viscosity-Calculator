@@ -1,34 +1,30 @@
+//Suspended flow Viscometer / Ubbelohde viscometer logic
+
 let ubbelohdeButton = document.getElementById('ubbelohde-button')
-let zeitfuchsButton = document.getElementById('zeitfuchs-button')
 
 ubbelohdeButton.addEventListener('click', ubbelohdeConstant)
-zeitfuchsButton.addEventListener('click', zeitfuchsConstant)
 
-//Suspended flow Viscometer / Ubbelohde viscometer logic
 function ubbelohdeConstant() {
-    let constant = document.getElementById("constants")
 
-    constant.innerHTML = `
-        <div id="constant-div">
+    if(document.getElementById('constant-1-div').style.display !== 'none') {
+        
+        document.getElementById('constant-1-div').style.display = 'none'
+        document.getElementById('constant-2-div').style.display = 'none'
+        document.getElementById('submit-zeitfuchs').style.display = 'none'
 
-            <p id="constant">Constant:</p>
-            <input type="number" id="constant-input">
+        document.getElementById('constant-div').style.display = 'block'
+        document.getElementById('submit-ubbelohde').style.display = 'block'
+    }
+    else {
 
-        </div>`
-
-    let submit = document.getElementById("submit-div")
-
-    submit.innerHTML = `
-    <button type="submit" onclick=getValuesUbbelohde() id="submit-ubbelohde">calculate</button>
-    <button onclick="reset()" id="reset">reset</button>
-    `
-    //Breaks from convention by using event listener in the html code, but using it with an event listener in the JS file doesn't seem to work  
+        document.getElementById('constant-div').style.display = 'block'
+        document.getElementById('submit-ubbelohde').style.display = 'block'
+    }
 }
 
-//let getValuesUbbelohdeButton = document.getElementById('submit')
+let getValuesUbbelohdeButton = document.getElementById('submit-ubbelohde')
 
-//getValuesUbbelohdeButton.addEventListener('click', getValuesUbbelohde)
-
+getValuesUbbelohdeButton.addEventListener('click', getValuesUbbelohde)
 
 function getValuesUbbelohde() {
 
@@ -50,8 +46,6 @@ function getValuesUbbelohde() {
 
         calculateUbbelohde(time1, time2, viscConstant);
     }
-
-    
 }
 
 function calculateUbbelohde(runTime1, runTime2, constant) {
@@ -92,33 +86,33 @@ function calculateFinalUbbelohde(kv1, kv2) {
 }
 
 //Cross Arm viscomter / Zeitfuchs viscometer logic
+
+let zeitfuchsButton = document.getElementById('zeitfuchs-button')
+
+zeitfuchsButton.addEventListener('click', zeitfuchsConstant)
+
 function zeitfuchsConstant() {
 
-    let constants = document.getElementById("constants")
+    if(document.getElementById('constant-div').style.display !== 'none') {
 
-    constants.innerHTML = `
-        <div id="constant-1-div">
+        document.getElementById('constant-div').style.display = 'none'
+        document.getElementById('submit-ubbelohde').style.display = 'none'
 
-            <p id="constant-1">Constant 1:</p>
-            <input type="number" id="constant-1-input">
+        document.getElementById('constant-1-div').style.display = 'block'
+        document.getElementById('constant-2-div').style.display = 'block'
+        document.getElementById('submit-zeitfuchs').style.display = 'block'
+    }
+    else {
+        document.getElementById('constant-1-div').style.display = 'block'
+        document.getElementById('constant-2-div').style.display = 'block'
+        document.getElementById('submit-zeitfuchs').style.display = 'block'
+    }
     
-        </div>
-    
-        <div id="constant-2-div">
-        
-            <p id="constant-2">Constant 2:</p>
-            <input type="number" id="constant-2-input">
-        
-        </div>`
-
-    let submit = document.getElementById("submit-div")
-
-    submit.innerHTML = `
-    <button type="submit" onclick=getValuesZeitfuchs() id="submit-zeitfuchs">calculate</button>
-    <button onclick="reset()" id="reset">reset</button>
-    `
-    //abstracting this event listener fully to the JS file doesn't seem to work
 }
+
+let getValuesZeitfuchsButton = document.getElementById('submit-zeitfuchs')
+
+getValuesZeitfuchsButton.addEventListener('click', getValuesZeitfuchs)
 
 function getValuesZeitfuchs() {
 
@@ -402,13 +396,17 @@ function checker() {
 
 }
 
+let resetButton = document.getElementById('reset')
+
+resetButton.addEventListener('click', reset)
+
 function reset() {
 
     document.getElementById('run-time-1').value = ''
     document.getElementById('run-time-2').value = ''
-    document.getElementById('constant-input') = ''
-    document.getElementById('constant-1-input') = ''
-    document.getElementById('constant-2-input') = ''
+    document.getElementById('constant-input').value = ''
+    document.getElementById('constant-1-input').value = ''
+    document.getElementById('constant-2-input').value = ''
 
     document.getElementById('run-time-1').focus()
 }
