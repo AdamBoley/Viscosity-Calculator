@@ -4,7 +4,7 @@ body {
     margin: 0;
 }
 
-.title {
+.title, h2 {
     text-align: center;
 
 }
@@ -19,7 +19,7 @@ main {
 
 #description {
     width: 80%;
-    height: 200px;
+    height: 300px;
     background-color: blanchedalmond;
     margin: 25px auto;
 }

@@ -17,167 +17,200 @@
 
     <main>
 
-        <section id="description">
+        <article id="determinability-calculations">
 
-            <h2>Instructions for use</h2>
+            <h2>Determinability checker</h2>
 
-            <ol>
+            <section id="description">
 
-                <li>Select your the sample type and temperature from the drop-down menu below that most closely matches the test you are checking</li>
-                <li>Click either the Ubbelohde or Zeifuchs button, depending on what viscometers you used. </li>
-                <li>If you are unsure what sample type to select, <a href="discussion.html">click here</a> to see receive guidance</li>
-                <li>Enter your run-times into the labelled boxes</li>
-                <li>If you used a suspended flow viscometer, enter the constant in the labelled box</li>
-                <li>If you used a pair of cross-arm viscometers, enter the constants in the labelled box, being sure to match them to the run-times</li>
-                <li>Check your entered information and press the Calculate button</li>
+                <h2>Instructions for use</h2>
 
-            </ol>
+                <ol>
 
-        </section>
+                    <li>Select your the sample type and temperature from the drop-down menu below that most closely matches the test you are checking</li>
+                    <li>Click either the Ubbelohde or Zeifuchs button, depending on what viscometers you used</li>
+                    <li>If you are unsure what sample type to select, <a href="discussion.html">click here</a> to see receive guidance</li>
+                    <li>Enter your run-times into the labelled boxes</li>
+                    <li>If you used a suspended flow viscometer, enter the constant in the labelled box</li>
+                    <li>If you used a pair of cross-arm viscometers, enter the constants in the labelled boxes, being sure to match them to the run-times</li>
+                    <li>Check your entered information and press the Calculate button</li>
+                    <li>The tool will calculate all of the data you need to check a viscosity test</li>
+                    <li>If you are using a PC, you can check the tool's functionality by right-clicking, selecting Inspect and clicking Console at the top of the window</li>
+                    <li>All of the inputs and outputs are logged, so you can be sure that the tool's calculations match your manual calculations</li>
 
-        <section id="user-input">
+                </ol>
 
-            <div id="select">
+            </section>
 
-                <p>Select your sample type and temperature</p>
+            <section id="user-input">
 
-                <select id="sample-type" >
-            
-                    <option disabled selected value="disabled"> -- select an option -- </option>
-                    <option value="0.0037">Base Oils at 40C</option>
-                    <option value="0.0036">Base Oils at 100C</option>
-                    <option value="0.0037">Formulated Oils at 40C</option>
-                    <option value="0.0036">Formulated Oils at 100C</option>
-                    <option value="0.0150">Formulated Oils at 150C</option>
-                    <option value="0.0080">Petroleum wax at 100C</option>
-                    <option value="0.0244">Residual Fuel Oils at 50C</option>
-                    <option value="0.0300">Residual Fuel Oils at 100C</option>
-                    <option value="0.00106^1.1">Additives at 100C</option>
-                    <option value="0.0013(y+1)">Gas Oils at 40C</option>
-                    <option value="0.007608">Jet Fuels at -20C</option>
-                    <option value="0.0037">Kerosene, diesel and biodiesel at 40C</option>
-                    <option value="0.0300">Crude oils and residues</option>
+                <div id="select">
 
-                </select>
+                    <p>Select your sample type and temperature</p>
 
-                <p>Select your viscometer type</p>
-                <button id="ubbelohde-button">Ubbelohde</button>
-                <button id="zeitfuchs-button">Zeitfuchs</button>
-
-            </div>
-
-            <div id="run-1">
-
-                <p>Run Time 1</p>
-                <input type="number" id="run-time-1">
-
-            </div>
-
-            <div id="run-2">
-
-                <p>Run Time 2</p>
-                <input type="number" id="run-time-2">
-
-            </div>
-
-            <br class="line-break">
-
-            <div id="constants">
-
-                <div id="constant-div">
-
-                    <p id="constant">Constant:</p>
-                    <input type="number" id="constant-input">
-        
-                </div>
-
-                <div id="constant-1-div">
-
-                    <p id="constant-1">Constant 1:</p>
-                    <input type="number" id="constant-1-input">
-            
-                </div>
-            
-                <div id="constant-2-div">
+                    <select id="sample-type" >
                 
-                    <p id="constant-2">Constant 2:</p>
-                    <input type="number" id="constant-2-input">
-                
+                        <option disabled selected value="disabled"> -- select an option -- </option>
+                        <option value="0.0037">Base Oils at 40C</option>
+                        <option value="0.0036">Base Oils at 100C</option>
+                        <option value="0.0037">Formulated Oils at 40C</option>
+                        <option value="0.0036">Formulated Oils at 100C</option>
+                        <option value="0.0150">Formulated Oils at 150C</option>
+                        <option value="0.0080">Petroleum wax at 100C</option>
+                        <option value="0.0244">Residual Fuel Oils at 50C</option>
+                        <option value="0.0300">Residual Fuel Oils at 100C</option>
+                        <option value="0.00106^1.1">Additives at 100C</option>
+                        <option value="0.0013(y+1)">Gas Oils at 40C</option>
+                        <option value="0.007608">Jet Fuels at -20C</option>
+                        <option value="0.0037">Kerosene, diesel and biodiesel at 40C</option>
+                        <option value="0.0300">Crude oils and residues</option>
+
+                    </select>
+
+                    <p>Select your viscometer type</p>
+                    <button id="ubbelohde-button">Ubbelohde</button>
+                    <button id="zeitfuchs-button">Zeitfuchs</button>
+
                 </div>
 
-            </div>
+                <div id="run-1">
 
-            <br class="line-break">
+                    <p>Run Time 1</p>
+                    <input type="number" id="run-time-1">
 
-            <div id="submit-div">
+                </div>
 
-                <button type="submit" id="submit-ubbelohde">calculate S</button>
-                <button type="submit" id="submit-zeitfuchs">calculate Z</button>
-                <button id="reset">reset</button>
+                <div id="run-2">
 
-            </div>
+                    <p>Run Time 2</p>
+                    <input type="number" id="run-time-2">
 
-        </section>
+                </div>
 
-        <section id="calculated-output">
+                <br class="line-break">
 
-            <div id="kv-1">
+                <div id="constants">
 
-                <p>Kinematic Viscosity 1:</p>
-                <p id="kinematic-viscosity-1"></p>
+                    <div id="constant-div">
 
-            </div>
+                        <p id="constant">Constant:</p>
+                        <input type="number" id="constant-input">
+            
+                    </div>
 
-            <div id="kv-2">
+                    <div id="constant-1-div">
 
-                <p>Kinematic Viscosity 2:</p>
-                <p id="kinematic-viscosity-2"></p>
+                        <p id="constant-1">Constant 1:</p>
+                        <input type="number" id="constant-1-input">
+                
+                    </div>
+                
+                    <div id="constant-2-div">
+                    
+                        <p id="constant-2">Constant 2:</p>
+                        <input type="number" id="constant-2-input">
+                    
+                    </div>
 
-            </div>
+                </div>
 
-            <br class="line-break">
+                <br class="line-break">
 
-            <div id="kv-final">
+                <div id="submit-div">
 
-                <p>Final Calculated Viscosity:</p>
-                <p id="final-calculated-viscosity"></p>
+                    <button type="submit" id="submit-ubbelohde">calculate S</button>
+                    <button type="submit" id="submit-zeitfuchs">calculate Z</button>
+                    <button id="reset">reset</button>
 
-            </div>
+                </div>
 
-            <div id="determinability-equation-div">
+            </section>
 
-                <p>Determinability equation:</p>
-                <p id="determinability-equation"></p>
+            <section id="calculated-output">
 
-            </div>
+                <div id="kv-1">
 
-            <div id="determinability-factor-div">
+                    <p>Kinematic Viscosity 1:</p>
+                    <p id="kinematic-viscosity-1"></p>
 
-                <p>Determinability factor:</p>
-                <p id="determinability-factor"></p>
+                </div>
 
-            </div>
+                <div id="kv-2">
+
+                    <p>Kinematic Viscosity 2:</p>
+                    <p id="kinematic-viscosity-2"></p>
+
+                </div>
+
+                <br class="line-break">
+
+                <div id="kv-final">
+
+                    <p>Final Calculated Viscosity:</p>
+                    <p id="final-calculated-viscosity"></p>
+
+                </div>
+
+                <div id="determinability-equation-div">
+
+                    <p>Determinability equation:</p>
+                    <p id="determinability-equation"></p>
+
+                </div>
+
+                <div id="determinability-factor-div">
+
+                    <p>Determinability factor:</p>
+                    <p id="determinability-factor"></p>
+
+                </div>
 
 
-            <br class="line-break">
+                <br class="line-break">
 
-            <div id="upper-determinability">
+                <div id="upper-determinability">
 
-                <p>Final calculated viscosity + determinability factor:</p>
-                <p id="upper-limit"></p>
+                    <p>Final calculated viscosity + determinability factor:</p>
+                    <p id="upper-limit"></p>
 
-            </div>
+                </div>
 
-            <div id="lower-determinability">
+                <div id="lower-determinability">
 
-                <p>Final calculated viscosity - determinability factor:</p>
-                <p id="lower-limit"></p>
+                    <p>Final calculated viscosity - determinability factor:</p>
+                    <p id="lower-limit"></p>
 
-            </div>
+                </div>
 
-            <div id="output"></div>
+                <div id="output"></div>
 
-        </section>
+            </section>
+
+        </article>
+
+        <article id="repeatability-calculations">
+
+            <h2>Repeatability checker</h2>
+
+        </article>
+
+        <article id="reproducibility-calculations">
+
+            <h2>Reproducibility checker</h2>
+
+        </article>
+
+        <article id="viscometer-calibration">
+
+            <h2>Calibration checker</h2>
+
+        </article>
+
+        <article id="viscometer-constant-recalibration">
+
+            <h2>Viscometer recalibration</h2>
+
+        </article>
 
     </main>
 
