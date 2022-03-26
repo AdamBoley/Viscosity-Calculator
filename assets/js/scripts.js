@@ -20,6 +20,8 @@ function ubbelohdeConstant() {
         document.getElementById('constant-div').style.display = 'block'
         document.getElementById('submit-ubbelohde').style.display = 'block'
     }
+
+    document.getElementById('run-time-1').focus()
 }
 
 let getValuesUbbelohdeButton = document.getElementById('submit-ubbelohde')
@@ -107,6 +109,8 @@ function zeitfuchsConstant() {
         document.getElementById('constant-2-div').style.display = 'block'
         document.getElementById('submit-zeitfuchs').style.display = 'block'
     }
+
+    document.getElementById('run-time-1').focus()
     
 }
 
