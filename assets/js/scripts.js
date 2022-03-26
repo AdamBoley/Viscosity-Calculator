@@ -409,6 +409,15 @@ function reset() {
     document.getElementById('constant-2-input').value = ''
 
     document.getElementById('run-time-1').focus()
+
+    document.getElementById('kinematic-viscosity-1').textContent = ''
+    document.getElementById('kinematic-viscosity-2').textContent = ''
+    document.getElementById('final-calculated-viscosity').textContent = ''
+    document.getElementById('determinability-equation').textContent = ''
+    document.getElementById('determinability-factor').textContent = ''
+    document.getElementById('upper-limit').textContent = ''
+    document.getElementById('lower-limit').textContent = ''
+    document.getElementById('output').textContent = ''
 }
 
 
