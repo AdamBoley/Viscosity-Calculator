@@ -21,9 +21,9 @@
 
             <h2>Determinability checker</h2>
 
-            <section id="description">
+            <section class="description">
 
-                <h2>Instructions for use</h2>
+                <h3>Instructions for use</h3>
 
                 <ol>
 
@@ -42,9 +42,9 @@
 
             </section>
 
-            <section id="user-input">
+            <section class="user-input">
 
-                <div id="select">
+                <div class="select">
 
                     <p>Select your sample type and temperature</p>
 
@@ -118,15 +118,15 @@
 
                 <div id="submit-div">
 
-                    <button type="submit" id="submit-ubbelohde">calculate S</button>
-                    <button type="submit" id="submit-zeitfuchs">calculate Z</button>
+                    <button type="submit" id="submit-ubbelohde">calculate</button>
+                    <button type="submit" id="submit-zeitfuchs">calculate</button>
                     <button id="reset">reset</button>
 
                 </div>
 
             </section>
 
-            <section id="calculated-output">
+            <section class="calculated-output">
 
                 <div id="kv-1">
 
@@ -188,11 +188,125 @@
 
         </article>
 
+        <br class="line-break">
+
         <article id="repeatability-calculations">
 
             <h2>Repeatability checker</h2>
 
+            <section class="description">
+
+                <h3>Instructions for use</h3>
+
+                <ol>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ol>
+
+            </section>
+
+            <section class="user-input">
+
+                <div class="select">
+
+                    <p>Select your sample type and temperature</p>
+
+                    <select id="sample-type-repeatability">
+                
+                        <option disabled selected value="disabled"> -- select an option -- </option>
+                        <option value="BO40">Base Oils at 40C</option>
+                        <option value="BO100">Base Oils at 100C</option>
+                        <option value="FO40">Formulated Oils at 40C</option>
+                        <option value="FO100">Formulated Oils at 100C</option>
+                        <option value="FO150">Formulated Oils at 150C</option>
+                        <option value="PW100">Petroleum wax at 100C</option>
+                        <option value="RFO50">Residual Fuel Oils at 50C</option>
+                        <option value="RFO100">Residual Fuel Oils at 100C</option>
+                        <option value="ADD100">Additives at 100C</option>
+                        <option value="GO40">Gas Oils at 40C</option>
+                        <option value="JFM20">Jet Fuels at -20C</option>
+                        <option value="KD40">Kerosene, diesel and biodiesel at 40C</option>
+                        <option value="UFO40">Used or in-service Formulated Oils at 40C</option>
+                        <option value="UFO100">Used or in-service Formulated Oils at 100C</option>
+                        <option value="CR">Crude oils and residues</option>
+
+                    </select>
+
+                </div>
+
+                <div id="viscosity-1-div">
+
+                    <p>Viscosity 1:</p>
+                    <input type="number" id="viscosity-1">
+
+                </div>
+
+                <div id="viscosity-2-div">
+
+                    <p>Viscosity 2:</p>
+                    <input type="number" id="viscosity-2">
+
+                </div>
+
+                <div id="submit-repeatability-div">
+
+                    <button id="submit-repeatability">calculate</button>
+                    <button id="repeatability-reset">reset</button>
+
+                </div>
+
+            </section>
+
+            <section class="calculated-output">
+
+                <div id="average-viscosity-div">
+
+                    <p>Average viscosity:</p>
+                    <p id="average-viscosity"></p>
+
+                </div>
+
+                <div id="repeatability-equation-div">
+
+                    <p>Repeatability equation:</p>
+                    <p id="repeatability-equation"></p>
+
+                </div>
+
+                <div id="repeatability-factor-div">
+
+                    <p>Repeatability factor:</p>
+                    <p id="repeatability-factor"></p>
+
+                </div>
+
+                <div id="repeatability-upper-div">
+
+                    <p>Repeatability upper limit:</p>
+                    <p id="repeatability-upper-limit"></p>
+
+                </div>
+
+                <div id="repeatability-lower-div">
+
+                    <p>Repeatability lower limit:</p>
+                    <p id="repeatability-lower-limit"></p>
+
+                </div>
+
+                <div id="repeatability-output-div">
+
+                    <p id="repeatability-output"></p>
+
+                </div>
+
+            </section>
+
         </article>
+
+        <br class="line-break">
 
         <article id="reproducibility-calculations">
 
@@ -200,11 +314,15 @@
 
         </article>
 
+        <br class="line-break">
+
         <article id="viscometer-calibration">
 
             <h2>Calibration checker</h2>
 
         </article>
+
+        <br class="line-break">
 
         <article id="viscometer-constant-recalibration">
 

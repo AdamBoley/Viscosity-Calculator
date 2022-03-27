@@ -4,7 +4,7 @@ body {
     margin: 0;
 }
 
-.title, h2 {
+.title, h2, h3 {
     text-align: center;
 
 }
@@ -17,25 +17,25 @@ main {
     clear: both;
 }
 
-#description {
+.description {
     width: 80%;
     height: 300px;
     background-color: blanchedalmond;
     margin: 25px auto;
 }
 
-#description h2 {
+.description h2 {
     text-align: center;
 }
 
-#user-input {
+.user-input {
     float: left;
     width: 50%;
     height: 50vh;
     background-color: lightblue;
 }
 
-#select {
+.select {
     margin: 25px auto;
 }
 
@@ -59,7 +59,7 @@ main {
     display: none;
 }
 
-#calculated-output {
+.calculated-output {
     float: right;
     width: 50%;
     height: 50vh;

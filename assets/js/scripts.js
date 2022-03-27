@@ -80,7 +80,7 @@ function calculateFinalUbbelohde(kv1, kv2) {
 
     document.getElementById('final-calculated-viscosity').innerText = preciseFinalViscosity;
 
-    displayDeterminabilityFactor()
+    displayDeterminabilityEquation()
 
     determinabilityFactor(finalViscosity)
 
@@ -172,7 +172,7 @@ function calculateFinalZeitfuchs(kv1, kv2) {
 
     document.getElementById('final-calculated-viscosity').innerText = preciseFinalViscosity
 
-    displayDeterminabilityFactor()
+    displayDeterminabilityEquation()
 
     determinabilityFactor(finalViscosity)
 
@@ -180,7 +180,7 @@ function calculateFinalZeitfuchs(kv1, kv2) {
 }
 
 //Determinability
-function displayDeterminabilityFactor() {
+function displayDeterminabilityEquation() {
 
     let select = document.getElementById('sample-type')
 
@@ -426,6 +426,367 @@ function reset() {
 
 
 
+//repeatability calculations
+
+let repeatabilityButton = document.getElementById('submit-repeatability')
+
+repeatabilityButton.addEventListener('click', averageViscosityCalculator)
+
+function averageViscosityCalculator() {
+
+    let select = document.getElementById('sample-type-repeatability')
+
+    if(select.value === 'disabled') {
+        alert('Please select a sample type from the drop-down menu')
+    }
+    else {
+        let viscosity1 = parseFloat(document.getElementById('viscosity-1').value)
+        let viscosity2 = parseFloat(document.getElementById('viscosity-2').value)
+
+        let averageViscosity = ((viscosity1 + viscosity2) / 2)
+        let preciseAverageViscosity = averageViscosity.toPrecision(4)
+
+        console.log(`the average viscosity is ${averageViscosity}`)
+        console.log(`the average viscosity to 4 significant figures is ${preciseAverageViscosity}`)
+
+        document.getElementById('average-viscosity').textContent = preciseAverageViscosity
+
+        displayRepeatabilityEquation()
+
+        repeatabilityFactor(averageViscosity)
+    }
+
+    
+
+}
+
+function displayRepeatabilityEquation() {
+
+    let select = document.getElementById('sample-type-repeatability')
+
+    if(select.value === 'BO40') {
+
+        let message = '0.0101 x average viscosity, or 1.01%'
+        document.getElementById('repeatability-equation').innerText = message
+        console.log('the repeatability equation being used is', message)
+    }    
+
+    else if (select.value === 'BO100') {
+
+        let message = '0.0085 x average viscosity, or 0.85%'
+        document.getElementById('repeatability-equation').innerText = message
+        console.log('the repeatability equation being used is', message)
+    }
+
+    else if (select.value === 'FO40') {
+
+        let message = '0.0074 x average viscosity, or 0.74%'
+        document.getElementById('repeatability-equation').innerText = message
+        console.log('the repeatability equation being used is', message)
+    }
+
+    else if (select.value === 'FO100') {
+
+        let message = '0.0084 x average viscosity, or 0.84%'
+        document.getElementById('repeatability-equation').innerText = message
+        console.log('the repeatability equation being used is', message)
+    }
+
+    else if (select.value === 'FO150') {
+
+        let message = '0.0056 x average viscosity, or 0.56%'
+        document.getElementById('repeatability-equation').innerText = message
+        console.log('the repeatability equation being used is', message)
+    }
+
+    else if (select.value === 'PW100') {
+
+        let message = '0.0141 x (average viscosity ^ 1.2)'
+        document.getElementById('repeatability-equation').innerText = message
+        console.log('the repeatability equation being used is', message)
+    }
+
+    else if (select.value === 'RFO50') {
+
+        let message = '0.07885 x average viscosity, or 7.88%'
+        document.getElementById('repeatability-equation').innerText = message
+        console.log('the repeatability equation being used is', message)
+    }
+
+    else if (select.value === 'RFO100') {
+
+        let message = '0.08088 x average viscosity, or 8.08%'
+        document.getElementById('repeatability-equation').innerText = message
+        console.log('the repeatability equation being used is', message)
+    }
+
+    else if (select.value === 'ADD100') {
+
+        let message = '0.0192 x (average viscosity ^ 1.1)'
+        document.getElementById('repeatability-equation').innerText = message
+        console.log('the repeatability equation being used is', message)
+    }
+
+    else if (select.value === 'GO40') {
+
+        let message = '0.0043 x (average viscosity + 1)'
+        document.getElementById('repeatability-equation').innerText = message
+        console.log('the repeatability equation being used is', message)
+    }
+
+    else if (select.value === 'JFM20') {
+
+        let message = '0.001368 x (average viscosity ^ 1.4)'
+        document.getElementById('repeatability-equation').innerText = message
+        console.log('the repeatability equation being used is', message)
+    }
+
+    else if (select.value === 'KD40') {
+
+        let message = '0.0056 x average viscosity, or 0.56%'
+        document.getElementById('repeatability-equation').innerText = message
+        console.log('the repeatability equation being used is', message)
+    }
+
+    else if (select.value === 'UFO40') {
+
+        let message = '0.000233 x (average viscosity ^ 1.722)'
+        document.getElementById('repeatability-equation').innerText = message
+        console.log('the repeatability equation being used is', message)
+    }
+
+    else if (select.value === 'UFO100') {
+
+        let message = '0.001005 x (average viscosity ^ 1.4633)'
+        document.getElementById('repeatability-equation').innerText = message
+        console.log('the repeatability equation being used is', message)
+    }
+
+    else if (select.value === 'CR') {
+
+        let message = '0.03 x average viscosity, or 3%'
+        document.getElementById('repeatability-equation').innerText = message
+        console.log('the repeatability equation being used is', message)
+    }
+
+    else {
+
+        let message = 'invalid repeatability equation'
+        document.getElementById('repeatability-equation').innerText = message
+        console.log('the repeatability equation being used is', message)
+    }
+
+}
+
+function repeatabilityFactor(averageViscosity) {
+
+    let select = document.getElementById('sample-type-repeatability')
+
+    if(select.value === 'BO40') {
+
+        let repeatability = averageViscosity * 0.0101
+        let preciseRepeatability = repeatability.toPrecision(4)
+        console.log(`${averageViscosity} x 0.0101 = `, repeatability)
+        console.log(`the repeatability to 4 significant figures is ${preciseRepeatability}`)
+        document.getElementById('repeatability-factor').innerText = preciseRepeatability
+    }    
+
+    else if (select.value === 'BO100') {
+
+        let repeatability = averageViscosity * 0.0085
+        let preciseRepeatability = repeatability.toPrecision(4)
+        console.log(`${averageViscosity} x 0.0085 = `, repeatability)
+        console.log(`the repeatability to 4 significant figures is ${preciseRepeatability}`)
+        document.getElementById('repeatability-factor').innerText = preciseRepeatability
+    }
+
+    else if (select.value === 'FO40') {
+
+        let repeatability = averageViscosity * 0.0074
+        let preciseRepeatability = repeatability.toPrecision(4)
+        console.log(`${averageViscosity} x 0.0074 = `, repeatability)
+        console.log(`the repeatability to 4 significant figures is ${preciseRepeatability}`)
+        document.getElementById('repeatability-factor').innerText = preciseRepeatability
+    }
+
+    else if (select.value === 'FO100') {
+
+        let repeatability = averageViscosity * 0.0084
+        let preciseRepeatability = repeatability.toPrecision(4)
+        console.log(`${averageViscosity} x 0.0084 = `, repeatability)
+        console.log(`the repeatability to 4 significant figures is ${preciseRepeatability}`)
+        document.getElementById('repeatability-factor').innerText = preciseRepeatability
+    }
+
+    else if (select.value === 'FO150') {
+
+        let repeatability = averageViscosity * 0.0056
+        let preciseRepeatability = repeatability.toPrecision(4)
+        console.log(`${averageViscosity} x 0.0056 = `, repeatability)
+        console.log(`the repeatability to 4 significant figures is ${preciseRepeatability}`)
+        document.getElementById('repeatability-factor').innerText = preciseRepeatability
+    }
+
+    else if (select.value === 'PW100') {
+
+        let repeatability = (averageViscosity ** 1.2) * 0.0141
+        let preciseRepeatability = repeatability.toPrecision(4)
+        console.log(`(${averageViscosity} ^ 1.2) x 0.0141 = `, repeatability)
+        console.log(`the repeatability to 4 significant figures is ${preciseRepeatability}`)
+        document.getElementById('repeatability-factor').innerText = preciseRepeatability
+    }
+
+    else if (select.value === 'RFO50') {
+
+        let repeatability = averageViscosity * 0.07885
+        let preciseRepeatability = repeatability.toPrecision(4)
+        console.log(`${averageViscosity} x 0.07885 = `, repeatability)
+        console.log(`the repeatability to 4 significant figures is ${preciseRepeatability}`)
+        document.getElementById('repeatability-factor').innerText = preciseRepeatability
+    }
+
+    else if (select.value === 'RFO100') {
+
+        let repeatability = averageViscosity * 0.08088
+        let preciseRepeatability = repeatability.toPrecision(4)
+        console.log(`${averageViscosity} x 0.08088 = `, repeatability)
+        console.log(`the repeatability to 4 significant figures is ${preciseRepeatability}`)
+        document.getElementById('repeatability-factor').innerText = preciseRepeatability
+    }
+
+    else if (select.value === 'ADD100') {
+
+        let repeatability = (averageViscosity ** 1.1)* 0.00192
+        let preciseRepeatability = repeatability.toPrecision(4)
+        console.log(`(${averageViscosity} ^ 1.1) x 0.0192 = `, repeatability)
+        console.log(`the repeatability to 4 significant figures is ${preciseRepeatability}`)
+        document.getElementById('repeatability-factor').innerText = preciseRepeatability
+    }
+
+    else if (select.value === 'GO40') {
+
+        let repeatability = (averageViscosity + 1) * 0.0043
+        let preciseRepeatability = repeatability.toPrecision(4)
+        console.log(`(${averageViscosity} +1 ) x 0.0043 = `, repeatability)
+        console.log(`the repeatability to 4 significant figures is ${preciseRepeatability}`)
+        document.getElementById('repeatability-factor').innerText = preciseRepeatability
+    }
+
+    else if (select.value === 'JFM20') {
+
+        let repeatability = (averageViscosity ** 1.4)* 0.001368
+        let preciseRepeatability = repeatability.toPrecision(4)
+        console.log(`(${averageViscosity} ^ 1.4) x 0.001368 = `, repeatability)
+        console.log(`the repeatability to 4 significant figures is ${preciseRepeatability}`)
+        document.getElementById('repeatability-factor').innerText = preciseRepeatability
+    }
+
+    else if (select.value === 'KD40') {
+
+        let repeatability = averageViscosity * 0.0056
+        let preciseRepeatability = repeatability.toPrecision(4)
+        console.log(`${averageViscosity} x 0.0056 = `, repeatability)
+        console.log(`the repeatability to 4 significant figures is ${preciseRepeatability}`)
+        document.getElementById('repeatability-factor').innerText = preciseRepeatability
+    }
+
+    else if (select.value === 'UFO40') {
+
+        let repeatability = (averageViscosity ** 1.722) * 0.000233
+        let preciseRepeatability = repeatability.toPrecision(4)
+        console.log(`(${averageViscosity} ^ 1.722) x 0.000233 = `, repeatability)
+        console.log(`the repeatability to 4 significant figures is ${preciseRepeatability}`)
+        document.getElementById('repeatability-factor').innerText = preciseRepeatability
+    }
+
+    else if (select.value === 'UFO100') {
+
+        let repeatability = (averageViscosity ** 1.4633) * 0.001005
+        let preciseRepeatability = repeatability.toPrecision(4)
+        console.log(`(${averageViscosity} ^ 1.4633) x 0.001005 = `, repeatability)
+        console.log(`the repeatability to 4 significant figures is ${preciseRepeatability}`)
+        document.getElementById('repeatability-factor').innerText = preciseRepeatability
+    }
+
+    else if (select.value === 'CR') {
+
+        let repeatability = averageViscosity * 0.03
+        let preciseRepeatability = repeatability.toPrecision(4)
+        console.log(`${averageViscosity} x 0.03 = `, repeatability)
+        console.log(`the repeatability to 4 significant figures is ${preciseRepeatability}`)
+        document.getElementById('repeatability-factor').innerText = preciseRepeatability
+    }
+
+    else {
+
+        let message = 'invalid repeatability equation'
+        document.getElementById('repeatability-factor').innerText = message
+        console.log('the repeatability equation being used is', message)
+    }
+
+    repeatabilityUpperLimit()
+    repeatabilityLowerLimit()
+}
+
+function repeatabilityUpperLimit() {
+
+    let averageViscosity = parseFloat(document.getElementById('average-viscosity').textContent)
+    let repeatabilityFactor = parseFloat(document.getElementById('repeatability-factor').textContent)
+
+    let repeatabilityUpper = averageViscosity + repeatabilityFactor
+    let preciseRepeatabilityUpper = repeatabilityUpper.toPrecision(4)
+
+    document.getElementById('repeatability-upper-limit').textContent = preciseRepeatabilityUpper
+}
+
+function repeatabilityLowerLimit() {
+
+    let averageViscosity = parseFloat(document.getElementById('average-viscosity').textContent)
+    let repeatabilityFactor = parseFloat(document.getElementById('repeatability-factor').textContent)
+
+    let repeatabilityLower = averageViscosity - repeatabilityFactor
+    let preciseRepeatabilityLower = repeatabilityLower.toPrecision(4)
+
+    document.getElementById('repeatability-lower-limit').textContent = preciseRepeatabilityLower
+
+    repeatabilityChecker()
+}
+
+function repeatabilityChecker() {
+
+    let viscosity1 = parseFloat(document.getElementById('viscosity-1').value)
+    let viscosity2 = parseFloat(document.getElementById('viscosity-2').value)
+    let upperAllowedViscosity = parseFloat(document.getElementById('repeatability-upper-limit').innerText)
+    let lowerAllowedViscosity = parseFloat(document.getElementById('repeatability-lower-limit').innerText)
+
+    if(viscosity1 > lowerAllowedViscosity && viscosity1 < upperAllowedViscosity && viscosity2 > lowerAllowedViscosity && viscosity2 < upperAllowedViscosity) {
+
+        document.getElementById('repeatability-output').innerText = 'Your viscosities are repeatable'
+    }
+
+    else {
+        document.getElementById('repeatability-output').innerText = 'Your viscosities are not repeatable'
+    }
+}
+
+let repeatabilityResetButton = document.getElementById('repeatability-reset')
+
+repeatabilityResetButton.addEventListener('click', repeatabilityReset)
+
+function repeatabilityReset() {
+
+    
+
+    document.getElementById('viscosity-1').value = ''
+    document.getElementById('viscosity-2').value = ''
+    document.getElementById('average-viscosity').textContent = ''
+    document.getElementById('repeatability-equation').textContent = ''
+    document.getElementById('repeatability-factor').textContent = ''
+    document.getElementById('repeatability-upper-limit').textContent = ''
+    document.getElementById('repeatability-lower-limit').textContent = ''
+    document.getElementById('repeatability-output').textContent = ''
+    document.getElementById('viscosity-1').focus()
+}
 
 
 //Do I want to use the outputs of the toPrecision method in the final calculations? There are edge cases where I round my number throughout the process and come out with a 
