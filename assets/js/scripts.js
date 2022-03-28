@@ -430,9 +430,9 @@ function reset() {
 
 let repeatabilityButton = document.getElementById('submit-repeatability')
 
-repeatabilityButton.addEventListener('click', averageViscosityCalculator)
+repeatabilityButton.addEventListener('click', averageViscosityRepeatability)
 
-function averageViscosityCalculator() {
+function averageViscosityRepeatability() {
 
     let select = document.getElementById('sample-type-repeatability')
 
@@ -440,8 +440,8 @@ function averageViscosityCalculator() {
         alert('Please select a sample type from the drop-down menu')
     }
     else {
-        let viscosity1 = parseFloat(document.getElementById('viscosity-1').value)
-        let viscosity2 = parseFloat(document.getElementById('viscosity-2').value)
+        let viscosity1 = parseFloat(document.getElementById('viscosity-repeatability-1').value)
+        let viscosity2 = parseFloat(document.getElementById('viscosity-repeatability-2').value)
 
         let averageViscosity = ((viscosity1 + viscosity2) / 2)
         let preciseAverageViscosity = averageViscosity.toPrecision(4)
@@ -449,14 +449,12 @@ function averageViscosityCalculator() {
         console.log(`the average viscosity is ${averageViscosity}`)
         console.log(`the average viscosity to 4 significant figures is ${preciseAverageViscosity}`)
 
-        document.getElementById('average-viscosity').textContent = preciseAverageViscosity
+        document.getElementById('average-viscosity-repeatability').textContent = preciseAverageViscosity
 
         displayRepeatabilityEquation()
 
         repeatabilityFactor(averageViscosity)
     }
-
-    
 
 }
 
@@ -730,7 +728,7 @@ function repeatabilityFactor(averageViscosity) {
 
 function repeatabilityUpperLimit() {
 
-    let averageViscosity = parseFloat(document.getElementById('average-viscosity').textContent)
+    let averageViscosity = parseFloat(document.getElementById('average-viscosity-repeatability').textContent)
     let repeatabilityFactor = parseFloat(document.getElementById('repeatability-factor').textContent)
 
     let repeatabilityUpper = averageViscosity + repeatabilityFactor
@@ -741,7 +739,7 @@ function repeatabilityUpperLimit() {
 
 function repeatabilityLowerLimit() {
 
-    let averageViscosity = parseFloat(document.getElementById('average-viscosity').textContent)
+    let averageViscosity = parseFloat(document.getElementById('average-viscosity-repeatability').textContent)
     let repeatabilityFactor = parseFloat(document.getElementById('repeatability-factor').textContent)
 
     let repeatabilityLower = averageViscosity - repeatabilityFactor
@@ -754,8 +752,8 @@ function repeatabilityLowerLimit() {
 
 function repeatabilityChecker() {
 
-    let viscosity1 = parseFloat(document.getElementById('viscosity-1').value)
-    let viscosity2 = parseFloat(document.getElementById('viscosity-2').value)
+    let viscosity1 = parseFloat(document.getElementById('viscosity-repeatability-1').value)
+    let viscosity2 = parseFloat(document.getElementById('viscosity-repeatability-2').value)
     let upperAllowedViscosity = parseFloat(document.getElementById('repeatability-upper-limit').innerText)
     let lowerAllowedViscosity = parseFloat(document.getElementById('repeatability-lower-limit').innerText)
 
@@ -775,8 +773,6 @@ repeatabilityResetButton.addEventListener('click', repeatabilityReset)
 
 function repeatabilityReset() {
 
-    
-
     document.getElementById('viscosity-1').value = ''
     document.getElementById('viscosity-2').value = ''
     document.getElementById('average-viscosity').textContent = ''
@@ -787,6 +783,367 @@ function repeatabilityReset() {
     document.getElementById('repeatability-output').textContent = ''
     document.getElementById('viscosity-1').focus()
 }
+
+
+//Reproducibility calculation functions
+
+let reproducibilityButton = document.getElementById('submit-reproducibility')
+
+reproducibilityButton.addEventListener('click', averageViscosityReproducibility)
+
+function averageViscosityReproducibility() {
+
+    let select = document.getElementById('sample-type-reproducibility')
+
+    if(select.value === 'disabled') {
+        alert('Please select a sample type from the drop-down menu')
+    }
+    else {
+        let viscosity1 = parseFloat(document.getElementById('viscosity-reproducibility-1').value)
+        let viscosity2 = parseFloat(document.getElementById('viscosity-reproducibility-2').value)
+
+        let averageViscosity = ((viscosity1 + viscosity2) / 2)
+        let preciseAverageViscosity = averageViscosity.toPrecision(4)
+
+        console.log(`the average viscosity is ${averageViscosity}`)
+        console.log(`the average viscosity to 4 significant figures is ${preciseAverageViscosity}`)
+
+        document.getElementById('average-viscosity-reproducibility').textContent = preciseAverageViscosity
+
+        displayReproducibilityEquation()
+
+        reproducibilityFactor(averageViscosity)
+    }
+
+}
+
+function displayReproducibilityEquation() {
+
+    let select = document.getElementById('sample-type-reproducibility')
+
+    if(select.value === 'BO40') {
+
+        let message = '0.0136 x average viscosity, or 1.36%'
+        document.getElementById('reproducibility-equation').innerText = message
+        console.log('the reproducibility equation being used is', message)
+    }    
+
+    else if (select.value === 'BO100') {
+
+        let message = '0.0190 x average viscosity, or 1.90%'
+        document.getElementById('reproducibility-equation').innerText = message
+        console.log('the reproducibility equation being used is', message)
+    }
+
+    else if (select.value === 'FO40') {
+
+        let message = '0.0122 x average viscosity, or 1.22%'
+        document.getElementById('reproducibility-equation').innerText = message
+        console.log('the reproducibility equation being used is', message)
+    }
+
+    else if (select.value === 'FO100') {
+
+        let message = '0.0138 x average viscosity, or 1.38%'
+        document.getElementById('reproducibility-equation').innerText = message
+        console.log('the reproducibility equation being used is', message)
+    }
+
+    else if (select.value === 'FO150') {
+
+        let message = '0.018 x average viscosity, or 1.8%'
+        document.getElementById('reproducibility-equation').innerText = message
+        console.log('the reproducibility equation being used is', message)
+    }
+
+    else if (select.value === 'PW100') {
+
+        let message = '0.0366 x (average viscosity ^ 1.2)'
+        document.getElementById('reproducibility-equation').innerText = message
+        console.log('the reproducibility equation being used is', message)
+    }
+
+    else if (select.value === 'RFO50') {
+
+        let message = '0.08461 x average viscosity, or 8.46%'
+        document.getElementById('reproducibility-equation').innerText = message
+        console.log('the reproducibility equation being used is', message)
+    }
+
+    else if (select.value === 'RFO100') {
+
+        let message = '0.1206 x average viscosity, or 12.06%'
+        document.getElementById('reproducibility-equation').innerText = message
+        console.log('the reproducibility equation being used is', message)
+    }
+
+    else if (select.value === 'ADD100') {
+
+        let message = '0.00862 x (average viscosity ^ 1.1)'
+        document.getElementById('reproducibility-equation').innerText = message
+        console.log('the reproducibility equation being used is', message)
+    }
+
+    else if (select.value === 'GO40') {
+
+        let message = '0.0082 x (average viscosity + 1)'
+        document.getElementById('reproducibility-equation').innerText = message
+        console.log('the reproducibility equation being used is', message)
+    }
+
+    else if (select.value === 'JFM20') {
+
+        let message = '0.002899 x (average viscosity ^ 1.4)'
+        document.getElementById('reproducibility-equation').innerText = message
+        console.log('the reproducibility equation being used is', message)
+    }
+
+    else if (select.value === 'KD40') {
+
+        let message = '0.0224 x average viscosity, or 2.24%'
+        document.getElementById('reproducibility-equation').innerText = message
+        console.log('the reproducibility equation being used is', message)
+    }
+
+    else if (select.value === 'UFO40') {
+
+        let message = '0.000594 x (average viscosity ^ 1.722)'
+        document.getElementById('reproducibility-equation').innerText = message
+        console.log('the reproducibility equation being used is', message)
+    }
+
+    else if (select.value === 'UFO100') {
+
+        let message = '0.003361 x (average viscosity ^ 1.4633)'
+        document.getElementById('reproducibility-equation').innerText = message
+        console.log('the reproducibility equation being used is', message)
+    }
+
+    else if (select.value === 'CR') {
+
+        let message = '0.03 x average viscosity, or 3%'
+        document.getElementById('reproducibility-equation').innerText = message
+        console.log('the reproducibility equation being used is', message)
+    }
+
+    else {
+
+        let message = 'invalid reproducibility equation'
+        document.getElementById('reproducibility-equation').innerText = message
+        console.log('the reproducibility equation being used is', message)
+    }
+
+}
+
+function reproducibilityFactor(averageViscosity) {
+
+    let select = document.getElementById('sample-type-reproducibility')
+
+    if(select.value === 'BO40') {
+
+        let reproducibility = averageViscosity * 0.0136
+        let preciseReproducibility = reproducibility.toPrecision(4)
+        console.log(`${averageViscosity} x 0.0136 = `, reproducibility)
+        console.log(`the reproducibility to 4 significant figures is ${preciseReproducibility}`)
+        document.getElementById('reproducibility-factor').innerText = preciseReproducibility
+    }    
+
+    else if (select.value === 'BO100') {
+
+        let reproducibility = averageViscosity * 0.0190
+        let preciseReproducibility = reproducibility.toPrecision(4)
+        console.log(`${averageViscosity} x 0.0190 = `, reproducibility)
+        console.log(`the reproducibility to 4 significant figures is ${preciseReproducibility}`)
+        document.getElementById('reproducibility-factor').innerText = preciseReproducibility
+    }
+
+    else if (select.value === 'FO40') {
+
+        let reproducibility = averageViscosity * 0.0122
+        let preciseReproducibility = reproducibility.toPrecision(4)
+        console.log(`${averageViscosity} x 0.0122 = `, reproducibility)
+        console.log(`the reproducibility to 4 significant figures is ${preciseReproducibility}`)
+        document.getElementById('reproducibility-factor').innerText = preciseReproducibility
+    }
+
+    else if (select.value === 'FO100') {
+
+        let reproducibility = averageViscosity * 0.0138
+        let preciseReproducibility = reproducibility.toPrecision(4)
+        console.log(`${averageViscosity} x 0.0138 = `, reproducibility)
+        console.log(`the reproducibility to 4 significant figures is ${preciseReproducibility}`)
+        document.getElementById('reproducibility-factor').innerText = preciseReproducibility
+    }
+
+    else if (select.value === 'FO150') {
+
+        let reproducibility = averageViscosity * 0.018
+        let preciseReproducibility = reproducibility.toPrecision(4)
+        console.log(`${averageViscosity} x 0.018 = `, reproducibility)
+        console.log(`the reproducibility to 4 significant figures is ${preciseReproducibility}`)
+        document.getElementById('reproducibility-factor').innerText = preciseReproducibility
+    }
+
+    else if (select.value === 'PW100') {
+
+        let reproducibility = (averageViscosity ** 1.2) * 0.0366
+        let preciseReproducibility = reproducibility.toPrecision(4)
+        console.log(`(${averageViscosity} ^ 1.2) x 0.0366 = `, reproducibility)
+        console.log(`the reproducibility to 4 significant figures is ${preciseReproducibility}`)
+        document.getElementById('reproducibility-factor').innerText = preciseReproducibility
+    }
+
+    else if (select.value === 'RFO50') {
+
+        let reproducibility = averageViscosity * 0.08461
+        let preciseReproducibility = reproducibility.toPrecision(4)
+        console.log(`${averageViscosity} x 0.08461 = `, reproducibility)
+        console.log(`the reproducibility to 4 significant figures is ${preciseReproducibility}`)
+        document.getElementById('reproducibility-factor').innerText = preciseReproducibility
+    }
+
+    else if (select.value === 'RFO100') {
+
+        let reproducibility = averageViscosity * 0.1206
+        let preciseReproducibility = reproducibility.toPrecision(4)
+        console.log(`${averageViscosity} x 0.1206 = `, reproducibility)
+        console.log(`the reproducibility to 4 significant figures is ${preciseReproducibility}`)
+        document.getElementById('reproducibility-factor').innerText = preciseReproducibility
+    }
+
+    else if (select.value === 'ADD100') {
+
+        let reproducibility = (averageViscosity ** 1.1)* 0.00862
+        let preciseReproducibility = reproducibility.toPrecision(4)
+        console.log(`(${averageViscosity} ^ 1.1) x 0.00862 = `, reproducibility)
+        console.log(`the reproducibility to 4 significant figures is ${preciseReproducibility}`)
+        document.getElementById('reproducibility-factor').innerText = preciseReproducibility
+    }
+
+    else if (select.value === 'GO40') {
+
+        let reproducibility = (averageViscosity + 1) * 0.0082
+        let preciseReproducibility = reproducibility.toPrecision(4)
+        console.log(`(${averageViscosity} +1 ) x 0.0082 = `, reproducibility)
+        console.log(`the reproducibility to 4 significant figures is ${preciseReproducibility}`)
+        document.getElementById('reproducibility-factor').innerText = preciseReproducibility
+    }
+
+    else if (select.value === 'JFM20') {
+
+        let reproducibility = (averageViscosity ** 1.4)* 0.002899
+        let preciseReproducibility = reproducibility.toPrecision(4)
+        console.log(`(${averageViscosity} ^ 1.4) x 0.002899 = `, reproducibility)
+        console.log(`the reproducibility to 4 significant figures is ${preciseReproducibility}`)
+        document.getElementById('reproducibility-factor').innerText = preciseReproducibility
+    }
+
+    else if (select.value === 'KD40') {
+
+        let reproducibility = averageViscosity * 0.0224
+        let preciseReproducibility = reproducibility.toPrecision(4)
+        console.log(`${averageViscosity} x 0.0224 = `, reproducibility)
+        console.log(`the reproducibility to 4 significant figures is ${preciseReproducibility}`)
+        document.getElementById('reproducibility-factor').innerText = preciseReproducibility
+    }
+
+    else if (select.value === 'UFO40') {
+
+        let reproducibility = (averageViscosity ** 1.722) * 0.000594
+        let preciseReproducibility = reproducibility.toPrecision(4)
+        console.log(`(${averageViscosity} ^ 1.722) x 0.000594 = `, reproducibility)
+        console.log(`the reproducibility to 4 significant figures is ${preciseReproducibility}`)
+        document.getElementById('reproducibility-factor').innerText = preciseReproducibility
+    }
+
+    else if (select.value === 'UFO100') {
+
+        let reproducibility = (averageViscosity ** 1.4633) * 0.003361
+        let preciseReproducibility = reproducibility.toPrecision(4)
+        console.log(`(${averageViscosity} ^ 1.4633) x 0.003361 = `, reproducibility)
+        console.log(`the reproducibility to 4 significant figures is ${preciseReproducibility}`)
+        document.getElementById('reproducibility-factor').innerText = preciseReproducibility
+    }
+
+    else if (select.value === 'CR') {
+
+        let reproducibility = averageViscosity * 0.03
+        let preciseReproducibility = reproducibility.toPrecision(4)
+        console.log(`${averageViscosity} x 0.03 = `, reproducibility)
+        console.log(`the reproducibility to 4 significant figures is ${preciseReproducibility}`)
+        document.getElementById('reproducibility-factor').innerText = preciseReproducibility
+    }
+
+    else {
+
+        let message = 'invalid reproducibility equation'
+        document.getElementById('reproducibility-factor').innerText = message
+        console.log( message)
+    }
+
+    reproducibilityUpperLimit()
+    reproducibilityLowerLimit()
+}
+
+function reproducibilityUpperLimit() {
+
+    let averageViscosity = parseFloat(document.getElementById('average-viscosity-reproducibility').textContent)
+    let reproducibilityFactor = parseFloat(document.getElementById('reproducibility-factor').textContent)
+
+    let reproducibilityUpper = averageViscosity + reproducibilityFactor
+    let preciseReproducibilityUpper = reproducibilityUpper.toPrecision(4)
+
+    document.getElementById('reproducibility-upper-limit').textContent = preciseReproducibilityUpper
+}
+
+function reproducibilityLowerLimit() {
+
+    let averageViscosity = parseFloat(document.getElementById('average-viscosity-reproducibility').textContent)
+    let reproducibilityFactor = parseFloat(document.getElementById('reproducibility-factor').textContent)
+
+    let reproducibilityLower = averageViscosity - reproducibilityFactor
+    let preciseReproducibilityLower = reproducibilityLower.toPrecision(4)
+
+    document.getElementById('reproducibility-lower-limit').textContent = preciseReproducibilityLower
+
+    reproducibilityChecker()
+}
+
+function reproducibilityChecker() {
+
+    let viscosity1 = parseFloat(document.getElementById('viscosity-reproducibility-1').value)
+    let viscosity2 = parseFloat(document.getElementById('viscosity-reproducibility-2').value)
+    let upperAllowedViscosity = parseFloat(document.getElementById('reproducibility-upper-limit').innerText)
+    let lowerAllowedViscosity = parseFloat(document.getElementById('reproducibility-lower-limit').innerText)
+
+    if(viscosity1 > lowerAllowedViscosity && viscosity1 < upperAllowedViscosity && viscosity2 > lowerAllowedViscosity && viscosity2 < upperAllowedViscosity) {
+
+        document.getElementById('reproducibility-output').innerText = 'Your viscosities are reproducible'
+    }
+
+    else {
+        document.getElementById('reproducibility-output').innerText = 'Your viscosities are not reproducible'
+    }
+}
+
+let reproducibilityResetButton = document.getElementById('reproducibility-reset')
+
+reproducibilityResetButton.addEventListener('click', reproducibilityReset)
+
+function reproducibilityReset() {
+
+    document.getElementById('viscosity-reproducibility-1').value = ''
+    document.getElementById('viscosity-reproducibility-2').value = ''
+    document.getElementById('average-viscosity-reproducibility').textContent = ''
+    document.getElementById('reproducibility-equation').textContent = ''
+    document.getElementById('reproducibility-factor').textContent = ''
+    document.getElementById('reproducibility-upper-limit').textContent = ''
+    document.getElementById('reproducibility-lower-limit').textContent = ''
+    document.getElementById('reproducibility-output').textContent = ''
+    document.getElementById('viscosity-reproducibility-1').focus()
+}
+
+
 
 
 //Do I want to use the outputs of the toPrecision method in the final calculations? There are edge cases where I round my number throughout the process and come out with a 

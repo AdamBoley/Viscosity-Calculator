@@ -199,10 +199,10 @@
                 <h3>Instructions for use</h3>
 
                 <ol>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
+                    <li>Select the sample type and temperature that most closely matches the results you are checking the repeatability of from the drop-down menu</li>
+                    <li>Enter the two viscosity results into the labelled boxes</li>
+                    <li>Click the calculate button and the tool will perform the calculations and tell you whether the results are repeatable or not</li>
+                    <li>Click the reset button to clear the inputs and outputs and ready the tool to check more results</li>
                 </ol>
 
             </section>
@@ -239,14 +239,14 @@
                 <div id="viscosity-1-div">
 
                     <p>Viscosity 1:</p>
-                    <input type="number" id="viscosity-1">
+                    <input type="number" id="viscosity-repeatability-1">
 
                 </div>
 
                 <div id="viscosity-2-div">
 
                     <p>Viscosity 2:</p>
-                    <input type="number" id="viscosity-2">
+                    <input type="number" id="viscosity-repeatability-2">
 
                 </div>
 
@@ -261,10 +261,10 @@
 
             <section class="calculated-output">
 
-                <div id="average-viscosity-div">
+                <div id="average-viscosity-repeatability-div">
 
                     <p>Average viscosity:</p>
-                    <p id="average-viscosity"></p>
+                    <p id="average-viscosity-repeatability"></p>
 
                 </div>
 
@@ -311,6 +311,118 @@
         <article id="reproducibility-calculations">
 
             <h2>Reproducibility checker</h2>
+
+            <h2>Repeatability checker</h2>
+
+            <section class="description">
+
+                <h3>Instructions for use</h3>
+
+                <ol>
+                    <li>Select the sample type and temperature that most closely matches the results you are checking the repeatability of from the drop-down menu</li>
+                    <li>Enter the two viscosity results into the labelled boxes</li>
+                    <li>Click the calculate button and the tool will perform the calculations and tell you whether the results are repeatable or not</li>
+                    <li>Click the reset button to clear the inputs and outputs and ready the tool to check more results</li>
+                </ol>
+
+            </section>
+
+            <section class="user-input">
+
+                <div class="select">
+
+                    <p>Select your sample type and temperature</p>
+
+                    <select id="sample-type-reproducibility">
+                
+                        <option disabled selected value="disabled"> -- select an option -- </option>
+                        <option value="BO40">Base Oils at 40C</option>
+                        <option value="BO100">Base Oils at 100C</option>
+                        <option value="FO40">Formulated Oils at 40C</option>
+                        <option value="FO100">Formulated Oils at 100C</option>
+                        <option value="FO150">Formulated Oils at 150C</option>
+                        <option value="PW100">Petroleum wax at 100C</option>
+                        <option value="RFO50">Residual Fuel Oils at 50C</option>
+                        <option value="RFO100">Residual Fuel Oils at 100C</option>
+                        <option value="ADD100">Additives at 100C</option>
+                        <option value="GO40">Gas Oils at 40C</option>
+                        <option value="JFM20">Jet Fuels at -20C</option>
+                        <option value="KD40">Kerosene, diesel and biodiesel at 40C</option>
+                        <option value="UFO40">Used or in-service Formulated Oils at 40C</option>
+                        <option value="UFO100">Used or in-service Formulated Oils at 100C</option>
+                        <option value="CR">Crude oils and residues</option>
+
+                    </select>
+
+                </div>
+
+                <div id="reproducibility-1-div">
+
+                    <p>Viscosity 1:</p>
+                    <input type="number" id="viscosity-reproducibility-1">
+
+                </div>
+
+                <div id="reproducibility-2-div">
+
+                    <p>Viscosity 2:</p>
+                    <input type="number" id="viscosity-reproducibility-2">
+
+                </div>
+
+                <div id="submit-reproducibility-div">
+
+                    <button id="submit-reproducibility">calculate</button>
+                    <button id="reproducibility-reset">reset</button>
+
+                </div>
+
+            </section>
+
+            <section class="calculated-output">
+
+                <div id="average-viscosity-reproducibility-div">
+
+                    <p>Average viscosity:</p>
+                    <p id="average-viscosity-reproducibility"></p>
+
+                </div>
+
+                <div id="reproducibility-equation-div">
+
+                    <p>Reproducibility equation:</p>
+                    <p id="reproducibility-equation"></p>
+
+                </div>
+
+                <div id="reproducibility-factor-div">
+
+                    <p>Reproducibility factor:</p>
+                    <p id="reproducibility-factor"></p>
+
+                </div>
+
+                <div id="reproducibility-upper-div">
+
+                    <p>Reproducibility upper limit:</p>
+                    <p id="reproducibility-upper-limit"></p>
+
+                </div>
+
+                <div id="reproducibility-lower-div">
+
+                    <p>Reproducibility lower limit:</p>
+                    <p id="reproducibility-lower-limit"></p>
+
+                </div>
+
+                <div id="reproducibility-output-div">
+
+                    <p id="reproducibility-output"></p>
+
+                </div>
+
+            </section>
 
         </article>
 
