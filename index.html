@@ -430,7 +430,103 @@
 
         <article id="viscometer-calibration">
 
-            <h2>Calibration checker</h2>
+            <h3>Instructions for use</h3>
+
+            <section class="description">
+
+                <ol>
+                <li>Perform a calibration test on a viscometer using a standard calibration fluid</li>
+                <li>Enter your run-times and constants in the labelled boxes</li>
+                <li>Enter the viscosity of the calibration fluid that was used into the labelled box</li>
+                <li>Press calculate and the tool will calculate and display the: </li>
+                <ol>
+                    <li>average run time</li>
+                    <li>your observed viscosity</li>
+                    <li>the tolerance band and associated viscosity range</li>
+                    <li>the percentage difference between the viscosity of the calibration fluid and the observed viscosity</li>
+                    <li>a message indicating whether or not the percentage difference is small enough that the viscometer passes its calibration check</li>
+                </ol>
+            </ol>
+
+            </section>
+
+            <section class="user-input">
+
+                <div class="calibration-run-time">
+
+                    <label for="calibration-run-time-1">Run Time 1:</label>
+                    <input type="number" id="calibration-run-time-1">
+
+                </div>
+
+                <div class="calibration-run-time">
+
+                    <label for="calibration-run-time-2">Run Time 2:</label>
+                    <input type="number" id="calibration-run-time-2">
+
+                </div>
+
+                <div>
+
+                    <label for="calibration-constant">Constant:</label>
+                    <input type="number" id="calibration-constant">
+
+                </div>
+
+                <div>
+
+                    <label for="calibration-fluid-viscosity">Calibration fluid viscosity</label>
+                    <input type="number" id="calibration-fluid-viscosity">
+
+                </div>
+
+                <div>
+
+                    <button id="submit-calibration">calculate</button>
+                    <button id="calibration-reset">reset</button>
+
+                </div>
+
+            </section>
+
+            <section class="calculated-output">
+
+                <div>
+
+                    <p>Average run time:</p>
+                    <p id="calibration-average-run-time"></p>
+
+                </div>
+
+                <div>
+
+                    <p>Average viscosity:</p>
+                    <p id="calibration-average-viscosity"></p>
+
+                </div>
+
+                <div>
+
+                    <p>Viscosity range of calibration fluid</p>
+                    <p id="calibration-viscosity-range"></p>
+
+                </div>
+
+                <div>
+
+                    <p>Tolerance band</p>
+                    <p id="calibration-tolerance-band"></p>
+
+                </div>
+
+                <div>
+                    <p>Percentage differnce between observed viscosity and calibration fluid viscosity:</p><span id="calibration-percentage-difference"></span>
+                    <p id="calibration-output"></p>
+
+                </div>
+
+
+            </section>
 
         </article>
 
