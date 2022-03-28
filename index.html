@@ -17,7 +17,18 @@
 
     <main>
 
-        <article id="determinability-calculations">
+        <div id="calculation-selector-div">
+            <select id="calculation-selector">
+                <option disabled selected value="disabled"> -- select an option -- </option>
+                <option value="determinability">Determinability</option>
+                <option value="repeatability">Repeatability</option>
+                <option value="reproducibility">Reproducibility</option>
+                <option value="calibration">Calibration of viscometers</option>
+                <option value="recalibration">Recalibration of viscometer constants</option>
+            </select>
+        </div>
+
+        <article id="determinability-calculations" class="unhide">
 
             <h2>Determinability checker</h2>
 
@@ -190,7 +201,7 @@
 
         <br class="line-break">
 
-        <article id="repeatability-calculations">
+        <article id="repeatability-calculations" class="hide">
 
             <h2>Repeatability checker</h2>
 
@@ -308,11 +319,9 @@
 
         <br class="line-break">
 
-        <article id="reproducibility-calculations">
+        <article id="reproducibility-calculations" class="hide">
 
             <h2>Reproducibility checker</h2>
-
-            <h2>Repeatability checker</h2>
 
             <section class="description">
 
@@ -428,11 +437,13 @@
 
         <br class="line-break">
 
-        <article id="viscometer-calibration">
+        <article id="viscometer-calibration" class="hide">
 
-            <h3>Instructions for use</h3>
+            <h2>Viscometer Calibration</h2>
 
             <section class="description">
+
+                <h3>Instructions for use</h3>
 
                 <ol>
                 <li>Perform a calibration test on a viscometer using a standard calibration fluid</li>
@@ -532,11 +543,13 @@
 
         <br class="line-break">
 
-        <article id="viscometer-constant-recalibration">
+        <article id="viscometer-constant-recalibration" class="hide">
 
             <h2>Viscometer recalibration</h2>
 
             <section class="description">
+
+                <h3>Instructions for use</h3>
 
                 <ol>
                     <li>Determine acceleration due to gravity at your laboratory's location</li>

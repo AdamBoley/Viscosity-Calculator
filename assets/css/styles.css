@@ -13,6 +13,19 @@ main {
     min-height: calc(100vh - 20px);
 }
 
+#calculation-selector-div {
+    margin: 0 auto;
+    width: 244px;
+}
+
+.unhide {
+    display: block;
+}
+
+.hide {
+    display: none;
+}
+
 .line-break {
     clear: both;
 }
