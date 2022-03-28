@@ -536,14 +536,65 @@
 
             <h2>Viscometer recalibration</h2>
 
+            <section class="description">
+
+                <ol>
+                    <li>Determine acceleration due to gravity at your laboratory's location</li>
+                    <li>Determine the acceleration due to gravity at the standardization laboratory's location</li>
+                    <li>Input the constant of the viscometer you wish to recalibrate</li>
+                    <li>Input these two values into the labelled boxes</li>
+                    <li>Press calculate and the tool with provide the percentage difference</li>
+                    <li>If the percentage difference is greater than 0.1%, the tool will then provide a new constant for the viscometer</li>
+                </ol>
+
+            </section>
+
+            <section class="user-input">
+
+                <div>
+                    <label for="recalibration-constant">Viscometer constant</label>
+                    <input type="number" id="recalibration-constant">
+                </div>
+
+                <div>
+                    <label for="testing-lab-gravity">Acceleration due to gravity at your laboratory's location:</label>
+                    <input type="number" id="testing-lab-gravity"><span>m/s</span><span class="superscript">2</span>
+                </div>
+
+                <div>
+                    <label for="standardisation-lab-gravity">Acceleration due to gravity at the standardisation laboratory's location:</label>
+                    <input type="number" id="standardisation-lab-gravity"><span>m/s</span><span class="superscript">2</span>
+                </div>
+
+                <div>
+                    <button id="submit-recalibration">calculate</button>
+                    <button id="recalibration-reset">reset</button>
+                </div>
+
+            </section>
+
+            <section class="calculated-output">
+
+                <div>
+                    <p>Percentage difference:</p>
+                    <span id="recalibration-percentage-difference"></span><span>%</span>
+                </div>
+
+                <div>
+                    <p>New Constant:</p>
+                    <p id="new-constant"></p>
+                </div>
+            
+            </section>
+
         </article>
 
     </main>
 
     <footer class="footer">
 
-        <span>Copyright Adam Boley 2022</span>
-        <span>Hosted on Github Pages</span>
+        <span id="copyright">Copyright Adam Boley 2022</span>
+        <span id="hosted">Hosted on Github Pages</span>
 
     </footer>
 
