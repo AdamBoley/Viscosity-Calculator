@@ -58,9 +58,9 @@
                 <div class="select">
 
                     <p>Select your sample type and temperature</p>
-
+                    <!--
                     <select id="sample-type" >
-                
+                        
                         <option disabled selected value="disabled"> -- select an option -- </option>
                         <option value="0.0037">Base Oils at 40C</option>
                         <option value="0.0036">Base Oils at 100C</option>
@@ -77,7 +77,24 @@
                         <option value="0.0300">Crude oils and residues</option>
 
                     </select>
+                    -->
 
+                    <select id="sample-type">
+                        <option value="BO40">Base Oils at 40C</option>
+                        <option value="FO40">Formulated Oils at 40C</option>
+                        <option value="KD40">Kerosene, diesel and biodiesel at 40C</option>
+                        <option value="BO100">Base Oils at 100C</option>
+                        <option value="FO100">Formulated Oils at 100C</option>
+                        <option value="FO150">Formulated Oils at 150C</option>
+                        <option value="PW100">Petroleum wax at 100C</option>
+                        <option value="RFO50">Residual Fuel Oils at 50C</option>
+                        <option value="RFO100">Residual Fuel Oils at 100C</option>
+                        <option value="ADD100">Additives at 100C</option>
+                        <option value="GO40">Gas Oils at 40C</option>
+                        <option value="JFM20">Jet Fuels at -20C</option>
+                        <option value="CR">Crude oils and residues</option>
+                    </select>
+                    
                     <p>Select your viscometer type</p>
                     <button id="ubbelohde-button">Ubbelohde</button>
                     <button id="zeitfuchs-button">Zeitfuchs</button>

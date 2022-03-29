@@ -127,11 +127,7 @@ function calculateFinalUbbelohde(kv1, kv2) {
 
     document.getElementById('final-calculated-viscosity').innerText = preciseFinalViscosity;
 
-    displayDeterminabilityEquation()
-
-    determinabilityFactor(finalViscosity)
-
-    return finalViscosity
+    determinability(finalViscosity, kv1, kv2)
 }
 
 //Cross Arm viscomter / Zeitfuchs viscometer logic
@@ -215,228 +211,134 @@ function calculateFinalZeitfuchs(kv1, kv2) {
     let preciseFinalViscosity = finalViscosity.toPrecision(4)
 
     console.log(`the final kinematic viscosity is ${finalViscosity}`)
-    console.log(`the final kinematic viscosity to significant figures is ${preciseFinalViscosity}`)
+    console.log(`the final kinematic viscosity to 4 significant figures is ${preciseFinalViscosity}`)
 
     document.getElementById('final-calculated-viscosity').innerText = preciseFinalViscosity
 
-    displayDeterminabilityEquation()
+    determinability(finalViscosity, kv1, kv2)
 
-    determinabilityFactor(finalViscosity)
-
-    return finalViscosity
 }
 
 //Determinability
-function displayDeterminabilityEquation() {
+
+function determinability(finalViscosity, kv1, kv2) {
 
     let select = document.getElementById('sample-type')
 
-    if(select.value === '0.0037') {
+    let message = ''
+    let determinability
+    let preciseDeterminability
 
-        let message = '0.0037 x final calculated viscosity, or 0.37%'
-        document.getElementById('determinability-equation').innerText = message
-        console.log('the determinability equation being used is', message)
+    switch(true) {
+        case select.value === 'BO40'|| select.value === 'FO40' || select.value === 'KD40':
+            message = '0.0037 x final calculated viscosity, or 0.37%'
+            determinability = finalViscosity * 0.0037
+            preciseDeterminability = determinability.toPrecision(4)
+            console.log('the determinability equation being used is', message)
+            console.log(`the determinability factor is ${finalViscosity} x 0.0037 = ${determinability}`)
+            break
+        
+        case select.value === 'BO100' || select.value === 'FO100':
+            message = '0.0036 x Final calculated viscosity, or 0.36%'
+            determinability = finalViscosity * 0.0037
+            preciseDeterminability = determinability.toPrecision(4)
+            console.log('the determinability equation being used is', message)
+            console.log(`the determinability factor is ${finalViscosity} x 0.0036 = ${determinability}`)
+            break
+
+        case select.value === 'FO150':
+            message = '0.0150 x Final calculated viscosity, or 1.5%'
+            determinability = finalViscosity * 0.0150
+            preciseDeterminability = determinability.toPrecision(4)
+            console.log('the determinability equation being used is', message)
+            console.log(`the determinability factor is ${finalViscosity} x 0.0150 = ${determinability}`)
+            break
+        
+        case select.value === 'PW100':
+            message = '0.0080 x Final calculated viscosity, or 0.80%'
+            determinability = finalViscosity * 0.0080
+            preciseDeterminability = determinability.toPrecision(4)
+            console.log('the determinability equation being used is', message)
+            console.log(`the determinability factor is ${finalViscosity} x 0.0080 = ${determinability}`)
+            break
+
+        case select.value === 'RFO50':
+            message = '0.0244 x Final calculated viscosity, or 2.44%'
+            determinability = finalViscosity * 0.0244
+            preciseDeterminability = determinability.toPrecision(4)
+            console.log('the determinability equation being used is', message)
+            console.log(`the determinability factor is ${finalViscosity} x 0.0244 = ${determinability}`)
+            break
+
+        case select.value === 'RFO100' || select.value === 'CR':
+            message = '0.03 x Final calculated viscosity, or 3%'
+            determinability = finalViscosity * 0.03
+            preciseDeterminability = determinability.toPrecision(4)
+            console.log('the determinability equation being used is', message)
+            console.log(`the determinability factor is ${finalViscosity} x 0.03 = ${determinability}`)
+            break
+
+        case select.value === 'ADD100':
+            message = '(Final calculated viscosity ^ 1.1) x 0.00106'
+            determinability = (finalViscosity ** 1.1) * 0.00106//use a span and vertical alignment to display the power as a superscripted value here?
+            preciseDeterminability = determinability.toPrecision(4)
+            console.log('the determinability equation being used is', message)
+            console.log(`the determinability factor is (${finalViscosity} ^1.1) x 0.00106 = ${determinability}`)
+            break
+
+        case select.value === 'GO40':
+            message = '(Final calculated viscosity + 1) x 0.0013'
+            determinability = (finalViscosity + 1) * 0.0013
+            preciseDeterminability = determinability.toPrecision(4)
+            console.log('the determinability equation being used is', message)
+            console.log(`the determinability factor is (${finalViscosity} + 1) x 0.0013 = ${determinability}`)
+            break
+
+        case select.value === 'JFM20':
+            message = '0.007608 x Final calculated viscosity, or 0.7608%'
+            determinability = finalViscosity * 0.007608
+            preciseDeterminability = determinability.toPrecision(4)
+            console.log('the determinability equation being used is', message)
+            console.log(`the determinability factor is ${finalViscosity} x 0.007608 = ${determinability}`)
+            break
+
     }
 
-    else if (select.value === '0.0036') {
+    document.getElementById('determinability-equation').innerText = message
+    console.log(`the determinability factor to 4 significant figures is ${preciseDeterminability}`)
+    document.getElementById('determinability-factor').innerText = preciseDeterminability
 
-        let message = '0.0036 x Final calculated viscosity, or 0.36%'
-        document.getElementById('determinability-equation').innerText = message
-        console.log('the determinability equation being used is', message)
-    }
-
-    else if (select.value === '0.0150') {
-
-        let message = '0.0150 x Final calculated viscosity, or 1.5%'
-        document.getElementById('determinability-equation').innerText = message
-        console.log('the determinability equation being used is', message)
-    }
-
-    else if (select.value === '0.0080') {
-
-        let message = '0.0080 x Final calculated viscosity, or 0.80%'
-        document.getElementById('determinability-equation').innerText = message
-        console.log('the determinability equation being used is', message)
-    }
-
-    else if (select.value === '0.0244') {
-
-        let message = '0.0244 x Final calculated viscosity, or 2.44%'
-        document.getElementById('determinability-equation').innerText = message
-        console.log('the determinability equation being used is', message)
-    }
-
-    else if (select.value === '0.0300') {
-
-        let message = '0.03 x Final calculated viscosity, or 3%'
-        document.getElementById('determinability-equation').innerText = message
-        console.log('the determinability equation being used is', message)
-    }
-
-    else if (select.value === '0.00106^1.1') {
-
-        let message = '(Final calculated viscosity ^ 1.1) x 0.00106' //use a span and vertical alignment to display the power as a superscripted value here?
-        document.getElementById('determinability-equation').innerText = message
-        console.log('the determinability equation being used is', message)
-    }
-
-    else if (select.value === '0.0013(y+1)') {
-
-        let message = '(Final calculated viscosity + 1) x 0.0013'
-        document.getElementById('determinability-equation').innerText = message
-        console.log('the determinability equation being used is', message)
-    }
-
-    else if (select.value === '0.007608') {
-
-        let message = '0.007608 x Final calculated viscosity, or 0.7608%'
-        document.getElementById('determinability-equation').innerText = message
-        console.log('the determinability equation being used is', message)
-    }
-
-    else {//should never trigger, but included as a failsafe
-
-        let message = 'invalid determinability equation'
-        document.getElementById('determinability-equation').innerText = message
-        console.log('the determinability equation being used is', message)
-    }
-
-}
-//DRY - the building blocks of each conditional statement are the same, so build the message out of variables using string concatenation
-
-function determinabilityFactor(finalViscosity) {
-
-    let select = document.getElementById('sample-type')
-
-    if(select.value === '0.0037') {
-
-        let determinability = finalViscosity * 0.0037
-        let preciseDeterminability = determinability.toPrecision(4)
-        console.log(`${finalViscosity} x 0.0037 = `, determinability)
-        console.log(`the determinability to 4 significant figures is ${preciseDeterminability}`)
-        document.getElementById('determinability-factor').innerText = preciseDeterminability
-    }
-
-    else if (select.value === '0.0036') {
-
-        let determinability = finalViscosity * 0.0036
-        let preciseDeterminability = determinability.toPrecision(4)
-        console.log(`${finalViscosity} x 0.0036 = `, determinability)
-        console.log(`the determinability to 4 significant figures is ${preciseDeterminability}`)
-        document.getElementById('determinability-factor').innerText = preciseDeterminability
-    }
-
-    else if (select.value === '0.0150') {
-
-        let determinability = finalViscosity * 0.0150
-        let preciseDeterminability = determinability.toPrecision(4)
-        console.log(`${finalViscosity} x 0.0150 = `, determinability)
-        console.log(`the determinability to 4 significant figures is ${preciseDeterminability}`)
-        document.getElementById('determinability-factor').innerText = preciseDeterminability
-    }
-
-    else if (select.value === '0.0080') {
-
-        let determinability = finalViscosity * 0.0080
-        let preciseDeterminability = determinability.toPrecision(4)
-        console.log(`${finalViscosity} x 0.0080 = `, determinability)
-        console.log(`the determinability to 4 significant figures is ${preciseDeterminability}`)
-        document.getElementById('determinability-factor').innerText = preciseDeterminability
-    }
-
-    else if (select.value === '0.0244') {
-
-        let determinability = finalViscosity * 0.0244
-        let preciseDeterminability = determinability.toPrecision(4)
-        console.log(`${finalViscosity} x 0.0244 = `, determinability)
-        console.log(`the determinability to 4 significant figures is ${preciseDeterminability}`)
-        document.getElementById('determinability-factor').innerText = preciseDeterminability
-    }
-
-    else if (select.value === '0.0300') {
-
-        let determinability = finalViscosity * 0.03
-        let preciseDeterminability = determinability.toPrecision(4)
-        console.log(`${finalViscosity} x 0.03 = `, determinability)
-        console.log(`the determinability to 4 significant figures is ${preciseDeterminability}`)
-        document.getElementById('determinability-factor').innerText = preciseDeterminability
-    }
-
-    else if (select.value === '0.00106^1.1') {
-
-        let determinability = (finalViscosity ** 1.1) * 0.00106//use a span and vertical alignment to display the power as a superscripted value here?
-        let preciseDeterminability = determinability.toPrecision(4)
-        console.log(`(${finalViscosity} ^1.1) x 0.00106 = `, determinability)
-        console.log(`the determinability to 4 significant figures is ${preciseDeterminability}`)
-        document.getElementById('determinability-factor').innerText = preciseDeterminability
-    }
-
-    else if (select.value === '0.0013(y+1)') {
-
-        let determinability = (finalViscosity + 1) * 0.0013
-        let preciseDeterminability = determinability.toPrecision(4)
-        console.log(`(${finalViscosity} + 1) x 0.0013 = `, determinability)
-        console.log(`the determinability to 4 significant figures is ${preciseDeterminability}`)
-        document.getElementById('determinability-factor').innerText = preciseDeterminability
-    }
-
-    else if (select.value === '0.007608') {
-
-        let determinability = finalViscosity * 0.007608
-        let preciseDeterminability = determinability.toPrecision(4)
-        console.log(`${finalViscosity} x 0.007608 = `, determinability)
-        console.log(`the determinability to 4 significant figures is ${preciseDeterminability}`)
-        document.getElementById('determinability-factor').innerText = preciseDeterminability
-    }
-
-    else {//should never trigger, but included as a failsafe
-
-        let message = 'invalid determinability equation'
-        document.getElementById('determinability-equation').innerText = message
-        console.log(message)
-    }
-
-    upperLimit()
-    lowerLimit()
+    upperLimit(determinability, finalViscosity, kv1, kv2)
+    
 }
 
-function upperLimit() {
+function upperLimit(determinability, finalViscosity, kv1, kv2) {
 
-    let finalViscosity = parseFloat(document.getElementById('final-calculated-viscosity').innerText)
-    let determinabilityFactor = parseFloat(document.getElementById('determinability-factor').innerText)
-
-    let upperAllowedViscosity = finalViscosity + determinabilityFactor
+    let upperAllowedViscosity = finalViscosity + determinability
     let preciseUpperAllowedViscosity = upperAllowedViscosity.toPrecision(4)
 
     document.getElementById('upper-limit').innerText = preciseUpperAllowedViscosity
 
-    console.log(`The upper allowed viscosity is ${preciseUpperAllowedViscosity}`)
+    console.log(`The upper allowed viscosity is ${finalViscosity} + ${determinability} = ${preciseUpperAllowedViscosity}`)
 
+    lowerLimit(determinability, finalViscosity, upperAllowedViscosity, kv1, kv2)
 }
 
-function lowerLimit() {
+function lowerLimit(determinability, finalViscosity, upperAllowedViscosity, kv1, kv2) {
 
-    let finalViscosity = parseFloat(document.getElementById('final-calculated-viscosity').innerText)
-    let determinabilityFactor = parseFloat(document.getElementById('determinability-factor').innerText)
-
-    let lowerAllowedViscosity = finalViscosity - determinabilityFactor
+    let lowerAllowedViscosity = finalViscosity - determinability
     let preciseLowerAllowedViscosity = lowerAllowedViscosity.toPrecision(4)
 
     document.getElementById('lower-limit').innerText = preciseLowerAllowedViscosity
 
-    console.log(`The lower allowed viscosity is ${preciseLowerAllowedViscosity}`)
+    console.log(`The lower allowed viscosity is ${finalViscosity} - ${determinability} = ${preciseLowerAllowedViscosity}`)
 
-    checker()
+    checker(upperAllowedViscosity, lowerAllowedViscosity, kv1, kv2)
 }
 
-function checker() {
+function checker(upperAllowedViscosity, lowerAllowedViscosity, kv1, kv2) {
 
-    let viscosity1 = parseFloat(document.getElementById('kinematic-viscosity-1').innerText)
-    let viscosity2 = parseFloat(document.getElementById('kinematic-viscosity-2').innerText)
-    let upperAllowedViscosity = parseFloat(document.getElementById('upper-limit').innerText)
-    let lowerAllowedViscosity = parseFloat(document.getElementById('lower-limit').innerText)
-
-    if(viscosity1 > lowerAllowedViscosity && viscosity1 < upperAllowedViscosity && viscosity2 > lowerAllowedViscosity && viscosity2 < upperAllowedViscosity) {
+    if(kv1 > lowerAllowedViscosity && kv1 < upperAllowedViscosity && kv2 > lowerAllowedViscosity && kv2 < upperAllowedViscosity) {
 
         document.getElementById('output').innerText = "Your viscosities fall within the defined limits"
     }
@@ -446,6 +348,7 @@ function checker() {
     }
 
 }
+
 
 let resetButton = document.getElementById('reset')
 
