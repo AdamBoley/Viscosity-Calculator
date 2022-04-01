@@ -103,6 +103,10 @@ main {
     clear: both;
 }
 
+.unit {
+    display: none;
+}
+
 .footer {
     height: 20px;
     width: 100%;

@@ -40,7 +40,7 @@
 
                     <li>Select your the sample type and temperature from the drop-down menu below that most closely matches the test you are checking</li>
                     <li>Click either the Ubbelohde or Zeifuchs button, depending on what viscometers you used</li>
-                    <li>If you are unsure what sample type to select, <a href="discussion.html">click here</a> to see receive guidance</li>
+                    <li>If you are unsure what sample type to select, <a href="discussion.html" target="_blank">click here</a> to see receive guidance</li>
                     <li>Enter your run-times into the labelled boxes</li>
                     <li>If you used a suspended flow viscometer, enter the constant in the labelled box</li>
                     <li>If you used a pair of cross-arm viscometers, enter the constants in the labelled boxes, being sure to match them to the run-times</li>
@@ -58,34 +58,14 @@
                 <div class="select">
 
                     <p>Select your sample type and temperature</p>
-                    <!--
-                    <select id="sample-type" >
-                        
-                        <option disabled selected value="disabled"> -- select an option -- </option>
-                        <option value="0.0037">Base Oils at 40C</option>
-                        <option value="0.0036">Base Oils at 100C</option>
-                        <option value="0.0037">Formulated Oils at 40C</option>
-                        <option value="0.0036">Formulated Oils at 100C</option>
-                        <option value="0.0150">Formulated Oils at 150C</option>
-                        <option value="0.0080">Petroleum wax at 100C</option>
-                        <option value="0.0244">Residual Fuel Oils at 50C</option>
-                        <option value="0.0300">Residual Fuel Oils at 100C</option>
-                        <option value="0.00106^1.1">Additives at 100C</option>
-                        <option value="0.0013(y+1)">Gas Oils at 40C</option>
-                        <option value="0.007608">Jet Fuels at -20C</option>
-                        <option value="0.0037">Kerosene, diesel and biodiesel at 40C</option>
-                        <option value="0.0300">Crude oils and residues</option>
-
-                    </select>
-                    -->
 
                     <select id="sample-type">
                         <option value="BO40">Base Oils at 40C</option>
-                        <option value="FO40">Formulated Oils at 40C</option>
-                        <option value="KD40">Kerosene, diesel and biodiesel at 40C</option>
                         <option value="BO100">Base Oils at 100C</option>
+                        <option value="FO40">Formulated Oils at 40C</option>
                         <option value="FO100">Formulated Oils at 100C</option>
                         <option value="FO150">Formulated Oils at 150C</option>
+                        <option value="KD40">Kerosene, diesel and biodiesel at 40C</option>
                         <option value="PW100">Petroleum wax at 100C</option>
                         <option value="RFO50">Residual Fuel Oils at 50C</option>
                         <option value="RFO100">Residual Fuel Oils at 100C</option>
@@ -96,22 +76,22 @@
                     </select>
                     
                     <p>Select your viscometer type</p>
-                    <button id="ubbelohde-button">Ubbelohde</button>
-                    <button id="zeitfuchs-button">Zeitfuchs</button>
+                    <button id="ubbelohde-button">Ubbelohde viscometer</button>
+                    <button id="zeitfuchs-button">Zeitfuchs viscometers</button>
 
                 </div>
 
                 <div id="run-1">
 
                     <p>Run Time 1</p>
-                    <input type="number" id="run-time-1">
+                    <input type="number" id="run-time-1" min="200" max="900"><span> seconds</span>
 
                 </div>
 
                 <div id="run-2">
 
                     <p>Run Time 2</p>
-                    <input type="number" id="run-time-2">
+                    <input type="number" id="run-time-2" min="200" max="900"><span> seconds</span>
 
                 </div>
 
@@ -122,21 +102,21 @@
                     <div id="constant-div">
 
                         <p id="constant">Constant:</p>
-                        <input type="number" id="constant-input">
+                        <input type="number" id="constant-input"><span id="determinability-constant-units">mm<span class="superscript">2</span>/s<span class="superscript">-2</span></span>
             
                     </div>
 
                     <div id="constant-1-div">
 
                         <p id="constant-1">Constant 1:</p>
-                        <input type="number" id="constant-1-input">
+                        <input type="number" id="constant-1-input"><span id="determinability-constant-1-units">mm<span class="superscript">2</span>/s<span class="superscript">-2</span></span>
                 
                     </div>
                 
                     <div id="constant-2-div">
                     
                         <p id="constant-2">Constant 2:</p>
-                        <input type="number" id="constant-2-input">
+                        <input type="number" id="constant-2-input"><span id="determinability-constant-2-units">mm<span class="superscript">2</span>/s<span class="superscript">-2</span></span>
                     
                     </div>
 
@@ -159,14 +139,14 @@
                 <div id="kv-1">
 
                     <p>Kinematic Viscosity 1:</p>
-                    <p id="kinematic-viscosity-1"></p>
+                    <span id="kinematic-viscosity-1"></span><span class="unit" id="determinability-kv-1-units"> cSt</span>
 
                 </div>
 
                 <div id="kv-2">
 
                     <p>Kinematic Viscosity 2:</p>
-                    <p id="kinematic-viscosity-2"></p>
+                    <span id="kinematic-viscosity-2"></span><span class="unit" id="determinability-kv-2-units"> cSt</span>
 
                 </div>
 
@@ -175,21 +155,21 @@
                 <div id="kv-final">
 
                     <p>Final Calculated Viscosity:</p>
-                    <p id="final-calculated-viscosity"></p>
+                    <span id="final-calculated-viscosity"></span><span class="unit" id="determinability-final-kv-units"> cSt</span>
 
                 </div>
 
                 <div id="determinability-equation-div">
 
-                    <p>Determinability equation:</p>
-                    <p id="determinability-equation"></p>
+                    <span>Determinability equation:</span>
+                    <span id="determinability-equation"></span>
 
                 </div>
 
                 <div id="determinability-factor-div">
 
-                    <p>Determinability factor:</p>
-                    <p id="determinability-factor"></p>
+                    <span>Determinability factor:</span>
+                    <span id="determinability-factor"></span><span class="unit" id="determinability-factor-units"> cSt</span>
 
                 </div>
 
@@ -199,14 +179,14 @@
                 <div id="upper-determinability">
 
                     <p>Final calculated viscosity + determinability factor:</p>
-                    <p id="upper-limit"></p>
+                    <span id="upper-limit"></span><span class="unit" id="determinability-upper-units"> cSt</span>
 
                 </div>
 
                 <div id="lower-determinability">
 
                     <p>Final calculated viscosity - determinability factor:</p>
-                    <p id="lower-limit"></p>
+                    <span id="lower-limit"></span><span class="unit" id="determinability-lower-units"> cSt</span>
 
                 </div>
 
@@ -267,14 +247,14 @@
                 <div id="viscosity-1-div">
 
                     <p>Viscosity 1:</p>
-                    <input type="number" id="viscosity-repeatability-1">
+                    <input type="number" id="viscosity-repeatability-1"><span id="repeatability-kv-1-units"> cSt</span>
 
                 </div>
 
                 <div id="viscosity-2-div">
 
                     <p>Viscosity 2:</p>
-                    <input type="number" id="viscosity-repeatability-2">
+                    <input type="number" id="viscosity-repeatability-2"><span id="repeatability-kv-2-units"> cSt</span>
 
                 </div>
 
@@ -291,36 +271,36 @@
 
                 <div id="average-viscosity-repeatability-div">
 
-                    <p>Average viscosity:</p>
-                    <p id="average-viscosity-repeatability"></p>
+                    <span>Average viscosity:</span>
+                    <span id="average-viscosity-repeatability"></span><span class="unit" id="repeatability-average-kv-units"> cSt</span>
 
                 </div>
 
                 <div id="repeatability-equation-div">
 
-                    <p>Repeatability equation:</p>
-                    <p id="repeatability-equation"></p>
+                    <span>Repeatability equation:</span>
+                    <span id="repeatability-equation"></span>
 
                 </div>
 
                 <div id="repeatability-factor-div">
 
-                    <p>Repeatability factor:</p>
-                    <p id="repeatability-factor"></p>
+                    <span>Repeatability factor:</span>
+                    <span id="repeatability-factor"></span><span class="unit" id="repeatability-factor-units"> cSt</span>
 
                 </div>
 
                 <div id="repeatability-upper-div">
 
-                    <p>Repeatability upper limit:</p>
-                    <p id="repeatability-upper-limit"></p>
+                    <span>Repeatability upper limit:</span>
+                    <span id="repeatability-upper-limit"></span><span class="unit" id="repeatability-upper-units"> cSt</span>
 
                 </div>
 
                 <div id="repeatability-lower-div">
 
-                    <p>Repeatability lower limit:</p>
-                    <p id="repeatability-lower-limit"></p>
+                    <span>Repeatability lower limit:</span>
+                    <span id="repeatability-lower-limit"></span><span class="unit" id="repeatability-lower-units"> cSt</span>
 
                 </div>
 
@@ -385,14 +365,14 @@
                 <div id="reproducibility-1-div">
 
                     <p>Viscosity 1:</p>
-                    <input type="number" id="viscosity-reproducibility-1">
+                    <input type="number" id="viscosity-reproducibility-1"><span id="reproducibility-kv-1-units"> cSt</span>
 
                 </div>
 
                 <div id="reproducibility-2-div">
 
                     <p>Viscosity 2:</p>
-                    <input type="number" id="viscosity-reproducibility-2">
+                    <input type="number" id="viscosity-reproducibility-2"><span id="reproducibility-kv-2-units"> cSt</span>
 
                 </div>
 
@@ -409,36 +389,36 @@
 
                 <div id="average-viscosity-reproducibility-div">
 
-                    <p>Average viscosity:</p>
-                    <p id="average-viscosity-reproducibility"></p>
+                    <span>Average viscosity:</span>
+                    <span id="average-viscosity-reproducibility"></span><span class="unit" id="reproducibility-average-units"> cSt</span>
 
                 </div>
 
                 <div id="reproducibility-equation-div">
 
-                    <p>Reproducibility equation:</p>
-                    <p id="reproducibility-equation"></p>
+                    <span>Reproducibility equation:</span>
+                    <span id="reproducibility-equation"></span>
 
                 </div>
 
                 <div id="reproducibility-factor-div">
 
-                    <p>Reproducibility factor:</p>
-                    <p id="reproducibility-factor"></p>
+                    <span>Reproducibility factor:</span>
+                    <span id="reproducibility-factor"></span><span class="unit" id="reproducibility-factor-units"> cSt</span>
 
                 </div>
 
                 <div id="reproducibility-upper-div">
 
-                    <p>Reproducibility upper limit:</p>
-                    <p id="reproducibility-upper-limit"></p>
+                    <span>Reproducibility upper limit:</span>
+                    <span id="reproducibility-upper-limit"></span><span class="unit" id="reproducibility-upper-units"> cSt</span>
 
                 </div>
 
                 <div id="reproducibility-lower-div">
 
-                    <p>Reproducibility lower limit:</p>
-                    <p id="reproducibility-lower-limit"></p>
+                    <span>Reproducibility lower limit:</span>
+                    <span id="reproducibility-lower-limit"></span><span class="unit" id="reproducibility-lower-units"> cSt</span>
 
                 </div>
 
@@ -463,18 +443,18 @@
                 <h3>Instructions for use</h3>
 
                 <ol>
-                <li>Perform a calibration test on a viscometer using a standard calibration fluid</li>
-                <li>Enter your run-times and constants in the labelled boxes</li>
-                <li>Enter the viscosity of the calibration fluid that was used into the labelled box</li>
-                <li>Press calculate and the tool will calculate and display the: </li>
-                <ol>
-                    <li>average run time</li>
-                    <li>your observed viscosity</li>
-                    <li>the tolerance band and associated viscosity range</li>
-                    <li>the percentage difference between the viscosity of the calibration fluid and the observed viscosity</li>
-                    <li>a message indicating whether or not the percentage difference is small enough that the viscometer passes its calibration check</li>
+                    <li>Perform a calibration test on a viscometer using a standard calibration fluid</li>
+                    <li>Enter your run-times and constants in the labelled boxes</li>
+                    <li>Enter the viscosity of the calibration fluid that was used into the labelled box</li>
+                    <li>Press calculate and the tool will calculate and display the: </li>
+                    <ol>
+                        <li>average run time</li>
+                        <li>your observed viscosity</li>
+                        <li>the tolerance band and associated viscosity range</li>
+                        <li>the percentage difference between the viscosity of the calibration fluid and the observed viscosity</li>
+                        <li>a message indicating whether or not the percentage difference is small enough that the viscometer passes its calibration check</li>
+                    </ol>
                 </ol>
-            </ol>
 
             </section>
 
@@ -483,28 +463,28 @@
                 <div class="calibration-run-time">
 
                     <label for="calibration-run-time-1">Run Time 1:</label>
-                    <input type="number" id="calibration-run-time-1">
+                    <input type="number" id="calibration-run-time-1"><span id="calibration-run-time-1-units"> seconds</span>
 
                 </div>
 
                 <div class="calibration-run-time">
 
                     <label for="calibration-run-time-2">Run Time 2:</label>
-                    <input type="number" id="calibration-run-time-2">
+                    <input type="number" id="calibration-run-time-2"><span id="calibration-run-time-2-units"> seconds</span>
 
                 </div>
 
                 <div>
 
                     <label for="calibration-constant">Constant:</label>
-                    <input type="number" id="calibration-constant">
+                    <input type="number" id="calibration-constant"><span id="calibration-constant-units">mm<span class="superscript">2</span>/s<span class="superscript">-2</span></span>
 
                 </div>
 
                 <div>
 
                     <label for="calibration-fluid-viscosity">Calibration fluid viscosity</label>
-                    <input type="number" id="calibration-fluid-viscosity">
+                    <input type="number" id="calibration-fluid-viscosity"><span id="calibration-fluid-viscosity-units"> cSt</span>
 
                 </div>
 
@@ -521,34 +501,34 @@
 
                 <div>
 
-                    <p>Average run time:</p>
-                    <p id="calibration-average-run-time"></p>
+                    <span>Average run time:</span>
+                    <span id="calibration-average-run-time"></span><span class="unit" id="calibration-average-run-time-units"> seconds</span>
 
                 </div>
 
                 <div>
 
-                    <p>Average viscosity:</p>
-                    <p id="calibration-average-viscosity"></p>
+                    <span>Average viscosity:</span>
+                    <span id="calibration-average-viscosity"></span><span class="unit" id="calibration-average-viscosity-units"> cSt</span>
 
                 </div>
 
                 <div>
 
-                    <p>Viscosity range of calibration fluid</p>
-                    <p id="calibration-viscosity-range"></p>
+                    <span>Viscosity range of calibration fluid</span>
+                    <span id="calibration-viscosity-range"></span><span class="unit" id="calibration-viscosity-range-units"> cSt</span>
 
                 </div>
 
                 <div>
 
-                    <p>Tolerance band</p>
-                    <p id="calibration-tolerance-band"></p>
+                    <span>Tolerance band</span>
+                    <span id="calibration-tolerance-band"></span><span class="unit" id="calibration-tolerance-band-units"> %</span>
 
                 </div>
 
                 <div>
-                    <p>Percentage differnce between observed viscosity and calibration fluid viscosity:</p><span id="calibration-percentage-difference"></span>
+                    <span>Percentage difference between observed viscosity and calibration fluid viscosity:</span><span class="unit" id="calibration-percentage-difference"></span>
                     <p id="calibration-output"></p>
 
                 </div>
@@ -583,7 +563,7 @@
 
                 <div>
                     <label for="recalibration-constant">Viscometer constant</label>
-                    <input type="number" id="recalibration-constant">
+                    <input type="number" id="recalibration-constant"><span id="recalibration-constant-units">mm<span class="superscript">2</span>/s<span class="superscript">-2</span></span>
                 </div>
 
                 <div>
@@ -606,13 +586,13 @@
             <section class="calculated-output">
 
                 <div>
-                    <p>Percentage difference:</p>
-                    <span id="recalibration-percentage-difference"></span><span>%</span>
+                    <span>Percentage difference:</span>
+                    <span id="recalibration-percentage-difference"></span><span class="unit" id="recalibration-percentage-difference-units">%</span>
                 </div>
 
                 <div>
-                    <p>New Constant:</p>
-                    <p id="new-constant"></p>
+                    <span>New Constant:</span>
+                    <span id="new-constant"></span><span id="recalibration-new-constant-units">mm<span class="superscript">2</span>/s<span class="superscript">-2</span></span>
                 </div>
             
             </section>
