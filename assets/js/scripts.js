@@ -107,6 +107,8 @@ function calculateUbbelohde(runTime1, runTime2, constant) {
 
     document.getElementById('kinematic-viscosity-1').innerText = preciseKv1;
     document.getElementById('kinematic-viscosity-2').innerText = preciseKv2;
+    document.getElementById('determinability-kv-1-units').style.display = 'inline'
+    document.getElementById('determinability-kv-2-units').style.display = 'inline'
 
     console.log(`kinematic viscosity 1 is ${kv1}`);
     console.log(`kinematic viscosity 2 is ${kv2}`);
@@ -126,6 +128,7 @@ function calculateFinalUbbelohde(kv1, kv2) {
     console.log(`the final kinematic viscosity to 4 significant figures is ${preciseFinalViscosity}`)
 
     document.getElementById('final-calculated-viscosity').innerText = preciseFinalViscosity;
+    document.getElementById('determinability-final-kv-units').style.display = 'inline'
 
     determinability(finalViscosity, kv1, kv2)
 }
@@ -194,7 +197,9 @@ function calculateZeitfuchs(runTime1, runTime2, constant1, constant2) {
     let preciseKv2 = kv2.toPrecision(4)
 
     document.getElementById('kinematic-viscosity-1').innerText = preciseKv1;
-    document.getElementById('kinematic-viscosity-2').innerText = preciseKv2; 
+    document.getElementById('kinematic-viscosity-2').innerText = preciseKv2;
+    document.getElementById('determinability-kv-1-units').style.display = 'inline'
+    document.getElementById('determinability-kv-2-units').style.display = 'inline' 
     
     console.log(`kinematic viscosity 1 is ${kv1}`);
     console.log(`kinematic viscosity 2 is ${kv2}`);
@@ -214,6 +219,7 @@ function calculateFinalZeitfuchs(kv1, kv2) {
     console.log(`the final kinematic viscosity to 4 significant figures is ${preciseFinalViscosity}`)
 
     document.getElementById('final-calculated-viscosity').innerText = preciseFinalViscosity
+    document.getElementById('determinability-final-kv-units').style.display = 'inline'
 
     determinability(finalViscosity, kv1, kv2)
 
@@ -307,6 +313,7 @@ function determinability(finalViscosity, kv1, kv2) {
     document.getElementById('determinability-equation').innerText = message
     console.log(`the determinability factor to 4 significant figures is ${preciseDeterminability}`)
     document.getElementById('determinability-factor').innerText = preciseDeterminability
+    document.getElementById('determinability-factor-units').style.display = 'inline'
 
     upperLimit(determinability, finalViscosity, kv1, kv2)
     
@@ -318,6 +325,7 @@ function upperLimit(determinability, finalViscosity, kv1, kv2) {
     let preciseUpperAllowedViscosity = upperAllowedViscosity.toPrecision(4)
 
     document.getElementById('upper-limit').innerText = preciseUpperAllowedViscosity
+    document.getElementById('determinability-upper-units').style.display = 'inline'
 
     console.log(`The upper allowed viscosity is ${finalViscosity} + ${determinability} = ${preciseUpperAllowedViscosity}`)
 
@@ -330,6 +338,7 @@ function lowerLimit(determinability, finalViscosity, upperAllowedViscosity, kv1,
     let preciseLowerAllowedViscosity = lowerAllowedViscosity.toPrecision(4)
 
     document.getElementById('lower-limit').innerText = preciseLowerAllowedViscosity
+    document.getElementById('determinability-lower-units').style.display = 'inline'
 
     console.log(`The lower allowed viscosity is ${finalViscosity} - ${determinability} = ${preciseLowerAllowedViscosity}`)
 
@@ -340,15 +349,20 @@ function checker(upperAllowedViscosity, lowerAllowedViscosity, kv1, kv2) {
 
     if(kv1 > lowerAllowedViscosity && kv1 < upperAllowedViscosity && kv2 > lowerAllowedViscosity && kv2 < upperAllowedViscosity) {
 
-        document.getElementById('output').innerText = "Your viscosities fall within the defined limits"
+        document.getElementById('output').innerHTML = `
+        <i class="fas fa-check icon"></i>
+        <span>Your viscosities fall within the defined limits</span>
+        `
     }
 
     else {
-        document.getElementById('output').innerText = "Your viscosities do not fall within the defined limits"
+        document.getElementById('output').innerHTML = `
+        <i class="fas fa-xmark icon"></i>
+        <span>Your viscosities do not fall within the defined limits</span>
+        `
     }
 
 }
-
 
 let resetButton = document.getElementById('reset')
 
