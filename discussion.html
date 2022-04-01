@@ -9,5 +9,213 @@
 </head>
 <body>
     
+    <header class="title">
+        <h1>Viscosity Calculator</h1>
+        <h2>General guidance and notes</h2>
+    </header>
+
+    <main class="discussion-body">
+        <article>
+            <h2>Using the Viscosity Calculator</h2>
+            <p>The Viscosity Calculator automates the calculations specified in the standard test methods for manual determination of viscosity - ASTM D445 and IP71</p>
+            <p>Using this tool is straightforward. Follow the steps below:</p>
+            <ol>
+                <li>Firstly, select the calculation you want to perform from the drop-down menu. The tool defaults to the calculation of determinability.</li>
+                <li>Next, enter all of the required data in the white input fields.</li>
+                <li>Then, press "calculate".</li>
+                <li>
+                    The tool will then perform all of the calculations and display the outputs. 
+                    For all calculations except the viscometer recalibration calculation, a final output indicates whether your data meets the criteria. 
+                    For the recalibration calculation, the final output will be the new viscometer constant.
+                </li>
+                <li>To use the tool again, click the reset button to empty the input and output fields.</li>
+            </ol>
+
+            <h2>Selecting the correct calculation option</h2>
+            <p>The tool contains 5 calculations - determinability, repeatability, reproducibility, viscometer calibration and the recalibration of a viscometer's constant</p>
+            <p>Selecting the correct option is essential. See below for a short discussion on what each option does, so you know which one to select.</p>
+            
+            <h3>Determinability</h3>
+            <p>
+                Determinability is the calculation performed on two calculated kinematic viscosities. 
+                The determinability calculation checks whether the two viscosities are close enough that they are valid and can be used to calculate the final average viscosity. 
+            </p>
+            <p>
+                The Viscosity Calculator only requires the two run-times you have made, and the constant of the viscometer used. 
+                If you used two Zeitfuchs cross-arm viscometers, enter both constants, matching each constant to the corresponding run-time. 
+            </p>
+
+            <h3>Repeatability</h3>
+            <p>
+                Repeatability is the calculation performed on two final average viscosities that have been calculated for the same sample in the same laboratory by the same operator.
+                The repeatability calculation is typically done when a client wishes the laboratory to perform a second analysis on a sample to check that the first analysis was accurate.
+                The repeatability calculation checks that the two final average viscosities are close enough that the second result confirms the accuracy of the first result.   
+            </p>
+            
+            
+            <h3>Reproducibility</h3>
+            <p>
+                Reproducibility is similar to repeatability, except that the reproducibility calculation is performed on two final average viscosities that have each been obtained from 
+                a different laboratory. Reproducibility is typically used when a client sends the same sample to two or more laboratories and wishes to compare their results, 
+                or when a standards organisation such as the International Standards Organisation (ISO) or ASTM 
+                conducts a 'round robin' study to ensure that laboratories are operating to the same standards. 
+            </p>
+            
+            
+            <h3>Calibration</h3>
+            <p>
+                The calibration calculation is used when a laboratory wishes to check that a viscometer can still be relied on to give the same results year after year.
+                Calibrations are also conducted when a viscometer has been repaired or otherwise returned to service, to check that it will stilk give accurate results. 
+            </p>
+            <p>
+                Calibrations are conducted using calibration fluids, which are specialised petroleum products whose viscosity is exactly known at a range of temperatures. 
+                If the final average viscosity obtained from a calibration test matches the known viscosity of the calibration fluid at the temperature at which the test was 
+                conducted, to within a certain percentage difference, then the viscometer has been successfully calibrated, and may then be confidently used by the laboratory to 
+                test samples.  
+            </p>
+            <p>
+                The Viscosity Calculator requires only the two run-times obtained from the calibration test, the constant of the viscometer used and the known viscosity of the 
+                calibration fluid at the temperature at which the calibration test was conducted. 
+            </p>
+            
+            <h3>Recalibration</h3>
+            <p>
+                It may suprise you to learn that Earth's gravity is not constant across its surface. Gravity varies from 9.78 m/s<span class="superscript">2</span> to 9.83 m/s<span class="superscript">2</span> 
+            </p>
+            <p>
+                This means that falling objects will have a very slighly different acceleration due to gravity, depending on where they are dropped on Earth.
+            </p>
+            <p>
+                This also applies to kinematic viscosity tests, as the fluids within viscometers flow under gravity. The variance of gravity is slight, but given the precision with which 
+                viscometer constants are determined by standardisation laboratories, there is a mechanism by which a viscometer may be recalibrated and assigned a different constant. 
+            </p>
+            <p>
+                The recalibration calculation requires the constant of the viscometer undergoing recalibration and two values of gravity - the first being the gravity at your laboratory's 
+                location and the second being the gravity at the standardisation laboratory's location. The tool will calculate the percentage difference between the two gravity values, 
+                and, if it is greater than 0.1%, will produce a new constant for the viscometer. If the percentage difference is less than 0.1%, the tool will inform you of this and stop, 
+                since D445 specifies that a percentage difference of less than 0.1% means that recalibration is unnecessary.  
+            </p>
+        </article>
+
+        <article>
+            <h2>Selecting the correct sample type</h2>
+
+            <p>
+                Selecting the correct option from the drop-down menus of the determinability, repeatability and reproducibility calculations is important. 
+                Each option applies vastly different equations in the calculations, so selecting the wrong sample type could mean the difference between your results passing and failing. 
+            </p>
+            <p>
+                Fortunately, the sample types are distinct, and can be easily told apart. See below for a discussion on the typical characteristics of each sample type. 
+            </p>
+
+            <h3>Base Oils</h3>
+            <p>
+                Base oils, also called base stocks, are the majority component of lubricating oils, usually making up between 90% and 95% by volume.
+            </p>
+            <p>
+                Base Oils are almost universally clear and colourless. If analysed using the D1500 Colour of Petroleum Products method, they would rate either 0.5 or less.
+            </p>
+            <p>
+                Base oils tend to have a fairly low viscosity, usually around 20cSt at 40C and 4cSt at 100C. 
+            </p>
+
+            <h3>Formulated Oils</h3>
+            <p>
+                Formulated Oils, also known as lubricating oils, are produced by combining base oils with various additives (see below). Formulated oils are most often used as 
+                engine oils and gear oils in combustion engine vehicles. 
+            </p>
+            <p>
+                Depending on the intended purpose of the formulated oil, the oil will have a higher or lower dosage of additives, which affects its viscosity and colour. 
+            </p>
+            <p>
+                Oils with lower additive dosages are less viscous, and typically possess a golden, yellow or light orange colour, and are clear. 
+                Oils with higher additive dosages a more viscous, and typically possess a dark orange or brown colour. 
+                If analysed using the D1500 method, formulated oils typically rate between 1 and 5. 
+            </p>
+            <p>
+                Formulated oils typically have a higher viscosity than base oils, usually around 30cSt at 40C and 7cSt at 100C
+            </p>
+            <p>
+                The repeatability and reproducibility functions of the Viscosity Calculator also have the option of selecting Used Motor Oils. 
+                These are formulated oils that have either undergone some sort of laboratory test, or have actually been used in an engine. 
+                Used motor oils have typically have been subjected to heating and/or oxidation. This often makes them darker in colour and more viscous. 
+                Used motor oils may reach as high as 60cSt at 40C and 15cSt at 100C. 
+            </p>
+            
+            <h3>Additives</h3>
+            <p>
+                Additives are the component of formulated oils that gives them the properties that make them useful for automotive applications. 
+                Additives allow formulated oils to keep engines clean, respond well to high temperatures and can help protect the engine from the acidic byproducts of combustion. 
+            </p>
+            <p>
+                Additives are typically very dark and very viscous. If analysed by the D1500 Colour of Petroleum Products method, additives typically rate between 7 and 8, or even higher. 
+            </p>
+            <p>
+                At 40C, additives typically have a viscosity of between 1500 and 3000cSt, and at 100C a viscosity of between 100 and 250cSt. 
+            </p>
+            <p>
+                Additives are chemically complex, and so can suffer from shear effects - that is, the additive can have its viscosity change as it is heated and tested.
+                In these cases, the Viscosity Calculator will likely always give failure results.
+            </p>
+
+            <h3>Crude Oils and residues</h3>
+            <p>
+                Crude Oils are the unrefined product of drilling operations. Samples of crude oils received for laboratory analysis are identical to the material that is extracted
+                from oil fields. 
+            </p>
+            <p>
+                Crude oils are almost always black in colour, but due to the conditions of oil reservoirs around the world, crude oils can have considerable variance in viscosity. 
+                Crude oils also contain a huge range of hydrocarbons, from very short chain molecules such as ethane and propane, to much longer-chain molecules that are used in the 
+                production of asphalt and bitumen. 
+            </p>
+            <p>
+                The short-chain molecules present in crude oil often come out of solution when a vacuum is used to draw the sample into a viscometer's bulb, so it is often the case that 
+                sucessive run-time determinations will show increases in run-time, since the short-chain molecules are removed and the propotion of longer-chain molecules increases, which 
+                increases viscosity. 
+            </p>
+            <p>
+                That said, this shouldn't cause the Viscosity Calculator calculations to fail, since the limits for crude oils are quite large. 
+            </p>
+            <p>
+                Residues are the product of refining crude oils, and are composed of the heavier, longer-chain fractions. 
+            </p>
+            <p>
+                Since residues are the product of fractional distillation, which requires extreme heating, they are devoid of volatile molecules. 
+                This makes them very stable at high temperatures, and it is frequently very easy to get results that are determinable, repeatable and reproducible.
+                The main difficulty comes from handling them, as they can be sticky. 
+            </p>
+
+            
+            <h3>Residual fuel oils</h3>
+            <p>
+                Residual Fuel Oils are essentially crude oils with the lighter fractions removed. As a result, they tend to be very dark or black in colour. 
+            </p>
+            <p>
+                Residual fuel oils at 100C share the same determinability equation as crude oils and residues, and at 50C require only a very slightly tigher equation. This 
+                frequently makes it easy to get determinable results. The equations for repeatability and reproducibility produce almost absurdly large tolerance bands, so there 
+                is often little difficulty in acquiring valid results.  
+            </p>
+
+            <h3>Gas Oils</h3>
+            <p>
+                Gas oils tend to have a fairly low viscosity, usually having a viscosity of around 10cSt at 40C. 
+            </p>
+            <p>
+                Gas Oils tend to have a pale yellow colour, and by D1500 would rate between 1 and 2. 
+            </p>
+
+            <h3>Kerosene, diesel and biodiesel</h3>
+            <p>
+                Kerosenes, diesels and biodisels have a very low viscosity, usually having a viscosity of around 10cSt at 40C. These samples are clear and colourless. 
+            </p>
+
+            <h3>Jet Fuels</h3>
+            <p>
+                Jet Fuels tend to have a very low viscosity, usually having a viscosity of around 5cSt at -20C. They are clear and colourless. 
+            </p>
+
+
+        </article>
+    </main>
 </body>
 </html>
