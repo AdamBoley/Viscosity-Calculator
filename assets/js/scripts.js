@@ -386,6 +386,13 @@ function reset() {
     document.getElementById('upper-limit').textContent = ''
     document.getElementById('lower-limit').textContent = ''
     document.getElementById('output').textContent = ''
+
+    document.getElementById('determinability-kv-1-units').style.display = 'none'
+    document.getElementById('determinability-kv-2-units').style.display = 'none'
+    document.getElementById('determinability-final-kv-units').style.display = 'none'
+    document.getElementById('determinability-factor-units').style.display = 'none'
+    document.getElementById('determinability-upper-units').style.display = 'none'
+    document.getElementById('determinability-lower-units').style.display = 'none'
 }
 
 
@@ -414,6 +421,7 @@ function averageViscosityRepeatability() {
         console.log(`the average viscosity to 4 significant figures is ${preciseAverageViscosity}`)
 
         document.getElementById('average-viscosity-repeatability').textContent = preciseAverageViscosity
+        document.getElementById('repeatability-average-kv-units').style.display = 'inline'
 
         //displayRepeatabilityEquation()
 
@@ -548,6 +556,7 @@ function repeatability(viscosity1, viscosity2, averageViscosity) {
     document.getElementById('repeatability-equation').innerText = message
     console.log(`the repeatability factor to 4 significant figures is ${preciseRepeatability}`)
     document.getElementById('repeatability-factor').innerText = preciseRepeatability
+    document.getElementById('repeatability-factor-units').style.display = 'inline'
 
     repeatabilityUpperLimit(viscosity1, viscosity2, averageViscosity, repeatability)
 }
@@ -557,6 +566,7 @@ function repeatabilityUpperLimit(viscosity1, viscosity2, averageViscosity, repea
     let repeatabilityUpper = averageViscosity + repeatability
     let preciseRepeatabilityUpper = repeatabilityUpper.toPrecision(4)
     document.getElementById('repeatability-upper-limit').textContent = preciseRepeatabilityUpper
+    document.getElementById('repeatability-upper-units').style.display = 'inline'
 
     repeatabilityLowerLimit(viscosity1, viscosity2, averageViscosity, repeatability, repeatabilityUpper) 
 }
@@ -567,6 +577,7 @@ function repeatabilityLowerLimit(viscosity1, viscosity2, averageViscosity, repea
     let preciseRepeatabilityLower = repeatabilityLower.toPrecision(4)
 
     document.getElementById('repeatability-lower-limit').textContent = preciseRepeatabilityLower
+    document.getElementById('repeatability-lower-units').style.display = 'inline'
 
     repeatabilityChecker(viscosity1, viscosity2, repeatabilityUpper, repeatabilityLower)
 }
@@ -575,11 +586,17 @@ function repeatabilityChecker(viscosity1, viscosity2, repeatabilityUpper, repeat
 
     if(viscosity1 > repeatabilityLower && viscosity1 < repeatabilityUpper && viscosity2 > repeatabilityLower && viscosity2 < repeatabilityUpper) {
 
-        document.getElementById('repeatability-output').innerText = 'Your viscosities are repeatable'
+        document.getElementById('repeatability-output').innerHTML = `
+        <i class="fas fa-check icon"></i>
+        <span>Your viscosities are repeatable</span>
+        `
     }
 
     else {
-        document.getElementById('repeatability-output').innerText = 'Your viscosities are not repeatable'
+        document.getElementById('repeatability-output').innerHTML = `
+        <i class="fas fa-xmark icon"></i>
+        <span>Your viscosities are not repeatable</span>
+        `
     }
 }
 
@@ -598,6 +615,13 @@ function repeatabilityReset() {
     document.getElementById('repeatability-lower-limit').textContent = ''
     document.getElementById('repeatability-output').textContent = ''
     document.getElementById('viscosity-repeatability-1').focus()
+
+    document.getElementById('repeatability-kv-1-units').style.display = 'none'
+    document.getElementById('repeatability-kv-2-units').style.display = 'none'
+    document.getElementById('repeatability-average-kv-units').style.display = 'none'
+    document.getElementById('repeatability-factor-units').style.display = 'none'
+    document.getElementById('repeatability-upper-units').style.display = 'none'
+    document.getElementById('repeatability-lower-units').style.display = 'none'
 }
 
 
@@ -625,8 +649,7 @@ function averageViscosityReproducibility() {
         console.log(`the average viscosity to 4 significant figures is ${preciseAverageViscosity}`)
 
         document.getElementById('average-viscosity-reproducibility').textContent = preciseAverageViscosity
-
-        //displayReproducibilityEquation()
+        document.getElementById('reproducibility-average-kv-units').style.display = 'inline'
 
         reproducibility(viscosity1, viscosity2, averageViscosity)
     }
@@ -767,6 +790,7 @@ function reproducibility(viscosity1, viscosity2, averageViscosity) {
     document.getElementById('reproducibility-equation').innerText = message
     console.log(`the reproducibility factor to 4 significant figures is ${preciseReproducibility}`)
     document.getElementById('reproducibility-factor').innerText = preciseReproducibility
+    document.getElementById('reproducibility-factor-units').style.display = 'inline'
 
     reproducibilityUpperLimit(viscosity1, viscosity2, averageViscosity, reproducibility)
 }
@@ -776,6 +800,7 @@ function reproducibilityUpperLimit(viscosity1, viscosity2, averageViscosity, rep
     let reproducibilityUpper = averageViscosity + reproducibility
     let preciseReproducibilityUpper = reproducibilityUpper.toPrecision(4)
     document.getElementById('reproducibility-upper-limit').textContent = preciseReproducibilityUpper
+    document.getElementById('reproducibility-upper-units').style.display = 'inline'
 
     reproducibilityLowerLimit(viscosity1, viscosity2, averageViscosity, reproducibility, reproducibilityUpper) 
 }
@@ -786,6 +811,7 @@ function reproducibilityLowerLimit(viscosity1, viscosity2, averageViscosity, rep
     let preciseReproducibilityLower = reproducibilityLower.toPrecision(4)
 
     document.getElementById('reproducibility-lower-limit').textContent = preciseReproducibilityLower
+    document.getElementById('reproducibility-lower-units').style.display = 'inline'
 
     reproducibilityChecker(viscosity1, viscosity2, reproducibilityUpper, reproducibilityLower)
 }
@@ -794,11 +820,17 @@ function reproducibilityChecker(viscosity1, viscosity2, reproducibilityUpper, re
 
     if(viscosity1 > reproducibilityLower && viscosity1 < reproducibilityUpper && viscosity2 > reproducibilityLower && viscosity2 < reproducibilityUpper) {
 
-        document.getElementById('reproducibility-output').innerText = 'Your viscosities are reproducible'
+        document.getElementById('reproducibility-output').innerHTML = `
+        <i class="fas fa-check icon"></i>
+        <span>Your viscosities are reproducible</span>
+        `
     }
 
     else {
-        document.getElementById('reproducibility-output').innerText = 'Your viscosities are not reproducible'
+        document.getElementById('reproducibility-output').innerHTML = `
+        <i class="fas fa-xmark icon"></i>
+        <span>Your viscosities are not reproducible</span>
+        `
     }
 }
 
@@ -817,6 +849,11 @@ function reproducibilityReset() {
     document.getElementById('reproducibility-lower-limit').textContent = ''
     document.getElementById('reproducibility-output').textContent = ''
     document.getElementById('viscosity-reproducibility-1').focus()
+
+    document.getElementById('reproducibility-average-kv-units').style.display = 'none'
+    document.getElementById('reproducibility-factor-units').style.display = 'none'
+    document.getElementById('reproducibility-upper-units').style.display = 'none'
+    document.getElementById('reproducibility-lower-units').style.display = 'none'
 }
 
 //Calibration calculations
@@ -852,7 +889,9 @@ function calculateCalibration(calibrationRunTime1, calibrationRunTime2, calibrat
     console.log(`the average viscosity is ${averageViscosity}`)
 
     document.getElementById('calibration-average-run-time').textContent = averageRunTime
+    document.getElementById('calibration-average-run-time-units').style.display = 'inline'
     document.getElementById('calibration-average-viscosity').textContent = averageViscosity
+    document.getElementById('calibration-average-viscosity-units').style.display = 'inline'
 
     tolerance(averageViscosity)
 
@@ -899,20 +938,33 @@ function tolerance(averageViscosity) {
             toleranceBand = 0.73
             break
     }
+
+    document.getElementById('calibration-viscosity-range-units').style.display = 'inline'
     
     percentageDifference(calibrationFluidViscosity, averageViscosity, toleranceBand)
 }
 
 function percentageDifference(calibrationFluidViscosity, averageViscosity, toleranceBand) {
+    //percentage difference calculation not working 
+    console.log(`the calibration fluid viscosity is ${calibrationFluidViscosity}`)
+    console.log(`the average viscosity is ${averageViscosity}`)
 
     let numerator = calibrationFluidViscosity - averageViscosity
     numerator = Math.abs(numerator)
 
+    console.log(`the numerator is ${numerator}`)
+
     let denominator = ((calibrationFluidViscosity + averageViscosity) / 2)
+    denominator = Math.abs(denominator)
+
+    console.log(`the denominator is ${denominator}`)
 
     let percentageDifference = (numerator / denominator) * 100
 
+    console.log(`the percentage difference is ${percentageDifference}`)
+
     document.getElementById('calibration-percentage-difference').textContent = percentageDifference
+    document.getElementById('calibration-percentage-difference-units').style.display = 'inline'
 
     percentageDifferenceChecker(percentageDifference, toleranceBand)
 }
@@ -920,10 +972,16 @@ function percentageDifference(calibrationFluidViscosity, averageViscosity, toler
 function percentageDifferenceChecker(percentageDifference, toleranceBand) {
 
     if(percentageDifference <= toleranceBand) {
-        document.getElementById('calibration-output').textContent = 'percentage difference is less than or equal to tolerance band. Viscometer passes calibration check'
+        document.getElementById('calibration-output').innerHTML = `
+        <i class="fas fa-check icon"></i>
+        <span>The percentage difference is less than or equal to the tolerance band. The viscometer passes the calibration check</span>
+        `
     }
     else if(percentageDifference > toleranceBand) {
-        document.getElementById('calibration-output').textContent = 'percentage difference is greater than tolerance band. Viscometer fails calibration check'
+        document.getElementById('calibration-output').innerHTML = `
+        <i class="fas fa-xmark icon"></i>
+        <span>The percentage difference is greater than the tolerance band. The viscometer fails the calibration check</span>
+        `
     }
 }
 
@@ -944,6 +1002,11 @@ function calibrationReset() {
     document.getElementById('calibration-percentage-difference').textContent = ''
     document.getElementById('calibration-output').textContent = ''
     document.getElementById('calibration-run-time-1').focus()
+
+    document.getElementById('calibration-average-run-time-units').style.display = 'none'
+    document.getElementById('calibration-average-viscosity-units').style.display = 'none'
+    document.getElementById('calibration-viscosity-range-units').style.display = 'none'
+    document.getElementById('calibration-percentage-difference-units').style.display = 'none'
 }
 
 //Viscometer Recalibration calculations
@@ -953,7 +1016,7 @@ let recalibrationButton = document.getElementById('submit-recalibration')
 recalibrationButton.addEventListener('click', recalibrationPercentageDifference)
 
 function recalibrationPercentageDifference() {
-
+    //percentage difference calculation not working
     let testingGravity = parseFloat(document.getElementById('testing-lab-gravity').value)
     let standardisationGravity = parseFloat(document.getElementById('standardisation-lab-gravity').value)
     let constant = parseFloat(document.getElementById('recalibration-constant').value)
@@ -975,6 +1038,7 @@ function recalibrationPercentageDifference() {
     let precisePercentageDifference = percentageDifference.toPrecision(4)
 
     document.getElementById('recalibration-percentage-difference').textContent = precisePercentageDifference
+    document.getElementById('recalibration-percentage-difference-units').style.display = 'inline'
     console.log(`the percentage difference is ${precisePercentageDifference}`)
 
     recalibrationFunction(percentageDifference, testingGravity, standardisationGravity, constant)
@@ -987,6 +1051,7 @@ function recalibrationFunction(percentageDifference, testingGravity, standardisa
         let preciseNewConstant = newConstant.toPrecision(4)
         console.log(`the new constant of the viscometer is ${preciseNewConstant}`)
         document.getElementById('new-constant').textContent = preciseNewConstant
+        document.getElementById('recalibration-new-constant-units').style.display = 'inline'
     }
     else {
         document.getElementById('new-constant').textContent = 'the difference between the two gravities does not warrant recalibration of the viscometer'
@@ -1002,6 +1067,9 @@ function recalibrationReset() {
     document.getElementById('standardisation-lab-gravity').value = ''
     document.getElementById('recalibration-percentage-difference').textContent = ''
     document.getElementById('new-constant').textContent = ''
+
+    document.getElementById('recalibration-percentage-difference-units').style.display = 'none'
+    document.getElementById('recalibration-new-constant-units').style.display = 'none'
 }
 
 //Do I want to use the outputs of the toPrecision method in the final calculations? There are edge cases where I round my number throughout the process and come out with a 
