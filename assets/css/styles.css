@@ -55,22 +55,32 @@ main {
 
 .select {
     margin: 25px auto;
+    width: 50%;
+    height: 200px;
+}
+
+#run-times {
+    width: 50%;
+    margin: 25px auto;
+    height: 50px;
+}
+
+#determinability-input-1, #determinability-input-2 {
+    display: none;
 }
 
 #run-1 {
-    float: left;
+    display: inline-block;
 }
 
 #run-2 {
-    float: right;
+    display: inline-block;
 }
 
-#constant-1-div {
-    float: left;
-}
-
-#constant-2-div {
-    float: right;
+#cross-arm-constants {
+    width: 50%;
+    margin: 25px auto;
+    height: 50px;
 }
 
 #constant-div, #constant-1-div, #constant-2-div, #submit-ubbelohde, #submit-zeitfuchs {
@@ -83,7 +93,7 @@ main {
     height: 50vh;
     background-color: lightcoral;
 }
-
+/**
 #kv-1 {
     float: left;
 }
@@ -103,7 +113,7 @@ main {
 #lower-determinability {
     float: right;
 }
-
+*/
 #output {
     clear: both;
 }

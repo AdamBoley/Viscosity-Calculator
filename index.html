@@ -59,7 +59,7 @@
 
                     <p>Select your sample type and temperature</p>
 
-                    <select id="sample-type">
+                    <select id="sample-type-determinability">
                         <option disabled selected value="disabled"> -- select an option -- </option>
                         <option value="BO40">Base Oils at 40C</option>
                         <option value="BO100">Base Oils at 100C</option>
@@ -82,45 +82,29 @@
 
                 </div>
 
-                <div id="run-1">
-
-                    <label for="run-time-1">Run Time 1</label>
-                    <input type="number" id="run-time-1" min="200" max="900"><span> seconds</span>
-
-                </div>
-
-                <div id="run-2">
-
-                    <label for="run-time-2">Run Time 2</label>
-                    <input type="number" id="run-time-2" min="200" max="900"><span> seconds</span>
-
-                </div>
-
-                <br class="line-break">
-
-                <div id="constants">
-
-                    <div id="constant-div">
-
-                        <label for="constant-input" id="constant">Constant:</label>
-                        <input type="number" id="constant-input"><span id="determinability-constant-units">mm<span class="superscript">2</span>/s<span class="superscript">-2</span></span>
-            
+                <div id="determinability-input-1">
+                    <div id="run-time-1-div">
+                        <label for="run-time-1">Run Time 1</label>
+                        <input type="number" id="run-time-1" min="200" max="900"><span> seconds</span>
                     </div>
-
                     <div id="constant-1-div">
-
                         <label for="constant-1-input" id="constant-1">Constant 1:</label>
-                        <input type="number" id="constant-1-input"><span id="determinability-constant-1-units">mm<span class="superscript">2</span>/s<span class="superscript">-2</span></span>
-                
+                        <input type="number" min="0" max="100" id="constant-1-input"><span id="determinability-constant-1-units">mm<span class="superscript">2</span>/s<span class="superscript">-2</span></span>
                     </div>
-                
+                </div>
+                <div id="determinability-input-2">
+                    <div id="run-time-2-div">
+                        <label for="run-time-2">Run Time 2</label>
+                        <input type="number" id="run-time-2" min="200" max="900"><span> seconds</span>
+                    </div>
                     <div id="constant-2-div">
-                    
                         <label for="constant-2-input" id="constant-2">Constant 2:</label>
-                        <input type="number" id="constant-2-input"><span id="determinability-constant-2-units">mm<span class="superscript">2</span>/s<span class="superscript">-2</span></span>
-                    
+                        <input type="number" min="0" max="100" id="constant-2-input"><span id="determinability-constant-2-units">mm<span class="superscript">2</span>/s<span class="superscript">-2</span></span>
                     </div>
-
+                </div>
+                <div id="constant-div">
+                    <label for="constant-input" id="constant">Constant:</label>
+                    <input type="number" min="0" max="100" id="constant-input"><span id="determinability-constant-units">mm<span class="superscript">2</span>/s<span class="superscript">-2</span></span>
                 </div>
 
                 <br class="line-break">

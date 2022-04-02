@@ -6,22 +6,33 @@ ubbelohdeButton.addEventListener('click', ubbelohdeConstant)
 
 function ubbelohdeConstant() {
 
-    if(document.getElementById('constant-1-div').style.display !== 'none') {
-        
-        document.getElementById('constant-1-div').style.display = 'none'
-        document.getElementById('constant-2-div').style.display = 'none'
-        document.getElementById('submit-zeitfuchs').style.display = 'none'
+    let constant1Div = document.getElementById('constant-1-div')
+    let constant2Div = document.getElementById('constant-2-div')
+    let determinabilityInput1 = document.getElementById('determinability-input-1')
+    let determinabilityInput2 = document.getElementById('determinability-input-2')
+    let constantDiv = document.getElementById('constant-div')
+    let submitUbbelohde = document.getElementById('submit-ubbelohde')
+    let submitZeitfuchs = document.getElementById('submit-zeitfuchs')
 
-        document.getElementById('constant-div').style.display = 'block'
-        document.getElementById('submit-ubbelohde').style.display = 'block'
+    determinabilityInput1.style.display = 'inline-block'
+    determinabilityInput2.style.display = 'inline-block'
+
+    if(constant1Div.style.display !== 'none' || constant2Div.style.display !== 'none') {
+        constant1Div.style.display = 'none'
+        constant2Div.style.display = 'none'
+
+        constantDiv.style.display = 'block'
+        submitUbbelohde.style.display = 'block'
+        submitZeitfuchs.style.display = 'none'
     }
     else {
-
         document.getElementById('constant-div').style.display = 'block'
-        document.getElementById('submit-ubbelohde').style.display = 'block'
+        submitUbbelohde.style.display = 'block'
+        submitZeitfuchs.style.display = 'none'
     }
 
     document.getElementById('run-time-1').focus()
+    
 }
 
 let getValuesUbbelohdeButton = document.getElementById('submit-ubbelohde')
@@ -30,7 +41,7 @@ getValuesUbbelohdeButton.addEventListener('click', getValuesUbbelohde)
 
 function getValuesUbbelohde() {
 
-    let select = document.getElementById('sample-type') 
+    let select = document.getElementById('sample-type-determinability') 
 
     let runTime1 = document.getElementById('run-time-1')
     let runTime2 = document.getElementById('run-time-2')
@@ -104,23 +115,33 @@ zeitfuchsButton.addEventListener('click', zeitfuchsConstant)
 
 function zeitfuchsConstant() {
 
-    if(document.getElementById('constant-div').style.display !== 'none') {
+    let constant1Div = document.getElementById('constant-1-div')
+    let constant2Div = document.getElementById('constant-2-div')
+    let determinabilityInput1 = document.getElementById('determinability-input-1')
+    let determinabilityInput2 = document.getElementById('determinability-input-2')
+    let constantDiv = document.getElementById('constant-div')
+    let submitZeitfuchs = document.getElementById('submit-zeitfuchs')
+    let submitUbbelohde = document.getElementById('submit-ubbelohde')
 
-        document.getElementById('constant-div').style.display = 'none'
-        document.getElementById('submit-ubbelohde').style.display = 'none'
+    determinabilityInput1.style.display = 'inline-block'
+    determinabilityInput2.style.display = 'inline-block'
 
-        document.getElementById('constant-1-div').style.display = 'block'
-        document.getElementById('constant-2-div').style.display = 'block'
-        document.getElementById('submit-zeitfuchs').style.display = 'block'
+    if(constantDiv.style.display !== 'none') {
+        constantDiv.style.display = 'none'
+
+        constant1Div.style.display = 'block'
+        constant2Div.style.display = 'block'
+        submitZeitfuchs.style.display = 'block'
+        submitUbbelohde.style.display = 'none'
     }
     else {
-        document.getElementById('constant-1-div').style.display = 'block'
-        document.getElementById('constant-2-div').style.display = 'block'
-        document.getElementById('submit-zeitfuchs').style.display = 'block'
+        constant1Div.style.display = 'block'
+        constant2Div.style.display = 'block'
+        submitZeitfuchs.style.display = 'block'
+        submitUbbelohde.style.display = 'none'
     }
 
     document.getElementById('run-time-1').focus()
-    
 }
 
 let getValuesZeitfuchsButton = document.getElementById('submit-zeitfuchs')
@@ -129,7 +150,7 @@ getValuesZeitfuchsButton.addEventListener('click', getValuesZeitfuchs)
 
 function getValuesZeitfuchs() {
 
-    let select = document.getElementById('sample-type')
+    let select = document.getElementById('sample-type-determinability')
 
     let runTime1 = document.getElementById('run-time-1')
     let runTime2 = document.getElementById('run-time-2')
@@ -205,7 +226,7 @@ function calculateFinalZeitfuchs(kv1, kv2) {
 
 function determinability(finalViscosity, kv1, kv2) {
 
-    let select = document.getElementById('sample-type')
+    let select = document.getElementById('sample-type-determinability')
 
     let message = ''
     let determinability
