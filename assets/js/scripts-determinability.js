@@ -13,22 +13,30 @@ function ubbelohdeConstant() {
     let constantDiv = document.getElementById('constant-div')
     let submitUbbelohde = document.getElementById('submit-ubbelohde')
     let submitZeitfuchs = document.getElementById('submit-zeitfuchs')
+    let reset = document.getElementById('reset-determinability')
+    let submitDiv = document.getElementById('submit-div')
+    
 
     determinabilityInput1.style.display = 'inline-block'
     determinabilityInput2.style.display = 'inline-block'
+    
 
     if(constant1Div.style.display !== 'none' || constant2Div.style.display !== 'none') {
         constant1Div.style.display = 'none'
         constant2Div.style.display = 'none'
 
         constantDiv.style.display = 'block'
-        submitUbbelohde.style.display = 'block'
+        submitUbbelohde.style.display = 'inline-block'
         submitZeitfuchs.style.display = 'none'
+        reset.style.display = 'inline-block'
+        submitDiv.style.marginTop  = '31px' 
     }
     else {
         document.getElementById('constant-div').style.display = 'block'
-        submitUbbelohde.style.display = 'block'
+        submitUbbelohde.style.display = 'inline-block'
         submitZeitfuchs.style.display = 'none'
+        reset.style.display = 'inline-block'
+        submitDiv.style.marginTop  = '31px'
     }
 
     document.getElementById('run-time-1').focus()
@@ -122,6 +130,8 @@ function zeitfuchsConstant() {
     let constantDiv = document.getElementById('constant-div')
     let submitZeitfuchs = document.getElementById('submit-zeitfuchs')
     let submitUbbelohde = document.getElementById('submit-ubbelohde')
+    let reset = document.getElementById('reset-determinability')
+    let submitDiv = document.getElementById('submit-div')
 
     determinabilityInput1.style.display = 'inline-block'
     determinabilityInput2.style.display = 'inline-block'
@@ -131,14 +141,18 @@ function zeitfuchsConstant() {
 
         constant1Div.style.display = 'block'
         constant2Div.style.display = 'block'
-        submitZeitfuchs.style.display = 'block'
+        submitZeitfuchs.style.display = 'inline-block'
         submitUbbelohde.style.display = 'none'
+        reset.style.display = 'inline-block'
+        submitDiv.style.marginTop = '50px'
     }
     else {
         constant1Div.style.display = 'block'
         constant2Div.style.display = 'block'
-        submitZeitfuchs.style.display = 'block'
+        submitZeitfuchs.style.display = 'inline-block'
         submitUbbelohde.style.display = 'none'
+        reset.style.display = 'inline-block'
+        submitDiv.style.marginTop = '50px'
     }
 
     document.getElementById('run-time-1').focus()
@@ -361,7 +375,7 @@ function checker(upperAllowedViscosity, lowerAllowedViscosity, kv1, kv2) {
 
 }
 
-let resetButton = document.getElementById('reset')
+let resetButton = document.getElementById('reset-determinability')
 
 resetButton.addEventListener('click', reset)
 

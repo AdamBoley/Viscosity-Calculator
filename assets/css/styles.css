@@ -54,36 +54,41 @@ main {
 }
 
 .select {
-    margin: 25px auto;
+    margin-top: 25px;
+    margin-left: 100px;
     width: 50%;
     height: 200px;
 }
 
-#run-times {
-    width: 50%;
-    margin: 25px auto;
-    height: 50px;
+#determinability-input-1 {
+    margin-left: 100px;
+}
+
+#determinability-input-2 {
+    margin-left: 25px;
+}
+
+#constant-div {
+    margin-left: 100px;
 }
 
 #determinability-input-1, #determinability-input-2 {
     display: none;
 }
 
-#run-1 {
-    display: inline-block;
+#submit-div {
+    margin-top: 50px;
 }
 
-#run-2 {
-    display: inline-block;
+#submit-ubbelohde, #submit-zeitfuchs, #reset-determinability {
+    margin-left: 100px;
 }
 
-#cross-arm-constants {
-    width: 50%;
-    margin: 25px auto;
-    height: 50px;
+#reset-determinability {
+    margin-top: 10px;
 }
 
-#constant-div, #constant-1-div, #constant-2-div, #submit-ubbelohde, #submit-zeitfuchs {
+#constant-div, #constant-1-div, #constant-2-div, #submit-ubbelohde, #submit-zeitfuchs, #reset-determinability {
     display: none;
 }
 
