@@ -107,6 +107,11 @@ main {
     display: none;
 }
 
+.superscript {
+    vertical-align: super;
+    font-size: x-small;
+}
+
 .footer {
     height: 20px;
     width: 100%;
