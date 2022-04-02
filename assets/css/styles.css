@@ -10,6 +10,10 @@ body {
 
 }
 
+label {
+    display: block;
+}
+
 main {
     min-height: calc(100vh - 20px);
 }
