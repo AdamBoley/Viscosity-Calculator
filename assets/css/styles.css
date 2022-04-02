@@ -46,18 +46,32 @@ main {
     text-align: center;
 }
 
-.user-input {
+#determinability-user-input {
     float: left;
     width: 50%;
-    height: 50vh;
+    height: 65vh;
     background-color: lightblue;
 }
 
-.select {
-    margin-top: 25px;
+#determinability-calculated-output {
+    float: right;
+    width: 50%;
+    height: 65vh;
+    background-color: lightcoral;
+}
+
+
+
+#determinability-select {
     margin-left: 100px;
     width: 50%;
     height: 200px;
+}
+
+.select {
+    margin-left: 100px;
+    width: 50%;
+    height: 100px;
 }
 
 #determinability-input-1 {
@@ -92,35 +106,28 @@ main {
     display: none;
 }
 
+.user-input {
+    float: left;
+    width: 50%;
+    height: 45vh;
+    background-color: lightblue;
+}
+
+.user-input-div {
+    margin-left: 100px;
+    margin-top: 25px;
+}
+
 .calculated-output {
     float: right;
     width: 50%;
-    height: 50vh;
+    height: 45vh;
     background-color: lightcoral;
 }
-/**
-#kv-1 {
-    float: left;
-}
 
-#kv-2 {
-    float: right;
-}
-
-#kv-final {
-    margin: 0 auto;
-}
-
-#upper-determinability {
-    float: left;
-}
-
-#lower-determinability {
-    float: right;
-}
-*/
-#output {
-    clear: both;
+.calculated-output-div {
+    margin-left: 100px;
+    height: 60px;
 }
 
 .unit {
@@ -130,6 +137,20 @@ main {
 .superscript {
     vertical-align: super;
     font-size: x-small;
+}
+
+#recalibration-user-input {
+    float: left;
+    width: 50%;
+    height: 30vh;
+    background-color: lightblue;
+}
+
+#recalibration-calculated-output {
+    float: right;
+    width: 50%;
+    height: 30vh;
+    background-color: lightcoral;
 }
 
 .footer {

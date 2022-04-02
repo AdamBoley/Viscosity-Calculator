@@ -360,14 +360,14 @@ function checker(upperAllowedViscosity, lowerAllowedViscosity, kv1, kv2) {
 
     if(kv1 > lowerAllowedViscosity && kv1 < upperAllowedViscosity && kv2 > lowerAllowedViscosity && kv2 < upperAllowedViscosity) {
 
-        document.getElementById('output').innerHTML = `
+        document.getElementById('determinability-output').innerHTML = `
         <i class="fas fa-check icon"></i>
         <span>Your viscosities fall within the defined limits</span>
         `
     }
 
     else {
-        document.getElementById('output').innerHTML = `
+        document.getElementById('determinability-output').innerHTML = `
         <i class="fas fa-xmark icon"></i>
         <span>Your viscosities do not fall within the defined limits</span>
         `

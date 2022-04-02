@@ -53,9 +53,9 @@
 
             </section>
 
-            <section class="user-input">
+            <section id="determinability-user-input">
 
-                <div class="select">
+                <div id="determinability-select">
 
                     <p>Select your sample type and temperature</p>
 
@@ -120,63 +120,58 @@
 
             </section>
 
-            <section class="calculated-output">
+            <section id="determinability-calculated-output">
 
-                <div id="kv-1">
+                <div class="calculated-output-div">
 
                     <p>Kinematic Viscosity 1:</p>
                     <span id="kinematic-viscosity-1"></span><span class="unit" id="determinability-kv-1-units"> cSt</span>
 
                 </div>
 
-                <div id="kv-2">
+                <div class="calculated-output-div">
 
                     <p>Kinematic Viscosity 2:</p>
                     <span id="kinematic-viscosity-2"></span><span class="unit" id="determinability-kv-2-units"> cSt</span>
 
                 </div>
 
-                <br class="line-break">
-
-                <div id="kv-final">
+                <div class="calculated-output-div">
 
                     <p>Final Calculated Viscosity:</p>
                     <span id="final-calculated-viscosity"></span><span class="unit" id="determinability-final-kv-units"> cSt</span>
 
                 </div>
 
-                <div id="determinability-equation-div">
+                <div class="calculated-output-div">
 
                     <p>Determinability equation:</p>
                     <span id="determinability-equation"></span>
 
                 </div>
 
-                <div id="determinability-factor-div">
+                <div class="calculated-output-div">
 
                     <p>Determinability factor:</p>
                     <span id="determinability-factor"></span><span class="unit" id="determinability-factor-units"> cSt</span>
 
                 </div>
 
-
-                <br class="line-break">
-
-                <div id="upper-determinability">
+                <div class="calculated-output-div">
 
                     <p>Final calculated viscosity + determinability factor:</p>
                     <span id="upper-limit"></span><span class="unit" id="determinability-upper-units"> cSt</span>
 
                 </div>
 
-                <div id="lower-determinability">
+                <div class="calculated-output-div">
 
                     <p>Final calculated viscosity - determinability factor:</p>
                     <span id="lower-limit"></span><span class="unit" id="determinability-lower-units"> cSt</span>
 
                 </div>
 
-                <div id="output"></div>
+                <div id="determinability-output" class="calculated-output-div"></div>
 
             </section>
 
@@ -230,21 +225,21 @@
 
                 </div>
 
-                <div id="viscosity-1-div">
+                <div class="user-input-div">
 
                     <label for="viscosity-repeatability-1">Viscosity 1:</label>
                     <input type="number" id="viscosity-repeatability-1"><span id="repeatability-kv-1-units"> cSt</span>
 
                 </div>
 
-                <div id="viscosity-2-div">
+                <div class="user-input-div">
 
                     <label for="viscosity-repeatability-2">Viscosity 2:</label>
                     <input type="number" id="viscosity-repeatability-2"><span id="repeatability-kv-2-units"> cSt</span>
 
                 </div>
 
-                <div id="submit-repeatability-div">
+                <div class="user-input-div">
 
                     <button id="submit-repeatability">calculate</button>
                     <button id="repeatability-reset">reset</button>
@@ -255,42 +250,42 @@
 
             <section class="calculated-output">
 
-                <div id="average-viscosity-repeatability-div">
+                <div class="calculated-output-div">
 
                     <p>Average viscosity:</p>
                     <span id="average-viscosity-repeatability"></span><span class="unit" id="repeatability-average-kv-units"> cSt</span>
 
                 </div>
 
-                <div id="repeatability-equation-div">
+                <div class="calculated-output-div">
 
                     <p>Repeatability equation:</p>
                     <span id="repeatability-equation"></span>
 
                 </div>
 
-                <div id="repeatability-factor-div">
+                <div class="calculated-output-div">
 
                     <p>Repeatability factor:</p>
                     <span id="repeatability-factor"></span><span class="unit" id="repeatability-factor-units"> cSt</span>
 
                 </div>
 
-                <div id="repeatability-upper-div">
+                <div class="calculated-output-div">
 
                     <p>Repeatability upper limit:</p>
                     <span id="repeatability-upper-limit"></span><span class="unit" id="repeatability-upper-units"> cSt</span>
 
                 </div>
 
-                <div id="repeatability-lower-div">
+                <div class="calculated-output-div">
 
                     <p>Repeatability lower limit:</p>
                     <span id="repeatability-lower-limit"></span><span class="unit" id="repeatability-lower-units"> cSt</span>
 
                 </div>
 
-                <div id="repeatability-output"></div>
+                <div id="repeatability-output" class="calculated-output-div"></div>
 
             </section>
 
@@ -344,21 +339,21 @@
 
                 </div>
 
-                <div id="reproducibility-1-div">
+                <div class="user-input-div">
 
                     <label for="viscosity-reproducibility-1">Viscosity 1:</label>
                     <input type="number" id="viscosity-reproducibility-1"><span id="reproducibility-kv-1-units"> cSt</span>
 
                 </div>
 
-                <div id="reproducibility-2-div">
+                <div class="user-input-div">
 
                     <label for="viscosity-reproducibility-2">Viscosity 2:</label>
                     <input type="number" id="viscosity-reproducibility-2"><span id="reproducibility-kv-2-units"> cSt</span>
 
                 </div>
 
-                <div id="submit-reproducibility-div">
+                <div class="user-input-div">
 
                     <button id="submit-reproducibility">calculate</button>
                     <button id="reproducibility-reset">reset</button>
@@ -369,35 +364,35 @@
 
             <section class="calculated-output">
 
-                <div id="average-viscosity-reproducibility-div">
+                <div class="calculated-output-div">
 
                     <p>Average viscosity:</p>
                     <span id="average-viscosity-reproducibility"></span><span class="unit" id="reproducibility-average-kv-units"> cSt</span>
 
                 </div>
 
-                <div id="reproducibility-equation-div">
+                <div class="calculated-output-div">
 
                     <p>Reproducibility equation:</p>
                     <span id="reproducibility-equation"></span>
 
                 </div>
 
-                <div id="reproducibility-factor-div">
+                <div class="calculated-output-div">
 
                     <p>Reproducibility factor:</p>
                     <span id="reproducibility-factor"></span><span class="unit" id="reproducibility-factor-units"> cSt</span>
 
                 </div>
 
-                <div id="reproducibility-upper-div">
+                <div class="calculated-output-div">
 
                     <p>Reproducibility upper limit:</p>
                     <span id="reproducibility-upper-limit"></span><span class="unit" id="reproducibility-upper-units"> cSt</span>
 
                 </div>
 
-                <div id="reproducibility-lower-div">
+                <div class="calculated-output-div">
 
                     <p>Reproducibility lower limit:</p>
                     <span id="reproducibility-lower-limit"></span><span class="unit" id="reproducibility-lower-units"> cSt</span>
@@ -438,35 +433,35 @@
 
             <section class="user-input">
 
-                <div class="calibration-run-time">
+                <div class="user-input-div">
 
                     <label for="calibration-run-time-1">Run Time 1:</label>
                     <input type="number" id="calibration-run-time-1"><span id="calibration-run-time-1-units"> seconds</span>
 
                 </div>
 
-                <div class="calibration-run-time">
+                <div class="user-input-div">
 
                     <label for="calibration-run-time-2">Run Time 2:</label>
                     <input type="number" id="calibration-run-time-2"><span id="calibration-run-time-2-units"> seconds</span>
 
                 </div>
 
-                <div>
+                <div class="user-input-div">
 
                     <label for="calibration-constant">Constant:</label>
                     <input type="number" id="calibration-constant"><span id="calibration-constant-units">mm<span class="superscript">2</span>/s<span class="superscript">-2</span></span>
 
                 </div>
 
-                <div>
+                <div class="user-input-div">
 
                     <label for="calibration-fluid-viscosity">Calibration fluid viscosity</label>
                     <input type="number" id="calibration-fluid-viscosity"><span id="calibration-fluid-viscosity-units"> cSt</span>
 
                 </div>
 
-                <div>
+                <div class="user-input-div">
 
                     <button id="submit-calibration">calculate</button>
                     <button id="calibration-reset">reset</button>
@@ -477,41 +472,40 @@
 
             <section class="calculated-output">
 
-                <div>
+                <div class="calculated-output-div">
 
                     <p>Average run time:</p>
                     <span id="calibration-average-run-time"></span><span class="unit" id="calibration-average-run-time-units"> seconds</span>
 
                 </div>
 
-                <div>
+                <div class="calculated-output-div">
 
                     <p>Average viscosity:</p>
                     <span id="calibration-average-viscosity"></span><span class="unit" id="calibration-average-viscosity-units"> cSt</span>
 
                 </div>
 
-                <div>
+                <div class="calculated-output-div">
 
                     <p>Viscosity range of calibration fluid</p>
                     <span id="calibration-viscosity-range"></span><span class="unit" id="calibration-viscosity-range-units"> cSt</span>
 
                 </div>
 
-                <div>
+                <div class="calculated-output-div">
 
                     <p>Tolerance band</p>
                     <span id="calibration-tolerance-band"></span>
 
                 </div>
 
-                <div>
+                <div class="calculated-output-div">
                     <p>Percentage difference between observed viscosity and calibration fluid viscosity:</p>
                     <span id="calibration-percentage-difference"></span><span class="unit" id="calibration-percentage-difference-units"> %</span>
                     <p id="calibration-output"></p>
 
                 </div>
-
 
             </section>
 
@@ -538,38 +532,38 @@
 
             </section>
 
-            <section class="user-input">
+            <section id="recalibration-user-input">
 
-                <div>
+                <div class="user-input-div">
                     <label for="recalibration-constant">Viscometer constant</label>
                     <input type="number" id="recalibration-constant"><span id="recalibration-constant-units">mm<span class="superscript">2</span>/s<span class="superscript">-2</span></span>
                 </div>
 
-                <div>
+                <div class="user-input-div">
                     <label for="testing-lab-gravity">Acceleration due to gravity at your laboratory's location:</label>
                     <input type="number" id="testing-lab-gravity"><span>m/s</span><span class="superscript">2</span>
                 </div>
 
-                <div>
+                <div class="user-input-div">
                     <label for="standardisation-lab-gravity">Acceleration due to gravity at the standardisation laboratory's location:</label>
                     <input type="number" id="standardisation-lab-gravity"><span>m/s</span><span class="superscript">2</span>
                 </div>
 
-                <div>
+                <div class="user-input-div">
                     <button id="submit-recalibration">calculate</button>
                     <button id="recalibration-reset">reset</button>
                 </div>
 
             </section>
 
-            <section class="calculated-output">
+            <section id="recalibration-calculated-output">
 
-                <div>
+                <div class="calculated-output-div">
                     <p>Percentage difference:</p>
                     <span id="recalibration-percentage-difference"></span><span class="unit" id="recalibration-percentage-difference-units"> %</span>
                 </div>
 
-                <div>
+                <div class="calculated-output-div">
                     <p>New constant:</p>
                     <span id="new-constant"></span><span class="unit" id="recalibration-new-constant-units">mm<span class="superscript">2</span>/s<span class="superscript">-2</span></span>
                 </div>
