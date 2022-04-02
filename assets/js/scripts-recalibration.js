@@ -8,27 +8,44 @@ function recalibrationPercentageDifference() {
     let standardisationGravity = parseFloat(document.getElementById('standardisation-lab-gravity').value)
     let constant = parseFloat(document.getElementById('recalibration-constant').value)
 
-    console.log(`the gravity at the testing lab is ${testingGravity}`)
-    console.log(`the gravity at the standardisation lab is ${standardisationGravity}`)
-    console.log(`the constant of the viscometer is ${constant}`)
+    let viscometerConstant = document.getElementById('recalibration-constant')
+    let gravity1 = document.getElementById('testing-lab-gravity')
+    let gravity2 = document.getElementById('standardisation-lab-gravity')
 
-    let numerator = testingGravity - standardisationGravity
-    numerator = Math.abs(numerator)
+    if(viscometerConstant.value === '') {
+        alert('Please enter a viscometer constant')
+    }
+    else if(gravity1.value === '') {
+        alert('Please enter the gravity at the testing laboratory')
+    }
+    else if(gravity2.value === '') {
+        alert('Please enter the gravity at the standardisation laboratory')
+    }
+    else {
+        console.log(`the gravity at the testing lab is ${testingGravity}`)
+        console.log(`the gravity at the standardisation lab is ${standardisationGravity}`)
+        console.log(`the constant of the viscometer is ${constant}`)
 
-    console.log(numerator)
+        let numerator = testingGravity - standardisationGravity
+        numerator = Math.abs(numerator)
 
-    let denominator = (testingGravity / 2) + (standardisationGravity / 2)
+        console.log(numerator)
 
-    console.log(denominator)
+        let denominator = (testingGravity / 2) + (standardisationGravity / 2)
 
-    let percentageDifference = (numerator / denominator) * 100
-    let precisePercentageDifference = percentageDifference.toPrecision(4)
+        console.log(denominator)
 
-    document.getElementById('recalibration-percentage-difference').textContent = precisePercentageDifference
-    document.getElementById('recalibration-percentage-difference-units').style.display = 'inline'
-    console.log(`the percentage difference is ${precisePercentageDifference}`)
+        let percentageDifference = (numerator / denominator) * 100
+        let precisePercentageDifference = percentageDifference.toPrecision(4)
 
-    recalibrationFunction(percentageDifference, testingGravity, standardisationGravity, constant)
+        document.getElementById('recalibration-percentage-difference').textContent = precisePercentageDifference
+        document.getElementById('recalibration-percentage-difference-units').style.display = 'inline'
+        console.log(`the percentage difference is ${precisePercentageDifference}`)
+
+        recalibrationFunction(percentageDifference, testingGravity, standardisationGravity, constant)
+    }
+
+    
 }
 
 function recalibrationFunction(percentageDifference, testingGravity, standardisationGravity, constant) {

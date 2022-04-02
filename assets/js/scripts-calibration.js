@@ -10,11 +10,29 @@ function getValuesCalibration() {
     let calibrationRunTime2 = parseFloat(document.getElementById('calibration-run-time-2').value)
     let calibrationConstant = parseFloat(document.getElementById('calibration-constant').value)
 
-    console.log(`run time 1 is ${calibrationRunTime1}`)
-    console.log(`run time 2 is ${calibrationRunTime2}`)
-    console.log(`the viscometer constant is ${calibrationConstant}`)
+    let runTime1 = document.getElementById('calibration-run-time-1')
+    let runTime2 = document.getElementById('calibration-run-time-2')
+    let constant = document.getElementById('calibration-constant')
+    let calibrationFluidViscosity = document.getElementById('calibration-fluid-viscosity')
 
-    calculateCalibration(calibrationRunTime1, calibrationRunTime2, calibrationConstant)
+    if(runTime1.value === '' || runTime2.value === '') {
+        alert('Please enter two run-times')
+    }
+    else if (constant.value === '') {
+        alert('Please enter a constant')
+    }
+    else if (calibrationFluidViscosity.value === '') {
+        alert('Please enter a calibration fluid viscosity')
+    }
+    else {
+        console.log(`run time 1 is ${calibrationRunTime1}`)
+        console.log(`run time 2 is ${calibrationRunTime2}`)
+        console.log(`the viscometer constant is ${calibrationConstant}`)
+
+        calculateCalibration(calibrationRunTime1, calibrationRunTime2, calibrationConstant)
+    }
+
+    
 
 }
 

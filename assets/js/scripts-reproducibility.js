@@ -7,10 +7,15 @@ reproducibilityButton.addEventListener('click', averageViscosityReproducibility)
 function averageViscosityReproducibility() {
 
     let select = document.getElementById('sample-type-reproducibility')
+    let viscosity1 = document.getElementById('viscosity-reproducibility-1')
+    let viscosity2 = document.getElementById('viscosity-reproducibility-2')
 
     if(select.value === 'disabled') {
         alert('Please select a sample type from the drop-down menu')
     }
+    else if(viscosity1.value === '' || viscosity2.value === '') {
+        alert ('Please enter two viscosities')
+    } 
     else {
         let viscosity1 = parseFloat(document.getElementById('viscosity-reproducibility-1').value)
         let viscosity2 = parseFloat(document.getElementById('viscosity-reproducibility-2').value)

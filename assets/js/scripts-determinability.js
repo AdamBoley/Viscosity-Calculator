@@ -32,9 +32,19 @@ function getValuesUbbelohde() {
 
     let select = document.getElementById('sample-type') 
 
+    let runTime1 = document.getElementById('run-time-1')
+    let runTime2 = document.getElementById('run-time-2')
+    let constant = document.getElementById('constant-input')
+
     if(select.value === 'disabled') {
 
         alert('Please select a sample type from the drop-down menu')
+    }
+    else if(runTime1.value === '' || runTime2.value === '') {
+        alert('Please enter two run-times')
+    }
+    else if(constant.value === '') {
+        alert('Please enter a viscometer constant')
     }
     else {
 
@@ -121,9 +131,22 @@ function getValuesZeitfuchs() {
 
     let select = document.getElementById('sample-type')
 
+    let runTime1 = document.getElementById('run-time-1')
+    let runTime2 = document.getElementById('run-time-2')
+    let constant1 = document.getElementById('constant-1-input')
+    let constant2 = document.getElementById('constant-2-input')
+
+
     if(select.value === 'disabled') {
         alert('Please select a sample type from the drop down menu')
         return
+    }
+    else if(runTime1.value === '' || runTime2.value === '') {
+        alert('Please enter two run-times')
+        
+    }
+    else if (constant1.value === '' || constant2.value === '') {
+        alert('Please enter two viscometer constants')
     }
     else {
 

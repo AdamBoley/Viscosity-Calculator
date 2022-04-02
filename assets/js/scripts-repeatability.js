@@ -7,9 +7,14 @@ repeatabilityButton.addEventListener('click', averageViscosityRepeatability)
 function averageViscosityRepeatability() {
 
     let select = document.getElementById('sample-type-repeatability')
+    let viscosity1 = document.getElementById('viscosity-repeatability-1')
+    let viscosity2 = document.getElementById('viscosity-repeatability-2')
 
     if(select.value === 'disabled') {
         alert('Please select a sample type from the drop-down menu')
+    }
+    else if(viscosity1.value === '' || viscosity2.value === '') {
+        alert('Please enter two viscosity values')
     }
     else {
         let viscosity1 = parseFloat(document.getElementById('viscosity-repeatability-1').value)
@@ -23,8 +28,6 @@ function averageViscosityRepeatability() {
 
         document.getElementById('average-viscosity-repeatability').textContent = preciseAverageViscosity
         document.getElementById('repeatability-average-kv-units').style.display = 'inline'
-
-        //displayRepeatabilityEquation()
 
         repeatability(viscosity1, viscosity2, averageViscosity)
     }
