@@ -94,7 +94,7 @@ main {
     margin-top: 50px;
 }
 
-#submit-ubbelohde, #submit-zeitfuchs, #reset-determinability {
+#submit-ubbelohde, #submit-zeitfuchs, #reset-determinability, #repeatability-reset, #reproducibility-reset, #calibration-reset, #recalibration-reset {
     margin-left: 100px;
 }
 
@@ -151,6 +151,10 @@ main {
     width: 50%;
     height: 30vh;
     background-color: lightcoral;
+}
+
+#repeatability-reset, #reproducibility-reset, #calibration-reset, #recalibration-reset {
+    margin-left: 100px;
 }
 
 .footer {
