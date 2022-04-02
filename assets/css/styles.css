@@ -130,8 +130,13 @@ main {
     height: 60px;
 }
 
-.unit {
+.input-unit {
+    margin-left: 3px;
+}
+
+.output-unit {
     display: none;
+    margin-left: 3px;
 }
 
 .superscript {
