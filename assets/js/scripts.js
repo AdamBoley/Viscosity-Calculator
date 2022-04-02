@@ -948,19 +948,19 @@ function percentageDifference(calibrationFluidViscosity, averageViscosity, toler
     //percentage difference calculation not working 
     console.log(`the calibration fluid viscosity is ${calibrationFluidViscosity}`)
     console.log(`the average viscosity is ${averageViscosity}`)
-
+    
     let numerator = calibrationFluidViscosity - averageViscosity
     numerator = Math.abs(numerator)
 
     console.log(`the numerator is ${numerator}`)
 
-    let denominator = ((calibrationFluidViscosity + averageViscosity) / 2)
+    let denominator = ((calibrationFluidViscosity / 2) + (averageViscosity / 2))
+    
     denominator = Math.abs(denominator)
-
     console.log(`the denominator is ${denominator}`)
 
     let percentageDifference = (numerator / denominator) * 100
-
+    
     console.log(`the percentage difference is ${percentageDifference}`)
 
     document.getElementById('calibration-percentage-difference').textContent = percentageDifference
@@ -1030,7 +1030,7 @@ function recalibrationPercentageDifference() {
 
     console.log(numerator)
 
-    let denominator = ((testingGravity + standardisationGravity) / 2)
+    let denominator = (testingGravity / 2) + (standardisationGravity / 2)
 
     console.log(denominator)
 
