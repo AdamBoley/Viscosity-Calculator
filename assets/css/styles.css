@@ -49,18 +49,16 @@ main {
 #determinability-user-input {
     float: left;
     width: 50%;
-    height: 65vh;
+    height: 70vh;
     background-color: lightblue;
 }
 
 #determinability-calculated-output {
     float: right;
     width: 50%;
-    height: 65vh;
+    height: 70vh;
     background-color: lightcoral;
 }
-
-
 
 #determinability-select {
     margin-left: 100px;
@@ -102,8 +100,14 @@ main {
     margin-top: 10px;
 }
 
-#constant-div, #constant-1-div, #constant-2-div, #submit-ubbelohde, #submit-zeitfuchs, #reset-determinability {
+#constant-div, #constant-1-div, #constant-2-div, #submit-ubbelohde, #submit-zeitfuchs, #reset-determinability, #determinability-details {
     display: none;
+}
+
+#determinability-details-button {
+    display: none;
+    margin-left: 100px;
+
 }
 
 .user-input {

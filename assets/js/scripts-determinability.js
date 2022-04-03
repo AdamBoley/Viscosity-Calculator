@@ -92,6 +92,13 @@ function calculateUbbelohde(runTime1, runTime2, constant) {
     document.getElementById('determinability-kv-1-units').style.display = 'inline'
     document.getElementById('determinability-kv-2-units').style.display = 'inline'
 
+    let determinabilityDetails = document.getElementById('determinability-details')
+
+    determinabilityDetails.innerHTML = `
+    <p>kinematic viscosity 1 is ${kv1}</p>
+    <p>kinematic viscosity 2 is ${kv2}</p>
+    `
+
     console.log(`kinematic viscosity 1 is ${kv1}`);
     console.log(`kinematic viscosity 2 is ${kv2}`);
     console.log(`kinematic viscosity 1 to 4 significant figures is ${preciseKv1}`);
@@ -111,6 +118,11 @@ function calculateFinalUbbelohde(kv1, kv2) {
 
     document.getElementById('final-calculated-viscosity').innerText = preciseFinalViscosity;
     document.getElementById('determinability-final-kv-units').style.display = 'inline'
+
+    let determinabilityDetails = document.getElementById('determinability-details')
+    determinabilityDetails.innerHTML += `
+    <p>the final kinematic viscosity is ${finalViscosity}</p>
+    `
 
     determinability(finalViscosity, kv1, kv2)
 }
@@ -211,6 +223,13 @@ function calculateZeitfuchs(runTime1, runTime2, constant1, constant2) {
     document.getElementById('kinematic-viscosity-2').innerText = preciseKv2;
     document.getElementById('determinability-kv-1-units').style.display = 'inline'
     document.getElementById('determinability-kv-2-units').style.display = 'inline' 
+
+    let determinabilityDetails = document.getElementById('determinability-details')
+
+    determinabilityDetails.innerHTML = `
+    <p>Kinematic viscosity 1 is ${kv1}</p>
+    <p>Kinematic viscosity 2 is ${kv2}</p>
+    `
     
     console.log(`kinematic viscosity 1 is ${kv1}`);
     console.log(`kinematic viscosity 2 is ${kv2}`);
@@ -231,6 +250,11 @@ function calculateFinalZeitfuchs(kv1, kv2) {
 
     document.getElementById('final-calculated-viscosity').innerText = preciseFinalViscosity
     document.getElementById('determinability-final-kv-units').style.display = 'inline'
+
+    let determinabilityDetails = document.getElementById('determinability-details')
+    determinabilityDetails.innerHTML += `
+    <p>The final calculated viscosity is ${finalViscosity}</p>
+    `
 
     determinability(finalViscosity, kv1, kv2)
 
@@ -326,6 +350,9 @@ function determinability(finalViscosity, kv1, kv2) {
     document.getElementById('determinability-factor').innerText = preciseDeterminability
     document.getElementById('determinability-factor-units').style.display = 'inline'
 
+    let determinabilityDetails = document.getElementById('determinability-details')
+    determinabilityDetails.innerHTML += `<p>The determinability factor is ${determinability}</p>`
+
     upperLimit(determinability, finalViscosity, kv1, kv2)
     
 }
@@ -340,6 +367,9 @@ function upperLimit(determinability, finalViscosity, kv1, kv2) {
 
     console.log(`The upper allowed viscosity is ${finalViscosity} + ${determinability} = ${preciseUpperAllowedViscosity}`)
 
+    let determinabilityDetails = document.getElementById('determinability-details')
+    determinabilityDetails.innerHTML += `<p>The final calculated viscosity + the determinability factor is ${finalViscosity} + ${determinability} = ${upperAllowedViscosity}</p>`
+
     lowerLimit(determinability, finalViscosity, upperAllowedViscosity, kv1, kv2)
 }
 
@@ -353,16 +383,20 @@ function lowerLimit(determinability, finalViscosity, upperAllowedViscosity, kv1,
 
     console.log(`The lower allowed viscosity is ${finalViscosity} - ${determinability} = ${preciseLowerAllowedViscosity}`)
 
-    checker(upperAllowedViscosity, lowerAllowedViscosity, kv1, kv2)
+    let determinabilityDetails = document.getElementById('determinability-details')
+    determinabilityDetails.innerHTML += `<p>The final calculated viscosity - the determinability factor is ${finalViscosity} - ${determinability} = ${lowerAllowedViscosity}</p>`
+
+    checker(upperAllowedViscosity, lowerAllowedViscosity, kv1, kv2, finalViscosity, determinability)
 }
 
-function checker(upperAllowedViscosity, lowerAllowedViscosity, kv1, kv2) {
+function checker(upperAllowedViscosity, lowerAllowedViscosity, kv1, kv2, finalViscosity, determinability) {
 
     if(kv1 > lowerAllowedViscosity && kv1 < upperAllowedViscosity && kv2 > lowerAllowedViscosity && kv2 < upperAllowedViscosity) {
 
         document.getElementById('determinability-output').innerHTML = `
         <i class="fas fa-check icon"></i>
         <span>Your viscosities fall within the defined limits</span>
+        <p>Click the button below to see a detailed breakdown of the calculations</p>
         `
     }
 
@@ -370,10 +404,36 @@ function checker(upperAllowedViscosity, lowerAllowedViscosity, kv1, kv2) {
         document.getElementById('determinability-output').innerHTML = `
         <i class="fas fa-xmark icon"></i>
         <span>Your viscosities do not fall within the defined limits</span>
+        <p>Click the button below to see a detailed breakdown of the calculations</p>
         `
     }
 
+    let determinabilityDetailsButton = document.getElementById('determinability-details-button')
+    
+    determinabilityDetailsButton.style.display = 'block'
+
 }
+
+let determinabilityDetailsButton = document.getElementById('determinability-details-button')
+
+determinabilityDetailsButton.addEventListener('click', determinabilityDetails)
+
+function determinabilityDetails() {
+
+    let determinabilityUserInput = document.getElementById('determinability-user-input')
+
+    determinabilityUserInput.style.height = '90vh'
+
+    let determinabilityCalculatedOutput = document.getElementById('determinability-calculated-output')
+
+    determinabilityCalculatedOutput.style.height = '90vh'
+
+    let determinabilityDetailsDiv = document.getElementById('determinability-details')
+
+    determinabilityDetailsDiv.style.display = 'block'
+
+}
+
 
 let resetButton = document.getElementById('reset-determinability')
 
@@ -396,7 +456,7 @@ function reset() {
     document.getElementById('determinability-factor').textContent = ''
     document.getElementById('upper-limit').textContent = ''
     document.getElementById('lower-limit').textContent = ''
-    document.getElementById('output').textContent = ''
+    document.getElementById('determinability-output').textContent = ''
 
     document.getElementById('determinability-kv-1-units').style.display = 'none'
     document.getElementById('determinability-kv-2-units').style.display = 'none'
@@ -404,4 +464,10 @@ function reset() {
     document.getElementById('determinability-factor-units').style.display = 'none'
     document.getElementById('determinability-upper-units').style.display = 'none'
     document.getElementById('determinability-lower-units').style.display = 'none'
+
+    document.getElementById('determinability-details-button').style.display = 'none'
+    document.getElementById('determinability-details').style.display = 'none'
+    document.getElementById('determinability-user-input').style.height = '70vh'
+    document.getElementById('determinability-calculated-output').style.height = '70vh'
+
 }
