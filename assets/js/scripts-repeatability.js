@@ -26,6 +26,9 @@ function averageViscosityRepeatability() {
         console.log(`the average viscosity is ${averageViscosity}`)
         console.log(`the average viscosity to 4 significant figures is ${preciseAverageViscosity}`)
 
+        let repeatabilityDetails = document.getElementById('repeatability-details')
+        repeatabilityDetails.innerHTML = `<p>Average viscosity = ${averageViscosity}</p>`
+
         document.getElementById('average-viscosity-repeatability').textContent = preciseAverageViscosity
         document.getElementById('repeatability-average-kv-units').style.display = 'inline'
 
@@ -162,6 +165,9 @@ function repeatability(viscosity1, viscosity2, averageViscosity) {
     document.getElementById('repeatability-factor').innerText = preciseRepeatability
     document.getElementById('repeatability-factor-units').style.display = 'inline'
 
+    let repeatabilityDetails = document.getElementById('repeatability-details')
+    repeatabilityDetails.innerHTML += `<p>Repeatability factor = ${repeatability}</p>`
+
     repeatabilityUpperLimit(viscosity1, viscosity2, averageViscosity, repeatability)
 }
 
@@ -171,6 +177,9 @@ function repeatabilityUpperLimit(viscosity1, viscosity2, averageViscosity, repea
     let preciseRepeatabilityUpper = repeatabilityUpper.toPrecision(4)
     document.getElementById('repeatability-upper-limit').textContent = preciseRepeatabilityUpper
     document.getElementById('repeatability-upper-units').style.display = 'inline'
+
+    let repeatabilityDetails = document.getElementById('repeatability-details')
+    repeatabilityDetails.innerHTML += `<p>Upper limit = ${repeatabilityUpper}</p>`
 
     repeatabilityLowerLimit(viscosity1, viscosity2, averageViscosity, repeatability, repeatabilityUpper) 
 }
@@ -183,6 +192,9 @@ function repeatabilityLowerLimit(viscosity1, viscosity2, averageViscosity, repea
     document.getElementById('repeatability-lower-limit').textContent = preciseRepeatabilityLower
     document.getElementById('repeatability-lower-units').style.display = 'inline'
 
+    let repeatabilityDetails = document.getElementById('repeatability-details')
+    repeatabilityDetails.innerHTML += `<p>Lower limit = ${repeatabilityLower}</p>`
+
     repeatabilityChecker(viscosity1, viscosity2, repeatabilityUpper, repeatabilityLower)
 }
 
@@ -193,6 +205,7 @@ function repeatabilityChecker(viscosity1, viscosity2, repeatabilityUpper, repeat
         document.getElementById('repeatability-output').innerHTML = `
         <i class="fas fa-check icon"></i>
         <span>Your viscosities are repeatable</span>
+        <p>Click the button below to see a detailed breakdown of the calculations</p>
         `
     }
 
@@ -200,8 +213,33 @@ function repeatabilityChecker(viscosity1, viscosity2, repeatabilityUpper, repeat
         document.getElementById('repeatability-output').innerHTML = `
         <i class="fas fa-xmark icon"></i>
         <span>Your viscosities are not repeatable</span>
+        <p>Click the button below to see a detailed breakdown of the calculations</p>
         `
     }
+
+    let repeatabilityDetailsButton = document.getElementById('repeatability-details-button')
+    
+    repeatabilityDetailsButton.style.display = 'block'
+}
+
+let repeatabilityDetailsButton = document.getElementById('repeatability-details-button')
+
+repeatabilityDetailsButton.addEventListener('click', repeatabilityDetails)
+
+function repeatabilityDetails() {
+
+    let repeatabilityUserInput = document.getElementById('repeatability-user-input')
+
+    repeatabilityUserInput.style.height = '70vh'
+
+    let repeatabilityCalculatedOutput = document.getElementById('repeatability-calculated-output')
+
+    repeatabilityCalculatedOutput.style.height = '70vh'
+
+    let repeatabilityDetailsDiv = document.getElementById('repeatability-details')
+
+    repeatabilityDetailsDiv.style.display = 'block'
+
 }
 
 let repeatabilityResetButton = document.getElementById('repeatability-reset')
@@ -226,4 +264,10 @@ function repeatabilityReset() {
     document.getElementById('repeatability-factor-units').style.display = 'none'
     document.getElementById('repeatability-upper-units').style.display = 'none'
     document.getElementById('repeatability-lower-units').style.display = 'none'
+
+    document.getElementById('repeatability-details-button').style.display = 'none'
+    document.getElementById('repeatability-details').style.display = 'none'
+    document.getElementById('repeatability-user-input').style.height = '55vh'
+    document.getElementById('repeatability-calculated-output').style.height = '55vh'
+
 }

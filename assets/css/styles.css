@@ -100,20 +100,23 @@ main {
     margin-top: 10px;
 }
 
-#constant-div, #constant-1-div, #constant-2-div, #submit-ubbelohde, #submit-zeitfuchs, #reset-determinability, #determinability-details {
+#constant-div, #constant-1-div, #constant-2-div, #submit-ubbelohde, #submit-zeitfuchs, #reset-determinability {
     display: none;
 }
 
-#determinability-details-button {
+#determinability-details, #repeatability-details, #reproducibility-details, #calibration-details, #recalibration-details {
+    display: none;
+}
+
+#determinability-details-button, #repeatability-details-button, #reproducibility-details-button, #calibration-details-button, #recalibration-details-button {
     display: none;
     margin-left: 100px;
-
 }
 
-.user-input {
+#repeatability-user-input, #reproducibility-user-input, #calibration-user-input {
     float: left;
     width: 50%;
-    height: 45vh;
+    height: 55vh;
     background-color: lightblue;
 }
 
@@ -122,10 +125,10 @@ main {
     margin-top: 25px;
 }
 
-.calculated-output {
+#repeatability-calculated-output, #reproducibility-calculated-output, #calibration-calculated-output {
     float: right;
     width: 50%;
-    height: 45vh;
+    height: 55vh;
     background-color: lightcoral;
 }
 

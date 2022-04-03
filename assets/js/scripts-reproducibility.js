@@ -26,6 +26,9 @@ function averageViscosityReproducibility() {
         console.log(`the average viscosity is ${averageViscosity}`)
         console.log(`the average viscosity to 4 significant figures is ${preciseAverageViscosity}`)
 
+        let reproducibilityDetails = document.getElementById('reproducibility-details')
+        reproducibilityDetails.innerHTML = `<p>Average viscosity = ${averageViscosity}</p>`
+
         document.getElementById('average-viscosity-reproducibility').textContent = preciseAverageViscosity
         document.getElementById('reproducibility-average-kv-units').style.display = 'inline'
 
@@ -170,6 +173,9 @@ function reproducibility(viscosity1, viscosity2, averageViscosity) {
     document.getElementById('reproducibility-factor').innerText = preciseReproducibility
     document.getElementById('reproducibility-factor-units').style.display = 'inline'
 
+    let reproducibilityDetails = document.getElementById('reproducibility-details')
+    reproducibilityDetails.innerHTML += `<p>Reproducibility factor = ${reproducibility}</p>`
+
     reproducibilityUpperLimit(viscosity1, viscosity2, averageViscosity, reproducibility)
 }
 
@@ -179,6 +185,9 @@ function reproducibilityUpperLimit(viscosity1, viscosity2, averageViscosity, rep
     let preciseReproducibilityUpper = reproducibilityUpper.toPrecision(4)
     document.getElementById('reproducibility-upper-limit').textContent = preciseReproducibilityUpper
     document.getElementById('reproducibility-upper-units').style.display = 'inline'
+
+    let reproducibilityDetails = document.getElementById('reproducibility-details')
+    reproducibilityDetails.innerHTML += `<p>Upper limit = ${reproducibilityUpper}</p>`
 
     reproducibilityLowerLimit(viscosity1, viscosity2, averageViscosity, reproducibility, reproducibilityUpper) 
 }
@@ -191,6 +200,9 @@ function reproducibilityLowerLimit(viscosity1, viscosity2, averageViscosity, rep
     document.getElementById('reproducibility-lower-limit').textContent = preciseReproducibilityLower
     document.getElementById('reproducibility-lower-units').style.display = 'inline'
 
+    let reproducibilityDetails = document.getElementById('reproducibility-details')
+    reproducibilityDetails.innerHTML += `<p>Lower limit = ${reproducibilityLower}</p>`
+
     reproducibilityChecker(viscosity1, viscosity2, reproducibilityUpper, reproducibilityLower)
 }
 
@@ -201,6 +213,7 @@ function reproducibilityChecker(viscosity1, viscosity2, reproducibilityUpper, re
         document.getElementById('reproducibility-output').innerHTML = `
         <i class="fas fa-check icon"></i>
         <span>Your viscosities are reproducible</span>
+        <p>Click the button below to see a detailed breakdown of the calculations</p>
         `
     }
 
@@ -208,8 +221,33 @@ function reproducibilityChecker(viscosity1, viscosity2, reproducibilityUpper, re
         document.getElementById('reproducibility-output').innerHTML = `
         <i class="fas fa-xmark icon"></i>
         <span>Your viscosities are not reproducible</span>
+        <p>Click the button below to see a detailed breakdown of the calculations</p>
         `
     }
+
+    let reproducibilityDetailsButton = document.getElementById('reproducibility-details-button')
+    
+    reproducibilityDetailsButton.style.display = 'block'
+}
+
+let reproducibilityDetailsButton = document.getElementById('reproducibility-details-button')
+
+reproducibilityDetailsButton.addEventListener('click', reproducibilityDetails)
+
+function reproducibilityDetails() {
+
+    let reproducibilityUserInput = document.getElementById('reproducibility-user-input')
+
+    reproducibilityUserInput.style.height = '70vh'
+
+    let reproducibilityCalculatedOutput = document.getElementById('reproducibility-calculated-output')
+
+    reproducibilityCalculatedOutput.style.height = '70vh'
+
+    let reproducibilityDetailsDiv = document.getElementById('reproducibility-details')
+
+    reproducibilityDetailsDiv.style.display = 'block'
+
 }
 
 let reproducibilityResetButton = document.getElementById('reproducibility-reset')
@@ -232,4 +270,9 @@ function reproducibilityReset() {
     document.getElementById('reproducibility-factor-units').style.display = 'none'
     document.getElementById('reproducibility-upper-units').style.display = 'none'
     document.getElementById('reproducibility-lower-units').style.display = 'none'
+
+    document.getElementById('reproducibility-details-button').style.display = 'none'
+    document.getElementById('reproducibility-details').style.display = 'none'
+    document.getElementById('reproducibility-user-input').style.height = '55vh'
+    document.getElementById('reproducibility-calculated-output').style.height = '55vh'
 }
