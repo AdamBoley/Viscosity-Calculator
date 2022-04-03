@@ -179,6 +179,26 @@ main {
     background-color: rgba(0, 0, 0, 0.5);
 }
 
+#determinability-calculations {
+    margin-top: 100px;
+}
+
+#repeatability-calculations {
+    margin-top: 81px;
+}
+
+#reproducibility-calculations {
+    margin-top: 62px;
+}
+
+#viscometer-calibration {
+    margin-top: 43px;
+}
+
+#viscometer-constant-recalibration {
+    margin-top: 24px;
+}
+
 /*discussion page style rules*/
 .discussion-body p {
     text-align: center;
