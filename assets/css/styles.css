@@ -151,6 +151,10 @@ main {
     font-size: x-small;
 }
 
+#calibration-output-div {
+    height: 170px;
+}
+
 #recalibration-user-input {
     float: left;
     width: 50%;

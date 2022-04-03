@@ -448,21 +448,21 @@
                 <div class="user-input-div">
 
                     <label for="calibration-run-time-1">Run Time 1:</label>
-                    <input type="number" id="calibration-run-time-1"><span class="input-unit" id="calibration-run-time-1-units">seconds</span>
+                    <input type="number" id="calibration-run-time-1" min="200" max="900"><span class="input-unit" id="calibration-run-time-1-units">seconds</span>
 
                 </div>
 
                 <div class="user-input-div">
 
                     <label for="calibration-run-time-2">Run Time 2:</label>
-                    <input type="number" id="calibration-run-time-2"><span class="input-unit" id="calibration-run-time-2-units">seconds</span>
+                    <input type="number" id="calibration-run-time-2" min="200" max="900"><span class="input-unit" id="calibration-run-time-2-units">seconds</span>
 
                 </div>
 
                 <div class="user-input-div">
 
                     <label for="calibration-constant">Constant:</label>
-                    <input type="number" id="calibration-constant"><span class="input-unit" id="calibration-constant-units">mm<span class="superscript">2</span>/s<span class="superscript">-2</span></span>
+                    <input type="number" id="calibration-constant" min="0" max="100"><span class="input-unit" id="calibration-constant-units">mm<span class="superscript">2</span>/s<span class="superscript">-2</span></span>
 
                 </div>
 
@@ -512,12 +512,16 @@
 
                 </div>
 
-                <div class="calculated-output-div">
+                <div class="calculated-output-div" id="calibration-output-div">
                     <p>Percentage difference between observed viscosity and calibration fluid viscosity:</p>
                     <span id="calibration-percentage-difference"></span><span class="output-unit" id="calibration-percentage-difference-units">%</span>
                     <p id="calibration-output"></p>
 
                 </div>
+
+                <button id="calibration-details-button">Calculation details</button>
+
+                <div class="calculated-output-div" id="calibration-details"></div>
 
             </section>
 
