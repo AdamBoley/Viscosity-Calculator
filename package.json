@@ -1,0 +1,23 @@
+{
+  "name": "viscosity-calculator",
+  "version": "1.0.0",
+  "description": "Something to consider or explain - How did I make the decision whether to use the raw values or the toPrecision values in the calculations? On one hand - the raw values are more accurate and not subject to incremental rounding errors, so would match what GLIMS calculates On the other hand, the entire point of the project is to make the calculations visible to the user so that they can trust it That means using the precise outputs so that they match what the user would generate on a calculator",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AdamBoley/Viscosity-Calculator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AdamBoley/Viscosity-Calculator/issues"
+  },
+  "homepage": "https://github.com/AdamBoley/Viscosity-Calculator#readme",
+  "devDependencies": {
+    "jest": "^27.5.1"
+  }
+}
