@@ -5,9 +5,8 @@ body {
     font-family: 'Work Sans', sans-serif;
 }
 
-.title, h2, h3 {
+.heading {
     text-align: center;
-
 }
 
 label {
@@ -200,6 +199,31 @@ main {
 }
 
 /*discussion page style rules*/
-.discussion-body p {
-    text-align: center;
+
+#discussion-main {
+    width: 80%;
+    margin: 0 auto;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: black;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+nav ul li {
+    margin: 3px 0;
+    
+}
+
+#discussion-main article p a {
+    text-decoration: none;
+    color: black;
+}
+
+#discussion-main article p a:hover {
+    text-decoration: underline;
 }

@@ -5,19 +5,54 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/styles.css">
-    <title>Viscosity Calculator</title>
+    <title>Viscosity Calculator guidance</title>
 </head>
-<body>
+<body id="discussion-body">
     
-    <header class="title">
+    <header class="heading">
         <h1>Viscosity Calculator</h1>
-        <h2>General guidance and notes</h2>
+        <p>General guidance and notes</p>
     </header>
 
-    <main class="discussion-body">
-        <article>
+    
+
+    <main id="discussion-main">
+
+        <nav id="internal-navigation">
+            <ul>
+                <li><a href="#use">Using the Viscosity Calculator</a></li>
+                
+                <li><a href="#calculation">Selecting the correct calculation</a>
+                    <ul>
+                        <li><a href="#terms">Terminology</a></li>
+                        <li><a href="#determinability">Determinability</a></li>
+                        <li><a href="#repeatability">Repeatability</a></li>
+                        <li><a href="#reproducibility">Reproducibility</a></li>
+                        <li><a href="#calibration">Calibration</a></li>
+                        <li><a href="#recalibration">Recalibration</a></li>
+                    </ul>
+                </li>
+                <li><a href="#sample">Selecting the correct sample type</a>
+                    <ul>
+                        <li><a href="#base-oils">Base Oils</a></li>
+                        <li><a href="#formulated-oils">Formulated Oils</a></li>
+                        <li><a href="#additives">Additives</a></li>
+                        <li><a href="#crude-oils">Crude oils and residues</a></li>
+                        <li><a href="#residual-fuel-oils">Residual Fuel Oils</a></li>
+                        <li><a href="#petroleum-wax">Petroleum waxes</a></li>
+                        <li><a href="#gas-oils">Gas Oils</a></li>
+                        <li><a href="#jet-fuels">Jet Fuels</a></li>
+                    </ul>
+                </li>
+            </ul>
+    
+        </nav>
+
+        <article id="use">
+        
             <h2>Using the Viscosity Calculator</h2>
-            <p>The Viscosity Calculator automates the calculations specified in the standard test methods for manual determination of viscosity - ASTM D445 and IP71</p>
+            <p>The Viscosity Calculator automates the calculations specified in ASTM D445, the standard test method for the determination of kinematic viscosity</p>
+            <p>The latest revision of D445 is D445-21. <a href="/assets/files/D445.pdf" download="D445-21">Click here</a> to download a copy in PDF form, for a more in-depth discussion of viscosity measurements</p>
             <p>Using this tool is straightforward. Follow the steps below:</p>
             <ol>
                 <li>Firstly, select the calculation you want to perform from the drop-down menu. The tool defaults to the calculation of determinability.</li>
@@ -30,46 +65,70 @@
                 </li>
                 <li>To use the tool again, click the reset button to empty the input and output fields.</li>
             </ol>
+        </article>
 
+        <article id="calculation">
             <h2>Selecting the correct calculation option</h2>
-            <p>The tool contains 5 calculations - determinability, repeatability, reproducibility, viscometer calibration and the recalibration of a viscometer's constant</p>
-            <p>Selecting the correct option is essential. See below for a short discussion on what each option does, so you know which one to select.</p>
+            <p>The tool contains 5 calculations:</p>
+            <ul>
+                <li>Determinability</li>
+                <li>Repeatability</li>
+                <li>Reproducibility</li>
+                <li>Viscometer calibration</li>
+                <li>Viscometer constant recalibration</li>
+            </ul>
+            <p>Selecting the correct option is essential. See below for a short discussion on when the use each calculation:</p>
+
+                <h3 id="terms">A note on terminology</h3>
+                <p>
+                    We scientists are prone to using obscure terminology, so this section serves as a guide to what we're talking about when we use certain terms
+                </p>
+                <p>
+                    <em>Run-time</em>, <em>drop-time</em> or <em>determination</em>: 
+                    a time measured in seconds between when the fluid front in a viscometer passes the first timing mark to when it passes the second timing mark
+                </p>
+                <p>
+                    <em>Determined kinematic viscosity</em>:
+                    a viscosity value that is calculated by multiplying a single run-time with the constant of the viscometer used to obtain the run-time
+                </p>
+                <p>
+                    <em>Final calculated kinematic viscosity</em> or <em>final average viscosity</em>:
+                    a viscosity value obtained by averaging two determined kinematic viscosities that are sufficiently close enough to valid, as defined by the determinability calculation
+                </p>
             
-            <h3>Determinability</h3>
+            <h3 id="determinability">Determinability</h3>
             <p>
-                Determinability is the calculation performed on two calculated kinematic viscosities. 
-                The determinability calculation checks whether the two viscosities are close enough that they are valid and can be used to calculate the final average viscosity. 
+                Determinability is the calculation performed on two determined kinematic viscosities. 
+                The determinability calculation checks whether the two viscosities are close enough that they are valid and can be used to calculate the final calculated kinematic viscosity. 
             </p>
             <p>
                 The Viscosity Calculator only requires the two run-times you have made, and the constant of the viscometer used. 
                 If you used two Zeitfuchs cross-arm viscometers, enter both constants, matching each constant to the corresponding run-time. 
             </p>
 
-            <h3>Repeatability</h3>
+            <h3 id="repeatability">Repeatability</h3>
             <p>
-                Repeatability is the calculation performed on two final average viscosities that have been calculated for the same sample in the same laboratory by the same operator.
+                Repeatability is the calculation performed on two final calculated kinematic viscosities that have been calculated for the same sample in the same laboratory by the same operator.
                 The repeatability calculation is typically done when a client wishes the laboratory to perform a second analysis on a sample to check that the first analysis was accurate.
-                The repeatability calculation checks that the two final average viscosities are close enough that the second result confirms the accuracy of the first result.   
+                The repeatability calculation checks that the two final calculated kinematic viscosities are close enough that the second result confirms the accuracy of the first result.   
             </p>
             
-            
-            <h3>Reproducibility</h3>
+            <h3 id="reproducibility">Reproducibility</h3>
             <p>
-                Reproducibility is similar to repeatability, except that the reproducibility calculation is performed on two final average viscosities that have each been obtained from 
+                Reproducibility is similar to repeatability, except that the reproducibility calculation is performed on two final calculated kinematic viscosities that have each been obtained from 
                 a different laboratory. Reproducibility is typically used when a client sends the same sample to two or more laboratories and wishes to compare their results, 
                 or when a standards organisation such as the International Standards Organisation (ISO) or ASTM 
                 conducts a 'round robin' study to ensure that laboratories are operating to the same standards. 
             </p>
             
-            
-            <h3>Calibration</h3>
+            <h3 id="calibration">Calibration</h3>
             <p>
                 The calibration calculation is used when a laboratory wishes to check that a viscometer can still be relied on to give the same results year after year.
-                Calibrations are also conducted when a viscometer has been repaired or otherwise returned to service, to check that it will stilk give accurate results. 
+                Calibrations are also conducted when a viscometer has been repaired or otherwise returned to service, to check that it will still give accurate results. 
             </p>
             <p>
                 Calibrations are conducted using calibration fluids, which are specialised petroleum products whose viscosity is exactly known at a range of temperatures. 
-                If the final average viscosity obtained from a calibration test matches the known viscosity of the calibration fluid at the temperature at which the test was 
+                If the final calculated kinematic viscosity obtained from a calibration test matches the known viscosity of the calibration fluid at the temperature at which the test was 
                 conducted, to within a certain percentage difference, then the viscometer has been successfully calibrated, and may then be confidently used by the laboratory to 
                 test samples.  
             </p>
@@ -78,7 +137,7 @@
                 calibration fluid at the temperature at which the calibration test was conducted. 
             </p>
             
-            <h3>Recalibration</h3>
+            <h3 id="recalibration">Recalibration</h3>
             <p>
                 It may suprise you to learn that Earth's gravity is not constant across its surface. Gravity varies from 9.78 m/s<span class="superscript">2</span> to 9.83 m/s<span class="superscript">2</span> 
             </p>
@@ -95,9 +154,10 @@
                 and, if it is greater than 0.1%, will produce a new constant for the viscometer. If the percentage difference is less than 0.1%, the tool will inform you of this and stop, 
                 since D445 specifies that a percentage difference of less than 0.1% means that recalibration is unnecessary.  
             </p>
+            <p><a href="#internal-navigation">Back to top</a></p>
         </article>
 
-        <article>
+        <article id="sample">
             <h2>Selecting the correct sample type</h2>
 
             <p>
@@ -108,7 +168,7 @@
                 Fortunately, the sample types are distinct, and can be easily told apart. See below for a discussion on the typical characteristics of each sample type. 
             </p>
 
-            <h3>Base Oils</h3>
+            <h3 id="base-oils">Base Oils</h3>
             <p>
                 Base oils, also called base stocks, are the majority component of lubricating oils, usually making up between 90% and 95% by volume.
             </p>
@@ -119,7 +179,7 @@
                 Base oils tend to have a fairly low viscosity, usually around 20cSt at 40C and 4cSt at 100C. 
             </p>
 
-            <h3>Formulated Oils</h3>
+            <h3 id="formulated-oils">Formulated Oils</h3>
             <p>
                 Formulated Oils, also known as lubricating oils, are produced by combining base oils with various additives (see below). Formulated oils are most often used as 
                 engine oils and gear oils in combustion engine vehicles. 
@@ -142,7 +202,7 @@
                 Used motor oils may reach as high as 60cSt at 40C and 15cSt at 100C. 
             </p>
             
-            <h3>Additives</h3>
+            <h3 id="additives">Additives</h3>
             <p>
                 Additives are the component of formulated oils that gives them the properties that make them useful for automotive applications. 
                 Additives allow formulated oils to keep engines clean, respond well to high temperatures and can help protect the engine from the acidic byproducts of combustion. 
@@ -158,7 +218,7 @@
                 In these cases, the Viscosity Calculator will likely always give failure results.
             </p>
 
-            <h3>Crude Oils and residues</h3>
+            <h3 id="crude-oils">Crude Oils and residues</h3>
             <p>
                 Crude Oils are the unrefined product of drilling operations. Samples of crude oils received for laboratory analysis are identical to the material that is extracted
                 from oil fields. 
@@ -186,7 +246,7 @@
             </p>
 
             
-            <h3>Residual fuel oils</h3>
+            <h3 id="residual-fuel-oils">Residual fuel oils</h3>
             <p>
                 Residual Fuel Oils are essentially crude oils with the lighter fractions removed. As a result, they tend to be very dark or black in colour. 
             </p>
@@ -196,7 +256,15 @@
                 is often little difficulty in acquiring valid results.  
             </p>
 
-            <h3>Gas Oils</h3>
+            <h3 id="petroleum-wax">Petroleum Wax</h3>
+            <p>
+                Petroleum waxes are solid at room temperature, but are nonethless soft and malleable. They usually have a white or bluish-white colour.
+            </p>
+            <p>
+                Once melted, petroleum waxes tend to have a low viscosity, typically between 3cSt and 16cSt at 100C. 
+            </p>
+
+            <h3 id="gas-oils">Gas Oils</h3>
             <p>
                 Gas oils tend to have a fairly low viscosity, usually having a viscosity of around 10cSt at 40C. 
             </p>
@@ -209,11 +277,11 @@
                 Kerosenes, diesels and biodisels have a very low viscosity, usually having a viscosity of around 10cSt at 40C. These samples are clear and colourless. 
             </p>
 
-            <h3>Jet Fuels</h3>
+            <h3 id="jet-fuels">Jet Fuels</h3>
             <p>
                 Jet Fuels tend to have a very low viscosity, usually having a viscosity of around 5cSt at -20C. They are clear and colourless. 
             </p>
-
+            <p><a href="#internal-navigation">Back to top</a></p>
 
         </article>
     </main>
