@@ -27,10 +27,11 @@ function averageViscosityReproducibility() {
         console.log(`the average viscosity to 4 significant figures is ${preciseAverageViscosity}`)
 
         let reproducibilityDetails = document.getElementById('reproducibility-details')
-        reproducibilityDetails.innerHTML = `<p>Average viscosity = ${averageViscosity}</p>`
+        reproducibilityDetails.innerHTML = `<p>Average viscosity = ${averageViscosity} cSt</p>`
 
-        document.getElementById('average-viscosity-reproducibility').textContent = preciseAverageViscosity
-        document.getElementById('reproducibility-average-kv-units').style.display = 'inline'
+        document.getElementById('reproducibility-average-viscosity-label').style.display = 'block'
+        document.getElementById('reproducibility-average-viscosity').textContent = preciseAverageViscosity
+        document.getElementById('reproducibility-average-viscosity-units').style.display = 'inline'
 
         reproducibility(viscosity1, viscosity2, averageViscosity)
     }
@@ -168,13 +169,15 @@ function reproducibility(viscosity1, viscosity2, averageViscosity) {
             break
     }
 
+    document.getElementById('reproducibility-equation-label').style.display = 'block'
     document.getElementById('reproducibility-equation').innerText = message
     console.log(`the reproducibility factor to 4 significant figures is ${preciseReproducibility}`)
+    document.getElementById('reproducibility-factor-label').style.display = 'block'
     document.getElementById('reproducibility-factor').innerText = preciseReproducibility
     document.getElementById('reproducibility-factor-units').style.display = 'inline'
 
     let reproducibilityDetails = document.getElementById('reproducibility-details')
-    reproducibilityDetails.innerHTML += `<p>Reproducibility factor = ${reproducibility}</p>`
+    reproducibilityDetails.innerHTML += `<p>Reproducibility factor = ${reproducibility} cSt</p>`
 
     reproducibilityUpperLimit(viscosity1, viscosity2, averageViscosity, reproducibility)
 }
@@ -183,11 +186,12 @@ function reproducibilityUpperLimit(viscosity1, viscosity2, averageViscosity, rep
 
     let reproducibilityUpper = averageViscosity + reproducibility
     let preciseReproducibilityUpper = reproducibilityUpper.toPrecision(4)
+    document.getElementById('reproducibility-upper-limit-label').style.display = 'block'
     document.getElementById('reproducibility-upper-limit').textContent = preciseReproducibilityUpper
-    document.getElementById('reproducibility-upper-units').style.display = 'inline'
+    document.getElementById('reproducibility-upper-limit-units').style.display = 'inline'
 
     let reproducibilityDetails = document.getElementById('reproducibility-details')
-    reproducibilityDetails.innerHTML += `<p>Upper limit = ${reproducibilityUpper}</p>`
+    reproducibilityDetails.innerHTML += `<p>Upper limit = ${reproducibilityUpper} cSt</p>`
 
     reproducibilityLowerLimit(viscosity1, viscosity2, averageViscosity, reproducibility, reproducibilityUpper) 
 }
@@ -196,12 +200,12 @@ function reproducibilityLowerLimit(viscosity1, viscosity2, averageViscosity, rep
 
     let reproducibilityLower = averageViscosity - reproducibility
     let preciseReproducibilityLower = reproducibilityLower.toPrecision(4)
-
+    document.getElementById('reproducibility-lower-limit-label').style.display = 'block'
     document.getElementById('reproducibility-lower-limit').textContent = preciseReproducibilityLower
-    document.getElementById('reproducibility-lower-units').style.display = 'inline'
+    document.getElementById('reproducibility-lower-limit-units').style.display = 'inline'
 
     let reproducibilityDetails = document.getElementById('reproducibility-details')
-    reproducibilityDetails.innerHTML += `<p>Lower limit = ${reproducibilityLower}</p>`
+    reproducibilityDetails.innerHTML += `<p>Lower limit = ${reproducibilityLower} cSt</p>`
 
     reproducibilityChecker(viscosity1, viscosity2, reproducibilityUpper, reproducibilityLower)
 }
@@ -258,7 +262,7 @@ function reproducibilityReset() {
 
     document.getElementById('viscosity-reproducibility-1').value = ''
     document.getElementById('viscosity-reproducibility-2').value = ''
-    document.getElementById('average-viscosity-reproducibility').textContent = ''
+    document.getElementById('reproducibility-average-viscosity').textContent = ''
     document.getElementById('reproducibility-equation').textContent = ''
     document.getElementById('reproducibility-factor').textContent = ''
     document.getElementById('reproducibility-upper-limit').textContent = ''
@@ -266,13 +270,19 @@ function reproducibilityReset() {
     document.getElementById('reproducibility-output').textContent = ''
     document.getElementById('viscosity-reproducibility-1').focus()
 
-    document.getElementById('reproducibility-average-kv-units').style.display = 'none'
+    document.getElementById('reproducibility-average-viscosity-units').style.display = 'none'
     document.getElementById('reproducibility-factor-units').style.display = 'none'
-    document.getElementById('reproducibility-upper-units').style.display = 'none'
-    document.getElementById('reproducibility-lower-units').style.display = 'none'
+    document.getElementById('reproducibility-upper-limit-units').style.display = 'none'
+    document.getElementById('reproducibility-lower-limit-units').style.display = 'none'
 
     document.getElementById('reproducibility-details-button').style.display = 'none'
     document.getElementById('reproducibility-details').style.display = 'none'
     document.getElementById('reproducibility-user-input').style.height = '55vh'
     document.getElementById('reproducibility-calculated-output').style.height = '55vh'
+
+    document.getElementById('reproducibility-average-viscosity-label').style.display = 'none'
+    document.getElementById('reproducibility-equation-label').style.display = 'none'
+    document.getElementById('reproducibility-factor-label').style.display = 'none'
+    document.getElementById('reproducibility-upper-limit-label').style.display = 'none'
+    document.getElementById('reproducibility-lower-limit-label').style.display = 'none'
 }

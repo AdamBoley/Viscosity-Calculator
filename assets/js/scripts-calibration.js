@@ -53,8 +53,10 @@ function calculateCalibration(calibrationRunTime1, calibrationRunTime2, calibrat
     <p>Average run-time = ${averageRunTime}s</p>
     <p>Average viscosity = ${averageViscosity} cSt</p>`
 
+    document.getElementById('calibration-average-run-time-label').style.display = 'block'
     document.getElementById('calibration-average-run-time').textContent = averageRunTime
     document.getElementById('calibration-average-run-time-units').style.display = 'inline'
+    document.getElementById('calibration-average-viscosity-label').style.display = 'block'
     document.getElementById('calibration-average-viscosity').textContent = averageViscosity
     document.getElementById('calibration-average-viscosity-units').style.display = 'inline'
 
@@ -104,7 +106,9 @@ function tolerance(averageViscosity) {
             break
     }
 
+    document.getElementById('calibration-viscosity-range-label').style.display = 'block'
     document.getElementById('calibration-viscosity-range-units').style.display = 'inline'
+    document.getElementById('calibration-tolerance-band-label').style.display = 'block'
     
     percentageDifference(calibrationFluidViscosity, averageViscosity, toleranceBand)
 }
@@ -129,6 +133,7 @@ function percentageDifference(calibrationFluidViscosity, averageViscosity, toler
     
     console.log(`the percentage difference is ${percentageDifference}`)
 
+    document.getElementById('calibration-percentage-difference-label').style.display = 'block'
     document.getElementById('calibration-percentage-difference').textContent = precisePercentageDifference
     document.getElementById('calibration-percentage-difference-units').style.display = 'inline'
 
@@ -207,4 +212,10 @@ function calibrationReset() {
     document.getElementById('calibration-details').style.display = 'none'
     document.getElementById('calibration-user-input').style.height = '55vh'
     document.getElementById('calibration-calculated-output').style.height = '55vh'
+
+    document.getElementById('calibration-average-run-time-label').style.display = 'none'
+    document.getElementById('calibration-average-viscosity-label').style.display = 'none'
+    document.getElementById('calibration-viscosity-range-label').style.display = 'none'
+    document.getElementById('calibration-tolerance-band-label').style.display = 'none'
+    document.getElementById('calibration-percentage-difference-label').style.display = 'none'
 }

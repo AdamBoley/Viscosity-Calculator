@@ -87,16 +87,18 @@ function calculateUbbelohde(runTime1, runTime2, constant) {
     let preciseKv1 = kv1.toPrecision(4)
     let preciseKv2 = kv2.toPrecision(4)
 
-    document.getElementById('kinematic-viscosity-1').innerText = preciseKv1;
-    document.getElementById('kinematic-viscosity-2').innerText = preciseKv2;
+    document.getElementById('determinability-kv-1-label').style.display = 'block'
+    document.getElementById('determinability-kv-2-label').style.display = 'block'
+    document.getElementById('determinability-kv-1').innerText = preciseKv1;
+    document.getElementById('determinability-kv-2').innerText = preciseKv2;
     document.getElementById('determinability-kv-1-units').style.display = 'inline'
     document.getElementById('determinability-kv-2-units').style.display = 'inline'
 
     let determinabilityDetails = document.getElementById('determinability-details')
 
     determinabilityDetails.innerHTML = `
-    <p>kinematic viscosity 1 is ${kv1}</p>
-    <p>kinematic viscosity 2 is ${kv2}</p>
+    <p>Kinematic viscosity 1 = ${kv1} cSt</p>
+    <p>Kinematic viscosity 2 = ${kv2} cSt</p>
     `
 
     console.log(`kinematic viscosity 1 is ${kv1}`);
@@ -116,12 +118,13 @@ function calculateFinalUbbelohde(kv1, kv2) {
     console.log(`the final kinematic viscosity is ${finalViscosity}`)
     console.log(`the final kinematic viscosity to 4 significant figures is ${preciseFinalViscosity}`)
 
-    document.getElementById('final-calculated-viscosity').innerText = preciseFinalViscosity;
+    document.getElementById('determinability-final-kv-label').style.display = 'block'
+    document.getElementById('determinability-final-kv').innerText = preciseFinalViscosity;
     document.getElementById('determinability-final-kv-units').style.display = 'inline'
 
     let determinabilityDetails = document.getElementById('determinability-details')
     determinabilityDetails.innerHTML += `
-    <p>the final kinematic viscosity is ${finalViscosity}</p>
+    <p>the final calculated viscosity is ${finalViscosity} cSt</p>
     `
 
     determinability(finalViscosity, kv1, kv2)
@@ -219,16 +222,18 @@ function calculateZeitfuchs(runTime1, runTime2, constant1, constant2) {
     let preciseKv1 = kv1.toPrecision(4)
     let preciseKv2 = kv2.toPrecision(4)
 
-    document.getElementById('kinematic-viscosity-1').innerText = preciseKv1;
-    document.getElementById('kinematic-viscosity-2').innerText = preciseKv2;
+    document.getElementById('determinability-kv-1-label').style.display = 'block'
+    document.getElementById('determinability-kv-2-label').style.display = 'block'
+    document.getElementById('determinability-kv-1').innerText = preciseKv1;
+    document.getElementById('determinability-kv-2').innerText = preciseKv2;
     document.getElementById('determinability-kv-1-units').style.display = 'inline'
     document.getElementById('determinability-kv-2-units').style.display = 'inline' 
 
     let determinabilityDetails = document.getElementById('determinability-details')
 
     determinabilityDetails.innerHTML = `
-    <p>Kinematic viscosity 1 is ${kv1}</p>
-    <p>Kinematic viscosity 2 is ${kv2}</p>
+    <p>Kinematic viscosity 1 is ${kv1} cSt</p>
+    <p>Kinematic viscosity 2 is ${kv2} cSt</p>
     `
     
     console.log(`kinematic viscosity 1 is ${kv1}`);
@@ -248,12 +253,13 @@ function calculateFinalZeitfuchs(kv1, kv2) {
     console.log(`the final kinematic viscosity is ${finalViscosity}`)
     console.log(`the final kinematic viscosity to 4 significant figures is ${preciseFinalViscosity}`)
 
-    document.getElementById('final-calculated-viscosity').innerText = preciseFinalViscosity
+    document.getElementById('determinability-final-kv-label').style.display = 'block'
+    document.getElementById('determinability-final-kv').innerText = preciseFinalViscosity
     document.getElementById('determinability-final-kv-units').style.display = 'inline'
 
     let determinabilityDetails = document.getElementById('determinability-details')
     determinabilityDetails.innerHTML += `
-    <p>The final calculated viscosity is ${finalViscosity}</p>
+    <p>The final calculated viscosity is ${finalViscosity} cSt</p>
     `
 
     determinability(finalViscosity, kv1, kv2)
@@ -345,13 +351,15 @@ function determinability(finalViscosity, kv1, kv2) {
 
     }
 
+    document.getElementById('determinability-equation-label').style.display = 'block'
     document.getElementById('determinability-equation').innerText = message
     console.log(`the determinability factor to 4 significant figures is ${preciseDeterminability}`)
+    document.getElementById('determinability-factor-label').style.display = 'block'
     document.getElementById('determinability-factor').innerText = preciseDeterminability
     document.getElementById('determinability-factor-units').style.display = 'inline'
 
     let determinabilityDetails = document.getElementById('determinability-details')
-    determinabilityDetails.innerHTML += `<p>The determinability factor is ${determinability}</p>`
+    determinabilityDetails.innerHTML += `<p>The determinability factor is ${determinability} cSt</p>`
 
     upperLimit(determinability, finalViscosity, kv1, kv2)
     
@@ -362,13 +370,14 @@ function upperLimit(determinability, finalViscosity, kv1, kv2) {
     let upperAllowedViscosity = finalViscosity + determinability
     let preciseUpperAllowedViscosity = upperAllowedViscosity.toPrecision(4)
 
-    document.getElementById('upper-limit').innerText = preciseUpperAllowedViscosity
-    document.getElementById('determinability-upper-units').style.display = 'inline'
+    document.getElementById('determinability-upper-limit-label').style.display = 'block'
+    document.getElementById('determinability-upper-limit').innerText = preciseUpperAllowedViscosity
+    document.getElementById('determinability-upper-limit-units').style.display = 'inline'
 
     console.log(`The upper allowed viscosity is ${finalViscosity} + ${determinability} = ${preciseUpperAllowedViscosity}`)
 
     let determinabilityDetails = document.getElementById('determinability-details')
-    determinabilityDetails.innerHTML += `<p>The final calculated viscosity + the determinability factor is ${finalViscosity} + ${determinability} = ${upperAllowedViscosity}</p>`
+    determinabilityDetails.innerHTML += `<p>The determinability upper limit is ${finalViscosity} + ${determinability} = ${upperAllowedViscosity} cSt</p>`
 
     lowerLimit(determinability, finalViscosity, upperAllowedViscosity, kv1, kv2)
 }
@@ -378,13 +387,14 @@ function lowerLimit(determinability, finalViscosity, upperAllowedViscosity, kv1,
     let lowerAllowedViscosity = finalViscosity - determinability
     let preciseLowerAllowedViscosity = lowerAllowedViscosity.toPrecision(4)
 
-    document.getElementById('lower-limit').innerText = preciseLowerAllowedViscosity
-    document.getElementById('determinability-lower-units').style.display = 'inline'
+    document.getElementById('determinability-lower-limit-label').style.display = 'block'
+    document.getElementById('determinability-lower-limit').innerText = preciseLowerAllowedViscosity
+    document.getElementById('determinability-lower-limit-units').style.display = 'inline'
 
     console.log(`The lower allowed viscosity is ${finalViscosity} - ${determinability} = ${preciseLowerAllowedViscosity}`)
 
     let determinabilityDetails = document.getElementById('determinability-details')
-    determinabilityDetails.innerHTML += `<p>The final calculated viscosity - the determinability factor is ${finalViscosity} - ${determinability} = ${lowerAllowedViscosity}</p>`
+    determinabilityDetails.innerHTML += `<p>The determinability lower limit ${finalViscosity} - ${determinability} = ${lowerAllowedViscosity} cSt</p>`
 
     checker(upperAllowedViscosity, lowerAllowedViscosity, kv1, kv2, finalViscosity, determinability)
 }
@@ -449,25 +459,33 @@ function reset() {
 
     document.getElementById('run-time-1').focus()
 
-    document.getElementById('kinematic-viscosity-1').textContent = ''
-    document.getElementById('kinematic-viscosity-2').textContent = ''
-    document.getElementById('final-calculated-viscosity').textContent = ''
+    document.getElementById('determinability-kv-1').textContent = ''
+    document.getElementById('determinability-kv-2').textContent = ''
+    document.getElementById('determinability-final-kv').textContent = ''
     document.getElementById('determinability-equation').textContent = ''
     document.getElementById('determinability-factor').textContent = ''
-    document.getElementById('upper-limit').textContent = ''
-    document.getElementById('lower-limit').textContent = ''
+    document.getElementById('determinability-upper-limit').textContent = ''
+    document.getElementById('determinability-lower-limit').textContent = ''
     document.getElementById('determinability-output').textContent = ''
 
     document.getElementById('determinability-kv-1-units').style.display = 'none'
     document.getElementById('determinability-kv-2-units').style.display = 'none'
     document.getElementById('determinability-final-kv-units').style.display = 'none'
     document.getElementById('determinability-factor-units').style.display = 'none'
-    document.getElementById('determinability-upper-units').style.display = 'none'
-    document.getElementById('determinability-lower-units').style.display = 'none'
+    document.getElementById('determinability-upper-limit-units').style.display = 'none'
+    document.getElementById('determinability-lower-limit-units').style.display = 'none'
 
     document.getElementById('determinability-details-button').style.display = 'none'
     document.getElementById('determinability-details').style.display = 'none'
     document.getElementById('determinability-user-input').style.height = '70vh'
     document.getElementById('determinability-calculated-output').style.height = '70vh'
+
+    document.getElementById('determinability-kv-1-label').style.display = 'none'
+    document.getElementById('determinability-kv-2-label').style.display = 'none'
+    document.getElementById('determinability-final-kv-label').style.display = 'none'
+    document.getElementById('determinability-equation-label').style.display = 'none'
+    document.getElementById('determinability-factor-label').style.display = 'none'
+    document.getElementById('determinability-upper-limit-label').style.display = 'none'
+    document.getElementById('determinability-lower-limit-label').style.display = 'none'
 
 }

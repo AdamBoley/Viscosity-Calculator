@@ -27,10 +27,11 @@ function averageViscosityRepeatability() {
         console.log(`the average viscosity to 4 significant figures is ${preciseAverageViscosity}`)
 
         let repeatabilityDetails = document.getElementById('repeatability-details')
-        repeatabilityDetails.innerHTML = `<p>Average viscosity = ${averageViscosity}</p>`
+        repeatabilityDetails.innerHTML = `<p>Average viscosity = ${averageViscosity} cSt</p>`
 
-        document.getElementById('average-viscosity-repeatability').textContent = preciseAverageViscosity
-        document.getElementById('repeatability-average-kv-units').style.display = 'inline'
+        document.getElementById('repeatability-average-viscosity-label').style.display = 'block'
+        document.getElementById('repeatability-average-viscosity').textContent = preciseAverageViscosity
+        document.getElementById('repeatability-average-viscosity-units').style.display = 'inline'
 
         repeatability(viscosity1, viscosity2, averageViscosity)
     }
@@ -160,13 +161,15 @@ function repeatability(viscosity1, viscosity2, averageViscosity) {
             break
     }
 
+    document.getElementById('repeatability-equation-label').style.display = 'block'
     document.getElementById('repeatability-equation').innerText = message
     console.log(`the repeatability factor to 4 significant figures is ${preciseRepeatability}`)
+    document.getElementById('repeatability-factor-label').style.display = 'block'
     document.getElementById('repeatability-factor').innerText = preciseRepeatability
     document.getElementById('repeatability-factor-units').style.display = 'inline'
 
     let repeatabilityDetails = document.getElementById('repeatability-details')
-    repeatabilityDetails.innerHTML += `<p>Repeatability factor = ${repeatability}</p>`
+    repeatabilityDetails.innerHTML += `<p>Repeatability factor = ${repeatability} cSt</p>`
 
     repeatabilityUpperLimit(viscosity1, viscosity2, averageViscosity, repeatability)
 }
@@ -175,11 +178,12 @@ function repeatabilityUpperLimit(viscosity1, viscosity2, averageViscosity, repea
 
     let repeatabilityUpper = averageViscosity + repeatability
     let preciseRepeatabilityUpper = repeatabilityUpper.toPrecision(4)
+    document.getElementById('repeatability-upper-limit-label').style.display = 'block'
     document.getElementById('repeatability-upper-limit').textContent = preciseRepeatabilityUpper
-    document.getElementById('repeatability-upper-units').style.display = 'inline'
+    document.getElementById('repeatability-upper-limit-units').style.display = 'inline'
 
     let repeatabilityDetails = document.getElementById('repeatability-details')
-    repeatabilityDetails.innerHTML += `<p>Upper limit = ${repeatabilityUpper}</p>`
+    repeatabilityDetails.innerHTML += `<p>Upper limit = ${repeatabilityUpper} cSt</p>`
 
     repeatabilityLowerLimit(viscosity1, viscosity2, averageViscosity, repeatability, repeatabilityUpper) 
 }
@@ -189,11 +193,12 @@ function repeatabilityLowerLimit(viscosity1, viscosity2, averageViscosity, repea
     let repeatabilityLower = averageViscosity - repeatability
     let preciseRepeatabilityLower = repeatabilityLower.toPrecision(4)
 
+    document.getElementById('repeatability-lower-limit-label').style.display = 'block'
     document.getElementById('repeatability-lower-limit').textContent = preciseRepeatabilityLower
-    document.getElementById('repeatability-lower-units').style.display = 'inline'
+    document.getElementById('repeatability-lower-limit-units').style.display = 'inline'
 
     let repeatabilityDetails = document.getElementById('repeatability-details')
-    repeatabilityDetails.innerHTML += `<p>Lower limit = ${repeatabilityLower}</p>`
+    repeatabilityDetails.innerHTML += `<p>Lower limit = ${repeatabilityLower} cSt</p>`
 
     repeatabilityChecker(viscosity1, viscosity2, repeatabilityUpper, repeatabilityLower)
 }
@@ -250,7 +255,7 @@ function repeatabilityReset() {
 
     document.getElementById('viscosity-repeatability-1').value = ''
     document.getElementById('viscosity-repeatability-2').value = ''
-    document.getElementById('average-viscosity-repeatability').textContent = ''
+    document.getElementById('repeatability-average-viscosity').textContent = ''
     document.getElementById('repeatability-equation').textContent = ''
     document.getElementById('repeatability-factor').textContent = ''
     document.getElementById('repeatability-upper-limit').textContent = ''
@@ -260,14 +265,19 @@ function repeatabilityReset() {
 
     document.getElementById('repeatability-kv-1-units').style.display = 'none'
     document.getElementById('repeatability-kv-2-units').style.display = 'none'
-    document.getElementById('repeatability-average-kv-units').style.display = 'none'
+    document.getElementById('repeatability-average-viscosity-units').style.display = 'none'
     document.getElementById('repeatability-factor-units').style.display = 'none'
-    document.getElementById('repeatability-upper-units').style.display = 'none'
-    document.getElementById('repeatability-lower-units').style.display = 'none'
+    document.getElementById('repeatability-upper-limit-units').style.display = 'none'
+    document.getElementById('repeatability-lower-limit-units').style.display = 'none'
 
     document.getElementById('repeatability-details-button').style.display = 'none'
     document.getElementById('repeatability-details').style.display = 'none'
     document.getElementById('repeatability-user-input').style.height = '55vh'
     document.getElementById('repeatability-calculated-output').style.height = '55vh'
 
+    document.getElementById('repeatability-average-viscosity-label').style.display = 'none'
+    document.getElementById('repeatability-equation-label').style.display = 'none'
+    document.getElementById('repeatability-factor-label').style.display = 'none'
+    document.getElementById('repeatability-upper-limit-label').style.display = 'none'
+    document.getElementById('repeatability-lower-limit-label').style.display = 'none'
 }
