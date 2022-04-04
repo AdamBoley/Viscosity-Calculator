@@ -140,6 +140,10 @@ main {
     margin-left: 3px;
 }
 
+.output-label {
+    display: none;
+}
+
 .output-unit {
     display: none;
     margin-left: 3px;

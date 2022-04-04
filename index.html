@@ -13,12 +13,23 @@
 
         <h1 class="heading">Viscosity Calculator</h1>
 
+        <p class="heading">
+            Welcome to the Viscosity Calculator, a scientific tool that automates 
+            all of the calculations in ASTM standard test method D445
+        </p>
+        <p class="heading">
+            <a href="discussion.html" target="_blank">Click here</a> to open a new tab that discusses the tool and provides guidance on how to use it and get the most out of it 
+        </p>
+        <p class="heading">
+            Use the drop-down menu below to select the calculation you want to tool to perform. 
+        </p>
+
     </header>
 
     <main>
 
         <div id="calculation-selector-div">
-            <p  class="heading" id="select-calculation">Select the viscosity calculation you would like to do</p>
+            
             <select id="calculation-selector">
                 <option selected value="determinability">Determinability</option>
                 <option value="repeatability">Repeatability</option>
@@ -39,15 +50,15 @@
                 <ol>
 
                     <li>Select your the sample type and temperature from the drop-down menu below that most closely matches the test you are checking</li>
-                    <li>Click either the Ubbelohde or Zeifuchs button, depending on what viscometers you used</li>
-                    <li>If you are unsure what sample type to select, <a href="discussion.html" target="_blank">click here</a> to see receive guidance</li>
+                    <li>If you are unsure what sample type to select, <a href="discussion.html#sample" target="_blank">click here</a> to open the guidance page</li>
+                    <li>Click either the Ubbelohde button or the Zeifuchs button, depending on what viscometers you used</li>
                     <li>Enter your run-times into the labelled boxes</li>
                     <li>If you used a suspended flow viscometer, enter the constant in the labelled box</li>
                     <li>If you used a pair of cross-arm viscometers, enter the constants in the labelled boxes, being sure to match them to the run-times</li>
-                    <li>Check your entered information and press the Calculate button</li>
+                    <li>Check your entered information and press the <span class="mimic-button">calculate</span> button</li>
                     <li>The tool will calculate all of the data you need to check a viscosity test</li>
-                    <li>If you are using a PC, you can check the tool's functionality by right-clicking, selecting Inspect and clicking Console at the top of the window</li>
-                    <li>All of the inputs and outputs are logged, so you can be sure that the tool's calculations match your manual calculations</li>
+                    <li>Click the <span class="mimic-button">calculation details</span> button to see the unrounded calculation values</li>
+                    <li>Once your have checked your data, click the <span class="mimic-button">reset</span> button to clear the inputs and outputs, and reset the tool</li>
 
                 </ol>
 
@@ -124,50 +135,50 @@
 
                 <div class="calculated-output-div">
 
-                    <p>Kinematic Viscosity 1:</p>
+                    <p id="kinematic-viscosity-1-label" class="output-label">Kinematic Viscosity 1:</p>
                     <span id="kinematic-viscosity-1"></span><span class="output-unit" id="determinability-kv-1-units">cSt</span>
 
                 </div>
 
                 <div class="calculated-output-div">
 
-                    <p>Kinematic Viscosity 2:</p>
+                    <p id="kinematic-viscosity-2-label" class="output-label">Kinematic Viscosity 2:</p>
                     <span id="kinematic-viscosity-2"></span><span class="output-unit" id="determinability-kv-2-units">cSt</span>
 
                 </div>
 
                 <div class="calculated-output-div">
 
-                    <p>Final Calculated Viscosity:</p>
+                    <p id="final-calculated-viscosity-label" class="output-label">Final Calculated Viscosity:</p>
                     <span id="final-calculated-viscosity"></span><span class="output-unit" id="determinability-final-kv-units">cSt</span>
 
                 </div>
 
                 <div class="calculated-output-div">
 
-                    <p>Determinability equation:</p>
+                    <p id="determinability-equation-label" class="output-label">Determinability equation:</p>
                     <span id="determinability-equation"></span>
 
                 </div>
 
                 <div class="calculated-output-div">
 
-                    <p>Determinability factor:</p>
+                    <p id="determinability-factor-label" class="output-label">Determinability factor:</p>
                     <span id="determinability-factor"></span><span class="output-unit" id="determinability-factor-units">cSt</span>
 
                 </div>
 
                 <div class="calculated-output-div">
 
-                    <p>Final calculated viscosity + determinability factor:</p>
-                    <span id="upper-limit"></span><span class="output-unit" id="determinability-upper-units">cSt</span>
+                    <p id="determinability-upper-limit-label" class="output-label">Determinability upper limit:</p>
+                    <span id="determinability-upper-limit"></span><span class="output-unit" id="determinability-upper-units">cSt</span>
 
                 </div>
 
                 <div class="calculated-output-div">
 
-                    <p>Final calculated viscosity - determinability factor:</p>
-                    <span id="lower-limit"></span><span class="output-unit" id="determinability-lower-units">cSt</span>
+                    <p id="determinability-lower-limit-label" class="output-label">Determinability lower limit:</p>
+                    <span id="determinability-lower-limit"></span><span class="output-unit" id="determinability-lower-units">cSt</span>
 
                 </div>
 
@@ -193,9 +204,10 @@
 
                 <ol>
                     <li>Select the sample type and temperature that most closely matches the results you are checking the repeatability of from the drop-down menu</li>
+                    <li>If you are unsure what sample type to select, <a href="discussion.html#sample" target="_blank">click here</a> to open the guidance page</li>
                     <li>Enter the two viscosity results into the labelled boxes</li>
-                    <li>Click the calculate button and the tool will perform the calculations and tell you whether the results are repeatable or not</li>
-                    <li>Click the reset button to clear the inputs and outputs and ready the tool to check more results</li>
+                    <li>Click the <span class="mimic-button">calculate</span> button and the tool will perform the calculations and tell you whether the results are repeatable or not</li>
+                    <li>Click the <span class="mimic-button">reset</span> button to clear the inputs and outputs and ready the tool to check more results</li>
                 </ol>
 
             </section>
@@ -256,35 +268,35 @@
 
                 <div class="calculated-output-div">
 
-                    <p>Average viscosity:</p>
+                    <p id="average-viscosity-repeatability-label" class="output-label">Average viscosity:</p>
                     <span id="average-viscosity-repeatability"></span><span class="output-unit" id="repeatability-average-kv-units">cSt</span>
 
                 </div>
 
                 <div class="calculated-output-div">
 
-                    <p>Repeatability equation:</p>
+                    <p id="repeatability-equation-label" class="output-label">Repeatability equation:</p>
                     <span id="repeatability-equation"></span>
 
                 </div>
 
                 <div class="calculated-output-div">
 
-                    <p>Repeatability factor:</p>
+                    <p id="repeatability-factor-label" class="output-label">Repeatability factor:</p>
                     <span id="repeatability-factor"></span><span class="output-unit" id="repeatability-factor-units">cSt</span>
 
                 </div>
 
                 <div class="calculated-output-div">
 
-                    <p>Repeatability upper limit:</p>
+                    <p id="repeatability-upper-limit-label" class="output-label">Repeatability upper limit:</p>
                     <span id="repeatability-upper-limit"></span><span class="output-unit" id="repeatability-upper-units">cSt</span>
 
                 </div>
 
                 <div class="calculated-output-div">
 
-                    <p>Repeatability lower limit:</p>
+                    <p id="repeatability-lower-limit-label" class="output-label">Repeatability lower limit:</p>
                     <span id="repeatability-lower-limit"></span><span class="output-unit" id="repeatability-lower-units">cSt</span>
 
                 </div>
@@ -311,9 +323,10 @@
 
                 <ol>
                     <li>Select the sample type and temperature that most closely matches the results you are checking the repeatability of from the drop-down menu</li>
+                    <li>If you are unsure what sample type to select, <a href="discussion.html#sample" target="_blank">click here</a> to open the guidance page</li>
                     <li>Enter the two viscosity results into the labelled boxes</li>
-                    <li>Click the calculate button and the tool will perform the calculations and tell you whether the results are repeatable or not</li>
-                    <li>Click the reset button to clear the inputs and outputs and ready the tool to check more results</li>
+                    <li>Click the <span class="mimic-button">calculate</span> button and the tool will perform the calculations and tell you whether the results are repeatable or not</li>
+                    <li>Click the <span class="mimic-button">reset</span> button to clear the inputs and outputs and ready the tool to check more results</li>
                 </ol>
 
             </section>
@@ -374,35 +387,35 @@
 
                 <div class="calculated-output-div">
 
-                    <p>Average viscosity:</p>
+                    <p id="average-viscosity-reproducibility-label" class="output-label">Average viscosity:</p>
                     <span id="average-viscosity-reproducibility"></span><span class="output-unit" id="reproducibility-average-kv-units">cSt</span>
 
                 </div>
 
                 <div class="calculated-output-div">
 
-                    <p>Reproducibility equation:</p>
+                    <p id="reproducibility-equation-label" class="output-label">Reproducibility equation:</p>
                     <span id="reproducibility-equation"></span>
 
                 </div>
 
                 <div class="calculated-output-div">
 
-                    <p>Reproducibility factor:</p>
+                    <p id="reproducibility-factor-label" class="output-label">Reproducibility factor:</p>
                     <span id="reproducibility-factor"></span><span class="output-unit" id="reproducibility-factor-units">cSt</span>
 
                 </div>
 
                 <div class="calculated-output-div">
 
-                    <p>Reproducibility upper limit:</p>
+                    <p id="reproducibility-upper-limit-label" class="output-label">Reproducibility upper limit:</p>
                     <span id="reproducibility-upper-limit"></span><span class="output-unit" id="reproducibility-upper-units">cSt</span>
 
                 </div>
 
                 <div class="calculated-output-div">
 
-                    <p>Reproducibility lower limit:</p>
+                    <p id="reproducibility-lower-limit-label" class="output-label">Reproducibility lower limit:</p>
                     <span id="reproducibility-lower-limit"></span><span class="output-unit" id="reproducibility-lower-units">cSt</span>
 
                 </div>
@@ -429,16 +442,17 @@
 
                 <ol>
                     <li>Perform a calibration test on a viscometer using a standard calibration fluid</li>
-                    <li>Enter your run-times and constants in the labelled boxes</li>
+                    <li>Enter your run-times and viscometer constant in the labelled boxes</li>
                     <li>Enter the viscosity of the calibration fluid that was used into the labelled box</li>
-                    <li>Press calculate and the tool will calculate and display the: </li>
-                    <ol>
+                    <li>Press <span class="mimic-button">calculate</span> and the tool will calculate and display the: </li>
+                    <ul>
                         <li>average run time</li>
                         <li>your observed viscosity</li>
                         <li>the tolerance band and associated viscosity range</li>
                         <li>the percentage difference between the viscosity of the calibration fluid and the observed viscosity</li>
                         <li>a message indicating whether or not the percentage difference is small enough that the viscometer passes its calibration check</li>
-                    </ol>
+                    </ul>
+                    <li>Click the <span class="mimic-button">reset</span> button to clear the inputs and outputs and ready the tool to check another calibration test</li>
                 </ol>
 
             </section>
@@ -468,7 +482,7 @@
 
                 <div class="user-input-div">
 
-                    <label for="calibration-fluid-viscosity">Calibration fluid viscosity</label>
+                    <label for="calibration-fluid-viscosity">Calibration fluid viscosity:</label>
                     <input type="number" id="calibration-fluid-viscosity"><span class="input-unit" id="calibration-fluid-viscosity-units">cSt</span>
 
                 </div>
@@ -486,34 +500,34 @@
 
                 <div class="calculated-output-div">
 
-                    <p>Average run time:</p>
+                    <p id="calibration-average-run-time-label" class="output-label">Average run time:</p>
                     <span id="calibration-average-run-time"></span><span class="output-unit" id="calibration-average-run-time-units">seconds</span>
 
                 </div>
 
                 <div class="calculated-output-div">
 
-                    <p>Average viscosity:</p>
+                    <p id="calibration-average-viscosity-label" class="output-label">Average viscosity:</p>
                     <span id="calibration-average-viscosity"></span><span class="output-unit" id="calibration-average-viscosity-units">cSt</span>
 
                 </div>
 
                 <div class="calculated-output-div">
 
-                    <p>Viscosity range of calibration fluid</p>
+                    <p id="calibration-viscosity-range-label" class="output-label">Viscosity range of calibration fluid</p>
                     <span id="calibration-viscosity-range"></span><span class="output-unit" id="calibration-viscosity-range-units">cSt</span>
 
                 </div>
 
                 <div class="calculated-output-div">
 
-                    <p>Tolerance band</p>
+                    <p id="calibration-tolerance-band-label" class="output-label">Tolerance band</p>
                     <span id="calibration-tolerance-band"></span>
 
                 </div>
 
                 <div class="calculated-output-div" id="calibration-output-div">
-                    <p>Percentage difference between observed viscosity and calibration fluid viscosity:</p>
+                    <p id="calibration-percentage-difference-label" class="output-label">Percentage difference between observed viscosity and calibration fluid viscosity:</p>
                     <span id="calibration-percentage-difference"></span><span class="output-unit" id="calibration-percentage-difference-units">%</span>
                     <p id="calibration-output"></p>
 
@@ -542,8 +556,9 @@
                     <li>Determine the acceleration due to gravity at the standardization laboratory's location</li>
                     <li>Input the constant of the viscometer you wish to recalibrate</li>
                     <li>Input these two values into the labelled boxes</li>
-                    <li>Press calculate and the tool with provide the percentage difference</li>
+                    <li>Press <span class="mimic-button">calculate</span>and the tool with provide the percentage difference</li>
                     <li>If the percentage difference is greater than 0.1%, the tool will then provide a new constant for the viscometer</li>
+                    <li>Click the <span class="mimic-button">reset</span> button to clear the inputs and outputs and ready the tool to recalibrate another viscometer</li>
                 </ol>
 
             </section>
@@ -551,7 +566,7 @@
             <section id="recalibration-user-input">
 
                 <div class="user-input-div">
-                    <label for="recalibration-constant">Viscometer constant</label>
+                    <label for="recalibration-constant">Viscometer constant:</label>
                     <input type="number" id="recalibration-constant"><span class="input-unit" id="recalibration-constant-units">mm<span class="superscript">2</span>/s<span class="superscript">-2</span></span>
                 </div>
 
@@ -575,12 +590,12 @@
             <section id="recalibration-calculated-output">
 
                 <div class="calculated-output-div">
-                    <p>Percentage difference:</p>
+                    <p id="recalibration-percentage-difference-label" class="output-label">Percentage difference:</p>
                     <span id="recalibration-percentage-difference"></span><span class="output-unit" id="recalibration-percentage-difference-units">%</span>
                 </div>
 
                 <div class="calculated-output-div">
-                    <p>New constant:</p>
+                    <p id="new-constant-label" class="output-label">New constant:</p>
                     <span id="new-constant"></span><span class="output-unit" id="recalibration-new-constant-units">mm<span class="superscript">2</span>/s<span class="superscript">-2</span></span>
                 </div>
             
