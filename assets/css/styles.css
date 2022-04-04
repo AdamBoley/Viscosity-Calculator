@@ -3,6 +3,7 @@
 body {
     margin: 0;
     font-family: 'Work Sans', sans-serif;
+    background-color: lightblue
 }
 
 .heading {
@@ -34,11 +35,16 @@ main {
     clear: both;
 }
 
+.calculation-article section {
+    background-color: lightblue
+}
+
 .description {
     width: 80%;
-    height: 300px;
-    background-color: blanchedalmond;
+    height: auto;
     margin: 25px auto;
+    padding: 10px;
+    border-radius: 30px;
 }
 
 .description h2 {
@@ -47,16 +53,18 @@ main {
 
 #determinability-user-input {
     float: left;
-    width: 50%;
+    width: 45%;
     height: 70vh;
-    background-color: lightblue;
+    border-radius: 30px;
+    margin-left: 2%;
 }
 
 #determinability-calculated-output {
     float: right;
-    width: 50%;
+    width: 45%;
     height: 70vh;
-    background-color: lightcoral;
+    border-radius: 30px;
+    margin-right: 2%;
 }
 
 #determinability-select {
@@ -116,7 +124,6 @@ main {
     float: left;
     width: 50%;
     height: 55vh;
-    background-color: lightblue;
 }
 
 .user-input-div {
@@ -128,7 +135,6 @@ main {
     float: right;
     width: 50%;
     height: 55vh;
-    background-color: lightcoral;
 }
 
 .calculated-output-div {
@@ -169,7 +175,7 @@ main {
     float: right;
     width: 50%;
     height: 30vh;
-    background-color: lightcoral;
+    background-color: lightblue;
 }
 
 #repeatability-reset, #reproducibility-reset, #calibration-reset, #recalibration-reset {
