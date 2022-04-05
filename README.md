@@ -40,7 +40,13 @@ Ultimately, this shouldn't matter as long as I can justify it per above
         - [Development preview browser](#development-preview-browser)
 - [Testing](#testing)
     - [Testing User Stories](#testing-user-stories)
-    - [Testing Functionality](#testing-functionality)
+    - [Testing site functionality](#testing-site-functionality)
+    - [Testing Calculation functions](#testing-calculation-functions)
+        - [Determinability](#determinability-calculations)
+        - [Repeatability](#recalibration-calculations)
+        - [Reproducibility](#reproducibility-calculations)
+        - [Calibration](#calibration-calculations)
+        - [Recalibration](#recalibration-calculations)
     - [Testing on different devices](#testing-on-different-devices)
     - [Testing code](#testing-code)
 - [Credits](#credits)
@@ -90,7 +96,9 @@ The scope of this project is to automate as much as possible all of the calculat
 
 # Audience
 
-This tool is designed wholly for professional scientists in commercial petrochemical laboratories who perform kinematic viscosity tests. I stress that it is conceived of as a tool rather than an interactive website. As it is designed for work purposes, styling is minimal, with the main positive aspects of the User Experience delivered via the logic and calculations. 
+This tool is designed wholly for professional scientists in commercial petrochemical laboratories who perform kinematic viscosity tests. I stress that it is conceived of as a tool rather than an interactive website. As it is designed for work purposes, styling is minimal, with the main positive aspects of the User Experience delivered via the logic and calculations.
+
+More specifically, the tool is designed for use by myself and my colleagues at Intertek. 
 
 # User stories
 
@@ -180,7 +188,7 @@ Depending on the selected option element's value attribute, an IF/ELSE IF statem
 
 Each statement uses CSS style rule manipulation to set the display rule of each calculation article. The option corresponding to the article is set to display: block, and the other articles are set to display: none
 
-Since the most common calculation will be that of determinability, this calculation article is visible by default. 
+In my experience, the most common calculation is that of determinability, so the determinability calculation article is visible by default. 
 
 ### Determinability logic
 
@@ -337,31 +345,550 @@ The calculations are done step-by-step in small functions, with the outputs disp
 
 (A text message displays currently, it is envisioned that a large green tick for success and a large red cross for failure )
 
-## Testing various inputs
+## Testing site functionality
 
-Need to test the full range of run-times - 200s to 900s, and the full range of viscometer constants - 0.003 to 30.60
+Test link to discussion page, test discussion page internal navigation, test ASTM D445 download link, test calculation selector
+
+| Action                                                    | Expected result                                                  | Actual result
+| --------------------------------------------------------- |:-----------------------------------------------------------------| :---------------------------------------------------------------|
+| Click link to discussion page in introductory test        | Opens new tab to discussion page                                 | Opens new tab to discussion page                                |
+| Click link to discussion page in determinability article  | Opens new tab to discussion page, focus on sample type guidance  | Opens new tab to discussion page, focus on sample type guidance |
+| Click link to discussion page in repeatability article    | Opens new tab to discussion page, focus on sample type guidance  | Opens new tab to discussion page, focus on sample type guidance |
+| Click link to discussion page in reproducibility article  | Opens new tab to discussion page, focus on sample type guidance  | Opens new tab to discussion page, focus on sample type guidance |
+| Select determinability option from drop-down menu         | Display determinability calculation article                      | Display determinability calculation article                     | 
+| Select repeatability option from drop-down menu           | Display repeatability calculation article                        | Display repeatability calculation article                       | 
+| Select reproducibility option from drop-down menu         | Display reproducibility calculation article                      | Display reproducibility calculation article                     | 
+| Select calibration option from drop-down menu             | Display calibration calculation article                          | Display calibration calculation article                         | 
+| Select recalibration option from drop-down menu           | Display recalibration calculation article                        | Display recalibration calculation article                       | 
+
+## Testing calculation functions
+
+This section documents the testing of the calculation functions. 
 
 ### Determinability calculations
 
+Below are the results of testing the determinability calculation functions. Given the range of run-times and viscometer constants, exhaustive testing covering every single use-case (i.e. the full range of run-times from 200s to 900s across every viscometer size for each sample type) is impractical. Instead, I thought it best to test each sample type once using what I have found to be typical run-times and typical viscometer constants for each sample type. My justification for this decision is that the tool's utility lies in the range of determinability calculations it can apply with a few clicks. Testing a multitude of differing run-times and constants would merely test the tool's ability to do simple calculations, which, being a computer, is essentially perfect. 
+
+Since the determinability calculation offers a choice between Ubbelohde and Zeitfuchs viscometers, it is prudent to test the functionality of both, since different (though similar) functions are used. However, Zeitfuchs viscometers are, as noted above, typically only used in cases where the sample being tested is very dark. The preference among analysts is to use Ubbelohde viscometers if at all possible, since the sample can be retested several times if need be. In my personal (and extensive) experience, Zeitfuchs viscometers are used only for tests on residual fuel oils, crude oils and residues, with a handful of fringe cases of additives that are extremely viscous. Hence, the Zeitfuchs calculation function will be tested only with those sample types.
+
+The results of this testing are presented in table format. To prevent overly-long table column headings, abbreviations were used. For the avoidance of doubt, these are:
+kv1 / kv2 - kinematic viscosity 1 and kinematic viscosity 2
+Average - The final calculated viscosity
+d-factor - determinability factor
+UL - determinability upper limit
+LL - determinability lower limit
+VC - Viscosity Calculator, for the tool's results
+
+| Action                                                    | Expected result                                                          | Actual result
+| --------------------------------------------------------- |:-------------------------------------------------------------------------| :-----------------------------------------------------------------------|
+| Click Ubbelohde button                                    | Display 2 run-time inputs and 1 constant input                           | Display 2 run-time inputs and 1 constant input                          |
+| Click Zeitfuchs button                                    | Display 2 run-time inputs and 2 constant inputs                          | Display 2 run-time inputs and 2 constant inputs                         |
+| Click reset button                                        | Empty all calculation outputs and user inputs, focus on run-time 1 input | Empty all calculation outputs and user inputs, focus on run-time 1 input|
+| Click calculate button                                    | Fill outputs with labels, results as numbers, and units x                | Fill outputs with labels, results as numbers and units                  |
+| Click calculate button with an empty run-time input       | An alert appears telling the user they need to enter 2 run-times         | An alert appears telling the user they need to enter 2 run-times        |
+| Click calculate button with an empty constant input       | An alert appears telling the user they need to enter a constant          | An alert appears telling the user they need to enter a constant         |
+
+x NB - the output results must merely be numbers, not text or NaN. The 'correctness' (for want of a better term) of the outputs is tested below 
+
+**Ubbelohde option testing**
+
+Sample type: Base oil, 40C
+Run time 1:
+Run time 2:
+Viscometer constant:
+
+|  Manual kv1 | Manual kv2  | Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
+| ------------|:------------|:---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:
+|
+
+Sample type: Base oil, 100C
+Run time 1:
+Run time 2:
+Viscometer constant:
+
+|  Manual kv1 | Manual kv2  | Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
+| ------------|:------------|:---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:
+|
+
+Sample type: Formulated oil, 40C
+Run time 1:
+Run time 2:
+Viscometer constant:
+
+|  Manual kv1 | Manual kv2  | Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
+| ------------|:------------|:---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:
+|
+
+Sample type: Formulated oil, 100C
+Run time 1:
+Run time 2:
+Viscometer constant:
+
+|  Manual kv1 | Manual kv2  | Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
+| ------------|:------------|:---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:
+|
+
+Sample type: Formulated oil, 150C
+Run time 1:
+Run time 2:
+Viscometer constant:
+
+|  Manual kv1 | Manual kv2  | Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
+| ------------|:------------|:---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:
+|
+
+Sample type: Kerosene, diesel, biodiesel
+Run time 1:
+Run time 2:
+Viscometer constant:
+
+|  Manual kv1 | Manual kv2  | Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
+| ------------|:------------|:---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:
+|
+
+Sample type: Petroleum wax, 100C
+Run time 1:
+Run time 2:
+Viscometer constant:
+
+|  Manual kv1 | Manual kv2  | Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
+| ------------|:------------|:---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:
+|
+
+Sample type: Residual Fuel Oil, 50C
+Run time 1:
+Run time 2:
+Viscometer constant:
+
+|  Manual kv1 | Manual kv2  | Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
+| ------------|:------------|:---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:
+|
+
+Sample type: Residual Fuel Oil, 100C
+Run time 1:
+Run time 2:
+Viscometer constant:
+
+|  Manual kv1 | Manual kv2  | Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
+| ------------|:------------|:---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:
+|
+
+Sample type: Additive, 100C
+Run time 1:
+Run time 2:
+Viscometer constant:
+
+|  Manual kv1 | Manual kv2  | Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
+| ------------|:------------|:---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:
+|
+
+Sample type: Gas Oil, 40C
+Run time 1:
+Run time 2:
+Viscometer constant:
+
+|  Manual kv1 | Manual kv2  | Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
+| ------------|:------------|:---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:
+|
+
+Sample type: Jet Fuel, -20C
+Run time 1:
+Run time 2:
+Viscometer constant:
+
+|  Manual kv1 | Manual kv2  | Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
+| ------------|:------------|:---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:
+|
+
+
+Sample type: Crude Oil, 40C
+Run time 1:
+Run time 2:
+Viscometer constant:
+
+|  Manual kv1 | Manual kv2  | Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
+| ------------|:------------|:---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:
+|
+
+
+**Zeitfuchs option testing**
+
+Sample type: Residual Fuel Oil, 50C
+Run time 1:
+Viscometer constant 1:
+Run time 2:
+Viscometer constant 2:
+
+|  Manual kv1 | Manual kv2  | Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
+| ------------|:------------|:---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:
+|
+
+Sample type: Residual Fuel Oil, 100C
+Run time 1:
+Viscometer constant 1:
+Run time 2:
+Viscometer constant 2:
+
+|  Manual kv1 | Manual kv2  | Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
+| ------------|:------------|:---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:
+|
+
+Sample type: Additive, 100C
+Run time 1:
+Viscometer constant 1:
+Run time 2:
+Viscometer constant 2:
+
+|  Manual kv1 | Manual kv2  | Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
+| ------------|:------------|:---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:
+|
+
+Sample type: Residue, 100C
+Run time 1:
+Viscometer constant 1:
+Run time 2:
+Viscometer constant 2:
+
+|  Manual kv1 | Manual kv2  | Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
+| ------------|:------------|:---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:
+|
+
 ### Repeatability calculations
+
+A similar approach to that of testing the determinability calculation functions will be taken with testing the repeatability functions. Each sample type will be tested once, using viscosities that might typically be expected of that sample type at that temperature. 
+
+Sample type: Base oil, 40C
+Viscosity 1:
+Viscosity 2:
+
+| Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
+| ---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|
+|
+
+Sample type: Base oil, 100C
+Viscosity 1:
+Viscosity 2:
+
+| Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
+| ---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|
+|
+
+
+Sample type: Formulated oil, 40C
+Viscosity 1:
+Viscosity 2:
+
+| Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
+| ---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|
+|
+
+
+Sample type: Formulated oil, 100C
+Viscosity 1:
+Viscosity 2:
+
+| Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
+| ---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|
+|
+
+Sample type: Formulated oil, 150C
+Viscosity 1:
+Viscosity 2:
+
+| Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
+| ---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|
+|
+
+Sample type: Petroleum wax, 100C
+Viscosity 1:
+Viscosity 2:
+
+| Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
+| ---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|
+|
+
+Sample type: Residual fuel oil, 50C
+Viscosity 1:
+Viscosity 2:
+
+| Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
+| ---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|
+|
+
+Sample type: Residual fuel oil, 100C
+Viscosity 1:
+Viscosity 2:
+
+| Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
+| ---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|
+|
+
+Sample type: Additive, 100C
+Viscosity 1:
+Viscosity 2:
+
+| Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
+| ---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|
+|
+
+Sample type: Gas Oil, 40C
+Viscosity 1:
+Viscosity 2:
+
+| Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
+| ---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|
+|
+
+Sample type: Jet Fuel, -20C
+Viscosity 1:
+Viscosity 2:
+
+| Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
+| ---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|
+|
+
+Sample type: Kerosene, diesel, biodisel, 40C
+Viscosity 1:
+Viscosity 2:
+
+| Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
+| ---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|
+|
+
+Sample type: Used motor oil, 40C
+Viscosity 1:
+Viscosity 2:
+
+| Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
+| ---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|
+|
+
+Sample type: Used motor oil, 100C
+Viscosity 1:
+Viscosity 2:
+
+| Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
+| ---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|
+|
+
+Sample type: Residue
+Viscosity 1:
+Viscosity 2:
+
+| Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
+| ---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|
+|
+
 
 ### Reproducibility calculations
 
-### Calibration calculations
+Reproducibility is essentially identical to repeatability, except with looser limits, so the same approach to testing will be utilised
 
-### Recalibration calculations
+Sample type: Base oil, 40C
+Viscosity 1:
+Viscosity 2:
 
-## Testing Edge Cases
+| Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
+| ---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|
+|
 
-Edge cases are rare events that are just within the scope of the tool. Might be useful to test functionality when run-times fall outside bounds - <200s and >900s with the smallest and largest constants respectively, so that even if run-times are invalid, determinability isn't necessarily invalid. (think hexane at 20C that is too fast in a 0C and super-viscous additives at 40C in a 4C)
+Sample type: Base oil, 100C
+Viscosity 1:
+Viscosity 2:
 
-### Testing determinability calculations with run-times of less than 200 seconds and the smallest viscometer constant (replicating ultra-low viscosity samples at high temperatures)
+| Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
+| ---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|
+|
 
-### Testing determinability calculations with run-times of greater than 900 seconds and the largest viscometer constant (replicating hyper-viscous samples at low temperatures)
 
-### Testing recalibration calculations with significantly differing gravities
+Sample type: Formulated oil, 40C
+Viscosity 1:
+Viscosity 2:
 
-## Unit Tests
+| Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
+| ---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|
+|
+
+
+Sample type: Formulated oil, 100C
+Viscosity 1:
+Viscosity 2:
+
+| Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
+| ---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|
+|
+
+Sample type: Formulated oil, 150C
+Viscosity 1:
+Viscosity 2:
+
+| Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
+| ---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|
+|
+
+Sample type: Petroleum wax, 100C
+Viscosity 1:
+Viscosity 2:
+
+| Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
+| ---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|
+|
+
+Sample type: Residual fuel oil, 50C
+Viscosity 1:
+Viscosity 2:
+
+| Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
+| ---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|
+|
+
+Sample type: Residual fuel oil, 100C
+Viscosity 1:
+Viscosity 2:
+
+| Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
+| ---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|
+|
+
+Sample type: Additive, 100C
+Viscosity 1:
+Viscosity 2:
+
+| Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
+| ---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|
+|
+
+Sample type: Gas Oil, 40C
+Viscosity 1:
+Viscosity 2:
+
+| Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
+| ---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|
+|
+
+Sample type: Jet Fuel, -20C
+Viscosity 1:
+Viscosity 2:
+
+| Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
+| ---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|
+|
+
+Sample type: Kerosene, diesel, biodisel, 40C
+Viscosity 1:
+Viscosity 2:
+
+| Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
+| ---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|
+|
+
+Sample type: Used motor oil, 40C
+Viscosity 1:
+Viscosity 2:
+
+| Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
+| ---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|
+|
+
+Sample type: Used motor oil, 100C
+Viscosity 1:
+Viscosity 2:
+
+| Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
+| ---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|
+|
+
+Sample type: Residue
+Viscosity 1:
+Viscosity 2:
+
+| Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
+| ---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|
+|
+
+### Calibration Calculations
+
+The calibration calculations don't rely on selecting a sample type. Instead, the particular calculation to be used is selected based on the viscosity of the calibration fluid. There are 6 tolerance bands, so 6 tests will be conducted
+
+Calibration fluid viscosity range:
+Tolerance band: 0.30%
+Run time 1:
+Run time 2:
+Constant:
+
+| Manual average time | Manual avergae viscosity | Manual percentage diff.   | VC average time | VC avergae viscosity | VC percentage diff. |
+| --------------------|:-------------------------|:--------------------------|:----------------|:---------------------|:--------------------|
+|
+
+Calibration fluid viscosity range:
+Tolerance band: 0.32%
+Run time 1:
+Run time 2:
+Constant:
+
+| Manual average time | Manual avergae viscosity | Manual percentage diff.   | VC average time | VC avergae viscosity | VC percentage diff. |
+| --------------------|:-------------------------|:--------------------------|:----------------|:---------------------|:--------------------|
+|
+
+Calibration fluid viscosity range:
+Tolerance band: 0.36%
+Run time 1:
+Run time 2:
+Constant:
+
+| Manual average time | Manual avergae viscosity | Manual percentage diff.   | VC average time | VC avergae viscosity | VC percentage diff. |
+| --------------------|:-------------------------|:--------------------------|:----------------|:---------------------|:--------------------|
+|
+
+Calibration fluid viscosity range:
+Tolerance band: 0.42%
+Run time 1:
+Run time 2:
+Constant:
+
+| Manual average time | Manual avergae viscosity | Manual percentage diff.   | VC average time | VC avergae viscosity | VC percentage diff. |
+| --------------------|:-------------------------|:--------------------------|:----------------|:---------------------|:--------------------|
+|
+
+Calibration fluid viscosity range:
+Tolerance band: 0.54%
+Run time 1:
+Run time 2:
+Constant:
+
+| Manual average time | Manual avergae viscosity | Manual percentage diff.   | VC average time | VC avergae viscosity | VC percentage diff. |
+| --------------------|:-------------------------|:--------------------------|:----------------|:---------------------|:--------------------|
+|
+
+Calibration fluid viscosity range:
+Tolerance band: 0.73%
+Run time 1:
+Run time 2:
+Constant:
+
+| Manual average time | Manual avergae viscosity | Manual percentage diff.   | VC average time | VC avergae viscosity | VC percentage diff. |
+| --------------------|:-------------------------|:--------------------------|:----------------|:---------------------|:--------------------|
+|
+
+### Recalibration Calculations
+
+In contrast to the other calculations, the recalibration calculations test cases are more limited, since Earth's gravity doesn't vary much, though it obviously varies enough to be taken into consideration. 4 cases will be tested - 2 for a large difference between gravities, and two for a smaller difference between gravities. Within each pair, one case will be with the testing lab gravity set to higher than the standardisation lab gravity, and the other case for the reverse. 
+
+Testing lab gravity: m/s2
+Standardisation lab gravity: m/s2 
+Constant: 
+
+| Manual percentage difference | Manual new constant      | VC percentage difference  | VC new constant | 
+| -----------------------------|:-------------------------|:--------------------------|:----------------|
+|
+
+## Testing on different devices
+
+PC, phone, laptop, tablets
+
+## Testing code
+
+HTML validator, CSS validator, JS validator, Lighthouse
 
 # Credits
 
