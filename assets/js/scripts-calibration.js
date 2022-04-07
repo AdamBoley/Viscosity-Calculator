@@ -25,15 +25,8 @@ function getValuesCalibration() {
         alert('Please enter a calibration fluid viscosity')
     }
     else {
-        console.log(`run time 1 is ${calibrationRunTime1}`)
-        console.log(`run time 2 is ${calibrationRunTime2}`)
-        console.log(`the viscometer constant is ${calibrationConstant}`)
-
         calculateCalibration(calibrationRunTime1, calibrationRunTime2, calibrationConstant)
     }
-
-    
-
 }
 
 function calculateCalibration(calibrationRunTime1, calibrationRunTime2, calibrationConstant) {
@@ -42,11 +35,6 @@ function calculateCalibration(calibrationRunTime1, calibrationRunTime2, calibrat
     let viscosity1 = calibrationRunTime1 * calibrationConstant
     let viscosity2 = calibrationRunTime2 * calibrationConstant
     let averageViscosity = ((viscosity1 + viscosity2) / 2)
-
-    console.log(`the average run time is ${averageRunTime}`)
-    console.log(`viscosity 1 is ${viscosity1}`)
-    console.log(`viscosity 2 is ${viscosity2}`)
-    console.log(`the average viscosity is ${averageViscosity}`)
 
     let calibrationDetails = document.getElementById('calibration-details')
     calibrationDetails.innerHTML = `
@@ -61,7 +49,6 @@ function calculateCalibration(calibrationRunTime1, calibrationRunTime2, calibrat
     document.getElementById('calibration-average-viscosity-units').style.display = 'inline'
 
     tolerance(averageViscosity)
-
 }
 
 function tolerance(averageViscosity) {
@@ -114,24 +101,16 @@ function tolerance(averageViscosity) {
 }
 
 function percentageDifference(calibrationFluidViscosity, averageViscosity, toleranceBand) {
-
-    console.log(`the calibration fluid viscosity is ${calibrationFluidViscosity}`)
-    console.log(`the average viscosity is ${averageViscosity}`)
     
     let numerator = calibrationFluidViscosity - averageViscosity
     numerator = Math.abs(numerator)
 
-    console.log(`the numerator is ${numerator}`)
-
     let denominator = ((calibrationFluidViscosity / 2) + (averageViscosity / 2))
     
     denominator = Math.abs(denominator)
-    console.log(`the denominator is ${denominator}`)
 
     let percentageDifference = (numerator / denominator) * 100
     let precisePercentageDifference = percentageDifference.toFixed(2)
-    
-    console.log(`the percentage difference is ${percentageDifference}`)
 
     document.getElementById('calibration-percentage-difference-label').style.display = 'block'
     document.getElementById('calibration-percentage-difference').textContent = precisePercentageDifference
@@ -149,15 +128,13 @@ function percentageDifferenceChecker(percentageDifference, toleranceBand) {
         document.getElementById('calibration-output').innerHTML = `
         <i class="fas fa-check icon"></i>
         <span>The percentage difference is less than or equal to the tolerance band. The viscometer passes the calibration check</span>
-        <p>Click the button below to see a detailed breakdown of the calculations</p>
-        `
+        <p>Click the button below to see a detailed breakdown of the calculations</p>`
     }
     else if(percentageDifference > toleranceBand) {
         document.getElementById('calibration-output').innerHTML = `
         <i class="fas fa-xmark icon"></i>
         <span>The percentage difference is greater than the tolerance band. The viscometer fails the calibration check</span>
-        <p>Click the button below to see a detailed breakdown of the calculations</p>
-        `
+        <p>Click the button below to see a detailed breakdown of the calculations</p>`
     }
 
     let calibrationDetailsButton = document.getElementById('calibration-details-button')
@@ -166,27 +143,21 @@ function percentageDifferenceChecker(percentageDifference, toleranceBand) {
 }
 
 let calibrationDetailsButton = document.getElementById('calibration-details-button')
-
 calibrationDetailsButton.addEventListener('click', calibrationDetails)
 
 function calibrationDetails() {
 
     let calibrationUserInput = document.getElementById('calibration-user-input')
-
     calibrationUserInput.style.height = '70vh'
 
     let calibrationCalculatedOutput = document.getElementById('calibration-calculated-output')
-
     calibrationCalculatedOutput.style.height = '70vh'
 
     let calibrationDetailsDiv = document.getElementById('calibration-details')
-
     calibrationDetailsDiv.style.display = 'block'
-
 }
 
 let calibrationResetButton = document.getElementById('calibration-reset')
-
 calibrationResetButton.addEventListener('click', calibrationReset)
 
 function calibrationReset() {

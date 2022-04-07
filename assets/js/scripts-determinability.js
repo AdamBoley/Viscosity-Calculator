@@ -1,7 +1,6 @@
 //Suspended flow Viscometer / Ubbelohde viscometer logic
 
 let ubbelohdeButton = document.getElementById('ubbelohde-button')
-
 ubbelohdeButton.addEventListener('click', ubbelohdeConstant)
 
 function ubbelohdeConstant() {
@@ -39,8 +38,7 @@ function ubbelohdeConstant() {
         submitDiv.style.marginTop  = '31px'
     }
 
-    document.getElementById('run-time-1').focus()
-    
+    document.getElementById('run-time-1').focus()   
 }
 
 let getValuesUbbelohdeButton = document.getElementById('submit-ubbelohde')
@@ -71,10 +69,6 @@ function getValuesUbbelohde() {
         let time2 = parseFloat(document.getElementById('run-time-2').value);
         let viscConstant = parseFloat(document.getElementById('constant-input').value);
 
-        console.log(`run time 1 is ${time1}`);
-        console.log(`run time 2 is ${time2}`);
-        console.log(`the viscometer constant is ${viscConstant}`);
-
         calculateUbbelohde(time1, time2, viscConstant);
     }
 }
@@ -101,22 +95,13 @@ function calculateUbbelohde(runTime1, runTime2, constant) {
     <p>Kinematic viscosity 2 = ${kv2} cSt</p>
     `
 
-    console.log(`kinematic viscosity 1 is ${kv1}`);
-    console.log(`kinematic viscosity 2 is ${kv2}`);
-    console.log(`kinematic viscosity 1 to 4 significant figures is ${preciseKv1}`);
-    console.log(`kinematic viscosity 2 to 4 significant figures is ${preciseKv2}`);
-
     calculateFinalUbbelohde(kv1, kv2)
-
 }
 
 function calculateFinalUbbelohde(kv1, kv2) {
 
     let finalViscosity = ((kv1 + kv2) / 2)
     let preciseFinalViscosity = finalViscosity.toPrecision(4)
-
-    console.log(`the final kinematic viscosity is ${finalViscosity}`)
-    console.log(`the final kinematic viscosity to 4 significant figures is ${preciseFinalViscosity}`)
 
     document.getElementById('determinability-final-kv-label').style.display = 'block'
     document.getElementById('determinability-final-kv').innerText = preciseFinalViscosity;
@@ -205,11 +190,6 @@ function getValuesZeitfuchs() {
         let viscConstant1 = parseFloat(document.getElementById('constant-1-input').value);
         let viscConstant2 = parseFloat(document.getElementById('constant-2-input').value);
 
-        console.log(`run time 1 is ${time1}`);
-        console.log(`run time 2 is ${time2}`);
-        console.log(`the viscometer constant is ${viscConstant1}`);
-        console.log(`the viscometer constant is ${viscConstant2}`);
-
         calculateZeitfuchs(time1, time2, viscConstant1, viscConstant2)
     }
 }
@@ -235,23 +215,14 @@ function calculateZeitfuchs(runTime1, runTime2, constant1, constant2) {
     <p>Kinematic viscosity 1 is ${kv1} cSt</p>
     <p>Kinematic viscosity 2 is ${kv2} cSt</p>
     `
-    
-    console.log(`kinematic viscosity 1 is ${kv1}`);
-    console.log(`kinematic viscosity 2 is ${kv2}`);
-    console.log(`kinematic viscosity 1 to 4 significant figures is ${preciseKv1}`);
-    console.log(`kinematic viscosity 2 to 4 significant figures is ${preciseKv2}`);
 
     calculateFinalZeitfuchs(kv1, kv2)
-
 }
 
 function calculateFinalZeitfuchs(kv1, kv2) {
 
     let finalViscosity = ((kv1 + kv2) / 2)
     let preciseFinalViscosity = finalViscosity.toPrecision(4)
-
-    console.log(`the final kinematic viscosity is ${finalViscosity}`)
-    console.log(`the final kinematic viscosity to 4 significant figures is ${preciseFinalViscosity}`)
 
     document.getElementById('determinability-final-kv-label').style.display = 'block'
     document.getElementById('determinability-final-kv').innerText = preciseFinalViscosity
@@ -263,7 +234,6 @@ function calculateFinalZeitfuchs(kv1, kv2) {
     `
 
     determinability(finalViscosity, kv1, kv2)
-
 }
 
 //Determinability
@@ -281,79 +251,59 @@ function determinability(finalViscosity, kv1, kv2) {
             message = '0.0037 x final calculated viscosity, or 0.37%'
             determinability = finalViscosity * 0.0037
             preciseDeterminability = determinability.toPrecision(4)
-            console.log('the determinability equation being used is', message)
-            console.log(`the determinability factor is ${finalViscosity} x 0.0037 = ${determinability}`)
             break
         
         case select.value === 'BO100' || select.value === 'FO100':
             message = '0.0036 x Final calculated viscosity, or 0.36%'
             determinability = finalViscosity * 0.0036
             preciseDeterminability = determinability.toPrecision(4)
-            console.log('the determinability equation being used is', message)
-            console.log(`the determinability factor is ${finalViscosity} x 0.0036 = ${determinability}`)
             break
 
         case select.value === 'FO150':
             message = '0.0150 x Final calculated viscosity, or 1.5%'
             determinability = finalViscosity * 0.0150
             preciseDeterminability = determinability.toPrecision(4)
-            console.log('the determinability equation being used is', message)
-            console.log(`the determinability factor is ${finalViscosity} x 0.0150 = ${determinability}`)
             break
         
         case select.value === 'PW100':
             message = '0.0080 x Final calculated viscosity, or 0.80%'
             determinability = finalViscosity * 0.0080
             preciseDeterminability = determinability.toPrecision(4)
-            console.log('the determinability equation being used is', message)
-            console.log(`the determinability factor is ${finalViscosity} x 0.0080 = ${determinability}`)
             break
 
         case select.value === 'RFO50':
             message = '0.0244 x Final calculated viscosity, or 2.44%'
             determinability = finalViscosity * 0.0244
             preciseDeterminability = determinability.toPrecision(4)
-            console.log('the determinability equation being used is', message)
-            console.log(`the determinability factor is ${finalViscosity} x 0.0244 = ${determinability}`)
             break
 
         case select.value === 'RFO100' || select.value === 'CR':
             message = '0.03 x Final calculated viscosity, or 3%'
             determinability = finalViscosity * 0.03
             preciseDeterminability = determinability.toPrecision(4)
-            console.log('the determinability equation being used is', message)
-            console.log(`the determinability factor is ${finalViscosity} x 0.03 = ${determinability}`)
             break
 
         case select.value === 'ADD100':
             message = '(Final calculated viscosity ^ 1.1) x 0.00106'
             determinability = (finalViscosity ** 1.1) * 0.00106//use a span and vertical alignment to display the power as a superscripted value here?
             preciseDeterminability = determinability.toPrecision(4)
-            console.log('the determinability equation being used is', message)
-            console.log(`the determinability factor is (${finalViscosity} ^1.1) x 0.00106 = ${determinability}`)
             break
 
         case select.value === 'GO40':
             message = '(Final calculated viscosity + 1) x 0.0013'
             determinability = (finalViscosity + 1) * 0.0013
             preciseDeterminability = determinability.toPrecision(4)
-            console.log('the determinability equation being used is', message)
-            console.log(`the determinability factor is (${finalViscosity} + 1) x 0.0013 = ${determinability}`)
             break
 
         case select.value === 'JFM20':
             message = '0.007608 x Final calculated viscosity, or 0.7608%'
             determinability = finalViscosity * 0.007608
             preciseDeterminability = determinability.toPrecision(4)
-            console.log('the determinability equation being used is', message)
-            console.log(`the determinability factor is ${finalViscosity} x 0.007608 = ${determinability}`)
             break
-
     }
 
     document.getElementById('determinability-equation-label').style.display = 'block'
     document.getElementById('determinability-equation').innerText = message
-    console.log(`the determinability factor to 4 significant figures is ${preciseDeterminability}`)
     document.getElementById('determinability-factor-label').style.display = 'block'
     document.getElementById('determinability-factor').innerText = preciseDeterminability
     document.getElementById('determinability-factor-units').style.display = 'inline'
@@ -362,7 +312,6 @@ function determinability(finalViscosity, kv1, kv2) {
     determinabilityDetails.innerHTML += `<p>The determinability factor is ${determinability} cSt</p>`
 
     upperLimit(determinability, finalViscosity, kv1, kv2)
-    
 }
 
 function upperLimit(determinability, finalViscosity, kv1, kv2) {
@@ -373,8 +322,6 @@ function upperLimit(determinability, finalViscosity, kv1, kv2) {
     document.getElementById('determinability-upper-limit-label').style.display = 'block'
     document.getElementById('determinability-upper-limit').innerText = preciseUpperAllowedViscosity
     document.getElementById('determinability-upper-limit-units').style.display = 'inline'
-
-    console.log(`The upper allowed viscosity is ${finalViscosity} + ${determinability} = ${preciseUpperAllowedViscosity}`)
 
     let determinabilityDetails = document.getElementById('determinability-details')
     determinabilityDetails.innerHTML += `<p>The determinability upper limit is ${finalViscosity} + ${determinability} = ${upperAllowedViscosity} cSt</p>`
@@ -391,8 +338,6 @@ function lowerLimit(determinability, finalViscosity, upperAllowedViscosity, kv1,
     document.getElementById('determinability-lower-limit').innerText = preciseLowerAllowedViscosity
     document.getElementById('determinability-lower-limit-units').style.display = 'inline'
 
-    console.log(`The lower allowed viscosity is ${finalViscosity} - ${determinability} = ${preciseLowerAllowedViscosity}`)
-
     let determinabilityDetails = document.getElementById('determinability-details')
     determinabilityDetails.innerHTML += `<p>The determinability lower limit ${finalViscosity} - ${determinability} = ${lowerAllowedViscosity} cSt</p>`
 
@@ -406,47 +351,37 @@ function checker(upperAllowedViscosity, lowerAllowedViscosity, kv1, kv2, finalVi
         document.getElementById('determinability-output').innerHTML = `
         <i class="fas fa-check icon"></i>
         <span>Your viscosities fall within the defined limits</span>
-        <p>Click the button below to see a detailed breakdown of the calculations</p>
-        `
+        <p>Click the button below to see a detailed breakdown of the calculations</p>`
     }
 
     else {
         document.getElementById('determinability-output').innerHTML = `
         <i class="fas fa-xmark icon"></i>
         <span>Your viscosities do not fall within the defined limits</span>
-        <p>Click the button below to see a detailed breakdown of the calculations</p>
-        `
+        <p>Click the button below to see a detailed breakdown of the calculations</p>`
     }
 
     let determinabilityDetailsButton = document.getElementById('determinability-details-button')
     
     determinabilityDetailsButton.style.display = 'block'
-
 }
 
 let determinabilityDetailsButton = document.getElementById('determinability-details-button')
-
 determinabilityDetailsButton.addEventListener('click', determinabilityDetails)
 
 function determinabilityDetails() {
 
     let determinabilityUserInput = document.getElementById('determinability-user-input')
-
     determinabilityUserInput.style.height = '90vh'
 
     let determinabilityCalculatedOutput = document.getElementById('determinability-calculated-output')
-
     determinabilityCalculatedOutput.style.height = '90vh'
 
     let determinabilityDetailsDiv = document.getElementById('determinability-details')
-
     determinabilityDetailsDiv.style.display = 'block'
-
 }
 
-
 let resetButton = document.getElementById('reset-determinability')
-
 resetButton.addEventListener('click', reset)
 
 function reset() {
@@ -487,5 +422,4 @@ function reset() {
     document.getElementById('determinability-factor-label').style.display = 'none'
     document.getElementById('determinability-upper-limit-label').style.display = 'none'
     document.getElementById('determinability-lower-limit-label').style.display = 'none'
-
 }

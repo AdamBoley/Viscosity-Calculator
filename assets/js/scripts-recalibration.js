@@ -1,5 +1,4 @@
 let recalibrationButton = document.getElementById('submit-recalibration')
-
 recalibrationButton.addEventListener('click', recalibrationPercentageDifference)
 
 function recalibrationPercentageDifference() {
@@ -22,18 +21,10 @@ function recalibrationPercentageDifference() {
         alert('Please enter the gravity at the standardisation laboratory')
     }
     else {
-        console.log(`the gravity at the testing lab is ${testingGravity}`)
-        console.log(`the gravity at the standardisation lab is ${standardisationGravity}`)
-        console.log(`the constant of the viscometer is ${constant}`)
-
         let numerator = testingGravity - standardisationGravity
         numerator = Math.abs(numerator)
 
-        console.log(numerator)
-
         let denominator = (testingGravity / 2) + (standardisationGravity / 2)
-
-        console.log(denominator)
 
         let percentageDifference = (numerator / denominator) * 100
         let precisePercentageDifference = percentageDifference.toPrecision(4)
@@ -41,7 +32,6 @@ function recalibrationPercentageDifference() {
         document.getElementById('recalibration-percentage-difference-label').style.display = 'block'
         document.getElementById('recalibration-percentage-difference').textContent = precisePercentageDifference
         document.getElementById('recalibration-percentage-difference-units').style.display = 'inline'
-        console.log(`the percentage difference is ${precisePercentageDifference}`)
 
         recalibrationFunction(percentageDifference, testingGravity, standardisationGravity, constant)
     }
@@ -52,7 +42,6 @@ function recalibrationFunction(percentageDifference, testingGravity, standardisa
     if(percentageDifference > 0.1) {
         let newConstant = (standardisationGravity / testingGravity) * constant
         let preciseNewConstant = newConstant.toPrecision(4)
-        console.log(`the new constant of the viscometer is ${preciseNewConstant}`)
         document.getElementById('recalibration-new-constant-label').style.display = 'block'
         document.getElementById('recalibration-new-constant').textContent = preciseNewConstant
         document.getElementById('recalibration-new-constant-units').style.display = 'inline'

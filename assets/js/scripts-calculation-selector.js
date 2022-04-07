@@ -1,7 +1,6 @@
 //Calculation selector
 
 let calculationSelector = document.getElementById('calculation-selector')
-
 calculationSelector.addEventListener('change', selectCalculation)
 
 function selectCalculation() {
@@ -40,6 +39,5 @@ function selectCalculation() {
         document.getElementById('reproducibility-calculations').style.display = 'none'
         document.getElementById('viscometer-calibration').style.display = 'none'
         document.getElementById('viscometer-constant-recalibration').style.display = 'block'
-
     }
 }
