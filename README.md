@@ -102,15 +102,17 @@ More specifically, the tool is designed for use by myself and my colleagues at I
 
 # User stories
 
-First-time users must be able to determine the purpose of the tool as soon as they navigate to it. 
+First-time users must be able to determine the purpose of the tool as soon as they navigate to it
 
-The tool must include a selector to allow the user to select the fluid type that their sample is, and this selection must be referenced in the functions that are executed so that the correct calculations are made
+The tool must include a selector to allow the user to choose the calculation they want to conduct
 
-The tool must include a page with some information on how to set the selector to the fluid type that matches their sample 
+The tool must include a selector to allow the user to select the fluid type that their sample is, and this selector must change that functions that are executed so that the correct calculations are made
 
-The above page should either open a new tab, or include an internal link to take the user back to the main page so that they don't have to user their browser butttons. 
+The tool must include a page with some information on how to set the selector to the fluid type that matches their sample
 
-The tool must have clear calls to action to input the data required for the calculation that has been selected
+The above page should either open a new tab, or include an internal link to take the user back to the main page so that they don't have to user their browser butttons
+
+The tool must have clear calls to action to input the user's data (run-times, constants, gravities, etc)
 
 The tool must have a clear call to action to submit their inputs and begin the calculations
 
@@ -118,9 +120,9 @@ The tool must display all calculation outputs so that the user is reassured of t
 
 The tool's functions must produce the same calculation outputs as manual calculations would (i.e. no difference between the tool and the user doing the same calculations manually)
 
-The tool must have a function to clear the user's inputs so that other calculations of the same type can be performed
+The tool must have a function to clear the user's inputs so that other tests can be checked
 
-The tool must have a clear final output informing the user of the result of their calculations. 
+The tool must have a clear final output informing the user of the result of the calculation
 
 # Wireframes
 
@@ -166,11 +168,24 @@ This is the discussion page that guides the user on how to set the selector to t
 
 ### Smartphone
 
-# Function
-
 # Features
 
+Generally state each aspect of the site - 
+
+# Function
+
+Explain generally how each calculation article works. 
+
+
 # Design Choices
+
+## Colour scheme, font, favicon
+
+Simple design - few/no images, Work Sans font, blue background, labels, icons, favicon
+
+## JS functions
+
+Justify use of smaller, simpler functions, though a single larger function could suffice for the main calculations. Justify use of toPrecion method(here?). Justify passing raw values through the functions
 
 # Accessibility
 
@@ -313,37 +328,61 @@ Lighthouse
 
 ## Testing User Stories
 
-**First-time users must be able to determine the purpose of the tool as soon as they navigate to it.** 
+
+
+**First-time users must be able to determine the purpose of the tool as soon as they navigate to it** 
+
+The use of the term 'viscosity' in the index page's title, and the introductory text that mentions ASTM D445 clearly indicates the purpose of the site. 
+
+**The tool must include a selector to allow the user to choose the calculation they want to conduct**
+
+Directly below the introductory text is a drop-down menu with options for each of the calculations. Depending on the option that is selected by the user, a different calculation will be displayed. 
 
 **The tool must include a selector to allow the user to select the fluid type that their sample is, and this selector must change that functions that are executed so that the correct calculations are made**
 
+Within each of the determinability, repeatability and reproducibility calculation articles there is a drop-down menu where the user can change the sample type. The selection influences the determinability, repeatability or reproducibility calculation that is performed when the limits are checked. The drop-down selector influences a SWITCH statement. 
+
 **The tool must include a page with some information on how to set the selector to the fluid type that matches their sample**
 
-**The above page should either open a new tab, or include an internal link to take the user back to the main page so that they don't have to user their browser butttons.**
+The introductory text contains a prominent link with a clear call to action to visit the discussion page. Within each of the determinability, repeatability and reproducibility there is another link to the discussion page that focuses on the section specifically dealing with selecting the correct sample type. 
 
-**The tool must have clear calls to action to input the user's run-times and viscometer constant(s)**
+**The above page should either open a new tab, or include an internal link to take the user back to the main page so that they don't have to user their browser butttons**
 
-The tool contains instructions at the top of the page that guide the user through the process, and the input elements are clearly labelled
+Clicking on either of the 4 links to the discussion page opens a new tab, so that the user is not directed away from the index page. 
+
+**The tool must have clear calls to action to input the user's data (run-times, constants, gravities, etc)**
+
+Each calculation section has an In'structions for use' ordered list that walks the user through the process. Each input has a label, and the input element's white colouration stands out against the blue background of the Viscosity Calculator. Further prompting is provided by the alerts that flash up if the user presses the calculation button when not all of the inputs have been filled. 
 
 **The tool must have a clear call to action to submit their inputs and begin the calculations**
 
-The tool has a prominent submit button that is displayed once the user selects their viscometer type
+Each calculation article has a calculate button that is prominent. In the case of the determinability calculation article, the user must first select a viscometer type to display a calculate button. 
 
 **The tool must display all calculation outputs so that the user is reassured of the tool's accuracy and can follow along performing the calculations manually if they desire**
 
-The calculations are done step-by-step in small functions, with the outputs displayed in labelled boxes
+The calculations are done step-by-step in small functions, with rounded outputs appearing under labels. In addition, the user can click a calculation details button that displays the unrounded values used in the calculations. Per testing below, the calculated outputs match the results of the manual calculations to a high degree of accuracy. The unrounded calculation outpust match almost exactly. 
 
 **The tool's functions must produce the same calculation outputs as manual calculations would (i.e. no difference between the tool and the user doing the same calculations manually)**
 
-(Still needs to be checked once the tool is fully working - JS's base 2 counting system may introduce small errors with floating point numbers)
+Per the testing conducted below, the Viscosity Calculator's functions produce the same results as manual calculations to a high degree of accuracy. 
 
-**The tool must have a function to clear the user's inputs so that other tests of different fluids with different viscometers can be checked**
+**The tool must have a function to clear the user's inputs so that other tests can be checked**
 
-(still needs implementing)
+Each calculation article has a reset button that clears the user inputs and calculation outputs. This effectively resets the tool for further use. 
 
-**The tool must have a clear final output informing the user whether their run-times produce determinable kinematic viscosities**
+**The tool must have a clear final output informing the user of the result of the calculation**
 
-(A text message displays currently, it is envisioned that a large green tick for success and a large red cross for failure )
+Each calculation article displays a final output that informs the user as follows:
+
+For the determinability calculations, the output informs the user if their run-times (and associated viscosities) are determinable according to the user's drop-down menu selection, per the criteria laid down in ASTM D445.
+
+For the repeatability calculations, the output informs the user if their viscosities are repeatable, per the criteria laid down in ASTM D445.
+
+For the reproducibility calculations, the output informs the user if their viscosities are reproducible, per the criteria laid down in ASTM D445. 
+
+For the calibration calculations, the output informs the user if the viscometer passes its calibration check, per the criteria laid down in ASTM D445.
+
+For the recalibration calculation, the output informs the user of the new constant for the viscometer being recalibrated. 
 
 ## Testing site functionality
 
@@ -351,7 +390,7 @@ Test link to discussion page, test discussion page internal navigation, test AST
 
 | Action                                                    | Expected result                                                  | Actual result
 | --------------------------------------------------------- |:-----------------------------------------------------------------| :---------------------------------------------------------------|
-| Click link to discussion page in introductory test        | Opens new tab to discussion page                                 | Opens new tab to discussion page                                |
+| Click link to discussion page in introductory text        | Opens new tab to discussion page                                 | Opens new tab to discussion page                                |
 | Click link to discussion page in determinability article  | Opens new tab to discussion page, focus on sample type guidance  | Opens new tab to discussion page, focus on sample type guidance |
 | Click link to discussion page in repeatability article    | Opens new tab to discussion page, focus on sample type guidance  | Opens new tab to discussion page, focus on sample type guidance |
 | Click link to discussion page in reproducibility article  | Opens new tab to discussion page, focus on sample type guidance  | Opens new tab to discussion page, focus on sample type guidance |
@@ -359,7 +398,8 @@ Test link to discussion page, test discussion page internal navigation, test AST
 | Select repeatability option from drop-down menu           | Display repeatability calculation article                        | Display repeatability calculation article                       | 
 | Select reproducibility option from drop-down menu         | Display reproducibility calculation article                      | Display reproducibility calculation article                     | 
 | Select calibration option from drop-down menu             | Display calibration calculation article                          | Display calibration calculation article                         | 
-| Select recalibration option from drop-down menu           | Display recalibration calculation article                        | Display recalibration calculation article                       | 
+| Select recalibration option from drop-down menu           | Display recalibration calculation article                        | Display recalibration calculation article                       |
+| Click ASTM D445 download link in discussion page          | Download a copy of ASTM D445                                     | Download a copy of ASTM D445 
 
 ## Testing calculation functions
 
