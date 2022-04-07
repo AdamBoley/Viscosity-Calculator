@@ -287,7 +287,7 @@ function determinability(finalViscosity, kv1, kv2) {
         
         case select.value === 'BO100' || select.value === 'FO100':
             message = '0.0036 x Final calculated viscosity, or 0.36%'
-            determinability = finalViscosity * 0.0037
+            determinability = finalViscosity * 0.0036
             preciseDeterminability = determinability.toPrecision(4)
             console.log('the determinability equation being used is', message)
             console.log(`the determinability factor is ${finalViscosity} x 0.0036 = ${determinability}`)

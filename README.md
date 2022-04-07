@@ -363,11 +363,13 @@ Test link to discussion page, test discussion page internal navigation, test AST
 
 ## Testing calculation functions
 
-This section documents the testing of the calculation functions. 
+This section documents the testing of the calculation functions. In all cases, the testing was conducted using the development server, not the deployed project, so that errors detected in the testing process could be identified and corrected easily. 
 
 ### Determinability calculations
 
-Below are the results of testing the determinability calculation functions. Given the range of run-times and viscometer constants, exhaustive testing covering every single use-case (i.e. the full range of run-times from 200s to 900s across every viscometer size for each sample type) is impractical. Instead, I thought it best to test each sample type once using what I have found to be typical run-times and typical viscometer constants for each sample type. My justification for this decision is that the tool's utility lies in the range of determinability calculations it can apply with a few clicks. Testing a multitude of differing run-times and constants would merely test the tool's ability to do simple calculations, which, being a computer, is essentially perfect. 
+Below are the results of testing the determinability calculation functions. Given the range of run-times and viscometer constants, exhaustive testing covering every single use-case (i.e. the full range of run-times from 200s to 900s across every viscometer size for each sample type) is impractical. Instead, I thought it best to test each sample type once using what I have found to be typical run-times and typical viscometer constants for each sample type. My justification for this decision is that the tool's utility lies in the range of determinability calculations it can apply with a few clicks. Testing a multitude of differing run-times and constants would merely test the tool's ability to do simple calculations, which, being a computer, is essentially perfect. This testing will compare the results calculated via manual means with those calculated by the Viscosity Calculator, manual in this case meaning calculated with a scientific calculator and a notepad, the current practice in my laboratory. Current practice in my laboratory is to incrementally round at each stage of the calculations, for ease of use. However, in this testing process, I considered that using the unrounded values would be the better approach, since the Viscosity Calculator also uses unrounded values, and carries them through the functions for maximum accuracy, and only displays the rounded values for the user's sake. Whilst the unrounded values may impair readability, I consider this approach to be the best way to compare the manual approach with the Viscosity Calculator. In several cases, both the manual approach and the Viscosity Calculator generated values with '999999' or '0000001' (or similar) at the end. Since rounding these numbers has no real effect of the accuracy of the tool, the numbers were rounded when entered into the table. 
+
+REWORD THIS - basicall, I am trying to prove that the VC is just as good as the manula method, but does the calculations far quicker, and, since it avoids incremental rounding errors, actually offers superior accuract. Remember that the long floating point values are usually incrementally rounded in real-world operation. It is good when the manual calculation results match the VC results. 
 
 Since the determinability calculation offers a choice between Ubbelohde and Zeitfuchs viscometers, it is prudent to test the functionality of both, since different (though similar) functions are used. However, Zeitfuchs viscometers are, as noted above, typically only used in cases where the sample being tested is very dark. The preference among analysts is to use Ubbelohde viscometers if at all possible, since the sample can be retested several times if need be. In my personal (and extensive) experience, Zeitfuchs viscometers are used only for tests on residual fuel oils, crude oils and residues, with a handful of fringe cases of additives that are extremely viscous. Hence, the Zeitfuchs calculation function will be tested only with those sample types.
 
@@ -387,500 +389,607 @@ VC - Viscosity Calculator, for the tool's results
 | Click calculate button                                    | Fill outputs with labels, results as numbers, and units x                | Fill outputs with labels, results as numbers and units                  |
 | Click calculate button with an empty run-time input       | An alert appears telling the user they need to enter 2 run-times         | An alert appears telling the user they need to enter 2 run-times        |
 | Click calculate button with an empty constant input       | An alert appears telling the user they need to enter a constant          | An alert appears telling the user they need to enter a constant         |
+| Click Calculation details button                          | Displays unrounded values of the calculations                            | Displays unrounded values of the calculations                           |
 
 x NB - the output results must merely be numbers, not text or NaN. The 'correctness' (for want of a better term) of the outputs is tested below 
 
 **Ubbelohde option testing**
 
-Sample type: Base oil, 40C
-Run time 1:
-Run time 2:
-Viscometer constant:
+Sample type: Base oil, 40C <br>
+Run time 1: 221.14s <br>
+Run time 2: 221.20s <br>
+Viscometer: L2_93163 <br>
+Viscometer constant: 0.09014 <br>
+Determinability factor: 0.37% <br>
 
-|  Manual kv1 | Manual kv2  | Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
-| ------------|:------------|:---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:
-|
+|  Manual kv1 | Manual kv2  | Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor   | VC UL              | VC LL          |
+| ------------|:------------|:---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:--------------|:-------------------|:---------------|
+| 19.9335596  | 19.938968   | 19.9362638     | 0.07376417606   | 20.01002798 | 19.86249962 | 19.9335596  | 19.938968   | 19.9362638  | 0.07376417606 | 20.010027976059998 | 19.86249962394 |
 
-Sample type: Base oil, 100C
-Run time 1:
-Run time 2:
-Viscometer constant:
+Sample type: Base oil, 100C <br>
+Run time 1: 410.51 <br>
+Run time 2: 410.63 <br>
+Viscometer: L1_89556 <br>
+Viscometer constant: 0.01032 <br>
+Determinability factor: 0.36% <br>
 
-|  Manual kv1 | Manual kv2  | Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
-| ------------|:------------|:---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:
-|
+|  Manual kv1 | Manual kv2  | Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor  | VC UL         | VC LL          |
+| ------------|:------------|:---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:-------------|:--------------|:---------------|
+| 4.2364632   | 4.2377016   | 4.2370824      | 0.01525349664   | 4.252335897 | 4.221828903 | 4.2364632   | 4.2377016   | 4.2370824   | 0.1525349664 | 4.25233589664 | 4.22182890336  |
 
-Sample type: Formulated oil, 40C
-Run time 1:
-Run time 2:
-Viscometer constant:
+Sample type: Formulated oil, 40C <br>
+Run time 1: 324.96 <br>
+Run time 2: 325.00 <br>
+Viscometer: L2_91818 <br>
+Viscometer constant: 0.09507 <br>
+Determinability factor: 0.37% <br>
 
-|  Manual kv1 | Manual kv2  | Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
-| ------------|:------------|:---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:
-|
+|  Manual kv1 | Manual kv2  | Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL        | VC LL          |
+| ------------|:------------|:---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:-------------|:---------------|
+| 30.8939472  | 30.89775    | 30.8958486     | 0.1143146398    | 31.0101     | 30.78153396 | 30.8939472  | 30.8939472  | 30.89775    | 30.8958486  | 31.010163298 | 30.78153396018 |
 
-Sample type: Formulated oil, 100C
-Run time 1:
-Run time 2:
-Viscometer constant:
+Sample type: Formulated oil, 100C <br>
+Run time 1: 240.78 <br>
+Run time 2: 240.98 <br>
+Viscometer: L1C_86008 <br>
+Viscometer constant: 0.02978 <br>
+Determinability factor: 0.36% <br>
 
-|  Manual kv1 | Manual kv2  | Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
-| ------------|:------------|:---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:
-|
+|  Manual kv1 | Manual kv2  | Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor   | VC UL         | VC LL         |
+| ------------|:------------|:---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:--------------|:--------------|:--------------|
+| 7.1704284   | 7.1763844   | 7.1734064      | 0.02582426304   | 7.199230663 | 7.147582137 | 7.1704284   | 7.1763844   | 7.1734064   | 0.02582426304 | 7.19923066304 | 7.14758213696 |
 
-Sample type: Formulated oil, 150C
-Run time 1:
-Run time 2:
-Viscometer constant:
+Sample type: Formulated oil, 150C <br>
+Run time 1: 261.08 <br>
+Run time 2: 261.26 <br>
+Viscometer: L1_84422 <br>
+Viscometer constant: 0.01150 <br>
+Determinability factor: 1.5% <br>
 
-|  Manual kv1 | Manual kv2  | Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
-| ------------|:------------|:---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:
-|
+|  Manual kv1 | Manual kv2  | Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL        | VC LL       |
+| ------------|:------------|:---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:-------------|:------------|
+| 3.00242     | 3.00449     | 3.003455       | 0.045051825     | 3.04506825  | 2.958403175 | 3.00242     | 3.00449     | 3.003455    | 0.045051825 | 3.0485068425 | 2.958403175 |
 
-Sample type: Kerosene, diesel, biodiesel
-Run time 1:
-Run time 2:
-Viscometer constant:
+Sample type: Kerosene, diesel, biodiesel, 40C <br>
+Run time 1: 450.77 <br>
+Run time 2: 450.39 <br>
+Viscometer: L0B_L381 <br>
+Viscometer constant: 0.004925 <br>
+Determinability factor: 0.37% <br>
 
-|  Manual kv1 | Manual kv2  | Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
-| ------------|:------------|:---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:
-|
+|  Manual kv1 | Manual kv2  | Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor   | VC UL         | VC LL         |
+| ------------|:------------|:---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:--------------|:--------------|:--------------|
+| 2.2204225   | 2.21817075  | 2.2191065      | 0.00821069405   | 2.227317194 | 2.210995806 | 2.22004225  | 2.21817075  | 2.2191065   | 0.00821069405 | 2.22731719405 | 2.21089580595 |
 
-Sample type: Petroleum wax, 100C
-Run time 1:
-Run time 2:
-Viscometer constant:
+Sample type: Petroleum wax, 100C <br>
+Run time 1: 396.89 <br>
+Run time 2: 396.63 <br>
+Viscometer: L1_89553 <br>
+Viscometer constant: 0.01008 <br>
+Determinability factor: 0.80% <br>
 
-|  Manual kv1 | Manual kv2  | Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
-| ------------|:------------|:---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:
-|
+|  Manual kv1 | Manual kv2  | Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor   | VC UL        | VC LL        |
+| ------------|:------------|:---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:--------------|:-------------|:-------------|
+| 4.0006512   | 3.9980304   | 3.9993408      | 0.0319947264    | 4.031335526 | 3.967346074 | 4.0006512   | 3.9980304   | 3.9993408   | 0.0319947264  | 4.0313355264 | 3.9673460736 |
 
-Sample type: Residual Fuel Oil, 50C
-Run time 1:
-Run time 2:
-Viscometer constant:
+Sample type: Residual Fuel Oil, 50C <br>
+Run time 1: 500.53 <br>
+Run time 2: 500.69 <br>
+Viscometer: L2C_91219 <br>
+Viscometer constant: 0.2867 <br>
+Determinability factor: 2.44% <br>
 
-|  Manual kv1 | Manual kv2  | Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
-| ------------|:------------|:---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:
-|
+|  Manual kv1 | Manual kv2  | Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor  | VC UL          | VC LL          |
+| ------------|:------------|:---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:-------------|:---------------|:---------------|
+| 143.501951  | 143.547823  | 143.524887     | 3.502007243     | 147.0268942 | 140.0228798 | 143.501951  | 143.547823  | 143.524887  | 3.5020072428 | 147.0268942428 | 140.0228797572 |
 
-Sample type: Residual Fuel Oil, 100C
-Run time 1:
-Run time 2:
-Viscometer constant:
+Sample type: Residual Fuel Oil, 100C <br>
+Run time 1: 273.75 <br>
+Run time 2: 274.29 <br>
+Viscometer: L2_91925 <br>
+Viscometer constant: 0.09762 <br>
+Determinability factor: 3% <br>
 
-|  Manual kv1 | Manual kv2  | Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
-| ------------|:------------|:---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:
-|
+|  Manual kv1 | Manual kv2  | Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL        | VC LL        |
+| ------------|:------------|:---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:-------------|:-------------|
+| 26.723475   | 26.7761898  | 26.7498324     | 0.802494972     | 27.55232737 | 25.94733743 | 26.723475   | 26.7761898  | 26.7498324  | 0.802494972 | 27.552327372 | 25.947337428 |
 
-Sample type: Additive, 100C
-Run time 1:
-Run time 2:
-Viscometer constant:
+Sample type: Additive, 100C <br>
+Run time 1: 550.49 <br>
+Run time 2: 549.95 <br>
+Viscometer: L2C_93064 <br>
+Viscometer constant: 0.2866 <br>
+Determinability factor: (Average ^ 1.1) x 0.00106 <br>
 
-|  Manual kv1 | Manual kv2  | Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
-| ------------|:------------|:---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:
-|
+|  Manual kv1 | Manual kv2  | Manual average | Manual d-factor     | Manual UL          | Manual LL         | VC kv1      | VC kv2      | VC average  | VC d-factor         | VC UL              | VC LL             |
+| ------------|:------------|:---------------|:--------------------|:-------------------|:------------------|:------------|:------------|:------------|:--------------------|:-------------------|:------------------|
+| 157.770434  | 157.61567   | 157.693052     | 0.2772679553        | 157.97032          | 157.415784        | 157.770434  | 157.61567   | 157.693052  | 0.27726795529672504 | 157.97031995529676 | 157.4157840447033 |
 
-Sample type: Gas Oil, 40C
-Run time 1:
-Run time 2:
-Viscometer constant:
+Sample type: Gas Oil, 40C <br>
+Run time 1: 432.76 <br>
+Run time 2: 433.02 <br>
+Viscometer: L2_93172 <br>
+Viscometer constant: 0.09346 <br>
+Determinability factor: 0.0013 x (average + 1) <br>
 
-|  Manual kv1 | Manual kv2  | Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
-| ------------|:------------|:---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:
-|
+|  Manual kv1 | Manual kv2  | Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor   | VC UL          | VC LL          |
+| ------------|:------------|:---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:--------------|:---------------|:---------------|
+| 40.4457496  | 40.4700492  | 40.4578994     | 0.05389526922   | 40.51179467 | 40.40400413 | 40.4457496  | 40.4719184  | 40.4578994  | 0.05389526922 | 40.51179466922 | 40.40400413078 |
 
-Sample type: Jet Fuel, -20C
-Run time 1:
-Run time 2:
-Viscometer constant:
+Sample type: Jet Fuel, -20C <br>
+Run time 1: 288.96 <br>
+Run time 2: 289.24 <br>
+Viscometer: L0C_C511 <br>
+Viscometer constant: 0.002879 <br>
+Determinability factor: 0.7608% <br>
 
-|  Manual kv1 | Manual kv2  | Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
-| ------------|:------------|:---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:
-|
+|  Manual kv1 | Manual kv2  | Manual average | Manual d-factor | Manual UL    | Manual LL    | VC kv1      | VC kv2      | VC average  | VC d-factor     | VC UL           | VC LL           |
+| ------------|:------------|:---------------|:----------------|:-------------|:-------------|:------------|:------------|:------------|:----------------|:----------------|:----------------|
+| 0.83191584  | 0.83272196  | 0.8323189      | 0.006332282191  | 0.8386511822 | 0.8259866178 | 0.83191584  | 0.83272196  | 0.8323189   | 0.0063322821912 | 0.8386511821912 | 0.8259866178088 |
 
+Sample type: Crude Oil, 40C <br>
+Run time 1: 560.87 <br>
+Run time 2: 561.92 <br>
+Viscometer: L1_92050 <br>
+Viscometer constant: 0.01017 <br>
+Determinability factor: 3% <br>
 
-Sample type: Crude Oil, 40C
-Run time 1:
-Run time 2:
-Viscometer constant:
-
-|  Manual kv1 | Manual kv2  | Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
-| ------------|:------------|:---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:
-|
+|  Manual kv1 | Manual kv2  | Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor  | VC UL        | VC LL        |
+| ------------|:------------|:---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:-------------|:-------------|:-------------|
+| 5.7040479   | 5.7147264   | 5.70938715     | 0.1712816145    | 5.880668765 | 5.538105536 | 5.7040479   | 5.7147264   | 5.70938715  | 0.1712816145 | 5.8806687645 | 5.5381055355 |
 
 
 **Zeitfuchs option testing**
 
-Sample type: Residual Fuel Oil, 50C
-Run time 1:
-Viscometer constant 1:
-Run time 2:
-Viscometer constant 2:
+Sample type: Residual Fuel Oil, 50C <br>
+Run time 1: 311.21 <br>
+Viscometer: L5_93272 <br>
+Viscometer constant 1: 0.3247 <br>
+Run time 2: 334.05 <br>
+Viscometer: L5_92276 <br>
+Viscometer constant 2: 0.3012 <br>
+Determinability factor: 2.44% <br>
+
+|  Manual kv1 | Manual kv2  | Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor  | VC UL          | VC LL         |
+| ------------|:------------|:---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:-------------|:---------------|:--------------|
+| 101.049887  | 100.61586   | 100.8328735    | 2.460322113     | 103.2931956 | 98.37255139 | 101.049887  | 100.61586   | 100.8328735 | 2.4603221134 | 103.2931956134 | 98.3725513866 |
+
+Sample type: Residual Fuel Oil, 100C <br>
+Run time 1: 455.34 <br>
+Viscometer: L4_92545  <br>
+Viscometer constant 1: 0.1015 <br>
+Run time 2: 437.98 <br>
+Viscometer: L4_9495 <br>
+Viscometer constant 2: 0.1054 <br>
+Determinability factor: 3% <br>
 
 |  Manual kv1 | Manual kv2  | Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
-| ------------|:------------|:---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:
-|
+| ------------|:------------|:---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|
+| 46.21701    | 46.163092   | 46.190051      | 1.38570153      | 47.57575253 | 44.80434947 | 46.21701    | 46.163092   | 46.190051   | 1.38570153  | 47.57575253 | 44.80434947 |
 
-Sample type: Residual Fuel Oil, 100C
-Run time 1:
-Viscometer constant 1:
-Run time 2:
-Viscometer constant 2:
+Sample type: Additive, 100C <br>
+Run time 1: 702.62 <br>
+Viscometer: L8_80401 <br>
+Viscometer constant 1: 9.114 <br>
+Run time 2: 696.24 <br>
+Viscometer: L8_80405 <br>
+Viscometer constant 2: 9.206 <br>
+Determinability factor: (average ^ 1.1) 0.00106 <br>
 
-|  Manual kv1 | Manual kv2  | Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
-| ------------|:------------|:---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:
-|
+|  Manual kv1 | Manual kv2  | Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor        | VC UL             | VC LL             |
+| ------------|:------------|:---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:-------------------|:------------------|:------------------|
+| 6403.67868  | 6409.58544  | 6406.63206     | 16.31543383     | 6422.947494 | 6390.316626 | 6403.67868  | 6409.58544  | 6406.63206  | 16.315433829626443 | 6422.947493829626 | 6390.316626170374 |
 
-Sample type: Additive, 100C
-Run time 1:
-Viscometer constant 1:
-Run time 2:
-Viscometer constant 2:
+Sample type: Residue, 100C <br>
+Run time 1: 420.36 <br>
+Viscometer: L5_93272 <br>
+Viscometer constant 1: 0.3247 <br>
+Run time 2: 454.04 <br>
+Viscometer: L5_93276 <br>
+Viscometer constant 2: 0.3012 <br>
+Determinability factor: 3% <br>
 
-|  Manual kv1 | Manual kv2  | Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
-| ------------|:------------|:---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:
-|
-
-Sample type: Residue, 100C
-Run time 1:
-Viscometer constant 1:
-Run time 2:
-Viscometer constant 2:
-
-|  Manual kv1 | Manual kv2  | Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
-| ------------|:------------|:---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:
-|
+|  Manual kv1 | Manual kv2  | Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL        | VC LL         |
+| ------------|:------------|:---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:-------------|:--------------|
+| 136.490892  | 136.756848  | 136.62387      | 4.0987161       | 140.7225861 | 132.5251539 | 136.490892  | 136.756848  | 136.62387   | 4.0987161   | 140.7225861  | 132.5251539   |
 
 ### Repeatability calculations
 
 A similar approach to that of testing the determinability calculation functions will be taken with testing the repeatability functions. Each sample type will be tested once, using viscosities that might typically be expected of that sample type at that temperature. 
 
-Sample type: Base oil, 40C
-Viscosity 1:
-Viscosity 2:
 
-| Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
-| ---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|
-|
+Sample type: Base oil, 40C <br>
+Viscosity 1: 30.73 <br>
+Viscosity 2: 31.26 <br>
+Repeatability factor: 1.01% <br>
 
-Sample type: Base oil, 100C
-Viscosity 1:
-Viscosity 2:
+| Manual average     | Manual r-factor     | Manual UL        | Manual LL       | VC average        | VC r-factor      | VC UL            | VC LL            |
+| -------------------|:--------------------|:-----------------|:----------------|:------------------|:-----------------|:-----------------|:-----------------|
+| 30.995             | 0.3130495           | 30.3080495       | 30.6819505      | 30.995            | 0.3130495        | 31.3080495       | 30.6816505       |
 
-| Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
-| ---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|
-|
+Sample type: Base oil, 100C <br>
+Viscosity 1: 7.195 <br>
+Viscosity 2: 7.306 <br>
+Repeatability factor: 0.85% <br>
 
-
-Sample type: Formulated oil, 40C
-Viscosity 1:
-Viscosity 2:
-
-| Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
-| ---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|
-|
+| Manual average     | Manual r-factor     | Manual UL        | Manual LL       | VC average        | VC r-factor      | VC UL            | VC LL            |
+| -------------------|:--------------------|:-----------------|:----------------|:------------------|:-----------------|:-----------------|:-----------------|
+| 7.2505             | 0.06162925          | 7.31212925       | 7.18887075      | 7.2505            | 0.06162925       | 7.31212925       | 7.18887075       |
 
 
-Sample type: Formulated oil, 100C
-Viscosity 1:
-Viscosity 2:
+Sample type: Formulated oil, 40C <br>
+Viscosity 1: 41.96 <br>
+Viscosity 2: 43.53 <br>
+Repeatability factor: 0.74% <br>
 
-| Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
-| ---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|
-|
+| Manual average     | Manual r-factor     | Manual UL        | Manual LL       | VC average        | VC r-factor      | VC UL            | VC LL            |
+| -------------------|:--------------------|:-----------------|:----------------|:------------------|:-----------------|:-----------------|:-----------------|
+| 42.745             | 0.316313            | 43.061313        | 42.428687       | 42.745            | 0.316313         | 43.061313        | 42.428687        |
 
-Sample type: Formulated oil, 150C
-Viscosity 1:
-Viscosity 2:
 
-| Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
-| ---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|
-|
+Sample type: Formulated oil, 100C <br>
+Viscosity 1: 9.189  <br>
+Viscosity 2: 9.273 <br>
+Repeatability factor: 0.84%  <br>
 
-Sample type: Petroleum wax, 100C
-Viscosity 1:
-Viscosity 2:
+| Manual average     | Manual r-factor     | Manual UL        | Manual LL       | VC average        | VC r-factor      | VC UL            | VC LL            |
+| -------------------|:--------------------|:-----------------|:----------------|:------------------|:-----------------|:-----------------|:-----------------|
+| 9.231              | 0.0775404           | 9.3085404        | 9.1534596       | 9.231             | 0.0775404        | 9.3085404        | 9.1534596        | 
 
-| Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
-| ---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|
-|
+Sample type: Formulated oil, 150C <br>
+Viscosity 1: 5.792 <br>
+Viscosity 2: 5.886 <br>
+Repeatability factor: 0.56  <br>
 
-Sample type: Residual fuel oil, 50C
-Viscosity 1:
-Viscosity 2:
+| Manual average     | Manual r-factor     | Manual UL        | Manual LL       | VC average        | VC r-factor      | VC UL            | VC LL            |
+| -------------------|:--------------------|:-----------------|:----------------|:------------------|:-----------------|:-----------------|:-----------------|
+| 5.839              | 0.0326984           | 5.871684         | 5.8063016       | 5.839             | 0.0326984        | 5.8716984        | 5.8063016
 
-| Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
-| ---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|
-|
+Sample type: Petroleum wax, 100C <br>
+Viscosity 1: 3.563 <br>
+Viscosity 2: 3.609 <br>
+Repeatability factor: (average ^ 1.2) 0.0141 <br>
 
-Sample type: Residual fuel oil, 100C
-Viscosity 1:
-Viscosity 2:
+| Manual average     | Manual r-factor     | Manual UL        | Manual LL       | VC average        | VC r-factor      | VC UL             | VC LL              |
+| -------------------|:--------------------|:-----------------|:----------------|:------------------|:-----------------|:------------------|:-------------------|
+| 3.586              | 0.06527568755       | 3.651275688      | 3.520723125     | 3.586             | 0.065275687546   | 3.651275687546401 | 3.5207243124535994 |
 
-| Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
-| ---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|
-|
+Sample type: Residual fuel oil, 50C <br>
+Viscosity 1: 120.6 <br>
+Viscosity 2: 116.8 <br>
+Repeatability factor: 7.88% <br>
 
-Sample type: Additive, 100C
-Viscosity 1:
-Viscosity 2:
+| Manual average     | Manual r-factor     | Manual UL        | Manual LL       | VC average        | VC r-factor      | VC UL            | VC LL            |
+| -------------------|:--------------------|:-----------------|:----------------|:------------------|:-----------------|:-----------------|:-----------------|
+| 118.7              | 9.359495            | 128059495        | 109.340505      | 118.7             | 9.359495         | 128.059595       | 109.340505       | 
 
-| Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
-| ---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|
-|
+Sample type: Residual fuel oil, 100C <br>
+Viscosity 1: 60.18 <br>
+Viscosity 2: 60.59 <br>
+Repeatability factor: 0.08088  <br>
 
-Sample type: Gas Oil, 40C
-Viscosity 1:
-Viscosity 2:
+| Manual average     | Manual r-factor     | Manual UL        | Manual LL       | VC average        | VC r-factor      | VC UL            | VC LL            |
+| -------------------|:--------------------|:-----------------|:----------------|:------------------|:-----------------|:-----------------|:-----------------|
+| 60.385             | 4.8839388           | 65.2689388       | 55.5010612      | 60.385            | 4.8839388        | 65.2689388       | 55.5010612       |
 
-| Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
-| ---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|
-|
+Sample type: Additive, 100C <br>
+Viscosity 1: 200.6 <br>
+Viscosity 2: 199.4 <br>
+Repeatability factor: (average ^ 1.1) x 0.00192 <br>
 
-Sample type: Jet Fuel, -20C
-Viscosity 1:
-Viscosity 2:
+| Manual average     | Manual r-factor     | Manual UL        | Manual LL       | VC average        | VC r-factor        | VC UL              | VC LL              |
+| -------------------|:--------------------|:-----------------|:----------------|:------------------|:-------------------|:-------------------|:-------------------|
+| 200.0              | 0.6522802424        | 200.6522802424   | 199.3477198     | 200.0             | 0.6522802424195513 | 200.65228024241955 | 199.34771975758045 |
 
-| Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
-| ---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|
-|
+Sample type: Gas Oil, 40C <br>
+Viscosity 1: 34.75 <br>
+Viscosity 2: 35.39 <br>
+Repeatability factor: (average + 1) x 0.0043 <br>
 
-Sample type: Kerosene, diesel, biodisel, 40C
-Viscosity 1:
-Viscosity 2:
+| Manual average     | Manual r-factor     | Manual UL        | Manual LL       | VC average        | VC r-factor      | VC UL            | VC LL            |
+| -------------------|:--------------------|:-----------------|:----------------|:------------------|:-----------------|:-----------------|:-----------------|
+| 35.07              | 0.155101            | 35.225101        | 34.914899       | 35.07             | 0.155101         | 35.225101        | 34.914899        | 
 
-| Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
-| ---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|
-|
+Sample type: Jet Fuel, -20C <br>
+Viscosity 1: 0.9306 <br>
+Viscosity 2: 0.9394 <br>
+Repeatability factor: (average ^ 1.4) x 0.001368 <br>
 
-Sample type: Used motor oil, 40C
-Viscosity 1:
-Viscosity 2:
+| Manual average     | Manual r-factor     | Manual UL        | Manual LL       | VC average        | VC r-factor           | VC UL              | VC LL              |
+| -------------------|:--------------------|:-----------------|:----------------|:------------------|:----------------------|:-------------------|:-------------------|
+| 0.9350             | 0.001245151949      | 0.9362451519     | 0.9337548481    | 0.9350            | 0.0012451519487142082 | 0.9362451519487143 | 0.9337548480512858 | 
 
-| Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
-| ---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|
-|
+Sample type: Kerosene, diesel, biodisel, 40C <br>
+Viscosity 1: 1.789 <br>
+Viscosity 2: 1.818 <br>
+Repeatability factor: 0.56% <br>
 
-Sample type: Used motor oil, 100C
-Viscosity 1:
-Viscosity 2:
+| Manual average     | Manual r-factor     | Manual UL        | Manual LL       | VC average        | VC r-factor      | VC UL            | VC LL            |
+| -------------------|:--------------------|:-----------------|:----------------|:------------------|:-----------------|:-----------------|:-----------------|
+| 1.8035             | 0.0100996           | 1.8135996        | 1.7934004       | 1.8035            | 0.0100996        | 1.8135996        | 1.7934004        | 
 
-| Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
-| ---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|
-|
+Sample type: Used motor oil, 40C <br>
+Viscosity 1: 58.95 <br>
+Viscosity 2: 59.58 <br>
+Repeatability factor: (average ^ 1.722) x 0.000233 <br>
 
-Sample type: Residue
-Viscosity 1:
-Viscosity 2:
+| Manual average     | Manual r-factor     | Manual UL        | Manual LL       | VC average        | VC r-factor        | VC UL             | VC LL             |
+| -------------------|:--------------------|:-----------------|:----------------|:------------------|:-------------------|:------------------|:------------------|
+| 59.265             | 0.2630961993        | 59.5280962       | 58.0019038      | 59.265            | 0.2630961992629933 | 59.52809619926288 | 59.00190380073712 | 
 
-| Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
-| ---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|
-|
+Sample type: Used motor oil, 100C <br>
+Viscosity 1: 10.11 <br>
+Viscosity 2: 10.29 <br>
+Repeatability factor: (average ^ 1.4633) x 0.001005 <br>
+
+| Manual average     | Manual r-factor     | Manual UL        | Manual LL       | VC average        | VC r-factor          | VC UL              | VC LL              |
+| -------------------|:--------------------|:-----------------|:----------------|:------------------|:---------------------|:-------------------|:-------------------|
+| 10.20              | 0.03006427208       | 10.23006427      | 10.16993573     | 10.20             | 0.030064272078645836 | 10.230064272078645 | 10.169935727921354 | 
+
+Sample type: Residue <br>
+Viscosity 1: 2089 <br>
+Viscosity 2: 2122 <br>
+Repeatability factor: 3% <br>
+
+| Manual average     | Manual r-factor     | Manual UL        | Manual LL       | VC average        | VC r-factor      | VC UL            | VC LL            |
+| -------------------|:--------------------|:-----------------|:----------------|:------------------|:-----------------|:-----------------|:-----------------|
+| 2105.5             | 63.165              | 2168.665         | 2042.335        | 2105.5            | 63.165           | 2168.665         | 2042.335         | 
 
 
 ### Reproducibility calculations
 
 Reproducibility is essentially identical to repeatability, except with looser limits, so the same approach to testing will be utilised
 
-Sample type: Base oil, 40C
-Viscosity 1:
-Viscosity 2:
+Sample type: Base oil, 40C <br>
+Viscosity 1: 22.13 <br>
+Viscosity 2: 22.79 <br>
+Reproducibility factor: 1.36% <br>
 
-| Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
-| ---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|
-|
+| Manual average     | Manual r-factor     | Manual UL        | Manual LL       | VC average        | VC r-factor      | VC UL            | VC LL            |
+| -------------------|:--------------------|:-----------------|:----------------|:------------------|:-----------------|:-----------------|:-----------------|
+| 22.46              | 0.305456            | 22.765456        | 22.154544       | 22.46             | 0.305456         | 22.765456        | 22.154544        | 
 
-Sample type: Base oil, 100C
-Viscosity 1:
-Viscosity 2:
+Sample type: Base oil, 100C <br>
+Viscosity 1: 8.954 <br>
+Viscosity 2: 8.988 <br>
+Reproducibility factor: 1.90% <br>
 
-| Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
-| ---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|
-|
-
-
-Sample type: Formulated oil, 40C
-Viscosity 1:
-Viscosity 2:
-
-| Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
-| ---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|
-|
+| Manual average     | Manual r-factor     | Manual UL        | Manual LL       | VC average        | VC r-factor      | VC UL            | VC LL            |
+| -------------------|:--------------------|:-----------------|:----------------|:------------------|:-----------------|:-----------------|:-----------------|
+| 8.971              | 0.170449            | 9.141449         | 8.800551        | 8.971             | 0.170449         | 9.141449         | 8.800551         | 
 
 
-Sample type: Formulated oil, 100C
-Viscosity 1:
-Viscosity 2:
+Sample type: Formulated oil, 40C <br>
+Viscosity 1: 38.91 <br>
+Viscosity 2: 39.15 <br>
+Reproducibility factor: 1.22 <br>%
 
-| Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
-| ---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|
-|
+| Manual average     | Manual r-factor     | Manual UL        | Manual LL       | VC average        | VC r-factor      | VC UL            | VC LL            |
+| -------------------|:--------------------|:-----------------|:----------------|:------------------|:-----------------|:-----------------|:-----------------|
+| 39.03              | 0.476166            | 39.506166        | 38.553834       | 39.03             | 0.476166         | 39.506166        | 38.553834        |
 
-Sample type: Formulated oil, 150C
-Viscosity 1:
-Viscosity 2:
 
-| Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
-| ---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|
-|
+Sample type: Formulated oil, 100C <br>
+Viscosity 1: 9.506 <br>
+Viscosity 2: 9.571 <br>
+Reproducibility factor: 1.38% <br>
 
-Sample type: Petroleum wax, 100C
-Viscosity 1:
-Viscosity 2:
+| Manual average     | Manual r-factor     | Manual UL        | Manual LL       | VC average        | VC r-factor      | VC UL            | VC LL            |
+| -------------------|:--------------------|:-----------------|:----------------|:------------------|:-----------------|:-----------------|:-----------------|
+| 9.5385             | 0.1316313           | 9.6701313        | 9.4068687       | 9.5385            | 0.1316313        | 9.6701313        | 9.4068687        | 
 
-| Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
-| ---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|
-|
+Sample type: Formulated oil, 150C <br>
+Viscosity 1: 5.465 <br>
+Viscosity 2: 5.413 <br>
+Reproducibility factor: 1.80% <br>
 
-Sample type: Residual fuel oil, 50C
-Viscosity 1:
-Viscosity 2:
+| Manual average     | Manual r-factor     | Manual UL        | Manual LL       | VC average        | VC r-factor      | VC UL            | VC LL            |
+| -------------------|:--------------------|:-----------------|:----------------|:------------------|:-----------------|:-----------------|:-----------------|
+| 5.439              | 0.097902            | 5.536902         | 5.341098        | 5.439             | 0.097902         | 5.536902         | 5.341098         | 
 
-| Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
-| ---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|
-|
+Sample type: Petroleum wax, 100C <br>
+Viscosity 1: 3.309 <br>
+Viscosity 2: 3.356 <br>
+Reproducibility factor: (average ^ 1.2) 0.0336  <br>
 
-Sample type: Residual fuel oil, 100C
-Viscosity 1:
-Viscosity 2:
+| Manual average     | Manual r-factor     | Manual UL        | Manual LL       | VC average        | VC r-factor         | VC UL              | VC LL              |
+| -------------------|:--------------------|:-----------------|:----------------|:------------------|:--------------------|:-------------------|:-------------------|
+| 3.3325             | 0.1551691121        | 3.487669112      | 3.177330888     | 3.3325            | 0.15516911211930368 | 3.4876691121193035 | 3.1773308878806965 |
 
-| Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
-| ---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|
-|
+Sample type: Residual fuel oil, 50C <br>
+Viscosity 1: 70.26 <br>
+Viscosity 2: 70.53 <br>
+Reproducibility factor: 8.46% <br>
 
-Sample type: Additive, 100C
-Viscosity 1:
-Viscosity 2:
+| Manual average     | Manual r-factor     | Manual UL        | Manual LL       | VC average        | VC r-factor      | VC UL            | VC LL            |
+| -------------------|:--------------------|:-----------------|:----------------|:------------------|:-----------------|:-----------------|:-----------------|
+| 70.395             | 5.95612095          | 76.35112095      | 64.43887905     | 70.395            | 5.95612095       | 76.35112095      | 64.43887905      | 
 
-| Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
-| ---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|
-|
+Sample type: Residual fuel oil, 100C <br>
+Viscosity 1: 21.33 <br>
+Viscosity 2: 22.75 <br>
+Reproducibility factor: 12.06%  <br>
 
-Sample type: Gas Oil, 40C
-Viscosity 1:
-Viscosity 2:
+| Manual average     | Manual r-factor     | Manual UL        | Manual LL       | VC average        | VC r-factor      | VC UL            | VC LL            |
+| -------------------|:--------------------|:-----------------|:----------------|:------------------|:-----------------|:-----------------|:-----------------|
+| 22.04              | 2.658024            | 24.698024        | 19.381976       | 22.04             | 2.658024         | 24.698024        | 19.381976        |
 
-| Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
-| ---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|
-|
+Sample type: Additive, 100C <br>
+Viscosity 1: 450.6 <br>
+Viscosity 2: 451.9 <br>
+Reproducibility factor: (average ^ 1.1) x 0.00862 <br>
 
-Sample type: Jet Fuel, -20C
-Viscosity 1:
-Viscosity 2:
+| Manual average     | Manual r-factor     | Manual UL        | Manual LL       | VC average        | VC r-factor      | VC UL             | VC LL             |
+| -------------------|:--------------------|:-----------------|:----------------|:------------------|:-----------------|:------------------|:------------------|
+| 451.25             | 7.167475254         | 458.41747525      | 444.0825247     | 451.25            | 7.16747525446311 | 458.4174752544631 | 444.0825247455369 | 
 
-| Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
-| ---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|
-|
+Sample type: Gas Oil, 40C <br>
+Viscosity 1: 12.11 <br>
+Viscosity 2: 12.42 <br>
+Reproducibility factor: (average + 1) x 0.0082 <br>
 
-Sample type: Kerosene, diesel, biodisel, 40C
-Viscosity 1:
-Viscosity 2:
+| Manual average     | Manual r-factor     | Manual UL        | Manual LL       | VC average        | VC r-factor      | VC UL            | VC LL            |
+| -------------------|:--------------------|:-----------------|:----------------|:------------------|:-----------------|:-----------------|:-----------------|
+| 12.265             | 0.108773            | 12.373773        | 12.156227       | 12.265            | 0.108773         | 12.373773        | 12.156227        | 
 
-| Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
-| ---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|
-|
+Sample type: Jet Fuel, -20C <br>
+Viscosity 1: 1.019 <br>
+Viscosity 2: 1.023 <br>
+Reproducibility factor: (average ^ 1.4) x 0.002899 <br>
 
-Sample type: Used motor oil, 40C
-Viscosity 1:
-Viscosity 2:
+| Manual average     | Manual r-factor     | Manual UL        | Manual LL       | VC average        | VC r-factor          | VC UL             | VC LL              |
+| -------------------|:--------------------|:-----------------|:----------------|:------------------|:---------------------|:------------------|:-------------------|
+| 1.021              | 0.002984587078      | 1.018015413      | 1.023984587     | 1.021             | 0.002984587077545149 | 1.023984587077545 | 1.0180154129224548 | 
 
-| Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
-| ---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|
-|
+Sample type: Kerosene, diesel, biodisel, 40C <br>
+Viscosity 1: 0.7882 <br>
+Viscosity 2: 0.7906 <br>
+Reproducibility factor: 2.24% <br>
 
-Sample type: Used motor oil, 100C
-Viscosity 1:
-Viscosity 2:
+| Manual average     | Manual r-factor     | Manual UL        | Manual LL       | VC average        | VC r-factor      | VC UL            | VC LL            |
+| -------------------|:--------------------|:-----------------|:----------------|:------------------|:-----------------|:-----------------|:-----------------|
+| 0.7894             | 0.01768256          | 0.80708256       | 0.77171744      | 0.7894            | 0.01768256       | 0.80708256       | 0.77171744       | 
 
-| Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
-| ---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|
-|
+Sample type: Used motor oil, 40C <br>
+Viscosity 1: 45.96 <br>
+Viscosity 2: 46.17 <br>
+Reproducibility factor: (average ^ 1.722) x 0.000594 <br>
 
-Sample type: Residue
-Viscosity 1:
-Viscosity 2:
+| Manual average     | Manual r-factor     | Manual UL        | Manual LL       | VC average        | VC r-factor      | VC UL            | VC LL            |
+| -------------------|:--------------------|:-----------------|:----------------|:------------------|:-----------------|:-----------------|:-----------------|
+| 46.065             | 0.4346217308        | 46.49962173      | 45.63097827     | 
 
-| Manual average | Manual d-factor | Manual UL   | Manual LL   | VC kv1      | VC kv2      | VC average  | VC d-factor | VC UL       | VC LL       |
-| ---------------|:----------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|:------------|
-|
+Sample type: Used motor oil, 100C <br>
+Viscosity 1: 6.071 <br>
+Viscosity 2: 6.088 <br>
+Reproducibility factor: (average ^ 1.4633) x 0.003361 <br>
+
+| Manual average     | Manual r-factor     | Manual UL        | Manual LL       | VC average        | VC r-factor          | VC UL             | VC LL             |
+| -------------------|:--------------------|:-----------------|:----------------|:------------------|:---------------------|:------------------|:------------------|
+| 6.0795             | 0.04715224294       | 6.126652229      | 6.032347771     | 6.0795            | 0.047152242939656905 | 6.126652242939656 | 6.032347757060343 | 
+
+Sample type: Residue, 100C <br>
+Viscosity 1: 667.5 <br>
+Viscosity 2: 669.3 <br>
+Reproducibility factor: 3% <br>
+
+| Manual average     | Manual r-factor     | Manual UL        | Manual LL       | VC average        | VC r-factor      | VC UL            | VC LL            |
+| -------------------|:--------------------|:-----------------|:----------------|:------------------|:-----------------|:-----------------|:-----------------|
+| 668.4              | 20.052              | 688.452          | 648.348         | 668.4             | 20.052           | 688.452          | 647.348          | 
 
 ### Calibration Calculations
 
 The calibration calculations don't rely on selecting a sample type. Instead, the particular calculation to be used is selected based on the viscosity of the calibration fluid. There are 6 tolerance bands, so 6 tests will be conducted
 
-Calibration fluid viscosity range:
-Tolerance band: 0.30%
-Run time 1:
-Run time 2:
-Constant:
+Calibration fluid viscosity: 9.053 <br>
+Tolerance band: 0.30% <br>
+Run time 1: 293.60 <br>
+Run time 2: 293.72 <br>
+Constant: 0.03083 <br>
+
+| Manual average time | Manual avergae viscosity | Manual percentage diff.   | VC average time | VC average viscosity | VC percentage diff.   |
+| --------------------|:-------------------------|:--------------------------|:----------------|:---------------------|:----------------------|
+| 293.66              | 9.0535378                | 0.005940395739%           | 293.66          | 9.0535378            | 0.005940395739267533% | 
+
+Calibration fluid viscosity: 72.36 <br>
+Tolerance band: 0.32% <br>
+Run time 1: 242.78 <br>
+Run time 2: 242.66 <br>
+Constant: 0.2978 <br>
+
+| Manual average time | Manual avergae viscosity | Manual percentage diff.   | VC average time | VC avergae viscosity | VC percentage diff.  |
+| --------------------|:-------------------------|:--------------------------|:----------------|:---------------------|:---------------------|
+| 242.72s             | 72.282016                | 0.1078303555%             | 242.72s         | 72.282016            | 0.10783035546186069% |
+
+Calibration fluid viscosity: 716.8 <br>
+Tolerance band: 0.36% <br>
+Run time 1: 269.83 <br>
+Run time 2: 269.55 <br>
+Constant: 2.661 <br>
 
 | Manual average time | Manual avergae viscosity | Manual percentage diff.   | VC average time | VC avergae viscosity | VC percentage diff. |
 | --------------------|:-------------------------|:--------------------------|:----------------|:---------------------|:--------------------|
-|
+| 269.69              | 717.64509                | 0.1178281422%             | 269.69s         | 717.64509            | 0.1178281421702977% |
 
-Calibration fluid viscosity range:
-Tolerance band: 0.32%
-Run time 1:
-Run time 2:
-Constant:
+Calibration fluid viscosity: 3062 <br>
+Tolerance band: 0.42% <br>
+Run time 1: 349.06 <br>
+Run time 2: 348.91 <br>
+Constant: 8.788 <br>
 
-| Manual average time | Manual avergae viscosity | Manual percentage diff.   | VC average time | VC avergae viscosity | VC percentage diff. |
-| --------------------|:-------------------------|:--------------------------|:----------------|:---------------------|:--------------------|
-|
+| Manual average time | Manual avergae viscosity | Manual percentage diff.   | VC average time | VC avergae viscosity | VC percentage diff.  |
+| --------------------|:-------------------------|:--------------------------|:----------------|:---------------------|:---------------------|
+| 348.985s            | 3066.88018               | 0.1592519304%             | 348.985         | 3066.88018           | 0.15925193042361318% |
 
-Calibration fluid viscosity range:
-Tolerance band: 0.36%
-Run time 1:
-Run time 2:
-Constant:
+Calibration fluid viscosity: 12012 <br>
+Tolerance band: 0.54% <br>
+Run time 1: 393.13 <br>
+Run time 2: 393.36 <br>
+Constant: 30.60 <br>
 
-| Manual average time | Manual avergae viscosity | Manual percentage diff.   | VC average time | VC avergae viscosity | VC percentage diff. |
-| --------------------|:-------------------------|:--------------------------|:----------------|:---------------------|:--------------------|
-|
+| Manual average time | Manual avergae viscosity | Manual percentage diff.   | VC average time | VC avergae viscosity | VC percentage diff.  |
+| --------------------|:-------------------------|:--------------------------|:----------------|:---------------------|:---------------------|
+| 393.245             | 12033.297                | 0.17714066915%            | 393.245         | 12033.297            | 0.17714066912960552% |
 
-Calibration fluid viscosity range:
-Tolerance band: 0.42%
-Run time 1:
-Run time 2:
-Constant:
+Calibration fluid viscosity: 130469 <br>
+Tolerance band: 0.73% <br>
+Run time 1: 432.88 <br>
+Run time 2: 433.02 <br>
+Constant: 301.7 <br>
 
-| Manual average time | Manual avergae viscosity | Manual percentage diff.   | VC average time | VC avergae viscosity | VC percentage diff. |
-| --------------------|:-------------------------|:--------------------------|:----------------|:---------------------|:--------------------|
-|
-
-Calibration fluid viscosity range:
-Tolerance band: 0.54%
-Run time 1:
-Run time 2:
-Constant:
-
-| Manual average time | Manual avergae viscosity | Manual percentage diff.   | VC average time | VC avergae viscosity | VC percentage diff. |
-| --------------------|:-------------------------|:--------------------------|:----------------|:---------------------|:--------------------|
-|
-
-Calibration fluid viscosity range:
-Tolerance band: 0.73%
-Run time 1:
-Run time 2:
-Constant:
-
-| Manual average time | Manual avergae viscosity | Manual percentage diff.   | VC average time | VC avergae viscosity | VC percentage diff. |
-| --------------------|:-------------------------|:--------------------------|:----------------|:---------------------|:--------------------|
-|
+| Manual average time | Manual avergae viscosity | Manual percentage diff.   | VC average time | VC avergae viscosity | VC percentage diff.  |
+| --------------------|:-------------------------|:--------------------------|:----------------|:---------------------|:---------------------|
+| 432.95              | 130621.015               | 0.1164464294%             | 432.95          | 130621.015           | 0.11644642940480499% |
 
 ### Recalibration Calculations
 
-In contrast to the other calculations, the recalibration calculations test cases are more limited, since Earth's gravity doesn't vary much, though it obviously varies enough to be taken into consideration. 4 cases will be tested - 2 for a large difference between gravities, and two for a smaller difference between gravities. Within each pair, one case will be with the testing lab gravity set to higher than the standardisation lab gravity, and the other case for the reverse. 
+In contrast to the other calculations, the recalibration calculations test cases are more limited, since Earth's gravity doesn't vary much, though it obviously varies enough to be taken into consideration. 4 cases will be tested - 2 for a large difference between gravities, and two for a smaller difference between gravities. Within each pair, one case will be with the testing lab gravity set to higher than the standardisation lab gravity, and the other case for the reverse. A fifth case will consider the extremely unlikely scenario that a viscometer needs to be used on Mars.  
 
-Testing lab gravity: m/s2
-Standardisation lab gravity: m/s2 
-Constant: 
+Testing lab gravity: 9.78 m/s2 <br>
+Standardisation lab gravity: 9.83 m/s2  <br>
+Constant: 0.2936  <br>
 
 | Manual percentage difference | Manual new constant      | VC percentage difference  | VC new constant | 
 | -----------------------------|:-------------------------|:--------------------------|:----------------|
-|
+| 0.5099%                      | 0.2951                   | 0.5099%                   | 0.2951          |
+
+Testing lab gravity: 9.83 m/s2 <br>
+Standardisation lab gravity: 9.78 m/s2  <br>
+Constant: 0.2936 <br>
+
+| Manual percentage difference | Manual new constant      | VC percentage difference  | VC new constant | 
+| -----------------------------|:-------------------------|:--------------------------|:----------------|
+| 0.5099%                      | 0.2921                   | 0.5099                    | 0.2921          |
+
+Testing lab gravity: 9.78 m/s2 <br>
+Standardisation lab gravity: 9.80 m/s2  <br>
+Constant: 0.2936 <br>
+
+| Manual percentage difference | Manual new constant      | VC percentage difference  | VC new constant | 
+| -----------------------------|:-------------------------|:--------------------------|:----------------|
+| 0.2043%                      | 0.2942                   | 0.2043%                   | 0.2942          |
+
+Testing lab gravity: 9.80m/s2 <br>
+Standardisation lab gravity: 9.78 m/s2  <br>
+Constant: 0.2936 <br>
+
+| Manual percentage difference | Manual new constant      | VC percentage difference  | VC new constant | 
+| -----------------------------|:-------------------------|:--------------------------|:----------------|
+| 0.2043%                      | 0.2930                   | 0.2043%                   | 0.2930          |
+
+Testing lab gravity: 3.72 m/s2 <br>
+Standardisation lab gravity: 9.81 m/s2  <br>
+Constant: 0.2936 <br>
+
+| Manual percentage difference | Manual new constant      | VC percentage difference  | VC new constant | 
+| -----------------------------|:-------------------------|:--------------------------|:----------------|
+| 90.0222%                     | 0.7743                   | 90.02%                    | 0.7743          |
+
+### Overall verdict 
+
+Overall, the Viscosity Calculator appears to match the results of the manual calculations in all particulars. When the project was started, I was concerned that the base 2 mathematical system used by JavaScript to perform calculations would not cope well with calculations involving several floating-point values. This appears to have some grounding, as the Viscosity Calculator will generate values ending in 0000001 or 9999999, though this isn't universal and depends on the inputs. This is probably similar to the unexpected result given when using a browser console to add 0.1 and 0.2, which gives 0.30000000000000004, rather than 0.3. However, these values are only visible in the calculation details section, and hence use of the toPrecision method in the regular outputs stops this happening. 
+
+In addition, the tool functioned exceptionally quickly, displaying the results instantly once the calculate button was clicked. Therefore, commercial scientists should have no objections to using this tool in their work. 
 
 ## Testing on different devices
 
@@ -897,6 +1006,8 @@ Ed Bradley from Tutor Support, who provided invaluable guidance on the condition
 ## Resources
 
 Setting a select element to blank by default: https://stackoverflow.com/questions/8605516/default-select-option-as-blank
+
+Industry standard test method D445, obtained using Intertek's subscription to the ASTM Compass. A copy is stored in the repository and may also be downloaded from the project's discussion page. 
 
 
 
