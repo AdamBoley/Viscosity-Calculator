@@ -1049,6 +1049,8 @@ Setting a select element to blank by default: https://stackoverflow.com/question
 
 Industry standard test method D445, obtained using Intertek's subscription to the ASTM Compass. A copy is stored in the repository and may also be downloaded from the project's discussion page. 
 
+Removing number input arrows: https://www.w3schools.com/howto/howto_css_hide_arrow_number.asp
+
 
 
 
