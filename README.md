@@ -172,9 +172,93 @@ This is the discussion page that guides the user on how to set the selector to t
 
 Generally state each aspect of the site - 
 
+## Header and selector
+
+The first feature of the Viscosity Calculator is the header, which contains some introductory text and a drop-down menu. The introductory text indicates the purpose of the tool to a user, and also contains a link to the discussion page. The scripts-calculation-selector.js file contains an event listener that listens for a change in the drop-down menu. Depending on the user's selection, the JavaScript in that file will display the associated calculation article. 
+
+## Calculation articles
+
+The Calculation articles (so named because they are contained within HTML article elements) are the main feature of the Viscosity Calculator. Each is similar, featuring a list containing the instructions for use, number input elements for the user to input their data, and calculation output elements. The calculation outputs are initially hidden, only appearing when the user enters all of the required data and the tool calculates the outputs.
+
+The user-input section contains the input elements where the user enters their data. The user-input section also contains a button labelled Calculate. These Calculate buttons are tied to event listeners. When clicked, the functions invoked by the event listeners take the inputs, do the required calculations and display the results along with result labels.
+
+The calculation outputs contain all of the results of each step of the calculations, so that the user can follow along manually. The final output is a simple message to the user that tells them whether their inputs are valid according to the criteria in ASTM D445. These outputs are rounded using the JavaScript toPrecision method. The tool also contains a button to display the raw, unrounded values to the user, so that the user can be assured that there are no incremental rounding errors. 
+
+Each calculation article also features a reset button that clears the user's inputs and the calculated outputs. This readies that calculation article for further calculations. 
+
+## Determinability Calculation article
+
+The Determinability Calculation article is used for calculating the determinability of viscosity results - that is, checking if they are close enough to be considered valid for reporting. 
+
+The first feature is a drop-down menu. The user selects an option that corresponds to the sample they have tested and want to check results for. If the user is unsure, they can click the link in the instructions list to see the discussion page and use the information to make an informed decision. 
+
+The second feature is a pair of buttons labelled 'Ubbelohde viscometer' and 'Zeitfuchs viscometers', referencing the two types of viscometers used in a typical manual viscosity test. The Ubbelohde button displays two run-time imnputs and a single input for the viscometer constant. The Zeitfuchs button displays two inputs, one for the constant of each of the pair of viscometers used in a Zeitfuchs viscometer test. 
+
+The third feature is the calculation button, with an event listener in the scripts-determinability.js file listening for a click on the button. The Calculations are then executed and the results displays per above.
+
+## Repeatability Calculation article
+
+The Repeatability and Reproducibility Calculation articles are similar, only differing in the calculations that performed. They are used for calculating the repeatability and reproducibility of separate viscosity results - that is, checking if they are close enough to be considered valid replications of each other. Repeatability should apply for results taken in the same laboratory by the same operator, whilst reproducibility applies for results taken by different laboratories. 
+
+The first feature of both is a drop-down menu. The user selects an option that corresponds to the sample they have tested. As above, the instructions for both contain a link to the discussion page so that the user can make an informed decision. 
+
+The second feature is a pair of inputs for the user's viscosities. The third feature is a calculation button and a reset button, which work per above. 
+
+## Calibration Calculation article
+
+The Calibration Calculation article is used for checking the results of calibration tests, which are typically yearly tests on viscometers to make sure that they are still capable of giving the same results. 
+
+This article features two run-time inputs, the constant of the viscometer, and the viscosity of the calibration fluid used in the test, as well as a button to initiate the calculation and another button to reset the inputs and outputs. 
+
+## Recalibration Calculation article
+
+The Recalibration Calculation article is used for adjusting the constant of a viscometer to account for discrepancies between the gravity of the testing laboratory and the gravity of the standardisation laboratory. 
+
+This article features an input for the constant of the viscometer, and two inputs, one for the gravity of the testing lab and another for the gravity of the standardisation lab, as well as a button to initiate the calculation, and another button to reset the inputs and outputs. 
+
 # Function
 
 Explain generally how each calculation article works. 
+
+As this is a JavaScript project, all of the calculations are performed using the mathematical capabilities of JavaScript. This section will cover how the functions work in a general sense. A more detailed breakdown can be found further down the Readme, in the Code Explanations section. 
+
+## Determinability calculations
+
+The Determinability calculation functions are wholly contained within the scripts-determinability.js file. Each function handles a single step in the calculation of determinability, and as each function stops, the next function in sequence is called. 
+
+The determinability calculation has two starting points. The first is for handling tests conducted using Ubbelohde viscometers. The first function is called ubbelohdeConstant, and displays two run-time inputs, one input for the viscometer constant, and two buttons - one to initiate the calculation and another to reset the calculations. 
+
+The first step in each calculation is the calculation of the two kinematic viscosities. This is handled with the getValuesUbbelohde function, which firstly checks if all of the inputs have values in them, and if so, uses the parseFloat method to get the values of those inputs. If any of the inputs don't have values, the user is alerted. The values of the inputs are stored in variables. The function then invokes a function called calculateUbbelohde, which is passed the values of the variables. 
+
+The calculateUbbelohde function calculates the two kinematic viscosities by multiplying the run-times by the constant. These values are then rounded using the toPrecision method, and these rounded values are posted to the document. The unrounded values are posted to the hidden calculation details, and are also passed to the calculateFinalUbbelohde function. 
+
+The calculateFinalUbbelohde function averages the two unrounded kinematic viscosities. The final viscosity is rounded, with the rounded value posted to the document. The unrounded value is posted to the hidden details section. 
+
+The second starting point is for handling tests conducted using a pair of Zeitfuchs viscometers. The first function is called ZeitfuchsConstant, which displays two run-time inputs and two constant inputs, along with a calculation button and a reset button.
+
+The first step is again the calculation of the kinematic viscosities. This is handled with the getValuesZeitfuchs function, which checks if all 4 inputs have values in them, and then uses parseFloat to retrieve the values of those inputs and store them in variables. If any of the inputs don't have values, the user is alerted. The function then invokes a function called calculateZeitfuchs, which is passed the values of the variables. 
+
+The calculateZeitfuchs function calculates the kinematic viscosities by multiplying run-time 1 by constant 1, and run-time 2 by constant 2. These kinematic viscosity values are rounded, with the rounded values posted to the document and the unrounded values posted to the calculation details div. The unrounded values are also passed to the next function, called calculateFinalZeitfuchs. 
+
+The calculateFinalZeitfuchs function averages the two kinematic viscosities. This final value is rounded, and the rounded value is posted to the document. The unrounded value is posted the calculation details section. 
+
+Both the calculateFinalUbbelohde and calculateFinalZeitfuchs functions invoke the determinability function. The determinability function uses a large SWITCH statement with several cases. Each case reads the value of the drop-down menu option that the user selected. Depending on that selection, the case puts the final viscosity into an equation and stores the output in a variable called determinability. The determinability is the rounded, and the rounded value posted to the document, with the unrounded value posted to the calculation details section. The function also posts the specific determinability equation that is being used to the document as well, for the user's benefit. The function then invokes a function called upperLimit, passing in the determinability, final viscosity and the two kinematic viscosity values. 
+
+The upperLimit function calculates the upper bound of the determinability calculation, the value below which the two kinematic viscosity values must be in order to be valid. This function adds the determinability to the final viscosity, and stores the output in a variable called upperAllowedViscosity. This is then rounded, with the rounded value posted to the document, and the unrounded value posted to the calculation details section. The function then calls a function called lowerLimit, which is passed the two kinematic viscosity values, the final viscosity, the determinability and the upper allowed viscosity. 
+
+The lowerLimit function calculates the lower bound of the determinability calculation, the value above which the two kinematic viscosity values must be in order to be valid. This function subtracts the determinability from the final viscosity, and stores the output in a variable called lowerAllowedViscosity. This is then rounded, with the rounded value posted to the document, and the unrounded value posted to the calculation details section. The function the calls the final function, called checker, which is passed the kinematic viscosities, the upperAllowedViscosity and the lowerAllowedViscosity.
+
+The checker function checks whether the two kinematic viscosities are both below the upperAllowedViscosity and above the lowerAllowedViscosity. If so, a message is displayed informing the user that their test results are valid. If the kinematic viscosities fall outside the bound defined by the limits, a message is displayed informing the user that their results are not valid. The checker function also displays the button that allows the user to display the unrounded values used in the calculation. 
+
+Displaying the unrounded values is handled by the determinabilityDetails function, which unhides the previously hidden calculation details div. 
+
+The calculation inputs and outpust can be emptied by the reset function, which is invoked by clicking the reset button. 
+
+## Repeatability and reproducibility calculations
+
+## Calibration Calculations
+
+## Recalibration calculations
 
 
 # Design Choices
@@ -327,8 +411,6 @@ Lighthouse
 # Testing
 
 ## Testing User Stories
-
-
 
 **First-time users must be able to determine the purpose of the tool as soon as they navigate to it** 
 
