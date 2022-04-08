@@ -43,27 +43,19 @@ main {
 .description {
     width: 80%;
     height: auto;
-    margin: 25px auto;
     padding: 10px;
     border-radius: 30px;
+    margin: 0 auto;
 }
 
-.description h2 {
+.description h3 {
     text-align: center;
 }
 
 .description ol li {
     margin-top: 5px;
 }
-/*
-#determinability-user-input {
-    height: 70vh;
-}
 
-#determinability-calculated-output {
-    height: 70vh;
-}
-*/
 #determinability-select {
     height: 200px;
 }
@@ -99,15 +91,7 @@ main {
 #determinability-details-button, #repeatability-details-button, #reproducibility-details-button, #calibration-details-button, #recalibration-details-button {
     display: none;
 }
-/*
-#repeatability-user-input, #reproducibility-user-input, #calibration-user-input {
-    height: 55vh;
-}
 
-#repeatability-calculated-output, #reproducibility-calculated-output, #calibration-calculated-output {
-    height: 55vh;
-}
-*/
 .user-input-div {
     margin-top: 25px;
 }
@@ -126,7 +110,14 @@ main {
 
 .calculated-output-div {
     height: 60px;
+    width: 60%;
 }
+
+
+.calculated-output button {
+    margin-top: 20px;
+}
+
 
 .input-unit {
     margin-left: 3px;
@@ -150,17 +141,6 @@ main {
     height: 170px;
 }
 
-/*
-#recalibration-user-input {
-    height: 30vh;
-    background-color: lightblue;
-}
-
-#recalibration-calculated-output {
-    height: 30vh;
-    background-color: lightblue;
-}
-*/
 button {
     background-color: white;
     color: black;
@@ -258,7 +238,6 @@ nav ul li a:hover {
 
 nav ul li {
     margin: 3px 0;
-    
 }
 
 #discussion-main article p a {
@@ -345,19 +324,15 @@ nav ul li {
     }
 }
 
-@media screen and (max-width: 1465px) {
-    .calculated-output button {
-        margin-top: 20px;
-    }
-}
 
-@media screen and (max-width: 1035px) {
+
+@media screen and (max-width: 1350px) {
     .calculated-output button {
         margin-top: 40px;
     }
 }
 
-@media screen and (max-width: 905px) {
+@media screen and (max-width: 1205px) {
     .calculated-output button {
         margin-top: 60px;
     }
