@@ -3,7 +3,8 @@
 body {
     margin: 0;
     font-family: 'Work Sans', sans-serif;
-    background-color: lightblue
+    background-color: lightblue;
+    overflow: auto;
 }
 
 .heading {
@@ -54,7 +55,7 @@ main {
 .description ol li {
     margin-top: 5px;
 }
-
+/*
 #determinability-user-input {
     height: 70vh;
 }
@@ -62,7 +63,7 @@ main {
 #determinability-calculated-output {
     height: 70vh;
 }
-
+*/
 #determinability-select {
     height: 200px;
 }
@@ -98,17 +99,17 @@ main {
 #determinability-details-button, #repeatability-details-button, #reproducibility-details-button, #calibration-details-button, #recalibration-details-button {
     display: none;
 }
-
+/*
 #repeatability-user-input, #reproducibility-user-input, #calibration-user-input {
     height: 55vh;
 }
 
-.user-input-div {
-    margin-top: 25px;
-}
-
 #repeatability-calculated-output, #reproducibility-calculated-output, #calibration-calculated-output {
     height: 55vh;
+}
+*/
+.user-input-div {
+    margin-top: 25px;
 }
 
 .user-input {
@@ -120,6 +121,7 @@ main {
 .calculated-output {
     width: 45%;
     float: right;
+    margin-top: 10px;
 }
 
 .calculated-output-div {
@@ -148,6 +150,7 @@ main {
     height: 170px;
 }
 
+/*
 #recalibration-user-input {
     height: 30vh;
     background-color: lightblue;
@@ -157,7 +160,7 @@ main {
     height: 30vh;
     background-color: lightblue;
 }
-
+*/
 button {
     background-color: white;
     color: black;
@@ -206,6 +209,15 @@ input[type=number] {
     height: 20px;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.5);
+    font-size: small;
+}
+
+.footer span:nth-child(1) {
+    float: left;
+}
+
+.footer span:nth-child(2) {
+    float: right;
 }
 
 #determinability-calculations {
@@ -258,3 +270,95 @@ nav ul li {
     text-decoration: underline;
 }
 
+/*Media queries*/
+
+@media screen and (max-width: 1540px) {
+    .user-input {
+        width: 25%;
+        margin-left: 400px;
+    }
+}
+
+@media  screen and (max-width: 1335px) {
+    .user-input {
+        width: 30%;
+        margin-left: 300px;
+    }
+}
+
+@media  screen and (max-width: 1200px) {
+    .user-input {
+        width: 40%;
+        margin-left: 200px;
+    }
+
+    .calculated-output {
+        width: 40%;
+    }
+}
+
+@media  screen and (max-width: 1000px) {
+    .user-input, .calculated-output {
+        float: none;
+        width: 100%;
+        height: auto;
+        margin-left: 35vw;
+    }
+
+    .calculated-output {
+        margin-top: 50px;
+    }
+    
+    .description {
+        width: 100%;
+    }
+}
+
+@media  screen and (max-width: 750px) {
+    .user-input, .calculated-output {
+        margin-left: 30vw;
+    }
+}
+
+@media  screen and (max-width: 600px) {
+    .user-input, .calculated-output {
+        margin-left: 25vw;
+    }
+}
+
+@media  screen and (max-width: 500px) {
+    .user-input, .calculated-output {
+        margin-left: 15vw;
+    }
+}
+
+@media  screen and (max-width: 400px) {
+    .user-input, .calculated-output {
+        margin-left: 10vw;
+    }
+}
+
+@media screen and (max-width: 310px) {
+    .user-input-div button {
+        display: block;
+        margin-bottom: 10px;
+    }
+}
+
+@media screen and (max-width: 1465px) {
+    .calculated-output button {
+        margin-top: 20px;
+    }
+}
+
+@media screen and (max-width: 1035px) {
+    .calculated-output button {
+        margin-top: 40px;
+    }
+}
+
+@media screen and (max-width: 905px) {
+    .calculated-output button {
+        margin-top: 60px;
+    }
+}

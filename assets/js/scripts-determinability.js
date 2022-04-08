@@ -370,13 +370,13 @@ let determinabilityDetailsButton = document.getElementById('determinability-deta
 determinabilityDetailsButton.addEventListener('click', determinabilityDetails)
 
 function determinabilityDetails() {
-
+    /*
     let determinabilityUserInput = document.getElementById('determinability-user-input')
-    determinabilityUserInput.style.height = '90vh'
+    determinabilityUserInput.style.height = '90vh'*/
 
     let determinabilityCalculatedOutput = document.getElementById('determinability-calculated-output')
     determinabilityCalculatedOutput.style.height = '90vh'
-
+    
     let determinabilityDetailsDiv = document.getElementById('determinability-details')
     determinabilityDetailsDiv.style.display = 'block'
 }
@@ -412,7 +412,7 @@ function reset() {
 
     document.getElementById('determinability-details-button').style.display = 'none'
     document.getElementById('determinability-details').style.display = 'none'
-    document.getElementById('determinability-user-input').style.height = '70vh'
+    /*document.getElementById('determinability-user-input').style.height = '70vh'*/
     document.getElementById('determinability-calculated-output').style.height = '70vh'
 
     document.getElementById('determinability-kv-1-label').style.display = 'none'
