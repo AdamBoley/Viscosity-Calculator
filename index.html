@@ -64,9 +64,9 @@
 
             </section>
 
-            <section id="determinability-user-input">
+            <section id="determinability-user-input" class="user-input">
 
-                <div id="determinability-select">
+                <div id="determinability-select" class="select user-input-div">
 
                     <p>Select your sample type and temperature</p>
 
@@ -94,33 +94,33 @@
                 </div>
 
                 <div id="determinability-input-1">
-                    <div id="run-time-1-div">
+                    <div id="run-time-1-div" class="user-input-div">
                         <label for="run-time-1">Run Time 1</label>
                         <input type="number" id="run-time-1" min="200" max="900"><span class="input-unit">seconds</span>
                     </div>
-                    <div id="constant-1-div">
+                    <div id="constant-1-div" class="user-input-div">
                         <label for="constant-1-input" id="constant-1">Constant 1:</label>
                         <input type="number" min="0" max="100" id="constant-1-input"><span class="input-unit" id="determinability-constant-1-units">mm<span class="superscript">2</span>/s<span class="superscript">-2</span></span>
                     </div>
                 </div>
                 <div id="determinability-input-2">
-                    <div id="run-time-2-div">
+                    <div id="run-time-2-div" class="user-input-div">
                         <label for="run-time-2">Run Time 2</label>
                         <input type="number" id="run-time-2" min="200" max="900"><span class="input-unit">seconds</span>
                     </div>
-                    <div id="constant-2-div">
+                    <div id="constant-2-div" class="user-input-div">
                         <label for="constant-2-input" id="constant-2">Constant 2:</label>
                         <input type="number" min="0" max="100" id="constant-2-input"><span class="input-unit" id="determinability-constant-2-units">mm<span class="superscript">2</span>/s<span class="superscript">-2</span></span>
                     </div>
                 </div>
-                <div id="constant-div">
+                <div id="constant-div" class="user-input-div">
                     <label for="constant-input" id="constant">Constant:</label>
                     <input type="number" min="0" max="100" id="constant-input"><span class="input-unit" id="determinability-constant-units">mm<span class="superscript">2</span>/s<span class="superscript">-2</span></span>
                 </div>
 
                 <br class="line-break">
 
-                <div id="submit-div">
+                <div id="submit-div" class="user-input-div">
                     
                     <button type="submit" id="submit-ubbelohde">calculate</button>
                     <button type="submit" id="submit-zeitfuchs">calculate</button>
@@ -131,7 +131,7 @@
 
             </section>
 
-            <section id="determinability-calculated-output">
+            <section id="determinability-calculated-output" class="calculated-output">
 
                 <div class="calculated-output-div">
 
@@ -212,9 +212,9 @@
 
             </section>
 
-            <section id="repeatability-user-input">
+            <section id="repeatability-user-input" class="user-input">
 
-                <div class="select">
+                <div class="select user-input-div">
 
                     <p>Select your sample type and temperature</p>
 
@@ -241,21 +241,21 @@
 
                 </div>
 
-                <div class="user-input-div">
+                <div class="user-input-div" class="user-input-div">
 
                     <label for="viscosity-repeatability-1">Viscosity 1:</label>
                     <input type="number" id="viscosity-repeatability-1"><span class="input-unit" id="repeatability-kv-1-units">cSt</span>
 
                 </div>
 
-                <div class="user-input-div">
+                <div class="user-input-div" class="user-input-div">
 
                     <label for="viscosity-repeatability-2">Viscosity 2:</label>
                     <input type="number" id="viscosity-repeatability-2"><span class="input-unit" id="repeatability-kv-2-units">cSt</span>
 
                 </div>
 
-                <div class="user-input-div">
+                <div class="user-input-div" class="user-input-div">
 
                     <button id="submit-repeatability">calculate</button>
                     <button id="repeatability-reset">reset</button>
@@ -264,7 +264,7 @@
 
             </section>
 
-            <section id="repeatability-calculated-output">
+            <section id="repeatability-calculated-output" class="calculated-output">
 
                 <div class="calculated-output-div">
 
@@ -331,9 +331,9 @@
 
             </section>
 
-            <section id="reproducibility-user-input">
+            <section id="reproducibility-user-input" class="user-input">
 
-                <div class="select">
+                <div class="select user-input-div">
 
                     <p>Select your sample type and temperature</p>
 
@@ -383,7 +383,7 @@
 
             </section>
 
-            <section id="reproducibility-calculated-output">
+            <section id="reproducibility-calculated-output" class="calculated-output">
 
                 <div class="calculated-output-div">
 
@@ -457,7 +457,7 @@
 
             </section>
 
-            <section id="calibration-user-input">
+            <section id="calibration-user-input" class="user-input">
 
                 <div class="user-input-div">
 
@@ -496,7 +496,7 @@
 
             </section>
 
-            <section id="calibration-calculated-output">
+            <section id="calibration-calculated-output" class="calculated-output">
 
                 <div class="calculated-output-div">
 
@@ -563,7 +563,7 @@
 
             </section>
 
-            <section id="recalibration-user-input">
+            <section id="recalibration-user-input" class="user-input">
 
                 <div class="user-input-div">
                     <label for="recalibration-constant">Viscometer constant:</label>
@@ -587,7 +587,7 @@
 
             </section>
 
-            <section id="recalibration-calculated-output">
+            <section id="recalibration-calculated-output" class="calculated-output">
 
                 <div class="calculated-output-div">
                     <p id="recalibration-percentage-difference-label" class="output-label">Percentage difference:</p>
