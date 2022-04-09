@@ -271,7 +271,23 @@ Simple design - few/no images, Work Sans font, blue background, labels, icons, f
 
 Justify use of smaller, simpler functions, though a single larger function could suffice for the main calculations. Justify use of toPrecion method(here?). Justify passing raw values through the functions
 
+# Development process 
+
+Explain move from IF/ELSE to SWITCH
+
+Note that determinability proved easier to implement than expected, leading to automation of other calculations
+
+Note calculation details section and replacing of console.logs
+
+
+
 # Accessibility
+
+Much less - contrast, large buttons, large font size
+For mobiles - larger buttons
+Increase font-size for smaller devices using ems and rems
+
+
 
 # Code Explanations
 
