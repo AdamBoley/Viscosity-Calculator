@@ -3,10 +3,6 @@ recalibrationButton.addEventListener('click', recalibrationPercentageDifference)
 
 function recalibrationPercentageDifference() {
 
-    let testingGravity = parseFloat(document.getElementById('testing-lab-gravity').value)
-    let standardisationGravity = parseFloat(document.getElementById('standardisation-lab-gravity').value)
-    let constant = parseFloat(document.getElementById('recalibration-constant').value)
-
     let viscometerConstant = document.getElementById('recalibration-constant')
     let gravity1 = document.getElementById('testing-lab-gravity')
     let gravity2 = document.getElementById('standardisation-lab-gravity')
@@ -21,6 +17,10 @@ function recalibrationPercentageDifference() {
         alert('Please enter the gravity at the standardisation laboratory')
     }
     else {
+        let testingGravity = parseFloat(document.getElementById('testing-lab-gravity').value)
+        let standardisationGravity = parseFloat(document.getElementById('standardisation-lab-gravity').value)
+        let constant = parseFloat(document.getElementById('recalibration-constant').value)
+
         let numerator = testingGravity - standardisationGravity
         numerator = Math.abs(numerator)
 

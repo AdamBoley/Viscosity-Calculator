@@ -6,10 +6,6 @@ calibrationCalculateButton.addEventListener('click', getValuesCalibration)
 
 function getValuesCalibration() {
 
-    let calibrationRunTime1 = parseFloat(document.getElementById('calibration-run-time-1').value)
-    let calibrationRunTime2 = parseFloat(document.getElementById('calibration-run-time-2').value)
-    let calibrationConstant = parseFloat(document.getElementById('calibration-constant').value)
-
     let runTime1 = document.getElementById('calibration-run-time-1')
     let runTime2 = document.getElementById('calibration-run-time-2')
     let constant = document.getElementById('calibration-constant')
@@ -25,6 +21,11 @@ function getValuesCalibration() {
         alert('Please enter a calibration fluid viscosity')
     }
     else {
+
+        let calibrationRunTime1 = parseFloat(document.getElementById('calibration-run-time-1').value)
+        let calibrationRunTime2 = parseFloat(document.getElementById('calibration-run-time-2').value)
+        let calibrationConstant = parseFloat(document.getElementById('calibration-constant').value)
+
         calculateCalibration(calibrationRunTime1, calibrationRunTime2, calibrationConstant)
     }
 }
