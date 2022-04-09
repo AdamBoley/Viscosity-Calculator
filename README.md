@@ -218,48 +218,167 @@ This article features an input for the constant of the viscometer, and two input
 
 # Function
 
-Explain generally how each calculation article works. 
+This section provides a more in-depth explanation of how the Calculation articles described in the Features section work. This is included because when I was coding the Love Maths walkthrough project, I found it useful to note down what I call the 'logic flow', that is - how the functions interact with each other. Since this project is significantly more complex and involves many obscure scientific and technical terms, I felt that a similar addition could be useful for readers without such a technical background. Each sub-section deals with the JavaScript in one of the 6 JS files, and all except the sub-section that explains the scripts-calculation-selector.js file have a flow-chart that provides an easy visual reference. The JavaScript in the scripts-calculation-selector.js file is simple enough that it requires neither much explanation not a flow chart. 
 
-As this is a JavaScript project, all of the calculations are performed using the mathematical capabilities of JavaScript. This section will cover how the functions work in a general sense. A more detailed breakdown can be found further down the Readme, in the Code Explanations section. 
+## Calculation selector logic
 
-## Determinability calculations
+Uses an event listener to listen for changes to the option selected in the drop-down menu, then calls a function called selectCalculation
 
-The Determinability calculation functions are wholly contained within the scripts-determinability.js file. Each function handles a single step in the calculation of determinability, and as each function stops, the next function in sequence is called. 
+Depending on the selected option element's value attribute, an IF/ELSE IF statement triggers
 
-The determinability calculation has two starting points. The first is for handling tests conducted using Ubbelohde viscometers. The first function is called ubbelohdeConstant, and displays two run-time inputs, one input for the viscometer constant, and two buttons - one to initiate the calculation and another to reset the calculations. 
+Each statement uses CSS style rule manipulation to set the display rule of each calculation article. The option corresponding to the article is set to display: block, and the other articles are set to display: none
 
-The first step in each calculation is the calculation of the two kinematic viscosities. This is handled with the getValuesUbbelohde function, which firstly checks if all of the inputs have values in them, and if so, uses the parseFloat method to get the values of those inputs. If any of the inputs don't have values, the user is alerted. The values of the inputs are stored in variables. The function then invokes a function called calculateUbbelohde, which is passed the values of the variables. 
+In my experience, the most common calculation is that of determinability, so the determinability calculation article is visible by default. 
 
-The calculateUbbelohde function calculates the two kinematic viscosities by multiplying the run-times by the constant. These values are then rounded using the toPrecision method, and these rounded values are posted to the document. The unrounded values are posted to the hidden calculation details, and are also passed to the calculateFinalUbbelohde function. 
+## Determinability logic
 
-The calculateFinalUbbelohde function averages the two unrounded kinematic viscosities. The final viscosity is rounded, with the rounded value posted to the document. The unrounded value is posted to the hidden details section. 
+Firsly the user must make a selection from the sample-type drop-down menu. 
 
-The second starting point is for handling tests conducted using a pair of Zeitfuchs viscometers. The first function is called ZeitfuchsConstant, which displays two run-time inputs and two constant inputs, along with a calculation button and a reset button.
+Secondly, two event listeners listen for a click on the Ubbelohde and Zeitfuchs buttons. Depending on the user's choice, either the ubbelohdeConstant or zeitfuchsConstant functions are invoked, which unhide the two run-time inputs, and either one or two number inputs for the viscometer constants, and hide the viscometer constant inputs inserted by the other function. Two buttons are also unhidden - one to initiate the calculation and another to reset the calculation. 
 
-The first step is again the calculation of the kinematic viscosities. This is handled with the getValuesZeitfuchs function, which checks if all 4 inputs have values in them, and then uses parseFloat to retrieve the values of those inputs and store them in variables. If any of the inputs don't have values, the user is alerted. The function then invokes a function called calculateZeitfuchs, which is passed the values of the variables. 
+The user must then enter their run-times and constant(s), and then click the calculate button. The calculate button is tied to an event listener, which invokes either the  getValuesUbbelohde or getValuesZeitfuchs function, which retrieves the values of the input elements. If any of the inputs don't have a value or if no selection has been made using the drop-down menu, the functions will alert the user. If all inputs are valid and a valid selection has been made using the drop-down menu, then either the calculateUbbelohde or calculateZeitfuchs function will be invoked, passing in the run-times and constant(s) as arguments.
 
-The calculateZeitfuchs function calculates the kinematic viscosities by multiplying run-time 1 by constant 1, and run-time 2 by constant 2. These kinematic viscosity values are rounded, with the rounded values posted to the document and the unrounded values posted to the calculation details div. The unrounded values are also passed to the next function, called calculateFinalZeitfuchs. 
+These functions calculate the kinematic viscosities and then round them using the toPrecision method. The rounded kinematic viscosities are inserted into a span element. These span elements have a paragraph element and another span element as siblings. The sibling span contains the units and the sibling paragraph contains the label. These sibling elements are unhidden when the viscosity value is inserted. 
 
-The calculateFinalZeitfuchs function averages the two kinematic viscosities. This final value is rounded, and the rounded value is posted to the document. The unrounded value is posted the calculation details section. 
+The unrounded kinematic viscosities are inserted into to a hidden calculation details element. These functions then invoke either the calculateFinalUbbelohde or calculateFinalZeitfuchs functions, passing in the unrounded kinematic viscosities as arguments.
 
-Both the calculateFinalUbbelohde and calculateFinalZeitfuchs functions invoke the determinability function. The determinability function uses a large SWITCH statement with several cases. Each case reads the value of the drop-down menu option that the user selected. Depending on that selection, the case puts the final viscosity into an equation and stores the output in a variable called determinability. The determinability is the rounded, and the rounded value posted to the document, with the unrounded value posted to the calculation details section. The function also posts the specific determinability equation that is being used to the document as well, for the user's benefit. The function then invokes a function called upperLimit, passing in the determinability, final viscosity and the two kinematic viscosity values. 
+Both the calculateFinalUbbelohde and calculateFinalZeitfuchs average the viscosities and round them using the toPrecision method. The rounded value is inserted into a span elements, which, similar to the above, has a label and units contained in a sibling paragraph and span element respectively. These sibling elements are unhidden when the final calculated viscosity is inserted. The unrounded value is added to the hidden calculation details element
 
-The upperLimit function calculates the upper bound of the determinability calculation, the value below which the two kinematic viscosity values must be in order to be valid. This function adds the determinability to the final viscosity, and stores the output in a variable called upperAllowedViscosity. This is then rounded, with the rounded value posted to the document, and the unrounded value posted to the calculation details section. The function then calls a function called lowerLimit, which is passed the two kinematic viscosity values, the final viscosity, the determinability and the upper allowed viscosity. 
+Both the calculateFinalUbbelohde and calculateFinalZeitfuchs functions then invoke the determinability function, passing in the unrounded viscosities and final calculated viscosity as arguments. 
 
-The lowerLimit function calculates the lower bound of the determinability calculation, the value above which the two kinematic viscosity values must be in order to be valid. This function subtracts the determinability from the final viscosity, and stores the output in a variable called lowerAllowedViscosity. This is then rounded, with the rounded value posted to the document, and the unrounded value posted to the calculation details section. The function the calls the final function, called checker, which is passed the kinematic viscosities, the upperAllowedViscosity and the lowerAllowedViscosity.
+The determinability function reads the value of option selected in the sample type drop-down menu, then uses a SWITCH statement to provide cases for each selection. In some cases, where different sample types share the same determinability equation, one case statement is used for multiple sample types. 
 
-The checker function checks whether the two kinematic viscosities are both below the upperAllowedViscosity and above the lowerAllowedViscosity. If so, a message is displayed informing the user that their test results are valid. If the kinematic viscosities fall outside the bound defined by the limits, a message is displayed informing the user that their results are not valid. The checker function also displays the button that allows the user to display the unrounded values used in the calculation. 
+Each case statement applies a determinability equation to the final calculated viscosity to calculate the determinability factor, which is then rounded using the toPrecision method.The function then inserts the determinability equation that was used and the rounded determinability factor into span elements. As above, labels and units contained in sibling spans and paragraphs are unhidden when the values are inserted. The unrounded determinability factor is added to the hidden calculation details element.
 
-Displaying the unrounded values is handled by the determinabilityDetails function, which unhides the previously hidden calculation details div. 
+The determinability function then invokes the upperLimit function, passing in the unrounded kinematic viscosities, unrounded final calculated viscosity and the unrounded determinability factor as arguments.
 
-The calculation inputs and outpust can be emptied by the reset function, which is invoked by clicking the reset button. 
+The upperLimit function adds the determinability factor to the final calculated viscosity to calculate the upper limit of the allowed viscosity range. The upper limit is rounded using the toPrecision method and then inserted into a span element. At the same time, the sibling elements containing the label and units are unhidden. The unrounded upper limit is added to the hidden calculation details element. 
 
-## Repeatability and reproducibility calculations
+The upperLimit function then invokes the lowerLimit function, passing in the unrounded viscosities, unrounded final calculated viscosity, unrounded determinability and unrounded upper limit as arguments. 
 
-## Calibration Calculations
+The lowerLimit function calculates the lower limit of the allowed viscosity range by subtracting the determinability from the final calculated viscosity. The lower limit is rounded using the toPrecision method and then inserted into a span element. At the same time, the sibling elements containing the label and units are unhidden. The unrounded lower limit is added to the hidden calculation details element. 
 
-## Recalibration calculations
+The lowerLimit function then invokes the checker function, passing in the unrounded viscosities, unrounded final calculated viscosity and unrounded upper and lower limits as arguments.
 
+The checker function checks whether both of the unrounded viscosities are both greater than the lower limit and less than the upper limit. If so, it will post a message to the page telling the user that the viscosities are determinable, along with a tick icon. If the unrounded viscosities fail this test, a message will be posted telling the user that their viscosities are not determinable, along with a cross icon. No matter the output, the checker function will unhide a calculation details button. 
+
+This button is tied to an event listener. When clicked, the determinabilityDetails function is invoked, which unhides the calculation details element and displays all of the unrounded values that have been inserted into the element. 
+
+The user may then click the reset button, which is tied to an event listener. When clicked, the reset function is invoked, which sets the text content of all output elements to empty strings and hides the elements containing the units and labels. The values of all input elements are also set to empty strings, and the user is focused on the run-time 1 input, effectively readying the tool for further determinability checks. 
+
+### Determinabilty logic flow chart
+
+![determinability logic flow chart](assets/images/flow-charts/determinability-flow-chart.drawio.png)
+
+## Repeatability logic
+
+Firsly the user must make a selection from the sample-type drop-down menu.
+
+Secondly, the user must enter the two final calculated viscosities they wish to compare. When the calculate button is clicked, an event listener invokes the averageViscosityRepeatability function. This function checks if the user has made a selection from the drop-down menu and if the viscosity inputs have values in them. If the inputs are empty or if a valid selection has not been made, the user is alerted. 
+
+If the inputs are valid, the function retrieves the entered viscosities and averages them to calculate the average viscosity. The average viscosity is then rounded using the toPrecision method, and then inserted into a span element. This span element has a paragraph element and a span element as siblings, which contain the label and the units respectively. These are initially hidden, and are revealed when the average viscosity is inserted. The unrounded average viscosity is also inserted into a hidden calculation details element. 
+
+The averageViscosityRepeatability function then invokes the repeatability function, passing in the retrieved viscosities and unrounded average viscosity as arguments.
+
+The repeatability function reads the value of the selection made in the drop down menu and then uses a SWITCH statement to provide cases for each selection. Each case statement applies a repeatability equation to the average viscosity to calculate the repeatability factor, which is then rounded using the toPrecision method. The function then inserts the repeatability equation that was used and the rounded repetability factor into span elements. As above, labels and units contained in sibling spans and paragraphs are unhidden when the values are inserted. The unrounded repeatability factor is added to the hidden calculation details element. 
+
+The repeatability function then calls the repeatabilityUpperLimit function, passing in the final calculated viscosities, unrounded average viscosity and unrounded repeatability factor as arguments. 
+
+The repeatabilityUpperLimit function adds the repeatability factor to the average viscosity to calculate the upper limit of the allowed viscosity range. The upper limit is rounded using the toPrecision method and then inserted into a span element. At the same time, the sibling elements containing the label and units are unhidden. The unrounded upper limit is added to the hidden calculation details element. 
+
+The repeatabilityUpperLimit function then invokes the repeatabilityLowerLimit function, passing in the final calculated viscosities, average viscosity, repeatability factor and upper limit as arguments. 
+
+The lowerLimit function calculates the lower limit of the allowed viscosity range by subtracting the repeatability from the average viscosity. The lower limit is rounded using the toPrecision method and then inserted into a span element. At the same time, the sibling elements containing the label and units are unhidden. The unrounded lower limit is added to the hidden calculation details element. 
+
+The repeatabilityLowerLimit function then invokes the repeatabilityChecker function, passing in the final calculated viscosities, unrounded average viscosity and unrounded upper and lower limits as arguments.
+
+The repeatabilityChecker function checks whether both of the final calculated viscosities are both greater than the lower limit and less than the upper limit. If so, it will post a message to the page telling the user that the viscosities are repeatable, along with a tick icon. If the viscosities fail this test, a message will be posted telling the user that their viscosities are not repeatable, along with a cross icon. No matter the output, the repeatabilityChecker function will reveal the calculation details button. 
+
+This button is tied to an event listener. When clicked, the repeatabilityDetails function is invoked, which unhides the calculation details element and displays all of the unrounded values that have been inserted into the element. 
+
+The user may then click the reset button, which is tied to an event listener. When clicked, the reset function is invoked, which sets the text content of all output elements to empty strings and hides the elements containing the units and labels. The values of all input elements are also set to empty strings, and the user is focused on the viscosity 1 input, effectively readying the tool for further repeatability checks. 
+
+### Repeatability logic flow chart
+
+![Repeatability logic flow chart](assets/images/flow-charts/repeatability-flow-chart.drawio.png)
+
+## Reproducibility logic
+
+Firsly the user must make a selection from the sample-type drop-down menu.
+
+Secondly, the user must enter the two final calculated viscosities they wish to compare. When the calculate button is clicked, an event listener invokes the averageViscosityReproducibility function. This function checks if the user has made a selection from the drop-down menu and if the viscosity inputs have values in them. If the inputs are empty or if a valid selection has not been made, the user is alerted. 
+
+If the inputs are valid, the function retrieves the entered viscosities and averages them to calculate the average viscosity. The average viscosity is then rounded using the toPrecision method, and then inserted into a span element. This span element has a paragraph element and a span element as siblings, which contain the label and the units respectively. These are initially hidden, and are revealed when the average viscosity is inserted. The unrounded average viscosity is also inserted into a hidden calculation details element. 
+
+The averageViscosityReproducibility function then invokes the reproducibility function, passing in the retrieved viscosities and unrounded average viscosity as arguments.
+
+The reproducibility function reads the value of the selection made in the drop down menu and then uses a SWITCH statement to provide cases for each selection. Each case statement applies a reproducibility equation to the average viscosity to calculate the reproducibility factor, which is then rounded using the toPrecision method. The function then inserts the reproducibility equation that was used and the rounded reproducibility factor into span elements. As above, labels and units contained in sibling spans and paragraphs are unhidden when the values are inserted. The unrounded reproducibility factor is added to the hidden calculation details element. 
+
+The reproducibility function then calls the reproducibilityUpperLimit function, passing in the final calculated viscosities, unrounded average viscosity and unrounded reproducibility factor as arguments. 
+
+The reproducibilityUpperLimit function adds the reproducibility factor to the average viscosity to calculate the upper limit of the allowed viscosity range. The upper limit is rounded using the toPrecision method and then inserted into a span element. At the same time, the sibling elements containing the label and units are unhidden. The unrounded upper limit is added to the hidden calculation details element. 
+
+The reproducibilityUpperLimit function then invokes the reproducibilityLowerLimit function, passing in the final calculated viscosities, average viscosity, reproducibility factor and upper limit as arguments. 
+
+The lowerLimit function calculates the lower limit of the allowed viscosity range by subtracting the reproducibility from the average viscosity. The lower limit is rounded using the toPrecision method and then inserted into a span element. At the same time, the sibling elements containing the label and units are unhidden. The unrounded lower limit is added to the hidden calculation details element. 
+
+The reproducibilityLowerLimit function then invokes the reproducibilityChecker function, passing in the final calculated viscosities, unrounded average viscosity and unrounded upper and lower limits as arguments.
+
+The reproducibilityChecker function checks whether both of the final calculated viscosities are both greater than the lower limit and less than the upper limit. If so, it will post a message to the page telling the user that the viscosities are reproducible, along with a tick icon. If the viscosities fail this test, a message will be posted telling the user that their viscosities are not reproducible, along with a cross icon. No matter the output, the reproducibilityChecker function will reveal the calculation details button. 
+
+This button is tied to an event listener. When clicked, the reproducibilityDetails function is invoked, which unhides the calculation details element and displays all of the unrounded values that have been inserted into the element. 
+
+The user may then click the reset button, which is tied to an event listener. When clicked, the reset function is invoked, which sets the text content of all output elements to empty strings and hides the elements containing the units and labels. The values of all input elements are also set to empty strings, and the user is focused on the viscosity 1 input, effectively readying the tool for further reproducibility checks. 
+
+### Reproducibility logic flow chart
+
+![Reproducibility logic flow chart](assets/images/flow-charts/reproducibility-flow-chart.drawio.png)
+
+## Calibration logic
+
+The Calibration functionality requires that the user enter their run-times, viscometer constant and the viscosity of the calibration fluid used in the calinration test. 
+
+The calculate button is tied to an event listener that listens for a click. When clicked, a function called getValuesCalibration is invoked, which retrieves the values of the run-time inputs and the constant input. If any of the inputs (run-times, constant, calibration fluid viscosity) are empty, the user is alerted and the function stops executing. 
+
+A function called calculateCalibration is then invoked, with the retrieved inputs passed as arguments. 
+
+The calculateCalibration function calculates the viscosities by multiplying the run-times by the constant. The average run-time and the average viscosity are also calculated by averaging the run-times and viscosities respectively. The average viscosity is rounded using the toPrecision method. The average run-time and rounded average viscosity are inserted into spans. At the same time, spans and paragraphs containing the units and labels are unhidden. The unrounded average viscosity and average run-time are inserted into the hidden calculation details element. 
+
+A function called toleranceBand is then invoked, with the average viscosity passed in as an argument. 
+
+The toleranceBand function uses a SWITCH statement to read the value of the calibration fluid viscosity. Depending on the value of the calibration fluid viscosity, a case will assign the toleranceBand variable a value, and also insert the calibration fluid viscosity range and associated tolerance band into spans. At the same time, the elements containing the tolerance band units and calibration fluid viscosity label and units are unhidden. 
+
+The toleranceBand function then calls the percentageDifference function, passing in the average viscosity, calibration fluid viscosity and tolerance band as arguments. 
+
+The percentageDifference function calculates the percentage difference between the average viscosity and the viscosity of the calibration fluid. The percentage difference is then rounded to 2 decimal places using the toFixed method. The rounded percentage difference is then inserted into a span, with the associate elements containing the label and units being unhidden as well. The unrounded percentage difference is added to the hidden calculation details element. 
+
+The percentageDifference function then invokes the percentageDifferenceChecker function, passing in the tolerance band and percentage difference as arguments. 
+
+The percentageDifferenceChecker function checks whether the percentage difference is less than or greater than the tolerance band. If the percentage difference is less than or equal to the tolerance band, the calibration check has passed, and a message is posted to that effect, along with a tick icon. If the percentage difference is greater than the tolerance band, the calibration check has failed and a message is posted to that effect, along with a cross icon. 
+
+No matter the output, the percentageDifferenceChecker function will also unhide the calibration details button. When clicked, this button invokes the calibrationDetails function, which reveals the hidden calculation details element. 
+
+The reset button is tied to a click event listener that invokes the calibrationReset function, which empties the input and output fields and resets the tool for further use. 
+
+### Calibration logic flow chart
+
+![Calibration logic flow chart](assets/images/flow-charts/calibration-flow-chart.drawio.png)
+
+## Recalibration logic
+
+The viscometer constant recalibration function requires that the user input the constant of the viscometer they wish to recalibrate, the gravity of the testing laboratory and the gravity at the standardisation laboratory. When the calculate button is clicked, an event listener invokes the recalibrationPercentageDifference function. 
+
+The recalibrationPercentageDifference function checks if any of the inputs are empty. If there are any empty inputs, the function stops executing the user is alerted. If the inputs have values in them, the function retrieves those values, and calculates the percentage difference between the two supplied gravities. The percentage difference is rounded to 4 significant figures using the toPrecision method. This function then invokes the function called recalibrationFunction, passing in the two gravities, the viscometer constant and the unrounded percentage difference as arguments. 
+
+The recalibrationFunction function checks whether the percentage difference is greater than 0.1%. If so, the function then calculates a new constant for the viscometer by dividing the standardisation laboratory gravity by the testing laboratory gravity and the multiplying by the viscometer constant. The new constant is then rounded to 4 significant figures, as all constants are to 4SF. The new viscometer constant is inserted into the span, and the associated elements containing the label and units are unhidden. 
+
+If the percentage difference is less than 0.1%, no recalibration takes place, since the method specifies that this is not necessary. A message is inserted into the output span informing the user of this. 
+
+The user can then click a reset button, which is tied to a click event listener. This invokes the recalibrationReset function to empty the inputs and outputs, resetting the tool for further use. 
+
+### Recalibration logic flow chart 
+
+![Recalibration logic flow chart](assets/images/flow-charts/recalibration-flow-chart.drawio.png)
 
 # Design Choices
 
@@ -279,7 +398,7 @@ Note that determinability proved easier to implement than expected, leading to a
 
 Note calculation details section and replacing of console.logs
 
-
+This next entry isn't so much a bug, but should serve to illustrate how to the project developed over time. For each of the determinability, repeatability and reproducibility, initially two large IF/ELSE statements in separate functions were used to perform those calculations. The first function displayed the calculation that was to be used to the user. The second function performed the calculations and inserted the results into HTML elements. Further functions to calculate the upper and lower limits would take their input values from the HTML elements, perform the calculations and post the results. I realised that this could lead to calculation errors, since I was rounding with the toPrecision method each time the functions retrieved and posted the numbers. This was caused by the inability of IF/ELSE statements to declare or modify variables outside of the statements. I refactored the code, and replaced the two large IF/ELSE functions with a single large SWITCH statement, which allowed me to declare and modify variables which can then be passed directly into further functions. This prevents calculation rounding errors, and generally simplifies the code.
 
 # Accessibility
 
@@ -289,101 +408,7 @@ Increase font-size for smaller devices using ems and rems
 
 
 
-# Code Explanations
 
-## Logic Flows
-
-When coding the Love Maths walkthrough project, I found it useful to note down what I call the 'logic flow', that is - how the functions interact with each other. Since this project is significantly more complex and involves many obscure scientific and technical terms, a similar addition could be useful for readers without such a technical background. 
-
-### Calculation selector logic
-
-Uses an event listener to listen for changes to the option selected in the drop-down menu, then calls a function called selectCalculation
-
-Depending on the selected option element's value attribute, an IF/ELSE IF statement triggers
-
-Each statement uses CSS style rule manipulation to set the display rule of each calculation article. The option corresponding to the article is set to display: block, and the other articles are set to display: none
-
-In my experience, the most common calculation is that of determinability, so the determinability calculation article is visible by default. 
-
-### Determinability logic
-
-Firstly, two event listeners listen for a click on the Ubbelohde and Zeitfuchs buttons. Depending on the user's choice, either the ubbelohdeConstant or zeitfuchsConstant functions are invoked, which insert either one or two number inputs for the viscometer constants, and hide the number inputs inserted by the other function. 
-
-Each of these functions then calls a getValues function, which retrieves the values of the input elements, logs them to the console, and then calls a calculate function, passing in the run-times and constants as arguments. The function will stop the execution if no selection has been made in the drop-down menu. 
-
-The calculate functions calculate the viscosities, round them using the toPrecision method, log these outputs to the console, post them to the index.html page, and call a final function, passing in the unrounded viscosities as arguments.
-
-The final functions average the viscosities, round them using the toPrecision method, log these outputs to the console, post them to the index.html page and call the determinability function, passing in the raw viscosities and averaged viscosity as arguments. 
-
-The determinability function reads the value of option selected in the sample type drop-down menu, then uses a SWITCH statement to provide cases for each selection. In some cases, where different sample types share the same determinability equation, one case statement is used for multiple sample types. 
-
-Each case statement calculates the determinability factor (the output of the determinability equation), rounds it using the toPrecision method and logs the determinability factor and determinability equation being used to the console
-
-The function then posts the determinability equation and the rounded determinability factor to the index.html page, and logs the rounded determinability to the console. The function then calls the upperLimit function, passing in the raw viscosities, averaged viscosity and determinability factor as arguments
-
-The upperLimit function adds the determinability factor to the final viscosity to calculate the upper limit of the allowed viscosity range, rounds the upper limit, logs it to the console and posts it to the index.html page. The function then invokes the lowerLimit function, passing in the raw viscosities, averaged viscosity, determinability and upper limit as arguments. 
-
-The lowerLimit function calculates the lower limit of the allowed viscosity range and does the same operations as above. The function then invokes a checker function, passing in the raw viscosities, averaged viscosity and upper and lower limits as arguments
-
-The checker function checks whether the raw viscosities lie within the band defined by the upper and lower limits. If so, it will post a message to the page telling the user that the viscosities are determinable. If the raw viscosities fall outside the limits, a message will be posted telling the user that their viscosities are not determinable
-
-The user may then click the reset button. This is tied to an event listener that listens for this button being clicked. When clicked, a function is called that sets the text content and values to empty strings and then focuses on the run-time 1 input, effectively readying the tool for further determinability checks
-
-### Repeatability logic
-
-Firstly, the user must enter the two viscosities they wish to compare. When the calculate button is clicked, an event listener calls a function to retrieve the entered viscosities, calculate the average viscosity, round it, log these values to the console, then post the rounded average viscosity to the page. 
-
-The function then invokes a large function that calculates the repeatability factor of the average viscosity based on the selection made in the drop-down menu. This is accomplished through a large SWITCH statement that calculates the repeatability, rounds it, and logs the repeatability equation and unrounded repeatability factor to the console. 
-
-The repeatability function then posts the repeatability equation being used and the rounded repeatability to the page, and logs the rounded repeatability to the console. 
-
-The function then calls the repeatabilityUpperLimit function, passing in the raw viscosities, average viscosity and repeatability factor as arguments. 
-
-The repeatabilityUpperLimit function calculates the upper limit, rounds it, the logs that value and posts it to the page. It then calls the repeatabilityLowerLimit function, passing in the raw viscosities, average viscosity, repeatability factor and upper limit as arguments. 
-
-The repeatabilityLowerLimit function calculates the lower limit, rounds it, the logs that value and posts it to the page. It then calls the repeatability checker function, which checks whether the viscosities fall within the upper and lower limits, then posts a message informing the user of the outcome. 
-
-The user can then click a reset button that is tied to an event listener that calls a function that sets the inputs and outputs to empty strings, and focuses on the viscosity 1 input, readying the tool for further use
-
-### Reproducibility logic
-
-Firstly, the user must enter the two viscosities they wish to compare. When the calculate button is clicked, an event listener calls a function to retrieve the entered viscosities, calculate the average viscosity, round it, log these values to the console, then post the rounded average viscosity to the page. 
-
-The function then invokes a large function that calculates the reproducibility factor of the average viscosity based on the selection made in the drop-down menu. This is accomplished through a large SWITCH statement that calculates the reproducibility, rounds it, and logs the reproducibility equation and unrounded reproducibility factor to the console. 
-
-The reproducibility function then posts the reproducibility equation being used and the rounded reproducibility to the page, and logs the rounded reproducibility to the console. 
-
-The function then calls the reproducibilityUpperLimit function, passing in the raw viscosities, average viscosity and reproducibility factor as arguments. 
-
-The reproducibilityUpperLimit function calculates the upper limit, rounds it, the logs that value and posts it to the page. It then calls the reproducibilityLowerLimit function, passing in the raw viscosities, average viscosity, reproducibility factor and upper limit as arguments. 
-
-The reproducibilityLowerLimit function calculates the lower limit, rounds it, the logs that value and posts it to the page. It then calls the reproducibility checker function, which checks whether the viscosities fall within the upper and lower limits, then posts a message informing the user of the outcome. 
-
-The user can then click a reset button that is tied to an event listener that calls a function that sets the inputs and outputs to empty strings, and focuses on the viscosity 1 input, readying the tool for further use
-
-### Calibration logic
-
-The Calibration functionality requires that the user enter their run-times, viscometer constant and the viscosity of the calibration fluid used in the test. The calculate button is tied to an event listener that listens for a click. It then calls a function called getValuesCalibration, which retrieves the values of the run-time and constant inputs. A function called calculateCalibration is then called, with the retrieved inputs passed as arguments. 
-
-The calculateCalibration function calculates the viscosities, the average run-time and the average viscosity, logs each of these to the console and posts the average run time and average viscosity to the page. A function called toleranceBand is then called
-
-The toleranceBand function uses a SWITCH statement to check the value of the calibration fluid viscosity, which determines the tolerance band. The tolerance band and allowed percentage difference are then posted to the page. The function then calls the percentageDifference function, passing in the average viscosity, calibration fluid viscosity and tolerance band as arguments. 
-
-The percentageDifference function calculates the percentage difference between the viscosity measured by the scientist and the viscosity of the calibration fluid. This function then calls the percentageDifferenceChecker function, passing in the tolerance band and percentage difference as arguments. 
-
-The percentageDifferenceChecker function checks whether the percentage difference is less than or greater than the tolerance band. If the percentage difference is less than or equal to the tolerance band, the calibration check has passed, and a message is posted to that effect. If the percentage difference is greater than the tolerance band, the calibration check has failed and a message is posted to that effect. 
-
-A reset button that is tied to a click event listener empties the input and output fields and resets the tool for further use. 
-
-### Recalibration logic
-
-The viscometer constant recalibration function requires that the user input the constant of the viscometer they wish to recalibrate, the gravity of the testing laboratory and the gravity at the standardisation laboratory. When the calculate button is clicked, an event listener calls the recalibrationPercentageDifference function. 
-
-The recalibrationPercentageDifference function retrieves those values, and calculates the percentage difference between the two supplied gravities. These values are logged to the console, and the rounded percentage difference is posted to the page. This function then calls the recalibrationFunction function. 
-
-The recalibrationFunction function checks whether the percentage difference is greater than 0.1%. If so, the function will then calculate a new constant for the viscometer, which is then rounded to 4 significant figures, as all constants are to 4SF. If not, the no recalibration takes place, since the method specifies that this is not necessary. 
-
-The user can then click a reset button, which is tied to a click event listener, which calls a function to empty the inputs and outputs. 
 
 # Future work
 
@@ -403,8 +428,6 @@ A bug was noticed during routine testing after adding JavaScript and HTML to unh
 
 The JavaScript now instead divides each value individually by 2 and then adds them, which is the same operation, mathematically speaking, as in: ((value 1 / 2) + (value 2 / 2))
 Dividing each value individually appears to prevent string concatenation, forcing the percentage difference calculations to calculate the correct value.  
-
-This next entry isn't so much a bug, but should serve to illustrate how to the project developed over time. For each of the determinability, repeatability and reproducibility, initially two large IF/ELSE statements in separate functions were used to perform those calculations. The first function displayed the calculation that was to be used to the user. The second function performed the calculations and inserted the results into HTML elements. Further functions to calculate the upper and lower limits would take their input values from the HTML elements, perform the calculations and post the results. I realised that this could lead to calculation errors, since I was rounding with the toPrecision method each time the functions retrieved and posted the numbers. This was caused by the inability of IF/ELSE statements to declare or modify variables outside of the statements. I refactored the code, and replaced the two large IF/ELSE functions with a single large SWITCH statement, which allowed me to declare and modify variables which can then be passed directly into further functions. This prevents calculation rounding errors, and generally simplifies the code. 
 
 # Technologies
 
