@@ -130,34 +130,34 @@ The tool must have a clear final output informing the user of the result of the 
 
 ### Desktop
 
-![Index - suspended flow](assets/wireframes/index-suspended-flow.png)
+![Index - suspended flow](assets/images/wireframes/index-suspended-flow.png)
 <br>
 Since this is more of a tool than a website, I thought that the input form and calculations were best placed directly on the index page, rather than on a dedicated page that required internal navigation 
 <br>
 <br>
-![Index - reverse flow](assets/wireframes/index-reverse-flow.png)
+![Index - reverse flow](assets/images/wireframes/index-reverse-flow.png)
 <br>
 This is how the tool will appear if the selector is set to a Zeitfuchs cross-arm viscometer test, with two run-time inputs and two constant inputs
 <br>
 <br>
-![Discussion](assets/wireframes/discussion.png)
+![Discussion](assets/images/wireframes/discussion.png)
 <br>
 This is the discussion page that guides the user on how to set the selector to the correct option based on their sample type
 <br>
 
 ### Smartphone
 
-![Index - suspended flow](assets/wireframes/index-suspended-flow-mobile.png)
+![Index - suspended flow](assets/images/wireframes/index-suspended-flow-mobile.png)
 <br>
 The index page as it designed to look on a smartphone
 <br>
 <br>
-![Index - reverse flow](assets/wireframes/index-reverse-flow-mobile.png)
+![Index - reverse flow](assets/images/wireframes/index-reverse-flow-mobile.png)
 <br>
 This is how the tool will appear if the selector is set to a Zeitfuchs cross-arm viscometer test, with two run-time inputs and two constant inputs
 <br>
 <br>
-![Discussion](assets/wireframes/discussion-mobile.png)
+![Discussion](assets/images/wireframes/discussion-mobile.png)
 <br>
 This is the discussion page that guides the user on how to set the selector to the correct option based on their sample type
 <br>
