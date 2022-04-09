@@ -130,43 +130,77 @@ The tool must have a clear final output informing the user of the result of the 
 
 ### Desktop
 
-![Index - suspended flow](assets/images/wireframes/index-suspended-flow.png)
+Main page - suspended flow:<br>
+![Index - suspended flow](assets/images/wireframes/initial/index-suspended-flow.png)
 <br>
 Since this is more of a tool than a website, I thought that the input form and calculations were best placed directly on the index page, rather than on a dedicated page that required internal navigation 
 <br>
 <br>
-![Index - reverse flow](assets/images/wireframes/index-reverse-flow.png)
+Main page - reverse flow:<br>
+![Index - reverse flow](assets/images/wireframes/initial/index-reverse-flow.png)
 <br>
 This is how the tool will appear if the selector is set to a Zeitfuchs cross-arm viscometer test, with two run-time inputs and two constant inputs
 <br>
 <br>
-![Discussion](assets/images/wireframes/discussion.png)
+Discussion page:<br>
+![Discussion](assets/images/wireframes/initial/discussion.png)
 <br>
 This is the discussion page that guides the user on how to set the selector to the correct option based on their sample type
 <br>
 
 ### Smartphone
 
-![Index - suspended flow](assets/images/wireframes/index-suspended-flow-mobile.png)
+Main page - suspended flow:<br>
+![Index - suspended flow](assets/images/wireframes/initial/index-suspended-flow-mobile.png)
 <br>
 The index page as it designed to look on a smartphone
 <br>
 <br>
-![Index - reverse flow](assets/images/wireframes/index-reverse-flow-mobile.png)
+Main page - reverse flow:<br>
+
+![Index - reverse flow](assets/images/wireframes/initial/index-reverse-flow-mobile.png)
 <br>
 This is how the tool will appear if the selector is set to a Zeitfuchs cross-arm viscometer test, with two run-time inputs and two constant inputs
 <br>
 <br>
-![Discussion](assets/images/wireframes/discussion-mobile.png)
+Discussion page:<br>
+
+![Discussion](assets/images/wireframes/initial/discussion-mobile.png)
 <br>
 This is the discussion page that guides the user on how to set the selector to the correct option based on their sample type
 <br>
 
 ## Final Wireframes
 
+The project's design underwent only minimal changes over its development, with the broad look remaining largely the same. The only changes are the addition of the calculation selector drop-down menu, the calculation article title, the addition of the Ubbelohde viscometer and Zeitfuchs viscometer buttons to the determinability calculation article and the addition of a reset button. The calculation outputs where also all stacked vertically, an icon was added to the final output and a detailed breakdown of the calculations was also added, along with a button to reveal this. When initially conceived, the project was only meant to handle determinability calculations. When this proved unexpectedly simple to inplement, additional calculations were added. These have not been wireframed, since they have broadly the same layout as the determinability calculation article, with the inputs on the left and the outputs on the right. As with the determinability calculation article, these are stacked vertically when the project is viewed on a smartphone. 
+
 ### Desktop
 
+Main page - suspended flow:<br>
+
+![index-suspended-flow-final](assets/images/wireframes/final/index-suspended-flow-final.png)
+
+Main page - reverse flow:<br>
+
+![index-reverse-flow-final](assets/images/wireframes/final/index-reverse-flow-final.png)
+
+Discussion page:<br>
+
+![discission-final](assets/images/wireframes/final/discussion-final.png)
+
 ### Smartphone
+
+Main page - suspended flow:<br>
+
+![index-suspended-flow-mobile-final](assets/images/wireframes/final/index-suspended-flow-mobile-final.png)
+
+Main page - reverse flow:<br>
+
+![index-reverse-flow-mobile-final](assets/images/wireframes/final/index-reverse-flow-mobile-final.png)
+
+Discussion page:<br>
+
+![discussion-mobile-final](assets/images/wireframes/final/discussion-mobile-final.png)
 
 # Features
 
