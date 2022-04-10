@@ -361,6 +361,9 @@ function determinabilityDetails() {
     
     let determinabilityDetailsDiv = document.getElementById('determinability-details')
     determinabilityDetailsDiv.style.display = 'block'
+
+    let footer = document.getElementById('footer')
+    footer.style.bottom = '-15%'
 }
 
 let resetButton = document.getElementById('reset-determinability')
@@ -400,4 +403,5 @@ function reset() {
     document.getElementById('determinability-factor-label').style.display = 'none'
     document.getElementById('determinability-upper-limit-label').style.display = 'none'
     document.getElementById('determinability-lower-limit-label').style.display = 'none'
+    document.getElementById('footer').style.bottom = '0%'
 }

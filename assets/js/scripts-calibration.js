@@ -156,6 +156,9 @@ function calibrationDetails() {
 
     let calibrationDetailsDiv = document.getElementById('calibration-details')
     calibrationDetailsDiv.style.display = 'block'
+
+    let footer = document.getElementById('footer')
+    footer.style.bottom = '-15%'
 }
 
 let calibrationResetButton = document.getElementById('calibration-reset')
@@ -190,4 +193,5 @@ function calibrationReset() {
     document.getElementById('calibration-viscosity-range-label').style.display = 'none'
     document.getElementById('calibration-tolerance-band-label').style.display = 'none'
     document.getElementById('calibration-percentage-difference-label').style.display = 'none'
+    document.getElementById('footer').style.bottom = '0%'
 }
