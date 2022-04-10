@@ -47,8 +47,7 @@ function recalibrationFunction(percentageDifference, testingGravity, standardisa
         document.getElementById('recalibration-new-constant-units').style.display = 'inline'
     }
     else {
-        document.getElementById('recalibration-new-constant-label').style.display = 'block'
-        document.getElementById('recalibration-new-constant').textContent = 'the difference between the two gravities does not warrant recalibration of the viscometer'
+        document.getElementById('recalibration-new-constant').textContent = 'The difference between the two gravities does not warrant recalibration of the viscometer'
     }
 }
 

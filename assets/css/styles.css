@@ -132,6 +132,10 @@ main {
     min-height: 70vh;
 }
 
+.calculated-output-div span {
+    font-weight: 600;
+}
+
 #recalibration-calculated-output {
     min-height: 40vh;
 }
@@ -387,5 +391,4 @@ nav ul li {
     #reproducibility-details-button {
         margin-top: 20px;
     }
-    
 }
