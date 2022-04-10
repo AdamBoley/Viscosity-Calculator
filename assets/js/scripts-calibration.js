@@ -163,6 +163,9 @@ function calibrationDetails() {
     if(screen.width < '400') {
         footer.style.bottom = '-20%'
     }
+    else if(screen.width > screen.height) {//applies if the user is using a tablet-like device in its horizontal configuration, or a smartphone in a horizontal configuration
+        footer.style.bottom = '-50%'
+    }
     else {
         footer.style.bottom = '-15%'
     }

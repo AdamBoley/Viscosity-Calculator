@@ -22,7 +22,7 @@ main {
 
 #footer {
     height: 15px;
-    width: 100%;
+    width: 100vw;
     background-color: rgba(0, 0, 0, 0.5);
     font-size: x-small;
     position: absolute;
@@ -374,4 +374,18 @@ nav ul li {
     .calculated-output button {
         margin-top: 60px;
     }
+    #repeatability-details-button {
+        margin-top: 40px;
+    }
+
+    #reproducibility-details-button {
+        margin-top: 40px;
+    }
+}
+
+@media screen and (max-width: 660px) {
+    #reproducibility-details-button {
+        margin-top: 20px;
+    }
+    
 }
