@@ -202,7 +202,7 @@ reproducibilityDetailsButton.addEventListener('click', reproducibilityDetails)
 function reproducibilityDetails() {
 
     let reproducibilityUserInput = document.getElementById('reproducibility-user-input')
-    reproducibilityUserInput.style.height = '40vh'
+    reproducibilityUserInput.style.height = '50vh'
 
     let reproducibilityCalculatedOutput = document.getElementById('reproducibility-calculated-output')
     reproducibilityCalculatedOutput.style.height = '70vh'
@@ -211,7 +211,7 @@ function reproducibilityDetails() {
     reproducibilityDetailsDiv.style.display = 'block'
 
     let footer = document.getElementById('footer')
-    footer.style.bottom = '-15%'
+    footer.style.bottom = '-21%'
 }
 
 let reproducibilityResetButton = document.getElementById('reproducibility-reset')
@@ -244,5 +244,10 @@ function reproducibilityReset() {
     document.getElementById('reproducibility-factor-label').style.display = 'none'
     document.getElementById('reproducibility-upper-limit-label').style.display = 'none'
     document.getElementById('reproducibility-lower-limit-label').style.display = 'none'
-    document.getElementById('footer').style.bottom = '0%'
+    if(screen.width < '310') {
+        document.getElementById('footer').style.bottom = '-6%'
+    }
+    else {
+        document.getElementById('footer').style.bottom = '0%'
+    }
 }

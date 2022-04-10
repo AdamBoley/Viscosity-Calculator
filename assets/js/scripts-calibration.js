@@ -149,7 +149,12 @@ calibrationDetailsButton.addEventListener('click', calibrationDetails)
 function calibrationDetails() {
 
     let calibrationUserInput = document.getElementById('calibration-user-input')
-    calibrationUserInput.style.height = '30vh'
+    if(screen.width < '310') {
+        calibrationUserInput.style.height = '55vh'
+    }
+    else {
+        calibrationUserInput.style.height = '30vh'
+    }
 
     let calibrationCalculatedOutput = document.getElementById('calibration-calculated-output')
     calibrationCalculatedOutput.style.height = '80vh'
@@ -158,7 +163,13 @@ function calibrationDetails() {
     calibrationDetailsDiv.style.display = 'block'
 
     let footer = document.getElementById('footer')
-    footer.style.bottom = '-15%'
+    if(screen.width < '310') {
+        footer.style.bottom = '-18%'
+    }
+    else {
+        footer.style.bottom = '-15%'
+    }
+
 }
 
 let calibrationResetButton = document.getElementById('calibration-reset')
@@ -193,5 +204,10 @@ function calibrationReset() {
     document.getElementById('calibration-viscosity-range-label').style.display = 'none'
     document.getElementById('calibration-tolerance-band-label').style.display = 'none'
     document.getElementById('calibration-percentage-difference-label').style.display = 'none'
-    document.getElementById('footer').style.bottom = '0%'
+    if(screen.width < '310') {
+        document.getElementById('footer').style.bottom = '-15%'
+    }
+    else {
+        document.getElementById('footer').style.bottom = '0%'
+    }
 }

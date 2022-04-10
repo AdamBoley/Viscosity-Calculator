@@ -1379,6 +1379,8 @@ ASTM Industry standard test method D445, obtained using Intertek's subscription 
 
 [This W3 Schools page](https://www.w3schools.com/howto/howto_css_hide_arrow_number.asp) provided guidance on how to disable to arrows in number input elements. 
 
+https://www.w3schools.com/js/js_window_screen.asp
+
 [The diagrams.net site](https://app.diagrams.net/) was used to construct flow charts to visually demonstrate how the calculation functions worked and interacted. 
 
 [This MDN Web Docs page](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toPrecision) provided guidance on how to use to the JavaScript toPrecision method

@@ -363,7 +363,14 @@ function determinabilityDetails() {
     determinabilityDetailsDiv.style.display = 'block'
 
     let footer = document.getElementById('footer')
-    footer.style.bottom = '-15%'
+    if(screen.width < '310') {
+        footer.style.bottom = '-18%'
+    }
+    else {
+        footer.style.bottom = '-15%'
+    }
+    
+    
 }
 
 let resetButton = document.getElementById('reset-determinability')
@@ -403,5 +410,11 @@ function reset() {
     document.getElementById('determinability-factor-label').style.display = 'none'
     document.getElementById('determinability-upper-limit-label').style.display = 'none'
     document.getElementById('determinability-lower-limit-label').style.display = 'none'
-    document.getElementById('footer').style.bottom = '0%'
+    if(screen.width < '310') {
+        document.getElementById('footer').style.bottom = '-6%'
+    }
+    else {
+        document.getElementById('footer').style.bottom = '0%'
+    }
+    
 }

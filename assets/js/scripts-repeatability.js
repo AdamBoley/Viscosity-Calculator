@@ -196,7 +196,7 @@ repeatabilityDetailsButton.addEventListener('click', repeatabilityDetails)
 function repeatabilityDetails() {
 
     let repeatabilityUserInput = document.getElementById('repeatability-user-input')
-    repeatabilityUserInput.style.height = '40vh'
+    repeatabilityUserInput.style.height = '50vh'
 
     let repeatabilityCalculatedOutput = document.getElementById('repeatability-calculated-output')
     repeatabilityCalculatedOutput.style.height = '70vh'
@@ -205,7 +205,12 @@ function repeatabilityDetails() {
     repeatabilityDetailsDiv.style.display = 'block'
 
     let footer = document.getElementById('footer')
-    footer.style.bottom = '-15%'
+    if(screen.width < '310') {
+        footer.style.bottom = '-18%'
+    }
+    else {
+        footer.style.bottom = '-15%'
+    }
 }
 
 let repeatabilityResetButton = document.getElementById('repeatability-reset')
@@ -240,5 +245,10 @@ function repeatabilityReset() {
     document.getElementById('repeatability-factor-label').style.display = 'none'
     document.getElementById('repeatability-upper-limit-label').style.display = 'none'
     document.getElementById('repeatability-lower-limit-label').style.display = 'none'
-    document.getElementById('footer').style.bottom = '0%'
+    if(screen.width < '310') {
+        document.getElementById('footer').style.bottom = '-6%'
+    }
+    else {
+        document.getElementById('footer').style.bottom = '0%'
+    }
 }

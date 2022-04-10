@@ -137,7 +137,7 @@ main {
 }
 
 .calculated-output-div {
-    height: 60px;
+    height: 80px;
     width: 60%;
 }
 
@@ -313,6 +313,10 @@ nav ul li {
         width: 80%;
         margin: 0 auto;
     }
+
+    button {
+        height: 50px;
+    }
 }
 
 @media  screen and (max-width: 600px) {
@@ -337,6 +341,22 @@ nav ul li {
     .user-input-div button {
         display: block;
         margin-bottom: 10px;
+    }
+
+    #determinability-select {
+        height: 250px;
+    }
+
+    #determinability-input-1, #constant-div {
+        margin-left: 25px;
+    }
+
+    .calculated-output-div {
+        width: 90%;
+    }
+
+    #calibration-details-button {
+        margin-top: 100px;
     }
 }
 
