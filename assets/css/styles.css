@@ -87,6 +87,7 @@ main {
 
 #determinability-details, #repeatability-details, #reproducibility-details, #calibration-details, #recalibration-details {
     display: none;
+    height: 400px;
 }
 
 #determinability-details-button, #repeatability-details-button, #reproducibility-details-button, #calibration-details-button, #recalibration-details-button {
@@ -95,6 +96,7 @@ main {
 
 #calibration-details-button {
     margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 .user-input-div {
@@ -371,6 +373,6 @@ nav ul li {
 
 @media screen and (max-width: 660px) {
     #reproducibility-details-button {
-        margin-top: 20px;
+        margin-top: 40px;
     }
 }
