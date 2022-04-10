@@ -196,7 +196,7 @@ repeatabilityDetailsButton.addEventListener('click', repeatabilityDetails)
 function repeatabilityDetails() {
 
     let repeatabilityUserInput = document.getElementById('repeatability-user-input')
-    repeatabilityUserInput.style.height = '50vh'
+    repeatabilityUserInput.style.height = '55vh'
 
     let repeatabilityCalculatedOutput = document.getElementById('repeatability-calculated-output')
     repeatabilityCalculatedOutput.style.height = '70vh'

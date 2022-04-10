@@ -384,6 +384,9 @@ nav ul li {
         display: block;
         margin-bottom: 10px;
     }
+    .calculated-output-div {
+        height: 100px;
+    }
 
     .mimic-button {
         height: 50px;
