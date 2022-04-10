@@ -149,7 +149,7 @@ calibrationDetailsButton.addEventListener('click', calibrationDetails)
 function calibrationDetails() {
 
     let calibrationUserInput = document.getElementById('calibration-user-input')
-    calibrationUserInput.style.height = '70vh'
+    calibrationUserInput.style.height = '30vh'
 
     let calibrationCalculatedOutput = document.getElementById('calibration-calculated-output')
     calibrationCalculatedOutput.style.height = '70vh'

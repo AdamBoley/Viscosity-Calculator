@@ -14,7 +14,6 @@ function ubbelohdeConstant() {
     let submitZeitfuchs = document.getElementById('submit-zeitfuchs')
     let reset = document.getElementById('reset-determinability')
     let submitDiv = document.getElementById('submit-div')
-    
 
     determinabilityInput1.style.display = 'inline-block'
     determinabilityInput2.style.display = 'inline-block'
@@ -42,7 +41,6 @@ function ubbelohdeConstant() {
 }
 
 let getValuesUbbelohdeButton = document.getElementById('submit-ubbelohde')
-
 getValuesUbbelohdeButton.addEventListener('click', getValuesUbbelohde)
 
 function getValuesUbbelohde() {
@@ -54,7 +52,6 @@ function getValuesUbbelohde() {
     let constant = document.getElementById('constant-input')
 
     if(select.value === 'disabled') {
-
         alert('Please select a sample type from the drop-down menu')
     }
     else if(runTime1.value === '' || runTime2.value === '') {
@@ -64,7 +61,6 @@ function getValuesUbbelohde() {
         alert('Please enter a viscometer constant')
     }
     else {
-
         let time1 = parseFloat(document.getElementById('run-time-1').value);
         let time2 = parseFloat(document.getElementById('run-time-2').value);
         let viscConstant = parseFloat(document.getElementById('constant-input').value);
@@ -92,8 +88,7 @@ function calculateUbbelohde(runTime1, runTime2, constant) {
 
     determinabilityDetails.innerHTML = `
     <p>Kinematic viscosity 1 = ${kv1} cSt</p>
-    <p>Kinematic viscosity 2 = ${kv2} cSt</p>
-    `
+    <p>Kinematic viscosity 2 = ${kv2} cSt</p>`
 
     calculateFinalUbbelohde(kv1, kv2)
 }
@@ -109,8 +104,7 @@ function calculateFinalUbbelohde(kv1, kv2) {
 
     let determinabilityDetails = document.getElementById('determinability-details')
     determinabilityDetails.innerHTML += `
-    <p>the final calculated viscosity is ${finalViscosity} cSt</p>
-    `
+    <p>the final calculated viscosity is ${finalViscosity} cSt</p>`
 
     determinability(finalViscosity, kv1, kv2)
 }
@@ -159,7 +153,6 @@ function zeitfuchsConstant() {
 }
 
 let getValuesZeitfuchsButton = document.getElementById('submit-zeitfuchs')
-
 getValuesZeitfuchsButton.addEventListener('click', getValuesZeitfuchs)
 
 function getValuesZeitfuchs() {
@@ -171,20 +164,16 @@ function getValuesZeitfuchs() {
     let constant1 = document.getElementById('constant-1-input')
     let constant2 = document.getElementById('constant-2-input')
 
-
     if(select.value === 'disabled') {
         alert('Please select a sample type from the drop down menu')
-        return
     }
     else if(runTime1.value === '' || runTime2.value === '') {
         alert('Please enter two run-times')
-        
     }
     else if (constant1.value === '' || constant2.value === '') {
         alert('Please enter two viscometer constants')
     }
     else {
-
         let time1 = parseFloat(document.getElementById('run-time-1').value);
         let time2 = parseFloat(document.getElementById('run-time-2').value);
         let viscConstant1 = parseFloat(document.getElementById('constant-1-input').value);
@@ -213,8 +202,7 @@ function calculateZeitfuchs(runTime1, runTime2, constant1, constant2) {
 
     determinabilityDetails.innerHTML = `
     <p>Kinematic viscosity 1 is ${kv1} cSt</p>
-    <p>Kinematic viscosity 2 is ${kv2} cSt</p>
-    `
+    <p>Kinematic viscosity 2 is ${kv2} cSt</p>`
 
     calculateFinalZeitfuchs(kv1, kv2)
 }
@@ -230,13 +218,12 @@ function calculateFinalZeitfuchs(kv1, kv2) {
 
     let determinabilityDetails = document.getElementById('determinability-details')
     determinabilityDetails.innerHTML += `
-    <p>The final calculated viscosity is ${finalViscosity} cSt</p>
-    `
+    <p>The final calculated viscosity is ${finalViscosity} cSt</p>`
 
     determinability(finalViscosity, kv1, kv2)
 }
 
-//Determinability
+//Determinability calculations
 
 function determinability(finalViscosity, kv1, kv2) {
 
@@ -285,7 +272,7 @@ function determinability(finalViscosity, kv1, kv2) {
 
         case select.value === 'ADD100':
             message = '(Final calculated viscosity ^ 1.1) x 0.00106'
-            determinability = (finalViscosity ** 1.1) * 0.00106//use a span and vertical alignment to display the power as a superscripted value here?
+            determinability = (finalViscosity ** 1.1) * 0.00106
             preciseDeterminability = determinability.toPrecision(4)
             break
 
@@ -341,13 +328,12 @@ function lowerLimit(determinability, finalViscosity, upperAllowedViscosity, kv1,
     let determinabilityDetails = document.getElementById('determinability-details')
     determinabilityDetails.innerHTML += `<p>The determinability lower limit ${finalViscosity} - ${determinability} = ${lowerAllowedViscosity} cSt</p>`
 
-    checker(upperAllowedViscosity, lowerAllowedViscosity, kv1, kv2, finalViscosity, determinability)
+    checker(upperAllowedViscosity, lowerAllowedViscosity, kv1, kv2)
 }
 
-function checker(upperAllowedViscosity, lowerAllowedViscosity, kv1, kv2, finalViscosity, determinability) {
+function checker(upperAllowedViscosity, lowerAllowedViscosity, kv1, kv2) {
 
     if(kv1 > lowerAllowedViscosity && kv1 < upperAllowedViscosity && kv2 > lowerAllowedViscosity && kv2 < upperAllowedViscosity) {
-
         document.getElementById('determinability-output').innerHTML = `
         <i class="fas fa-check icon"></i>
         <span>Your viscosities fall within the defined limits</span>
@@ -362,7 +348,6 @@ function checker(upperAllowedViscosity, lowerAllowedViscosity, kv1, kv2, finalVi
     }
 
     let determinabilityDetailsButton = document.getElementById('determinability-details-button')
-    
     determinabilityDetailsButton.style.display = 'block'
 }
 
@@ -370,12 +355,9 @@ let determinabilityDetailsButton = document.getElementById('determinability-deta
 determinabilityDetailsButton.addEventListener('click', determinabilityDetails)
 
 function determinabilityDetails() {
-    /*
-    let determinabilityUserInput = document.getElementById('determinability-user-input')
-    determinabilityUserInput.style.height = '90vh'*/
 
     let determinabilityCalculatedOutput = document.getElementById('determinability-calculated-output')
-    determinabilityCalculatedOutput.style.height = '90vh'
+    determinabilityCalculatedOutput.style.height = '100vh'
     
     let determinabilityDetailsDiv = document.getElementById('determinability-details')
     determinabilityDetailsDiv.style.display = 'block'
@@ -391,7 +373,6 @@ function reset() {
     document.getElementById('constant-input').value = ''
     document.getElementById('constant-1-input').value = ''
     document.getElementById('constant-2-input').value = ''
-
     document.getElementById('run-time-1').focus()
 
     document.getElementById('determinability-kv-1').textContent = ''
@@ -409,12 +390,9 @@ function reset() {
     document.getElementById('determinability-factor-units').style.display = 'none'
     document.getElementById('determinability-upper-limit-units').style.display = 'none'
     document.getElementById('determinability-lower-limit-units').style.display = 'none'
-
     document.getElementById('determinability-details-button').style.display = 'none'
     document.getElementById('determinability-details').style.display = 'none'
-    /*document.getElementById('determinability-user-input').style.height = '70vh'*/
     document.getElementById('determinability-calculated-output').style.height = '70vh'
-
     document.getElementById('determinability-kv-1-label').style.display = 'none'
     document.getElementById('determinability-kv-2-label').style.display = 'none'
     document.getElementById('determinability-final-kv-label').style.display = 'none'

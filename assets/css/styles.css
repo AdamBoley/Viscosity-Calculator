@@ -7,8 +7,6 @@ body {
     overflow: auto;
 }
 
-
-
 .heading {
     text-align: center;
 }
@@ -115,11 +113,9 @@ main {
     width: 60%;
 }
 
-
 .calculated-output button {
     margin-top: 20px;
 }
-
 
 .input-unit {
     margin-left: 3px;
