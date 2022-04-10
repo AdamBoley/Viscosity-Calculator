@@ -464,7 +464,7 @@ Given this, it would have been possible to use a single large function for each 
 
 Firstly, this makes the functions far easier to read and understand, as each is short and has a name that clearly indicates its purpose. Any developer would understand that the getValuesUbbbelohde function is supposed to retrieve values from a location. This will be crucial if I decide to come back to this project and improve upon it (see the Future Work section). 
 
-Secondly, smaller functions make it far easier to maintain the functions. If the structure of the HTML document undergoes significant changes, then I should only need to find and update a handful of small functions. Provided that the outputs of those functions remain the same, the functions that follow should continue to execute as normal. In addition, it is worth noting that the functions that contain SWITCH statements contain equations taken directly from ASTM standard test method D445 (a copy is available for download to check this). These equations were generated from statistical analyses conducted by technical committees. It is not impossible for the appropriate technical committees to conduct further such statistical analyses and from these generate new equations, which would then be issued in revisions to D445. Should this happen, only the functions using those SWITCH statements would need to be found and updated with the new equations.
+Secondly, smaller functions make it far easier to maintain the functions. If the structure of the HTML document undergoes significant changes, then I should only need to find and update a handful of small functions. Provided that the outputs of those functions remain the same, the functions that follow should continue to execute as normal. In addition, it is worth noting that the functions that contain SWITCH statements contain equations taken directly from my copy of ASTM standard test method D445. These equations were generated from statistical analyses conducted by technical committees. It is not impossible for the appropriate technical committees to conduct further such statistical analyses and from these generate new equations, which would then be issued in revisions to D445. Should this happen, only the functions using those SWITCH statements would need to be found and updated with the new equations.
 
 Through the functions, I have made extensive use of the toPrecision(4) method. This is used to round the outputs of the calculations to 4 significant figures before inserting them into the document. This is because D445 specifies that results are to be reported to 4 significant figures. In addition, viscometer constants that are calculated by standardisation laboratories are given to 4 significant figures, from the smallest viscometers (e.g 0.002879) to the largest (e.g 30.60). It is also common practice for scientists to round their calculation results to 4 significant figures incrementally, to save having to write out long decimal numbers. In this way, the outputs of the Viscosity Calculator should match the outputs of manual calculations, which should serve to reassure users that the tool is performing the calculations accurately and using the correct equations.  
 
@@ -528,7 +528,7 @@ Dividing each value individually appears to prevent string concatenation, forcin
 
 [Font Awesome](https://fontawesome.com/) was used to apply the check and cross icons.
 
-[The ASTM Compass](https://compass.astm.org/) was used to obtain a copy of ASTM standard test method D445. The ASTM Compass is not accessible to users without a subscription, and I was only able to obtain the method using Intertek's global subscription.  
+[The ASTM Compass](https://compass.astm.org/) was used to obtain a copy of ASTM standard test method D445. The ASTM Compass is not accessible to users without a subscription, and I was only able to obtain the method using Intertek's global subscription. Prior to the project's submission, a copy was stored in the repository and there was a link in the discussion page that allowed a user to download a copy of the method, but upon inspection of my copy, I noticed a footer that prevented further reproduction, so the file and download link were removed from the project.  
 
 # Deployment
 
@@ -691,7 +691,6 @@ Test link to discussion page, test discussion page internal navigation, test AST
 | Select reproducibility option from drop-down menu         | Display reproducibility calculation article                      | Display reproducibility calculation article                     | 
 | Select calibration option from drop-down menu             | Display calibration calculation article                          | Display calibration calculation article                         | 
 | Select recalibration option from drop-down menu           | Display recalibration calculation article                        | Display recalibration calculation article                       |
-| Click ASTM D445 download link in discussion page          | Download a copy of ASTM D445                                     | Download a copy of ASTM D445 
 
 ## Testing calculation functions
 
@@ -1375,7 +1374,7 @@ In addition, the tool functioned exceptionally quickly, displaying the results i
 
 [This Stack Overflow question](https://stackoverflow.com/questions/8605516/default-select-option-as-blank) provided guidance on how to set a specific option element of a drop-down menu as the default, and how to make that default option disabled.  
 
-ASTM Industry standard test method D445, obtained using Intertek's subscription to the ASTM Compass, was used to provide the equations used to determinability, repeatability, reproducibility, viscometer calibration and viscometer recalibration. 
+ASTM Industry standard test method D445, obtained using Intertek's subscription to the ASTM Compass, was used to provide the equations used to determinability, repeatability, reproducibility, viscometer calibration and viscometer recalibration. Unfortunately, my copy states that there is a license agreement that prevents reproduction, so a copy cannot be made available for download.  
 
 [This W3 Schools page](https://www.w3schools.com/howto/howto_css_hide_arrow_number.asp) provided guidance on how to disable to arrows in number input elements. 
 
