@@ -205,8 +205,8 @@ function repeatabilityDetails() {
     repeatabilityDetailsDiv.style.display = 'block'
 
     let footer = document.getElementById('footer')
-    if(screen.width < '310') {
-        footer.style.bottom = '-18%'
+    if(screen.width < '400') {
+        footer.style.bottom = '-20%'
     }
     else {
         footer.style.bottom = '-15%'
@@ -245,7 +245,7 @@ function repeatabilityReset() {
     document.getElementById('repeatability-factor-label').style.display = 'none'
     document.getElementById('repeatability-upper-limit-label').style.display = 'none'
     document.getElementById('repeatability-lower-limit-label').style.display = 'none'
-    if(screen.width < '310') {
+    if(screen.width < '400') {
         document.getElementById('footer').style.bottom = '-6%'
     }
     else {

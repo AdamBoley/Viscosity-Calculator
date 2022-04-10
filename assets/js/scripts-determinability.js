@@ -363,8 +363,8 @@ function determinabilityDetails() {
     determinabilityDetailsDiv.style.display = 'block'
 
     let footer = document.getElementById('footer')
-    if(screen.width < '310') {
-        footer.style.bottom = '-18%'
+    if(screen.width < '400') {
+        footer.style.bottom = '-25%'
     }
     else {
         footer.style.bottom = '-15%'
@@ -410,7 +410,7 @@ function reset() {
     document.getElementById('determinability-factor-label').style.display = 'none'
     document.getElementById('determinability-upper-limit-label').style.display = 'none'
     document.getElementById('determinability-lower-limit-label').style.display = 'none'
-    if(screen.width < '310') {
+    if(screen.width < '400') {
         document.getElementById('footer').style.bottom = '-6%'
     }
     else {
