@@ -1,7 +1,6 @@
 //Calibration calculations
 
 let calibrationCalculateButton = document.getElementById('submit-calibration')
-
 calibrationCalculateButton.addEventListener('click', getValuesCalibration)
 
 function getValuesCalibration() {
@@ -21,7 +20,6 @@ function getValuesCalibration() {
         alert('Please enter a calibration fluid viscosity')
     }
     else {
-
         let calibrationRunTime1 = parseFloat(document.getElementById('calibration-run-time-1').value)
         let calibrationRunTime2 = parseFloat(document.getElementById('calibration-run-time-2').value)
         let calibrationConstant = parseFloat(document.getElementById('calibration-constant').value)
@@ -139,7 +137,6 @@ function percentageDifferenceChecker(percentageDifference, toleranceBand) {
     }
 
     let calibrationDetailsButton = document.getElementById('calibration-details-button')
-    
     calibrationDetailsButton.style.display = 'block'
 }
 
@@ -208,6 +205,6 @@ function calibrationReset() {
         document.getElementById('footer').style.bottom = '-15%'
     }
     else {
-        document.getElementById('footer').style.bottom = '0%'
+        document.getElementById('footer').style.bottom = '-5%'
     }
 }

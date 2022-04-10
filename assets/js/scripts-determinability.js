@@ -414,7 +414,7 @@ function reset() {
         document.getElementById('footer').style.bottom = '-6%'
     }
     else {
-        document.getElementById('footer').style.bottom = '0%'
+        document.getElementById('footer').style.bottom = '-5%'
     }
     
 }
