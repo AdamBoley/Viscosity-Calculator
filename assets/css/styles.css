@@ -211,10 +211,6 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
-
-
-
-
 #determinability-calculations {
     margin-top: 100px;
 }
@@ -312,6 +308,11 @@ nav ul li {
     .user-input, .calculated-output {
         margin-left: 30vw;
     }
+
+    header {
+        width: 80%;
+        margin: 0 auto;
+    }
 }
 
 @media  screen and (max-width: 600px) {
@@ -338,8 +339,6 @@ nav ul li {
         margin-bottom: 10px;
     }
 }
-
-
 
 @media screen and (max-width: 1350px) {
     .calculated-output button {
