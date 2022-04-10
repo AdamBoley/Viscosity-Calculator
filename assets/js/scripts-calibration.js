@@ -152,7 +152,7 @@ function calibrationDetails() {
     calibrationUserInput.style.height = '30vh'
 
     let calibrationCalculatedOutput = document.getElementById('calibration-calculated-output')
-    calibrationCalculatedOutput.style.height = '70vh'
+    calibrationCalculatedOutput.style.height = '80vh'
 
     let calibrationDetailsDiv = document.getElementById('calibration-details')
     calibrationDetailsDiv.style.display = 'block'

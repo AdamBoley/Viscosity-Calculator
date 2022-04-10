@@ -92,6 +92,10 @@ main {
     display: none;
 }
 
+#calibration-details-button {
+    margin-top: 50px;
+}
+
 .user-input-div {
     margin-top: 25px;
 }
@@ -106,6 +110,11 @@ main {
     width: 45%;
     float: right;
     margin-top: 10px;
+    min-height: 70vh;
+}
+
+#recalibration-calculated-output {
+    min-height: 40vh;
 }
 
 .calculated-output-div {
