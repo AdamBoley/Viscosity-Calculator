@@ -241,10 +241,4 @@ function reproducibilityReset() {
     document.getElementById('reproducibility-factor-label').style.display = 'none'
     document.getElementById('reproducibility-upper-limit-label').style.display = 'none'
     document.getElementById('reproducibility-lower-limit-label').style.display = 'none'
-    if(screen.width < '310') {
-        document.getElementById('footer').style.bottom = '-6%'
-    }
-    else {
-        document.getElementById('footer').style.bottom = '-5%'
-    }
 }

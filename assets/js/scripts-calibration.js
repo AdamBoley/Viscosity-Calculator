@@ -146,11 +146,11 @@ calibrationDetailsButton.addEventListener('click', calibrationDetails)
 function calibrationDetails() {
 
     let calibrationUserInput = document.getElementById('calibration-user-input')
-    if(screen.width < '310') {
+    if(screen.width < '400') {
         calibrationUserInput.style.height = '55vh'
     }
     else {
-        calibrationUserInput.style.height = '30vh'
+        calibrationUserInput.style.height = '40vh'
     }
 
     let calibrationCalculatedOutput = document.getElementById('calibration-calculated-output')

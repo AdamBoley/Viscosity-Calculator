@@ -301,8 +301,6 @@ nav ul li {
         width: 80%;
         margin: 0 auto;
     }
-
-    
 }
 
 @media  screen and (max-width: 600px) {
@@ -314,6 +312,10 @@ nav ul li {
 @media  screen and (max-width: 500px) {
     .user-input, .calculated-output {
         margin-left: 15vw;
+    }
+
+    .calculated-output-div {
+        height: 120px;
     }
 }
 
@@ -403,12 +405,12 @@ nav ul li {
     }
     
     #calibration-details-button {
-        margin-top: 120px;
+        margin-top: 270px;
     }
 }
 
 @media screen and (max-width: 660px) {
     #reproducibility-details-button {
-        margin-top: 40px;
+        margin-top: 100px;
     }
 }
