@@ -36,7 +36,10 @@ Main page screenshot goes here
     - [Recalibration logic](#recalibration-logic)
         - [Recalibration logic flow chart](#recalibration-logic-flow-chart)
 - [Design Choices](#design-choices)
-    - [Colour scheme, font and favicon](#colour-scheme-font-favicon)
+    - [Colour scheme](#colour-scheme)
+    - [Font](#font)
+    - [Icons](#icons)
+    - [Favicon](#favicon)
     - [JavaScript functions](#js-functions)
 - [Accessibility](#accessibility)
 - [Future Work](#future-work)
@@ -59,9 +62,17 @@ Main page screenshot goes here
         - [Calibration](#calibration-calculations)
         - [Recalibration](#recalibration-calculations)
     - [Testing on different devices](#testing-on-different-devices)
+        - [PC](#pc)
+        - [Laptop](#laptop)
+        - [Smartphone](#smartphone)
+        - [Tablet](#tablet)
     - [Testing code](#testing-code)
+        - [HTML validation](#html-validation)
+        - [CSS validation](#css-validation)
+        - [JS validation](#js-validation)
+        - [Lighthouse testing](#lighthouse-testing)
 - [Credits](#credits)
-    - [Code](#code)
+    - [Resources](#resources)
     - [Acknowledgements](#acknowledgements)
 
 # Background
@@ -491,16 +502,21 @@ The tool could be expanded greatly to handle the calculations involved in other 
 
 # Bugs
 
-A large and annoying bug was encountered when trying to change the text displayed in the "determinability-equation" div and when performing the calculation in the "determinability-factor" div. This text and equation output change is governed by the user's selection from the drop-down menu. It was observed through console.log commands that the code was not using the loop's IF/ELSE statements to discriminate based on the drop-down menu selection, but was actually trying to execute all of the options. I was using the onchange event listener in the select element, but it only seemed to be firing once. This was eventually solved with help from Tutor Support, who recommended removing the loop. The reasoning for initially using a loop was that the Love Maths walkthrough project involves the use of loop to respond to the user's mathematical operation selection.
+A large and annoying bug was encountered when trying to change the text displayed in the "determinability-equation" div and when performing the calculation in the "determinability-factor" div. This text and equation output change was governed by the user's selection from the drop-down menu. It was observed through console.log commands that the code was not using the loop's IF/ELSE statements to discriminate based on the drop-down menu selection, but was actually trying to execute all of the options. I was using the onchange event listener in the select element, but it only seemed to be firing once. This was eventually solved with help from Tutor Support, who recommended removing the loop. The reasoning for initially using a loop was that the Love Maths walkthrough project involves the use of loop to respond to the user's mathematical operation selection. As noted elsewhere, I eventually moved away from IF/ELSE statements and used SWITCH statements. 
 
-A bug was noticed during routine testing after adding JavaScript and HTML to unhide units when performing the calculations, and then hide the units again when the reset button is pressed. This bug related to the calibration and recalibration calculations, which used a percentage difference calculation operation as part of the function. The function appeared to be concatenating the input values as strings, which produced wildly inaccurate output values. This was solved by tweaking the variables used to calculate the denominator in the percentage difference calculation. Instead of adding the two values and then dividing by 2, as in (value 1 + value 2) / 2
+A bug was noticed during routine testing after adding JavaScript and HTML to unhide units when performing the calculations, and then hide the units again when the reset button is pressed. This bug related to the calibration and recalibration calculations, which use percentage difference calculations operation as part of the functions. The functions appeared to be concatenating the input values as strings, which produced wildly inaccurate output values. This was solved by tweaking the variables used to calculate the denominator in the percentage difference calculations. Instead of adding the two values and then dividing by 2, as in: 
 
-The JavaScript now instead divides each value individually by 2 and then adds them, which is the same operation, mathematically speaking, as in: ((value 1 / 2) + (value 2 / 2))
-Dividing each value individually appears to prevent string concatenation, forcing the percentage difference calculations to calculate the correct value.  
+(value 1 + value 2) / 2
+
+The JavaScript now instead divides each value individually by 2 and then adds them, which is, mathematically speaking, the same operation, as in: 
+
+((value 1 / 2) + (value 2 / 2))
+
+Dividing each value individually appears to prevent string concatenation, forcing the percentage difference calculations to calculate the correct value.
 
 # Technologies
 
-[Github](https://github.com/) was used to host the project repository.
+[Github](https://github.com/) was used to host the project repository. The Github project board was of great help in noting down action items, especially close to the end of the project when I was updating the documentation. 
 
 [Gitpod](https://gitpod.io/) was used to create and edit the project files. The Preview Browser proved useful in seeing the results of minor changes.
 
@@ -512,7 +528,7 @@ Dividing each value individually appears to prevent string concatenation, forcin
 
 [Font Awesome](https://fontawesome.com/) was used to apply the check and cross icons.
 
-[The ASTM Compass](https://compass.astm.org/) was used to obtain a copy of ASTM standard test method D445. The ASTM Compass is not accessible to users without a subscription, and I was only able to obtain the method using Intertek's global subscription. A copy is available for download through the deployed project. 
+[The ASTM Compass](https://compass.astm.org/) was used to obtain a copy of ASTM standard test method D445. The ASTM Compass is not accessible to users without a subscription, and I was only able to obtain the method using Intertek's global subscription.  
 
 # Deployment
 
@@ -1335,25 +1351,44 @@ In addition, the tool functioned exceptionally quickly, displaying the results i
 
 ## Testing on different devices
 
-PC, phone, laptop, tablets
+### PC
+
+### Smartphone
+
+### Laptop
+
+### Tablet
 
 ## Testing code
 
-HTML validator, CSS validator, JS validator, Lighthouse
+### HTML validation
+
+### CSS validation
+
+### JS validation
+
+### Lighthouse testing
 
 # Credits
 
-Ed Bradley from Tutor Support, who provided invaluable guidance on the conditional logic for the displayDeterminabilityFactor and determinabilityFactor functions, and on how to correctly get the value of input elements. This method was used to construct the functions for the repeatability and reproducibility calculations. Ultimately, I moved away from the suggested approach to use SWITCH statements, but the suggested approach provided a working first draft that allowed the project to progress. 
-
 ## Resources
 
-Setting a select element to blank by default: https://stackoverflow.com/questions/8605516/default-select-option-as-blank
+[This Stack Overflow question](https://stackoverflow.com/questions/8605516/default-select-option-as-blank) provided guidance on how to set a specific option element of a drop-down menu as the default, and how to make that default option disabled.  
 
-Industry standard test method D445, obtained using Intertek's subscription to the ASTM Compass. A copy is stored in the repository and may also be downloaded from the project's discussion page. 
+ASTM Industry standard test method D445, obtained using Intertek's subscription to the ASTM Compass, was used to provide the equations used to determinability, repeatability, reproducibility, viscometer calibration and viscometer recalibration. 
 
-Removing number input arrows: https://www.w3schools.com/howto/howto_css_hide_arrow_number.asp
+[This W3 Schools page](https://www.w3schools.com/howto/howto_css_hide_arrow_number.asp) provided guidance on how to disable to arrows in number input elements. 
 
+[The diagrams.net site](https://app.diagrams.net/) was used to construct flow charts to visually demonstrate how the calculation functions worked and interacted. 
 
+[This MDN Web Docs page](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toPrecision) provided guidance on how to use to the JavaScript toPrecision method
 
+The [Am I Responsive](http://ami.responsivedesign.is/#) site was used to generate the previews of the site as it appears on multiple devices. 
 
+## Acknowledgements
 
+Ed Bradley from Tutor Support, who provided invaluable guidance on the conditional logic for the determinabilty calculation functions, and on how to correctly get the value of input elements. These methods were later used to construct the functions for the repeatability and reproducibility calculations. Ultimately, I moved away from the suggested approach to use SWITCH statements, but the suggested approach provided a working first draft that allowed the project to progress. 
+
+[Ronan McLelland](https://www.linkedin.com/in/ronanmcclelland/) - my Mentor, who proved invaluable in project planning, providing resources, and guidance on general JavaScript development principles.
+
+F.D. Bartholmew Boley - for his useful contributions to the development process.
