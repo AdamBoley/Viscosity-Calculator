@@ -1,11 +1,6 @@
+Main page screenshot goes here
 
-Something to consider or explain - How did I make the decision whether to use the raw values or the toPrecision values in the calculations?
-On one hand - the raw values are more accurate and not subject to incremental rounding errors, so would match what GLIMS calculates
-On the other hand, the entire point of the project is to make the calculations visible to the user so that they can trust it
-That means using the precise outputs so that they match what the user would generate on a calculator
-
-Ultimately, this shouldn't matter as long as I can justify it per above
-
+![]()
 
 # Viscosity Calculator
 
@@ -21,12 +16,29 @@ Ultimately, this shouldn't matter as long as I can justify it per above
 - [Wireframes](#wireframes)
     - [Initial Wireframes](#initial-wireframes)
     - [Final Wireframes](#final-wireframes)
-- [Function](#function)
 - [Features](#features)
-    - [User feedback](#user-feedback)
+    - [Header and calculation selector](#header-and-selector)
+    - [Calculation articles](#calculation-articles)
+    - [Determinability calculation article](#determinability-calculation-article)
+    - [Repeatability and reproducibility calculation articles](#repeatability-calculation-article)
+    - [Calibration calculation article](#calibration-calculation-article)
+    - [Recalibration calculation article](#recalibration-calculation-article)    
+- [Function](#function)
+    - [Calculation selector logic](#calculation-selector-logic)
+    - [Determinability logic](#determinability-logic)
+        - [Determinability logic flow chart](#determinabilty-logic-flow-chart)
+    - [Repeatability logic](#repeatability-logic)
+        - [Repeatability logic flow chart](#repeatability-logic-flow-chart)
+    - [Reproducibility logic](#reproducibility-logic)
+        - [Reproducibility logic flow chart](#reproducibility-logic-flow-chart)
+    - [Calibration logic](#calibration-logic)
+        - [Calibration logic flow chart](#calibration-logic-flow-chart)
+    - [Recalibration logic](#recalibration-logic)
+        - [Recalibration logic flow chart](#recalibration-logic-flow-chart)
 - [Design Choices](#design-choices)
+    - [Colour scheme, font and favicon](#colour-scheme-font-favicon)
+    - [JavaScript functions](#js-functions)
 - [Accessibility](#accessibility)
-- [Code explanations](#code-explanations)
 - [Future Work](#future-work)
 - [Bugs](#bugs)
 - [Technologies](#technologies)
@@ -36,7 +48,6 @@ Ultimately, this shouldn't matter as long as I can justify it per above
         - [Direct access](#direct-access)
         - [Template](#template)
         - [Local clone](#local-clone)
-        - [Collaboration](#collaboration)
         - [Development preview browser](#development-preview-browser)
 - [Testing](#testing)
     - [Testing User Stories](#testing-user-stories)
@@ -230,7 +241,7 @@ The second feature is a pair of buttons labelled 'Ubbelohde viscometer' and 'Zei
 
 The third feature is the calculation button, with an event listener in the scripts-determinability.js file listening for a click on the button. The Calculations are then executed and the results displays per above.
 
-## Repeatability Calculation article
+## Repeatability and Reproducibility Calculation article
 
 The Repeatability and Reproducibility Calculation articles are similar, only differing in the calculations that performed. They are used for calculating the repeatability and reproducibility of separate viscosity results - that is, checking if they are close enough to be considered valid replications of each other. Repeatability should apply for results taken in the same laboratory by the same operator, whilst reproducibility applies for results taken by different laboratories. 
 
@@ -416,23 +427,47 @@ The user can then click a reset button, which is tied to a click event listener.
 
 # Design Choices
 
-## Colour scheme, font, favicon
+## Colour scheme
 
-Simple design - few/no images, Work Sans font, blue background, labels, icons, favicon
+I decided early on that this project would be much less visually complex than my first project, [The Space Marine Legions](https://github.com/AdamBoley/The-Space-Marine-Legions). I decided that the main attraction of the project would be its interactivity and functionality, and as above, I stress that the Viscosity Calculator is intended as a scientific tool rather than a website. Therefore, most of the development time was focused on writing and testing the JavaScript functions. 
+
+I therefore chose to use a simple light-blue background colour with black text. I felt that a simple, neutral colour palette would be more appropriate for a professional tool. 
+
+## Font
+
+The project uses the Work Sans font. This is a simple, uncomplicated font that is easily to read. As it is a sans-serif font, it is ideal for scientific units. 
+
+## Icons
+
+Two icons are used in this project - a tick and a cross. These are inserted using JavaScript, along with the output messages. This serves to reinforce the output message, and forestall any ambiguity. 
+
+## Favicon
+
+The favicon used for this project is an orange calculator. As the Viscosity Calculator is primarily a mathematical tool, I thought that this favicon was especially appropriate. The calculator icon has an oblong screen and buttons, which makes it visually distinct from, say, a mobile phone or similar device. 
 
 ## JS functions
 
-Justify use of smaller, simpler functions, though a single larger function could suffice for the main calculations. Justify use of toPrecion method(here?). Justify passing raw values through the functions
+As noted elsewhere in this document, the calculations performed by the Viscosity Calculator are not particularly complex - mostly simple multiplication, division, addition and subtraction, with some rather more complex exponent calculations as well, though all of these are conducted with often very long floating point numbers. These calculations are also not particularly long either. 
+
+Given this, it would have been possible to use a single large function for each calculation article. However, I chose to write a single function for each stage of each calculation. Broadly speaking, each function handles a single mathematical operation - the calculation of a viscosity, the calculation of a percentage difference, etc. My justification for this approach is two-fold. 
+
+Firstly, this makes the functions far easier to read and understand, as each is short and has a name that clearly indicates its purpose. Any developer would understand that the getValuesUbbbelohde function is supposed to retrieve values from a location. This will be crucial if I decide to come back to this project and improve upon it (see the Future Work section). 
+
+Secondly, smaller functions make it far easier to maintain the functions. If the structure of the HTML document undergoes significant changes, then I should only need to find and update a handful of small functions. Provided that the outputs of those functions remain the same, the functions that follow should continue to execute as normal. In addition, it is worth noting that the functions that contain SWITCH statements contain equations taken directly from ASTM standard test method D445 (a copy is available for download to check this). These equations were generated from statistical analyses conducted by technical committees. It is not impossible for the appropriate technical committees to conduct further such statistical analyses and from these generate new equations, which would then be issued in revisions to D445. Should this happen, only the functions using those SWITCH statements would need to be found and updated with the new equations.
+
+Through the functions, I have made extensive use of the toPrecision(4) method. This is used to round the outputs of the calculations to 4 significant figures before inserting them into the document. This is because D445 specifies that results are to be reported to 4 significant figures. In addition, viscometer constants that are calculated by standardisation laboratories are given to 4 significant figures, from the smallest viscometers (e.g 0.002879) to the largest (e.g 30.60). It is also common practice for scientists to round their calculation results to 4 significant figures incrementally, to save having to write out long decimal numbers. In this way, the outputs of the Viscosity Calculator should match the outputs of manual calculations, which should serve to reassure users that the tool is performing the calculations accurately and using the correct equations.  
+
+That said, the Viscosity Calculator functions are written in such a way that the unrounded values generated in earlier calculation functions are passed through to later functions. This is perhaps most evident in the determinability calculations, which calculate two kinematic viscosities early on, pass them through the functions and then make use of them in the final checker function. I chose to do this because the tool, being a computer, can easily store long floating point numbers in its memory. The use of the unrounded values also improves accuracy, since it eliminates errors incurred through incremental rounding. 
 
 # Development process 
 
-Explain move from IF/ELSE to SWITCH
+When the project was started, I set out only to implement functionality to calculate determinability. When this proved unexpectedly easy to implement, I realised that it would also be easy to implement functionality to calculate repeatability, reproducibility, calibration and recalibration. This move may be seen in the wireframes, where I titled to tool 'Viscosity Determinability Calculator'. 
 
-Note that determinability proved easier to implement than expected, leading to automation of other calculations
+Initially, for each of the determinability, repeatability and reproducibility calculations, two large IF/ELSE statements in separate functions were used to perform those calculations. The first function displayed the calculation that was to be used to the user. The second function performed the calculations and inserted the results into HTML elements. Further functions to calculate the upper and lower limits would take their input values from the HTML elements, perform the calculations and post the results. I realised that this could lead to calculation errors, since I was rounding with the toPrecision method each time the functions retrieved and posted the numbers. This was caused by the inability of IF/ELSE statements to declare or modify variables outside of the statements. I refactored the code, and replaced the two large IF/ELSE functions with a single large SWITCH statement, which allowed me to declare and modify variables which can then be passed directly into further functions. This prevents calculation rounding errors, and generally simplifies the code.
 
-Note calculation details section and replacing of console.logs
+When I gained experience working with SWITCH statements, I implemented one for the calibration calculations from the get go.
 
-This next entry isn't so much a bug, but should serve to illustrate how to the project developed over time. For each of the determinability, repeatability and reproducibility, initially two large IF/ELSE statements in separate functions were used to perform those calculations. The first function displayed the calculation that was to be used to the user. The second function performed the calculations and inserted the results into HTML elements. Further functions to calculate the upper and lower limits would take their input values from the HTML elements, perform the calculations and post the results. I realised that this could lead to calculation errors, since I was rounding with the toPrecision method each time the functions retrieved and posted the numbers. This was caused by the inability of IF/ELSE statements to declare or modify variables outside of the statements. I refactored the code, and replaced the two large IF/ELSE functions with a single large SWITCH statement, which allowed me to declare and modify variables which can then be passed directly into further functions. This prevents calculation rounding errors, and generally simplifies the code.
+When initially written the JavaScript code contained many console.log statements, which used template literals to log various values to the console. The idea was to use these not just for development and testing, but also to leave them in the code for the benefit of the user. In this scenario, the user could open the console to see the calculation process and see the unrounded values. However, my mentor informed me that this is not an industry standard approach, and instead suggested an approach whereby the unrounded calculation outputs would be inserted into a details section. This led to the creation of a hidden calculation details element, which could be made visible by clicking a button, that button also being initially hidden and being made visible when the final calculation function finished.  
 
 # Accessibility
 
@@ -448,11 +483,11 @@ Increase font-size for smaller devices using ems and rems
 
 This project has great scope for future work. 
 
-Firstly, a function could be added that exports all of the inputted and calulated data to an Excel spreadsheet so that permanent electronic records can be kept
+Firstly, a function could be added that exports all of the inputted and calulated data to an Excel spreadsheet so that permanent electronic records can be kept.
 
-Secondly, a database of sorts could be added that stores all viscometer serial numbers and constants. Serial numbers are simple and unique, whilst constants can be more difficult to remember. The user could, instead of entering a constant, merely select the serial number of the viscometer they used and the tool would populate the cell with the constant for use in the calculations. This would tie in with the above
+Secondly, a database of sorts could be added that stores all viscometer serial numbers and constants. Serial numbers are simple and unique, whilst constants can be more difficult to remember. The user could, instead of entering a constant, merely select the serial number of the viscometer they used and the tool would populate the cell with the constant for use in the calculations. This would tie in with the above. 
 
-The tool could be expanded greatly to handle the calculations involved in other industrial methods, such as ASTM D2896 Total Base Number. 
+The tool could be expanded greatly to handle the calculations involved in other industry standard test methods that require extensive calculations. 
 
 # Bugs
 
