@@ -209,16 +209,6 @@ function reproducibilityDetails() {
 
     let reproducibilityDetailsDiv = document.getElementById('reproducibility-details')
     reproducibilityDetailsDiv.style.display = 'block'
-
-    let footer = document.getElementById('footer')
-    if(screen.width > screen.height) {//applies if the user is using a tablet-like device in its horizontal configuration, or a smartphone in a horizontal configuration
-        footer.style.bottom = '-50%'
-    }
-    else {
-        footer.style.bottom = '-21%'
-    }
-
-    
 }
 
 let reproducibilityResetButton = document.getElementById('reproducibility-reset')

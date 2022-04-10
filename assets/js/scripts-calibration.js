@@ -158,18 +158,6 @@ function calibrationDetails() {
 
     let calibrationDetailsDiv = document.getElementById('calibration-details')
     calibrationDetailsDiv.style.display = 'block'
-
-    let footer = document.getElementById('footer')
-    if(screen.width < '400') {
-        footer.style.bottom = '-20%'
-    }
-    else if(screen.width > screen.height) {//applies if the user is using a tablet-like device in its horizontal configuration, or a smartphone in a horizontal configuration
-        footer.style.bottom = '-50%'
-    }
-    else {
-        footer.style.bottom = '-15%'
-    }
-
 }
 
 let calibrationResetButton = document.getElementById('calibration-reset')
@@ -204,10 +192,4 @@ function calibrationReset() {
     document.getElementById('calibration-viscosity-range-label').style.display = 'none'
     document.getElementById('calibration-tolerance-band-label').style.display = 'none'
     document.getElementById('calibration-percentage-difference-label').style.display = 'none'
-    if(screen.width < '400') {
-        document.getElementById('footer').style.bottom = '-15%'
-    }
-    else {
-        document.getElementById('footer').style.bottom = '-5%'
-    }
 }

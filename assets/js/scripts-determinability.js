@@ -361,17 +361,6 @@ function determinabilityDetails() {
     
     let determinabilityDetailsDiv = document.getElementById('determinability-details')
     determinabilityDetailsDiv.style.display = 'block'
-
-    let footer = document.getElementById('footer')
-    if(screen.width < '400') {
-        footer.style.bottom = '-25%'
-    }
-    else if(screen.width > screen.height) {//applies if the user is using a tablet-like device in its horizontal configuration, or a smartphone in a horizontal configuration
-        footer.style.bottom = '-50%'
-    }
-    else {
-        footer.style.bottom = '-15%'
-    }
 }
 
 let resetButton = document.getElementById('reset-determinability')
@@ -411,11 +400,4 @@ function reset() {
     document.getElementById('determinability-factor-label').style.display = 'none'
     document.getElementById('determinability-upper-limit-label').style.display = 'none'
     document.getElementById('determinability-lower-limit-label').style.display = 'none'
-    if(screen.width < '400') {
-        document.getElementById('footer').style.bottom = '-6%'
-    }
-    else {
-        document.getElementById('footer').style.bottom = '-5%'
-    }
-    
 }

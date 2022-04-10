@@ -20,24 +20,6 @@ main {
     min-height: 100vh
 }
 
-#footer {
-    height: 15px;
-    width: 100vw;
-    background-color: rgba(0, 0, 0, 0.5);
-    font-size: x-small;
-    position: absolute;
-    bottom: -5%;
-    right: 0%;
-}
-
-#footer span:nth-child(1) {
-    float: left;
-}
-
-#footer span:nth-child(2) {
-    float: right;
-}
-
 #calculation-selector-div {
     margin: 0 auto;
     width: 244px;

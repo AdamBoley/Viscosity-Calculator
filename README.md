@@ -1352,11 +1352,19 @@ In addition, the tool functioned exceptionally quickly, displaying the results i
 
 ### PC
 
+This project was developed wholly using a PC with a 1920 x 1080px monitor. Functionality and design was checked throughout development, and no issues were detected when the project was submitted. 
+
 ### Smartphone
+
+I have access to a Samsung A70 smartphone, which was used to check the layout and design when constructing the media queries for smaller screen sizes. The only issue that was detected was the footer not taking up the entire width of the screen. The cause of this is currently unknown, especially since the footer is set to have a width of 100%. 
 
 ### Laptop
 
+I also have access to a laptop with a 1920 x 1080px screen. No issues were detected. 
+
 ### Tablet
+
+I also have access to an iPad. Testing on this device detected an annoying visual bug whereby the footer was overlain by the content of the calculation details elements when the calculation details button was clicked. This only appeared to occur when the Viscosity Calculator was viewed in the horizontal configuration. The cause of this is unknown, and is especially vexatious since the JavaScript files have if/else statements in the functions that are invoked when the calculation details buttons are clicked that specifically deal with placement of the footer when the screen width is greater than the screen height (i.e. a tablet or phone in the horizontal alignment). In addition, when the Viscosity Calculator is viewed in the Dev Tools with the dimensions set to both the iPad Mini and iPad Air, this bug is not seen. The iPad in question is an older model, so this might account for the bug.  
 
 ## Testing code
 
