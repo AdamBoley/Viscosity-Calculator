@@ -514,6 +514,8 @@ The JavaScript now instead divides each value individually by 2 and then adds th
 
 Dividing each value individually appears to prevent string concatenation, forcing the percentage difference calculations to calculate the correct value.
 
+Late in the development, I ran into serious problems correctly placing the footer. On a standard PC screen, the footer was positioned with no issues. However, when writing the media queries for smartphones and tablets, the footer's position moved unpredictably when the calculation details buttons were clicked. I attempted to rectify this using some JavaScript to increase the height of certain elements and to modify the style rules of the footer that governed its position. However, these attempts did not succeed, and I eventually determined that the footer was not adding any real value to the project, so it was removed, as were all references to it in the JavaScript and the CSS. I suspect that the revealing of the calculation details elements were causing problems that could not be easily overcome. 
+
 # Technologies
 
 [Github](https://github.com/) was used to host the project repository. The Github project board was of great help in noting down action items, especially close to the end of the project when I was updating the documentation. 
@@ -1356,7 +1358,7 @@ This project was developed wholly using a PC with a 1920 x 1080px monitor. Funct
 
 ### Smartphone
 
-I have access to a Samsung A70 smartphone, which was used to check the layout and design when constructing the media queries for smaller screen sizes. The only issue that was detected was the footer not taking up the entire width of the screen. The cause of this is currently unknown, especially since the footer is set to have a width of 100%. 
+I have access to a Samsung A70 smartphone, which was used to check the layout and design when constructing the media queries for smaller screen sizes. 
 
 ### Laptop
 
@@ -1385,8 +1387,6 @@ I also have access to an iPad. Testing on this device detected an annoying visua
 ASTM Industry standard test method D445, obtained using Intertek's subscription to the ASTM Compass, was used to provide the equations used to determinability, repeatability, reproducibility, viscometer calibration and viscometer recalibration. Unfortunately, my copy states that there is a license agreement that prevents reproduction, so a copy cannot be made available for download.  
 
 [This W3 Schools page](https://www.w3schools.com/howto/howto_css_hide_arrow_number.asp) provided guidance on how to disable to arrows in number input elements. 
-
-https://www.w3schools.com/js/js_window_screen.asp
 
 [The diagrams.net site](https://app.diagrams.net/) was used to construct flow charts to visually demonstrate how the calculation functions worked and interacted. 
 

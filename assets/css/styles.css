@@ -257,14 +257,14 @@ nav ul li {
     }
 }
 
-@media  screen and (max-width: 1335px) {
+@media screen and (max-width: 1335px) {
     .user-input {
         width: 30%;
         margin-left: 300px;
     }
 }
 
-@media  screen and (max-width: 1200px) {
+@media screen and (max-width: 1200px) {
     .user-input {
         width: 40%;
         margin-left: 200px;
@@ -368,6 +368,10 @@ nav ul li {
 
     #reproducibility-details-button {
         margin-top: 40px;
+    }
+    
+    #calibration-details-button {
+        margin-top: 120px;
     }
 }
 
