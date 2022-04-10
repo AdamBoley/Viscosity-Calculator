@@ -302,9 +302,7 @@ nav ul li {
         margin: 0 auto;
     }
 
-    button {
-        height: 50px;
-    }
+    
 }
 
 @media  screen and (max-width: 600px) {
@@ -359,6 +357,40 @@ nav ul li {
 }
 
 @media screen and (max-width: 1205px) {
+    body {
+        font-size: larger;
+    }
+
+    #determinability-select {
+        height: 300px;
+    }
+
+    select {
+        height: 50px;
+    }
+
+    input {
+        height: 20px;
+        width: 60px;
+        font-size: 16px;
+    }
+
+    button {
+        height: 50px;
+        width: 180px;
+        font-size: 16px;
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .mimic-button {
+        height: 50px;
+        width: 180px;
+        font-size: 16px;
+        vertical-align: middle;
+        padding-top: 15px;
+    }
+
     .calculated-output button {
         margin-top: 60px;
     }

@@ -24,9 +24,17 @@ function ubbelohdeConstant() {
         constant2Div.style.display = 'none'
 
         constantDiv.style.display = 'block'
-        submitUbbelohde.style.display = 'inline-block'
         submitZeitfuchs.style.display = 'none'
-        reset.style.display = 'inline-block'
+
+        if(screen.width < '1206') {
+            submitUbbelohde.style.display = 'block'
+            reset.style.display = 'block'
+        }
+        else{
+            submitUbbelohde.style.display = 'inline-block'
+            reset.style.display = 'inline-block'
+        }
+        
         submitDiv.style.marginTop  = '31px' 
     }
     else {
@@ -135,9 +143,15 @@ function zeitfuchsConstant() {
 
         constant1Div.style.display = 'block'
         constant2Div.style.display = 'block'
-        submitZeitfuchs.style.display = 'inline-block'
+        if(screen.width < '1206') {
+            submitZeitfuchs.style.display = 'block'
+            reset.style.display = 'block'
+        }
+        else {
+            submitZeitfuchs.style.display = 'inline-block'
+            reset.style.display = 'inline-block'
+        }
         submitUbbelohde.style.display = 'none'
-        reset.style.display = 'inline-block'
         submitDiv.style.marginTop = '50px'
     }
     else {
