@@ -126,13 +126,13 @@ function percentageDifferenceChecker(percentageDifference, toleranceBand) {
     if(percentageDifference <= toleranceBand) {
         document.getElementById('calibration-output').innerHTML = `
         <i class="fas fa-check icon"></i>
-        <span>The percentage difference is less than or equal to the tolerance band. The viscometer passes the calibration check</span>
+        <span>The viscometer passes the calibration check</span>
         <p>Click the button below to see a detailed breakdown of the calculations</p>`
     }
     else if(percentageDifference > toleranceBand) {
         document.getElementById('calibration-output').innerHTML = `
         <i class="fas fa-xmark icon"></i>
-        <span>The percentage difference is greater than the tolerance band. The viscometer fails the calibration check</span>
+        <span>The viscometer fails the calibration check</span>
         <p>Click the button below to see a detailed breakdown of the calculations</p>`
     }
 
@@ -149,8 +149,11 @@ function calibrationDetails() {
     if(screen.width < '400') {
         calibrationUserInput.style.height = '55vh'
     }
+    else if(screen.width < '1000') { //applies to smartphones in a horizontal configuration
+        calibrationUserInput.style.height = '450px'
+    }
     else {
-        calibrationUserInput.style.height = '40vh'
+        calibrationUserInput.style.height = '45vh'
     }
 
     let calibrationCalculatedOutput = document.getElementById('calibration-calculated-output')

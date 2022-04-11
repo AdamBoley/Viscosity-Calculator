@@ -256,15 +256,23 @@ nav ul li {
         margin-left: 400px;
     }
 }
+    
+@media screen and (max-width: 1350px) {
+    .calculated-output button {
+        margin-top: 40px;
+    }
 
-@media screen and (max-width: 1335px) {
     .user-input {
         width: 30%;
         margin-left: 300px;
     }
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1205px) {
+    body {
+        font-size: larger;
+    }
+
     .user-input {
         width: 40%;
         margin-left: 200px;
@@ -272,95 +280,6 @@ nav ul li {
 
     .calculated-output {
         width: 40%;
-    }
-}
-
-@media  screen and (max-width: 1000px) {
-    .user-input, .calculated-output {
-        float: none;
-        width: 100%;
-        height: auto;
-        margin-left: 35vw;
-    }
-
-    .calculated-output {
-        margin-top: 50px;
-    }
-    
-    .description {
-        width: 100%;
-    }
-}
-
-@media  screen and (max-width: 750px) {
-    .user-input, .calculated-output {
-        margin-left: 30vw;
-    }
-
-    header {
-        width: 80%;
-        margin: 0 auto;
-    }
-}
-
-@media  screen and (max-width: 600px) {
-    .user-input, .calculated-output {
-        margin-left: 25vw;
-    }
-}
-
-@media  screen and (max-width: 500px) {
-    .user-input, .calculated-output {
-        margin-left: 15vw;
-    }
-
-    .calculated-output-div {
-        height: 120px;
-    }
-}
-
-@media  screen and (max-width: 400px) {
-    .user-input, .calculated-output {
-        margin-left: 10vw;
-    }
-
-    #calibration-details-button {
-        margin-top: 140px;
-    }
-}
-
-@media screen and (max-width: 310px) {
-    .user-input-div button {
-        display: block;
-        margin-bottom: 10px;
-    }
-
-    #determinability-select {
-        height: 250px;
-    }
-
-    #determinability-input-1, #constant-div {
-        margin-left: 25px;
-    }
-
-    .calculated-output-div {
-        width: 90%;
-    }
-
-    #calibration-details-button {
-        margin-top: 100px;
-    }
-}
-
-@media screen and (max-width: 1350px) {
-    .calculated-output button {
-        margin-top: 40px;
-    }
-}
-
-@media screen and (max-width: 1205px) {
-    body {
-        font-size: larger;
     }
 
     #determinability-select {
@@ -406,11 +325,104 @@ nav ul li {
     #reproducibility-details-button {
         margin-top: 40px;
     }
+
+    #calibration-output-div {
+        width: 68%;
+    }
     
     #calibration-details-button {
-        margin-top: 270px;
+        margin-top: 130px;
     }
 }
+
+@media  screen and (max-width: 1000px) {
+    .user-input, .calculated-output {
+        float: none;
+        width: 100%;
+        height: auto;
+        margin-left: 35vw;
+    }
+
+    .calculated-output {
+        margin-top: 50px;
+    }
+    
+    .description {
+        width: 100%;
+    }
+
+    #calibration-details-button {
+        margin-top: 60px;
+    }
+}
+
+@media  screen and (max-width: 750px) {
+    .user-input, .calculated-output {
+        margin-left: 30vw;
+    }
+
+    header {
+        width: 80%;
+        margin: 0 auto;
+    }
+}
+
+@media  screen and (max-width: 600px) {
+    .user-input, .calculated-output {
+        margin-left: 25vw;
+    }
+    #calibration-output-div {
+        height: 240px;
+    }
+}
+
+@media  screen and (max-width: 500px) {
+    .user-input, .calculated-output {
+        margin-left: 15vw;
+    }
+
+    .calculated-output-div {
+        height: 120px;
+    }
+}
+
+@media  screen and (max-width: 400px) {
+    .user-input, .calculated-output {
+        margin-left: 10vw;
+    }
+
+    #calibration-details-button {
+        margin-top: 140px;
+    }
+}
+
+@media screen and (max-width: 310px) {
+    .user-input-div button {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    #determinability-select {
+        height: 250px;
+    }
+
+    #determinability-input-1, #constant-div {
+        margin-left: 25px;
+    }
+
+    .calculated-output-div {
+        width: 90%;
+    }
+
+    #calibration-details-button {
+        margin-top: 100px;
+    }
+    #calibration-output-div {
+        height: 270px;
+    }
+}
+
+
 
 @media screen and (max-width: 660px) {
     #reproducibility-details-button {
