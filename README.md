@@ -76,7 +76,7 @@
 
 # **Background**
 
-By training and profession, I am a chemist. I have a first-class honours degree in chemistry and have worked in laboratories for all of my career. My current position is with Intertek, testing all manner of petrochemical products - lubricating oils, additives and crude oils. 
+By training and profession, I am a chemist. I have a first-class honours degree in chemistry and have worked in laboratories for all of my career. My current position is with Intertek, testing all manner of petrochemical products - lubricating oils, additives, crude oils, etc. 
 
 My informal specialty within my team is in the analysis of viscosity, and I do the vast majority of viscosity tests that we are contracted to perform. 
 
@@ -84,11 +84,19 @@ Broadly speaking, viscosity is a measurement of how well a fluid material resist
 
 Viscosity isn't a loose definition - it can be measured with great accuracy in laboratories by several different means, and at different temperatures. The most common measurement that I do in my professional life is that of kinematic viscosity, which is essentially the resistance to flow under gravity. 
 
-In commercial laboratories, the procedures for the making of measurements (any measurement, not just viscosity) are laid down in industry standard test methods that are written, published and reviewed by standards organisations. In my line of work, two of the best-regarded standards organisations are the American Society for Testing and Materials (ASTM) and the Institute of Petroleum (IP), now the Energy Institute (EI). Both organisations publish standard test methods for the measurement of kinematic viscosity. These are the ASTM D445 and the IP 71 methods, though both are functionally equivalent. 
+In commercial laboratories, the procedures for the making of measurements (any measurement, not just viscosity) are laid down in industry standard test methods that are written, published and reviewed by standards organisations. In my line of work, one of the best-regarded standards organisations is the American Society for Testing and Materials (ASTM). ASTM publishes standard test method D445 for the measurement of kinematic viscosity. It specifies in great detail the procedure for setting up and running a manual kinematic viscosity test.  
 
-Both of these methods state that kinematic viscosity is to be measured by a means of a glass instrument called a viscometer, and several different designs are available based on particular requirements, though the most common are the Ubbelohde type and the Zeitfuchs cross-arm type. Images are below. The Ubbelohde type consists of a reservoir that holds the fluid, a bulb with timing marks and a capillary (a thin tube, essentially) through which the fluid flows. By means of a vacuum, the fluid is drawn from the reservoir through the capillary and into the bulb. When the vacuum is released, the fluid begins to drain back down through the capillary. When the fluid front drains past the first timing mark, a stop-watch or timer is started, and when the fluid front drains past the second timing mark, the timer is stopped. 
+Both of these methods state that kinematic viscosity is to be measured by a means of a glass instrument called a viscometer, and several different designs are available based on particular requirements, though the most common are the Ubbelohde type and the Zeitfuchs cross-arm type. Images are below. The Ubbelohde type consists of a reservoir that holds the fluid, a bulb with timing marks and a capillary (a thin tube, essentially) through which the fluid flows. By means of a vacuum, the fluid is drawn from the reservoir through the capillary and into the bulb. When the vacuum is released, the fluid begins to drain back down through the capillary. When the fluid front drains past the first timing mark, a stop-watch or timer is started, and when the fluid front drains past the second timing mark, the timer is stopped.
+
+An Ubbelohde viscometer looks like this:
+
+![Ubbelohde viscometer](assets/images/viscometers/ubbelohde-viscometer.jpg)
 
 The Zeitfuchs cross-arm type consists of the same features, except that the reservoir sits above the bulb, and the fluid is drawn forwards by vacuum through the capillary. When the fluid passes the first timing mark, a timer is started and when the fluid passes the second mark, it is stopped. Whereas a fluid in the Ubbelohde type can be tested repeatedly, the Zeitfuchs type is a 'one-shot' viscometer, though this makes it useful for extremely dark fluids such as crude oils that would obscure the timing marks on an Ubbelohde viscometer. 
+
+A Zeitfuchs viscometer looks like this:
+
+![Zeitfuchs viscometer](assets/images/viscometers/zeitfuchs-cross-arm-viscometer.jpg)
 
 The time elapsed between when the fluid passes the first timing mark to when it passes the second timing mark is referred to variously - run-time is the most common, but drop-time and determination are also used. The methods specify that only run-times of between 200 and 900 seconds are valid - 200 because less than this means that the fluid is draining too fast for the scientist to start and stop the timer, and 900 seconds because spending more than 15 minutes to acquire a run-time is inefficient, and indicates that a larger viscometer may be safely used. 
 
@@ -113,13 +121,13 @@ These calculations aren't particularly complex, but they do add several extra st
 
 # **Scope**
 
-The scope of this project is to automate as much as possible all of the calculations involved in the ASTM D445 and IP 71 kinematic viscosity methods - determinability, repeatability, reproducibility, calibration and recalibration. All the user should have to do is input the required data - tun-times, constants, viscosities, etc. The tool will then use a series of functions to perform all of the calculations, display the results of these calculations and then display a final message indicating the output - whether two results are determinable, whether a viscometer passes a calibration check, etc. Since it is common for commercial scientists to use their personal smartphones in their laboratories for their calculator apps, this tool should be fully useable and responsive on a smartphone. 
+The scope of this project is to automate as much as possible all of the calculations involved in the ASTM industry standard test method D445 - determinability, repeatability, reproducibility, viscometer calibration and viscometer recalibration. All the user should have to do is input the required data - tun-times, constants, viscosities, etc. The tool will then use a series of functions to perform all of the calculations, display the results of these calculations and then display a final message indicating the output - whether two results are determinable, whether a viscometer passes a calibration check, etc. Since it is common for commercial scientists to use their personal smartphones in their laboratories for their calculator apps, this tool should be fully useable and responsive on a smartphone.
 
 # **Audience**
 
 This tool is designed wholly for professional scientists in commercial petrochemical laboratories who perform kinematic viscosity tests. I stress that it is conceived of as a tool rather than an interactive website. As it is designed for work purposes, styling is minimal, with the main positive aspects of the User Experience delivered via the logic and calculations.
 
-More specifically, the tool is designed for use by myself and my colleagues at Intertek. 
+More specifically, the tool is designed for use by myself and my colleagues at Intertek for automating the calculations involved in viscosity tests. 
 
 # **User stories**
 
@@ -1464,6 +1472,10 @@ The [Am I Responsive](http://ami.responsivedesign.is/#) site was used to generat
 [The WebAIM color contrast checker](https://webaim.org/resources/contrastchecker/) was used to confirm the contrast between the light-blue background colour and the black text. 
 
 The Lighthouse testing function provided [this link to a web.dev page](https://web.dev/link-text/?utm_source=lighthouse&utm_medium=devtools) that discusses non-descriptive text in hyperlinks. This was used to improve the text in the project's hyperlinks.
+
+The image of the Ubbelohde viscometer was obtained from [this Reagecon page](https://www.reagecon.com/en-gb/si-analytics-glass-kinematic-ubbelohde-viscometer-9268110) 
+
+The image of the Zeitfuchs viscometer was obtained from [this PSL Rheotek page](https://www.psl-rheotek.com/zeitfuchs-cross-arm-viscometers.html)  
 
 ## Acknowledgements
 
