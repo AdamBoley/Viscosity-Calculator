@@ -3,7 +3,7 @@
 let ubbelohdeButton = document.getElementById('ubbelohde-button');
 ubbelohdeButton.addEventListener('click', ubbelohdeConstant);
 
-function ubbelohdeConstant() {
+function ubbelohdeConstant() {//Displays run-time and constant inputs, plus calculate and reset buttons, hidesZeitfuchs inputs if present
 
     let constant1Div = document.getElementById('constant-1-div');
     let constant2Div = document.getElementById('constant-2-div');
@@ -18,7 +18,6 @@ function ubbelohdeConstant() {
     determinabilityInput1.style.display = 'inline-block';
     determinabilityInput2.style.display = 'inline-block';
     
-
     if(constant1Div.style.display !== 'none' || constant2Div.style.display !== 'none') {
         constant1Div.style.display = 'none';
         constant2Div.style.display = 'none';
@@ -51,7 +50,7 @@ function ubbelohdeConstant() {
 let getValuesUbbelohdeButton = document.getElementById('submit-ubbelohde');
 getValuesUbbelohdeButton.addEventListener('click', getValuesUbbelohde);
 
-function getValuesUbbelohde() {
+function getValuesUbbelohde() {//retrieves values from number inputs
 
     let select = document.getElementById('sample-type-determinability'); 
     let runTime1 = document.getElementById('run-time-1');
@@ -76,11 +75,10 @@ function getValuesUbbelohde() {
     }
 }
 
-function calculateUbbelohde(runTime1, runTime2, constant) {
+function calculateUbbelohde(runTime1, runTime2, constant) {//calculates kinematic viscosities
 
     let kv1 = runTime1 * constant;
     let kv2 = runTime2 * constant;
-
     let preciseKv1 = kv1.toPrecision(4);
     let preciseKv2 = kv2.toPrecision(4);
 
@@ -92,7 +90,6 @@ function calculateUbbelohde(runTime1, runTime2, constant) {
     document.getElementById('determinability-kv-2-units').style.display = 'inline';
 
     let determinabilityDetails = document.getElementById('determinability-details');
-
     determinabilityDetails.innerHTML = `
     <p>Kinematic viscosity 1 = ${kv1} cSt</p>
     <p>Kinematic viscosity 2 = ${kv2} cSt</p>`;
@@ -100,7 +97,7 @@ function calculateUbbelohde(runTime1, runTime2, constant) {
     calculateFinalUbbelohde(kv1, kv2);
 }
 
-function calculateFinalUbbelohde(kv1, kv2) {
+function calculateFinalUbbelohde(kv1, kv2) {//calculates final calculated viscosity
 
     let finalViscosity = ((kv1 + kv2) / 2);
     let preciseFinalViscosity = finalViscosity.toPrecision(4);
@@ -121,7 +118,7 @@ function calculateFinalUbbelohde(kv1, kv2) {
 let zeitfuchsButton = document.getElementById('zeitfuchs-button');
 zeitfuchsButton.addEventListener('click', zeitfuchsConstant);
 
-function zeitfuchsConstant() {
+function zeitfuchsConstant() {//Displays run-time and constant inputs, plus calculate and reset buttons, hides Ubbelohde inputs if present
 
     let constant1Div = document.getElementById('constant-1-div');
     let constant2Div = document.getElementById('constant-2-div');
@@ -167,7 +164,7 @@ function zeitfuchsConstant() {
 let getValuesZeitfuchsButton = document.getElementById('submit-zeitfuchs');
 getValuesZeitfuchsButton.addEventListener('click', getValuesZeitfuchs);
 
-function getValuesZeitfuchs() {
+function getValuesZeitfuchs(){ //retrieves values from number inputs
 
     let select = document.getElementById('sample-type-determinability');
     let runTime1 = document.getElementById('run-time-1');
@@ -194,7 +191,7 @@ function getValuesZeitfuchs() {
     }
 }
 
-function calculateZeitfuchs(runTime1, runTime2, constant1, constant2) {
+function calculateZeitfuchs(runTime1, runTime2, constant1, constant2) {//calculates kinematic viscosities
 
     let kv1 = runTime1 * constant1;
     let kv2 = runTime2 * constant2;
@@ -216,7 +213,7 @@ function calculateZeitfuchs(runTime1, runTime2, constant1, constant2) {
     calculateFinalZeitfuchs(kv1, kv2);
 }
 
-function calculateFinalZeitfuchs(kv1, kv2) {
+function calculateFinalZeitfuchs(kv1, kv2) {//calculates final calculated viscosity
 
     let finalViscosity = ((kv1 + kv2) / 2);
     let preciseFinalViscosity = finalViscosity.toPrecision(4);
@@ -234,7 +231,7 @@ function calculateFinalZeitfuchs(kv1, kv2) {
 
 //Determinability calculations
 
-function determinability(finalViscosity, kv1, kv2) {
+function determinability(finalViscosity, kv1, kv2) {//calculates determinability factor
 
     let select = document.getElementById('sample-type-determinability');
     let message = '';
@@ -309,7 +306,7 @@ function determinability(finalViscosity, kv1, kv2) {
     upperLimit(determinability, finalViscosity, kv1, kv2);
 }
 
-function upperLimit(determinability, finalViscosity, kv1, kv2) {
+function upperLimit(determinability, finalViscosity, kv1, kv2) {//calculates upper limit
 
     let upperAllowedViscosity = finalViscosity + determinability;
     let preciseUpperAllowedViscosity = upperAllowedViscosity.toPrecision(4);
@@ -324,7 +321,7 @@ function upperLimit(determinability, finalViscosity, kv1, kv2) {
     lowerLimit(determinability, finalViscosity, upperAllowedViscosity, kv1, kv2);
 }
 
-function lowerLimit(determinability, finalViscosity, upperAllowedViscosity, kv1, kv2) {
+function lowerLimit(determinability, finalViscosity, upperAllowedViscosity, kv1, kv2) {//calculates lower limit
 
     let lowerAllowedViscosity = finalViscosity - determinability;
     let preciseLowerAllowedViscosity = lowerAllowedViscosity.toPrecision(4);
@@ -339,7 +336,7 @@ function lowerLimit(determinability, finalViscosity, upperAllowedViscosity, kv1,
     checker(upperAllowedViscosity, lowerAllowedViscosity, kv1, kv2);
 }
 
-function checker(upperAllowedViscosity, lowerAllowedViscosity, kv1, kv2) {
+function checker(upperAllowedViscosity, lowerAllowedViscosity, kv1, kv2) {//checks if kinematic viscosities are less than upper limit and greater than lower limit
 
     if(kv1 > lowerAllowedViscosity && kv1 < upperAllowedViscosity && kv2 > lowerAllowedViscosity && kv2 < upperAllowedViscosity) {
         document.getElementById('determinability-output').innerHTML = `
@@ -362,7 +359,7 @@ function checker(upperAllowedViscosity, lowerAllowedViscosity, kv1, kv2) {
 let determinabilityDetailsButton = document.getElementById('determinability-details-button');
 determinabilityDetailsButton.addEventListener('click', determinabilityDetails);
 
-function determinabilityDetails() {
+function determinabilityDetails() {//displays unrounded values
 
     let determinabilityCalculatedOutput = document.getElementById('determinability-calculated-output');
     determinabilityCalculatedOutput.style.height = '100vh';
@@ -374,7 +371,7 @@ function determinabilityDetails() {
 let resetButton = document.getElementById('reset-determinability');
 resetButton.addEventListener('click', reset);
 
-function reset() {
+function reset() {//resets calculation article
 
     document.getElementById('run-time-1').value = '';
     document.getElementById('run-time-2').value = '';

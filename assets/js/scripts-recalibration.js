@@ -65,7 +65,6 @@ function recalibrationReset() {
     document.getElementById('recalibration-percentage-difference').textContent = '';
     document.getElementById('recalibration-new-constant-label').style.display = 'none';
     document.getElementById('recalibration-new-constant').textContent = '';
-
     document.getElementById('recalibration-percentage-difference-units').style.display = 'none';
     document.getElementById('recalibration-new-constant-units').style.display = 'none';
 }

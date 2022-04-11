@@ -3,7 +3,7 @@
 let repeatabilityButton = document.getElementById('submit-repeatability');
 repeatabilityButton.addEventListener('click', averageViscosityRepeatability);
 
-function averageViscosityRepeatability() {
+function averageViscosityRepeatability() {//retrieves number inputs, calculates average viscosity
 
     let select = document.getElementById('sample-type-repeatability');
     let viscosity1 = document.getElementById('viscosity-repeatability-1');
@@ -33,7 +33,7 @@ function averageViscosityRepeatability() {
     }
 }
 
-function repeatability(viscosity1, viscosity2, averageViscosity) {
+function repeatability(viscosity1, viscosity2, averageViscosity) {//calculates repeatability factor
 
     let select = document.getElementById('sample-type-repeatability');
     let message = '';
@@ -41,7 +41,6 @@ function repeatability(viscosity1, viscosity2, averageViscosity) {
     let preciseRepeatability;
 
     switch(true) {
-
         case select.value === 'BO40':
             message = '0.0101 x average viscosity, or 1.01%';
             repeatability = averageViscosity * 0.0101;
@@ -139,7 +138,7 @@ function repeatability(viscosity1, viscosity2, averageViscosity) {
     repeatabilityUpperLimit(viscosity1, viscosity2, averageViscosity, repeatability);
 }
 
-function repeatabilityUpperLimit(viscosity1, viscosity2, averageViscosity, repeatability) {
+function repeatabilityUpperLimit(viscosity1, viscosity2, averageViscosity, repeatability) {//calculates upper limit
 
     let repeatabilityUpper = averageViscosity + repeatability;
     let preciseRepeatabilityUpper = repeatabilityUpper.toPrecision(4);
@@ -153,7 +152,7 @@ function repeatabilityUpperLimit(viscosity1, viscosity2, averageViscosity, repea
     repeatabilityLowerLimit(viscosity1, viscosity2, averageViscosity, repeatability, repeatabilityUpper);
 }
 
-function repeatabilityLowerLimit(viscosity1, viscosity2, averageViscosity, repeatability, repeatabilityUpper) {
+function repeatabilityLowerLimit(viscosity1, viscosity2, averageViscosity, repeatability, repeatabilityUpper) {//calculates lower limit
 
     let repeatabilityLower = averageViscosity - repeatability;
     let preciseRepeatabilityLower = repeatabilityLower.toPrecision(4);
@@ -168,7 +167,7 @@ function repeatabilityLowerLimit(viscosity1, viscosity2, averageViscosity, repea
     repeatabilityChecker(viscosity1, viscosity2, repeatabilityUpper, repeatabilityLower);
 }
 
-function repeatabilityChecker(viscosity1, viscosity2, repeatabilityUpper, repeatabilityLower) {
+function repeatabilityChecker(viscosity1, viscosity2, repeatabilityUpper, repeatabilityLower) {//checks whether supplied viscosities are greater than lower limit and less than upper limit
 
     if(viscosity1 > repeatabilityLower && viscosity1 < repeatabilityUpper && viscosity2 > repeatabilityLower && viscosity2 < repeatabilityUpper) {
         document.getElementById('repeatability-output').innerHTML = `
@@ -176,7 +175,6 @@ function repeatabilityChecker(viscosity1, viscosity2, repeatabilityUpper, repeat
         <span>Your viscosities are repeatable</span>
         <p>Click the button below to see a detailed breakdown of the calculations</p>`;
     }
-
     else {
         document.getElementById('repeatability-output').innerHTML = `
         <i class="fas fa-xmark icon"></i>
@@ -191,7 +189,7 @@ function repeatabilityChecker(viscosity1, viscosity2, repeatabilityUpper, repeat
 let repeatabilityDetailsButton = document.getElementById('repeatability-details-button');
 repeatabilityDetailsButton.addEventListener('click', repeatabilityDetails);
 
-function repeatabilityDetails() {
+function repeatabilityDetails() {//displays unrounded calculation values
 
     let repeatabilityUserInput = document.getElementById('repeatability-user-input');
     repeatabilityUserInput.style.height = '55vh';
@@ -206,7 +204,7 @@ function repeatabilityDetails() {
 let repeatabilityResetButton = document.getElementById('repeatability-reset');
 repeatabilityResetButton.addEventListener('click', repeatabilityReset);
 
-function repeatabilityReset() {
+function repeatabilityReset() {//resets calculation article
 
     document.getElementById('viscosity-repeatability-1').value = '';
     document.getElementById('viscosity-repeatability-2').value = '';
@@ -224,12 +222,10 @@ function repeatabilityReset() {
     document.getElementById('repeatability-factor-units').style.display = 'none';
     document.getElementById('repeatability-upper-limit-units').style.display = 'none';
     document.getElementById('repeatability-lower-limit-units').style.display = 'none';
-
     document.getElementById('repeatability-details-button').style.display = 'none';
     document.getElementById('repeatability-details').style.display = 'none';
     document.getElementById('repeatability-user-input').style.height = '55vh';
     document.getElementById('repeatability-calculated-output').style.height = '55vh';
-
     document.getElementById('repeatability-average-viscosity-label').style.display = 'none';
     document.getElementById('repeatability-equation-label').style.display = 'none';
     document.getElementById('repeatability-factor-label').style.display = 'none';

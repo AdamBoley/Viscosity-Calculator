@@ -3,7 +3,7 @@
 let calculationSelector = document.getElementById('calculation-selector');
 calculationSelector.addEventListener('change', selectCalculation);
 
-function selectCalculation() {
+function selectCalculation() {//displays and hides calculation articles, based on user selection
 
     if(calculationSelector.value === 'determinability') {
         document.getElementById('determinability-calculations').style.display = 'block';

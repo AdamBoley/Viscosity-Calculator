@@ -3,7 +3,7 @@
 let calibrationCalculateButton = document.getElementById('submit-calibration');
 calibrationCalculateButton.addEventListener('click', getValuesCalibration);
 
-function getValuesCalibration() {
+function getValuesCalibration() {//retrieves number input values
 
     let runTime1 = document.getElementById('calibration-run-time-1');
     let runTime2 = document.getElementById('calibration-run-time-2');
@@ -28,7 +28,7 @@ function getValuesCalibration() {
     }
 }
 
-function calculateCalibration(calibrationRunTime1, calibrationRunTime2, calibrationConstant) {
+function calculateCalibration(calibrationRunTime1, calibrationRunTime2, calibrationConstant) {//calculates average run-time, kinematic viscosities and average viscosity
 
     let averageRunTime = ((calibrationRunTime1 + calibrationRunTime2) / 2);
     let viscosity1 = calibrationRunTime1 * calibrationConstant;
@@ -50,7 +50,7 @@ function calculateCalibration(calibrationRunTime1, calibrationRunTime2, calibrat
     tolerance(averageViscosity);
 }
 
-function tolerance(averageViscosity) {
+function tolerance(averageViscosity) {//sets tolerance band based on calibration fluid viscosity
 
     let calibrationFluidViscosity = document.getElementById('calibration-fluid-viscosity').value;
     let toleranceBand;
@@ -100,7 +100,7 @@ function tolerance(averageViscosity) {
     percentageDifference(calibrationFluidViscosity, averageViscosity, toleranceBand);
 }
 
-function percentageDifference(calibrationFluidViscosity, averageViscosity, toleranceBand) {
+function percentageDifference(calibrationFluidViscosity, averageViscosity, toleranceBand) {//calculates percentage difference between average viscosity and calibration fluid viscosity
     
     let numerator = calibrationFluidViscosity - averageViscosity;
     numerator = Math.abs(numerator);
@@ -122,7 +122,7 @@ function percentageDifference(calibrationFluidViscosity, averageViscosity, toler
     percentageDifferenceChecker(percentageDifference, toleranceBand);
 }
 
-function percentageDifferenceChecker(percentageDifference, toleranceBand) {
+function percentageDifferenceChecker(percentageDifference, toleranceBand) {//checks whether percentage difference is less than or greater than the tolerance band
 
     if(percentageDifference <= toleranceBand) {
         document.getElementById('calibration-output').innerHTML = `
@@ -144,7 +144,7 @@ function percentageDifferenceChecker(percentageDifference, toleranceBand) {
 let calibrationDetailsButton = document.getElementById('calibration-details-button');
 calibrationDetailsButton.addEventListener('click', calibrationDetails);
 
-function calibrationDetails() {
+function calibrationDetails() {//displays unrounded calculation values
 
     let calibrationUserInput = document.getElementById('calibration-user-input');
     if(screen.width < '400') {
@@ -167,7 +167,7 @@ function calibrationDetails() {
 let calibrationResetButton = document.getElementById('calibration-reset');
 calibrationResetButton.addEventListener('click', calibrationReset);
 
-function calibrationReset() {
+function calibrationReset() {//resets calculation article for further use
 
     document.getElementById('calibration-run-time-1').value = '';
     document.getElementById('calibration-run-time-2').value = '';
@@ -185,12 +185,10 @@ function calibrationReset() {
     document.getElementById('calibration-average-viscosity-units').style.display = 'none';
     document.getElementById('calibration-viscosity-range-units').style.display = 'none';
     document.getElementById('calibration-percentage-difference-units').style.display = 'none';
-
     document.getElementById('calibration-details-button').style.display = 'none';
     document.getElementById('calibration-details').style.display = 'none';
     document.getElementById('calibration-user-input').style.height = '55vh';
     document.getElementById('calibration-calculated-output').style.height = '55vh';
-
     document.getElementById('calibration-average-run-time-label').style.display = 'none';
     document.getElementById('calibration-average-viscosity-label').style.display = 'none';
     document.getElementById('calibration-viscosity-range-label').style.display = 'none';
