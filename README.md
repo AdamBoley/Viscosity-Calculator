@@ -1374,11 +1374,43 @@ I also have access to an iPad. Testing on this device detected a bug whereby the
 
 ### **HTML validation**
 
+The [W3C HTML validator](https://validator.w3.org/) was used for validating the HTML files of the project. 
+
+**Index.html** - Some issues were detected during initial validation - 3 instances of duplicate class names and 1 instance of an unordered list being the direct child of an ordered list. The duplicate class names were removed and the child unordered list was placed inside a list item element that was a direct child of the ordered list. 
+
+3 section elements were in each calculation article, and the validator showed warnings about the lack of heading elements in these sections. Further research using [the MDN Web Docs page on section elements](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/section) indicated that they should represent standalone sections with heading elements. The sections in this document were not standalone and were only used for styling purposes, so they were changed to div elements.  
+
+Once these issues were cleared up, the index.html file was run through the validator again and no warnings or errors were detected. 
+
+**discussion.html** - No errors or warning were detected during the initial run through the validator. 
+
 ### **CSS validation**
+
+The [W3C Jigsaw CSS validator](https://jigsaw.w3.org/css-validator/) was used for validating the styles.css file of the project.
+
+**Styles.css** - No errors were detected. 5 warnings were detected - 1 relating to the imported Work Sans font (since imported style sheets are not checked) and 4 relating to the webkits used on lines 190 through 199, which disable the arrows that appear in number input elements by default. These webkits are for the Chrome, Safari, Opera, Edge and Firefox browsers. I consider removal of the arrows to be a minor quality-of-life improvement, and so users viewing the project using another browser should not be significantly impacted. 
 
 ### **JS validation**
 
+[JShint](https://jshint.com/) was used for JavaScript validation
+
+**scripts-determinability.js** - No errors were detected, but initially there were many warnings. Some of these related to missing semi-colons. Other warnings related to the use of the let keyword for variables, the use of template literals and the use of exponent operator. The missing semi-colons were inserted, and a second run through the validator showed only the warnings about let, template literals and the exponent operator. 
+
+**scripts-repeatability.js** - No errors were detected, but there were several warnings related to the use of the let keyword for variables, the use of template literals and the use of exponent operator. No warnings related to missing semi-colons were found, since these were inserted when the warnings about their absence were noted during validation of the scripts-determinability.js file. 
+
+**scripts-reproducibility.js** - No errors were detected, but there were several warnings related to the use of the let keyword for variables, the use of template literals and the use of exponent operator. No warnings related to missing semi-colons were found, since these were inserted when the warnings about their absence were noted during validation of the scripts-determinability.js file.
+
+**scripts-calibration.js** - No errors were detected, but there were several warnings related to the use of the let keyword for variables and the use of template literals. No warnings related to missing semi-colons were found, since these were inserted when the warnings about their absence were noted during validation of the scripts-determinability.js file. Initially the validator found one undefined variable - toleranceBand, which is used in the file's SWITCH statement. The calculation still worked despite this. To fix the warning, toleranceBand was declared above the SWITCH statement and left undefined, as it is redefined in the SWITCH statements cases.
+
+**scripts-recalibration.js** - No errors were detected, but there were several warnings related to the use of the let keyword for variables. No warnings related to missing semi-colons were found, since these were inserted when the warnings about their absence were noted during validation of the scripts-determinability.
+
+**scripts-calculation-selector.js** - No errors were detected, but there was one warning relating to the use of the let keyword for variables.
+
+Since JavaScript's current version is [ECMAScript 2018](https://www.w3schools.com/js/js_2018.asp), the warnings noted above relate to JavaScript versions ES6 ad ES7, which are now 5 years old. 
+
 ### **Lighthouse testing**
+
+The Lighthouse feature of the Chrome Developer Tools was used to generate a report on the Performance, Accessibility, Best Practices and Search Engine Optimisation of the project. Initially, Performance, Accessibility and Best Practices scored 100%. SEO scored 89%, which was due to [non-descriptive text in hyperlinks](https://web.dev/link-text/?utm_source=lighthouse&utm_medium=devtools). I had placed 'Click here' in the hyperlinks. The text inside the hyperlink was reformatted to be more descriptive. Initially I had links to the guidance page in the top-level introductory text, and in the instructions for the determinability, repeatability and reproducibility calculation articles. Lighthouse testing prompted me to place additional hyperlinks in the instructions for the calibration and recalibration calculation articles. With the hyperlink text reformatted, both pages achieved a 100% score in each Lighthouse testing category.  
 
 # **Credits**
 
@@ -1397,6 +1429,8 @@ ASTM Industry standard test method D445, obtained using Intertek's subscription 
 The [Am I Responsive](http://ami.responsivedesign.is/#) site was used to generate the previews of the site as it appears on multiple devices. 
 
 [The WebAIM color contrast checker](https://webaim.org/resources/contrastchecker/) was used to confirm the contrast between the light-blue background colour and the black text. 
+
+The Lighthouse testing function provided [this link to a web.dev page](https://web.dev/link-text/?utm_source=lighthouse&utm_medium=devtools) that discusses non-descriptive text in hyperlinks. This was used to improve the text in the project's hyperlinks.
 
 ## Acknowledgements
 
