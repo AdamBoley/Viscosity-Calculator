@@ -1,6 +1,4 @@
-Main page screenshot goes here
-
-![]()
+![main page screenshot](assets/images/screenshots/main-page-screen-shot.PNG)
 
 # **Viscosity Calculator**
 
@@ -22,7 +20,8 @@ Main page screenshot goes here
     - [Determinability calculation article](#determinability-calculation-article)
     - [Repeatability and reproducibility calculation articles](#repeatability-calculation-article)
     - [Calibration calculation article](#calibration-calculation-article)
-    - [Recalibration calculation article](#recalibration-calculation-article)    
+    - [Recalibration calculation article](#recalibration-calculation-article)
+    - [Calculation details](#calculation-details)    
 - [Function](#function)
     - [Calculation selector logic](#calculation-selector-logic)
     - [Determinability logic](#determinability-logic)
@@ -232,6 +231,10 @@ Generally state each aspect of the site -
 
 The first feature of the Viscosity Calculator is the header, which contains some introductory text and a drop-down menu. The introductory text indicates the purpose of the tool to a user, and also contains a link to the discussion page. The scripts-calculation-selector.js file contains an event listener that listens for a change in the drop-down menu. Depending on the user's selection, the JavaScript in that file will display the associated calculation article. 
 
+See below for a screenshot of the introductory text and drop-down menu:
+
+![introductory text and drop-down menu](assets/images/screenshots/introductory-text-screenshot.PNG)
+
 ## **Calculation articles**
 
 The Calculation articles (so named because they are contained within HTML article elements) are the main feature of the Viscosity Calculator. Each is similar, featuring a list containing the instructions for use, number input elements for the user to input their data, and calculation output elements. The calculation outputs are initially hidden, only appearing when the user enters all of the required data and the tool calculates the outputs.
@@ -242,7 +245,7 @@ The calculation outputs contain all of the results of each step of the calculati
 
 Each calculation article also features a reset button that clears the user's inputs and the calculated outputs. This readies that calculation article for further calculations. 
 
-## **eterminability Calculation article**
+## **Determinability Calculation article**
 
 The Determinability Calculation article is used for calculating the determinability of viscosity results - that is, checking if they are close enough to be considered valid for reporting. 
 
@@ -252,6 +255,10 @@ The second feature is a pair of buttons labelled 'Ubbelohde viscometer' and 'Zei
 
 The third feature is the calculation button, with an event listener in the scripts-determinability.js file listening for a click on the button. The Calculations are then executed and the results displays per above.
 
+See below for a screenshot of the determinability calculation article:
+
+![determinability calculation article](assets/images/screenshots/determinability-screenshot.PNG)
+
 ## **Repeatability and Reproducibility Calculation article**
 
 The Repeatability and Reproducibility Calculation articles are similar, only differing in the calculations that performed. They are used for calculating the repeatability and reproducibility of separate viscosity results - that is, checking if they are close enough to be considered valid replications of each other. Repeatability should apply for results taken in the same laboratory by the same operator, whilst reproducibility applies for results taken by different laboratories. 
@@ -260,17 +267,39 @@ The first feature of both is a drop-down menu. The user selects an option that c
 
 The second feature is a pair of inputs for the user's viscosities. The third feature is a calculation button and a reset button, which work per above. 
 
+See below for screenshots of the repeatability and reproducibility calculation articles:
+
+![repeatability calculation article](assets/images/screenshots/repeatability-screenshot.PNG)
+
+![reproducibility calculation article](assets/images/screenshots/reproducibility-screenshot.PNG)
+
 ## **Calibration Calculation article**
 
 The Calibration Calculation article is used for checking the results of calibration tests, which are typically yearly tests on viscometers to make sure that they are still capable of giving the same results. 
 
 This article features two run-time inputs, the constant of the viscometer, and the viscosity of the calibration fluid used in the test, as well as a button to initiate the calculation and another button to reset the inputs and outputs. 
 
+See below for a screenshot:
+
+![calibration article screenshot](assets/images/screenshots/calibration-screenshot.PNG)
+
 ## **Recalibration Calculation article**
 
 The Recalibration Calculation article is used for adjusting the constant of a viscometer to account for discrepancies between the gravity of the testing laboratory and the gravity of the standardisation laboratory. 
 
 This article features an input for the constant of the viscometer, and two inputs, one for the gravity of the testing lab and another for the gravity of the standardisation lab, as well as a button to initiate the calculation, and another button to reset the inputs and outputs. 
+
+See below for a screenshot:
+
+![recalibration calculation article](assets/images/screenshots/recalibration-screenshot.PNG)
+
+## Calculation details 
+
+The determinability, repeatability, reproducibility and calibration calculation articles each display a button when the calculations end. This button can be clicked to display the unrounded values used in the calculations, which is intended to reassure the user that the Viscosity Calculator performs the calculations correctly. 
+
+See below for a screenshot:
+
+![calculation details](assets/images/screenshots/calculation-details-screenshot.PNG)
 
 # **Function**
 
@@ -490,7 +519,11 @@ Firstly, the background color is light blue (hex-code: #add8e6), whilst the text
 
 Secondly, I have increased the font-weight of the calculation outputs to 600, which makes them visually distinct from their labels. 
 
-Thirdly, I have implemented media queries that increase the size of the Viscosity Calculator's buttons, drop-down menus and input elements when it is viewed on tablets and smartphones. The font-size has also been increased from 16px to 19.2px. The buttons specifically have also been given CSS hover pseudo-selectors so that they take on a dark blue colour with white text when a user's mouse hovers over them, to clearly indicate that the user is about to click a button and intiate some action. 
+Thirdly, I have implemented media queries that increase the size of the Viscosity Calculator's buttons, drop-down menus and input elements when it is viewed on tablets and smartphones. The font-size has also been increased from 16px to 19.2px. The buttons specifically have also been given CSS hover pseudo-selectors so that they take on a dark blue colour with white text when a user's mouse hovers over them, to clearly indicate that the user is about to click a button and intiate some action.
+
+See below for a screenshot of the project on multiple devices, obtained from [Am I Responsive](http://ami.responsivedesign.is/#):
+
+![am i responsive screenshot](assets/images/screenshots/am-i-responsive-screenshot.PNG)
 
 # **Future work**
 
