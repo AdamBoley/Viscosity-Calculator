@@ -103,13 +103,13 @@ The time elapsed between when the fluid passes the first timing mark to when it 
 This run-time is multiplied by a constant that is unique to each viscometer, and this produces a kinematic viscosity value. Viscometers come in standard sizes - 0C, 1, 1C, 2, 2C, 3, 3C, 4 and 4C, the constants increasing by a factor of 3 at each size - 0C's have the smallest constants, on the order of 0.003, 1's have constants on the order of 
 0.01, etc. 4Cs have the largest constants, on the order of 30.00.  
 
-However, one kinematic viscosity isn't sufficient, and both of the above methods specify that two such measurements must be made. These two measurements are then averaged. As with many scientific calculations, kinematic viscosity has a unit, and this is millimeters squared per second - **mm^2/s**. A more common unit is the centi-Stoke, **cSt**, and the two are equivalent - 1 mm^2/s = 1 cSt.
+However, one kinematic viscosity isn't sufficient, and D445 specifies that two such measurements must be made. These two measurements are then averaged. As with many scientific calculations, kinematic viscosity has a unit, and this is millimeters squared per second - **mm^2/s**. A more common unit is the centi-Stoke, **cSt**, and the two are equivalent - 1 mm^2/s = 1 cSt.
 
 At this point, you may be wondering as to the purpose of this project - multiplication and averaging are simple mathematical operations that don't require an entire website to do, surely? A pocket calculator could be used, as could Excel formulas. 
 
-This is indeed true. However, the methods specify that not just any two kinematic viscosities can be used for the final averaging calculation - they need to be close enough that they are approximately the same, and hence that the final averaged value is a good representation of the actual viscosity of the fluid. For example, say you measured two kinematic viscosities of 100 cSt and 80 cSt. The final averaged value would be 90, which is nowhere near either value, and could hence mislead the client. 
+This is indeed true. However, D445 specifies that not just any two kinematic viscosities can be used for the final averaging calculation - they need to be close enough that they are approximately the same, and hence that the final averaged value is a good representation of the actual viscosity of the fluid. For example, say you measured two kinematic viscosities of 100 cSt and 80 cSt. The final averaged value would be 90 cSt, which is nowhere near either value, and could hence mislead the client. 
 
-To check whether the two values that have been obtained are close enough, the methods contain a series of calculations for different fluid types that specify a concept called determinability. These calculations effectively define a band within whose limits the two measured kinematic viscosities must fall. Kinematic viscosities that meet this criterion are said to be 'determinable', and hence valid for reporting to the client. 
+To check whether the two values that have been obtained are close enough, D445 contains a series of calculations for different fluid types that specify a concept called determinability. These calculations effectively define a band within whose limits the two measured kinematic viscosities must fall. Kinematic viscosities that meet this criterion are said to be 'determinable', and hence valid for reporting to the client. 
 
 The methods also specify several other calculations - repeatability, reproducibility, calibration and recalibration. Repeatability and reproducibility are concerned with repeat measurements of viscosity - by the same laboratory and by a different laboratory respectively. These calculations are as involved and time-consuming as the determinability calculations. 
 
@@ -131,27 +131,27 @@ More specifically, the tool is designed for use by myself and my colleagues at I
 
 # **User stories**
 
-First-time users must be able to determine the purpose of the tool as soon as they navigate to it
+First-time users must be able to determine the purpose of the tool as soon as they navigate to it.
 
-The tool must include a selector to allow the user to choose the calculation they want to conduct
+The tool must include a selector to allow the user to choose the calculation they want to conduct.
 
-The tool must include a selector to allow the user to select the fluid type that their sample is, and this selector must change that functions that are executed so that the correct calculations are made
+The tool must include a selector to allow the user to select the fluid type that their sample is, and this selector must change that functions that are executed so that the correct calculations are made.
 
-The tool must include a page with some information on how to set the selector to the fluid type that matches their sample
+The tool must include a page with some information on how to set the selector to the fluid type that matches their sample.
 
-The above page should either open a new tab, or include an internal link to take the user back to the main page so that they don't have to user their browser butttons
+The above page should either open a new tab, or include an internal link to take the user back to the main page so that they don't have to user their browser butttons.
 
-The tool must have clear calls to action to input the user's data (run-times, constants, gravities, etc)
+The tool must have clear calls to action to input the user's data (run-times, constants, gravities, etc).
 
-The tool must have a clear call to action to submit their inputs and begin the calculations
+The tool must have a clear call to action to submit their inputs and begin the calculations.
 
-The tool must display all calculation outputs so that the user is reassured of the tool's accuracy and can follow along performing the calculations manually if they desire
+The tool must display all calculation outputs so that the user is reassured of the tool's accuracy and can follow along performing the calculations manually if they desire.
 
-The tool's functions must produce the same calculation outputs as manual calculations would (i.e. no difference between the tool and the user doing the same calculations manually)
+The tool's functions must produce the same calculation outputs as manual calculations would (i.e. no difference between the tool and the user doing the same calculations manually).
 
-The tool must have a function to clear the user's inputs so that other tests can be checked
+The tool must have a function to clear the user's inputs so that other tests can be checked.
 
-The tool must have a clear final output informing the user of the result of the calculation
+The tool must have a clear final output informing the user of the result of the calculation.
 
 # **Wireframes**
 
@@ -232,8 +232,6 @@ Discussion page:<br>
 ![discussion-mobile-final](assets/images/wireframes/final/discussion-mobile-final.png)
 
 # **Features**
-
-Generally state each aspect of the site - 
 
 ## **Header and selector**
 
@@ -487,7 +485,7 @@ The project uses the Work Sans font. This is a simple, uncomplicated font that i
 
 ## **Icons**
 
-Two icons are used in this project - a tick and a cross. These are inserted using JavaScript, along with the output messages. This serves to reinforce the output message, and forestall any ambiguity. 
+Two icons are used in this project - a tick and a cross. These are inserted using JavaScript, along with the output messages. This serves to reinforce the output message, and forestall any misunderstanding by the user. 
 
 ## **Favicon**
 
@@ -519,7 +517,7 @@ When initially written the JavaScript code contained many console.log statements
 
 # **Accessibility**
 
-In contrast to my previous project, which contained a great many images, this project contains none. Therefore, there are no accessibility attributes such as aria-label or aria-labelledby. 
+In contrast to my previous project, which contained a great many images, this project contains none. Therefore, there is no need for accessibility attributes such as aria-label or aria-labelledby. 
 
 However, the Viscosity Calculator has been constructed with visually impaired users in mind. 
 
@@ -545,7 +543,7 @@ The tool could be expanded greatly to handle the calculations involved in other 
 
 # **Bugs**
 
-A large and annoying bug was encountered when trying to change the text displayed in the "determinability-equation" div and when performing the calculation in the "determinability-factor" div. This text and equation output change was governed by the user's selection from the drop-down menu. It was observed through console.log commands that the code was not using the loop's IF/ELSE statements to discriminate based on the drop-down menu selection, but was actually trying to execute all of the options. I was using the onchange event listener in the select element, but it only seemed to be firing once. This was eventually solved with help from Tutor Support, who recommended removing the loop. The reasoning for initially using a loop was that the Love Maths walkthrough project involves the use of loop to respond to the user's mathematical operation selection. As noted elsewhere, I eventually moved away from IF/ELSE statements and used SWITCH statements. 
+A large and annoying bug was encountered when trying to change the text displayed in the "determinability-equation" div and when performing the calculation in the "determinability-factor" div. This text and equation output change was governed by the user's selection from the drop-down menu. It was observed through console.log commands that the code was not using the loop's IF/ELSE statements to discriminate based on the drop-down menu selection, but was actually trying to execute all of the options. I was using the onchange event listener in the select element, but it only seemed to be firing once. This was eventually solved with help from Tutor Support, who recommended removing the loop. The reasoning for initially using a loop was that the Love Maths walkthrough project involves the use of loop to respond to the user's mathematical operation selection. As noted elsewhere, I eventually moved away from IF/ELSE statements and used SWITCH statements, but solving this bug allowed the project to progress. 
 
 A bug was noticed during routine testing after adding JavaScript and HTML to unhide units when performing the calculations, and then hide the units again when the reset button is pressed. This bug related to the calibration and recalibration calculations, which use percentage difference calculations operation as part of the functions. The functions appeared to be concatenating the input values as strings, which produced wildly inaccurate output values. This was solved by tweaking the variables used to calculate the denominator in the percentage difference calculations. Instead of adding the two values and then dividing by 2, as in: 
 
@@ -595,7 +593,7 @@ This project was deployed using Github Pages as follows:
 
 Other users may access this project using Gitpod by following the steps below: 
 
-1. Install the Google Chrome or Firefox browser.
+1. Install the Google Chrome or Firefox browser on your device.
 2. Navigate to Github.
 3. Log into GitHub or create a Github account, if you don't already have one.
 4. Navigate to my Github profile - [Adam Boley](https://github.com/AdamBoley).
@@ -685,11 +683,11 @@ The introductory text contains a prominent link with a clear call to action to v
 
 **The above page should either open a new tab, or include an internal link to take the user back to the main page so that they don't have to user their browser butttons**
 
-Clicking on either of the 4 links to the discussion page opens a new tab, so that the user is not directed away from the index page. 
+Clicking any of the 6 links on the index page opens the discussion page in a new tab, so that the user is not directed away from the index page. 
 
 **The tool must have clear calls to action to input the user's data (run-times, constants, gravities, etc)**
 
-Each calculation section has an In'structions for use' ordered list that walks the user through the process. Each input has a label, and the input element's white colouration stands out against the blue background of the Viscosity Calculator. Further prompting is provided by the alerts that flash up if the user presses the calculation button when not all of the inputs have been filled. 
+Each calculation section has an 'Instructions for use' ordered list that walks the user through the process. Each input has a label, and the input element's white colouration stands out against the blue background of the Viscosity Calculator. Further prompting is provided by the alerts that flash up if the user presses the calculation button when not all of the inputs have been filled. 
 
 **The tool must have a clear call to action to submit their inputs and begin the calculations**
 
@@ -1473,9 +1471,9 @@ The [Am I Responsive](http://ami.responsivedesign.is/#) site was used to generat
 
 The Lighthouse testing function provided [this link to a web.dev page](https://web.dev/link-text/?utm_source=lighthouse&utm_medium=devtools) that discusses non-descriptive text in hyperlinks. This was used to improve the text in the project's hyperlinks.
 
-The image of the Ubbelohde viscometer was obtained from [this Reagecon page](https://www.reagecon.com/en-gb/si-analytics-glass-kinematic-ubbelohde-viscometer-9268110) 
+The image of the Ubbelohde viscometer was obtained from [this Reagecon page](https://www.reagecon.com/en-gb/si-analytics-glass-kinematic-ubbelohde-viscometer-9268110).
 
-The image of the Zeitfuchs viscometer was obtained from [this PSL Rheotek page](https://www.psl-rheotek.com/zeitfuchs-cross-arm-viscometers.html)  
+The image of the Zeitfuchs viscometer was obtained from [this PSL Rheotek page](https://www.psl-rheotek.com/zeitfuchs-cross-arm-viscometers.html).
 
 ## Acknowledgements
 
